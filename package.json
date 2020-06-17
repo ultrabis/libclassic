@@ -15,7 +15,8 @@
     "build": "tsdx build",
     "test": "tsdx test",
     "lint": "tsdx lint",
-    "prepare": "tsdx build"
+    "prepare": "tsdx build",
+    "playground": "cross-env scripts/tsrun cli/playground.ts"
   },
   "peerDependencies": {},
   "husky": {
@@ -24,18 +25,39 @@
     }
   },
   "prettier": {
-    "printWidth": 80,
-    "semi": true,
+    "printWidth": 120,
+    "semi": false,
     "singleQuote": true,
-    "trailingComma": "es5"
+    "tabWidth": 2,
+    "trailingComma": "none"
   },
   "name": "libclassic",
   "author": "kmmiles",
   "module": "dist/libclassic.esm.js",
   "devDependencies": {
+    "@types/file-saver": "^2.0.1",
+    "@types/js-base64": "^2.3.1",
+    "@types/json-query": "^2.2.0",
+    "@types/jszip": "^3.4.1",
+    "@types/lodash": "^4.14.155",
+    "@types/pako": "^1.0.1",
+    "cross-env": "^7.0.2",
     "husky": "^4.2.5",
     "tsdx": "^0.13.2",
     "tslib": "^2.0.0",
+    "tslint": "^6.1.2",
+    "tslint-config-standard": "^9.0.0",
     "typescript": "^3.9.5"
+  },
+  "dependencies": {
+    "file-saver": "^2.0.2",
+    "js-base64": "^2.5.2",
+    "json-query": "^2.2.2",
+    "jszip": "^3.5.0",
+    "lodash": "^4.17.15",
+    "lodash-es": "^4.17.15",
+    "mathjs": "^7.0.1",
+    "pako": "^1.0.11",
+    "statsjs": "https://github.com/angusgibbs/statsjs.git"
   }
 }

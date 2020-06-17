@@ -1,0 +1,17 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint-config-standard"
+    ],    
+    "jsRules": {},
+    "rules": {
+      "space-before-function-paren": false
+    },
+    "rulesDirectory": [],
+    "linterOptions": {
+      "exclude": [
+        "*.json",
+        "**/*.json"
+      ]
+    }
+}
