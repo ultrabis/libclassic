@@ -206,8 +206,8 @@ export default class Equipment {
     let totalSpellDamage = trinketBonus * buffedCasts + naturesGraceBonus
     // console.log(Tools.cumulativeChance(4, spellCrit / 100, 2) * trinketBonus)
     if (trinketReductionPerCast) {
-      let cooldowns = Math.floor(encounterLength / trinketCooldown)
-      let buffedCastsThisCooldown = Math.floor(cooldowns / buffedCasts)
+      // let cooldowns = Math.floor(encounterLength / trinketCooldown)
+      // let buffedCastsThisCooldown = Math.floor(cooldowns / buffedCasts)
       let triangular = Tools.triangularNumber(buffedCasts - 1)
       /*
       console.log(

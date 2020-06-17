@@ -92,7 +92,11 @@ const lockedFromGearParam = (param: string, opts?: ParaminOptions): Object => {
   }
 }
 
-const gearParamFromLocked = (lockedItems: LockedItems, lockedEnchants: LockedEnchants | null, opts?: ParaminOptions) => {
+const gearParamFromLocked = (
+  lockedItems: LockedItems,
+  lockedEnchants: LockedEnchants | null,
+  opts?: ParaminOptions
+) => {
   let lockedArr = []
   lockedArr.push(lockedItems.head)
   lockedArr.push(lockedItems.hands)

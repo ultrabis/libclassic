@@ -10,7 +10,6 @@ import SpellQuery from '../interface/SpellQuery'
 
 import ItemSlot from '../enum/ItemSlot'
 import Faction from '../enum/Faction'
-import PvPRank from '../enum/PvPRank'
 
 import spellsDB from '../db/spells.json'
 import itemsDB from '../db/items.json'
