@@ -12,6 +12,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
+          registry-url: https://registry.npmjs.org/
 
       - name: Use cached node_modules
         uses: actions/cache@v1
@@ -40,3 +41,9 @@ jobs:
         run: yarn build
         env:
           CI: true
+      
+      - name: Publish
+        run: yarn publish
+        env:
+          CI: true
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
