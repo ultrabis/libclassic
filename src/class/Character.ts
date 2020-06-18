@@ -1,4 +1,3 @@
-import constants from '../module/DefaultOptions'
 import Common from '../module/Common'
 
 import Equipment from './Equipment'

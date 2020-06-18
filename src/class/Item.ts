@@ -1,5 +1,3 @@
-import Tools from '../module/Tools'
-
 import ItemJSON from '../interface/ItemJSON'
 import ItemSetJSON from '../interface/ItemSetJSON'
 import EnchantJSON from '../interface/EnchantJSON'

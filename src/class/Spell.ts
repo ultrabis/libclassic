@@ -1,5 +1,4 @@
 import Common from '../module/Common'
-import Constants from '../module/DefaultOptions'
 import Query from '../module/Query'
 import SpellCoefficient from '../interface/SpellCoefficient'
 import SpellJSON from '../interface/SpellJSON'
