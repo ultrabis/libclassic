@@ -1,5 +1,10 @@
 import Vendor from './Vendor'
 
+const getEnumKeyByEnumValue = (myEnum: any, enumValue: number | string): string => {
+  let keys = Object.keys(myEnum).filter((x) => myEnum[x] === enumValue)
+  return keys.length > 0 ? keys[0] : ''
+}
+
 const cumulativeChance = (trials: number, chance: number, x: number): number => {
   return 1 - Vendor.stats.binomcdf(trials, chance, x)
 }
@@ -68,6 +73,7 @@ const decodeURI = (str: string) => {
 }
 
 export default {
+  getEnumKeyByEnumValue,
   cumulativeChance,
   consecutiveChance,
   triangularNumber,

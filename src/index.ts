@@ -5,9 +5,9 @@
  *      - Do spell casters have a spell crit suppression like melee, if so, how does it work?
  */
 import Vendor from './module/Vendor'
-import Constants from './module/Constants'
-import Common from './module/Common'
 import Tools from './module/Tools'
+import Common from './module/Common'
+import DefaultOptions from './module/DefaultOptions'
 import Query from './module/Query'
 import Locked from './module/Locked'
 import Optimal from './module/Optimal'
@@ -49,16 +49,16 @@ const sum = (a: number, b: number) => {
 }
 
 export default {
-  sum,
   /* modules */
   Vendor,
   Common,
-  Constants,
   Tools,
+  DefaultOptions,
   Query,
   Locked,
   Optimal,
   URL,
+  sum,
   // Stupid csim. XML format so goofy it lags rollup trying to generate it
   // ClassicSim
   /* classes */

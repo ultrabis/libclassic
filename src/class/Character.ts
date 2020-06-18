@@ -1,4 +1,4 @@
-import constants from '../module/Constants'
+import constants from '../module/DefaultOptions'
 import Common from '../module/Common'
 
 import Equipment from './Equipment'
@@ -148,7 +148,7 @@ export default class Character {
    */
   get spellCrit(): number {
     return Math.min(
-      constants.spellCritCap,
+      Common.spellCritCap,
       this.spellCritUnbuffed +
         this.rallyingCryOfTheDragonSlayerSpellCritBonus +
         this.moonkinAuraBonus +
@@ -161,7 +161,7 @@ export default class Character {
    * TODO: Return total spell hit rating (equipment + talents + buffs)
    */
   get effectiveSpellHit(): number {
-    return Math.min(this.spellHit, constants.spellHitCap)
+    return Math.min(this.spellHit, Common.spellHitCap)
   }
 
   get spellHit(): number {

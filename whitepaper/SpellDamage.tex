@@ -1,0 +1,101 @@
+\documentclass[letterpaper]{article}
+
+\usepackage{amsmath, amsfonts, amssymb, amsthm}
+
+\usepackage{enumerate,hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage[section]{placeins}
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\providecommand{\equationref}[1]{Equation \eqref{eq:#1}}
+\providecommand{\needscite}{[\textit{Citation Needed}]}
+
+\setcounter{secnumdepth}{0}
+
+\title{Spell Damage Analysis and Stat Weights}
+\author{Balor - Anathema}
+\date{Status: DRAFT. Last updated \today}
+
+\begin{document}
+\maketitle
+This analysis was motivated by determining stat weights for a Balance druid casting Starfire. Wherever possible, however, things were kept general so as to be applicable to other spells and classes.
+\section{Assumptions}
+We use the following assumptions about how damage works.
+\begin{itemize}
+	\item Spells have a base chance to hit that is purely a function of player level, target level, and Hit gear. Resistance does not affect a spell's chance to hit. For raid bosses, the base spell hit is 83, and thus a spell's percent chance to hit is $(83 + H)$ where $H$ is your total hit bonus from gear or talents.\needscite
+	\item Whether a spell lands as a criticial hit is determined after a spell is known to land. That is, a 10\% chance to crit means that 10\% of all spells \textit{that hit} will be critical hits, not that 10\% of all spells that are cast will crit. \needscite This is in contrast to melee attacks, which use a different system to determine hit and crit chance.
+	\item Critical hits provide a fixed multiplicative boost to the damage of a spell. This is usually a 1.5 multiplier, but can vary depending on talents. \needscite For Balance Druids, the Vengeance talent gives a 2.0 damage multiplier on critical hits.
+	\item Spellpower increases the damage of a spell by increasing the damage of a non-resisted, non-critical hit by $c$ times your total spellpower, where $c$ is a fixed constant for a given spell. Usually, this constant is given by the default cast time for that spell divided by 3.5. \needscite
+\end{itemize}
+
+\section{The Damage Formula}
+Let $B$ be the base damage of a spell, $c$ be that spell's corresponding spell coefficient, $H \in [0, 16]$ be a player's current total hit bonus (as a percentage, so +12\% hit is $H = 12$. Note that player hit chance can not be increased to 100, so only the first 16 are useful \needscite), $P$ be a player's total spellpower that applies to that spell, and $R \in [0, 100]$ be the player's spell crit, also as a percentage. Finally, let $x$ be the crit bonus, or one minus the crit multiplier (for example, if spell crits do 1.5 times damage in the default case, $x = 0.5$). Then the expected damage from one spell cast on a raid boss is given by the following.
+\begin{equation}
+\left(0.83 + \frac{H}{100}\right)\left(B + cP\right)\left(1 + x\frac{R}{100}\right)
+\label{eq:damage}
+\end{equation}
+To get DPS, we can simiply divide this by $T$, the total casting time of the spell. There is one complication here for druids, however. The Nature's Grace talent decreases the cast time of your next spell by 0.5 seconds whenever a spell lands a critical hit. Using assumption 2 above, we know that the probability of one spell resulting in a critical hit is $(0.83 + \frac{H}{100})(\frac{R}{100})$. Therefore, we can calculate an average cast time for the spell over a sufficiently long encounter as the following. Note that $t$ here is the casting time reduction that a critical hit yields. In the case of having Nature's Grace, $t=0.5$. If one does not have Nature's Grace, then $t=0$.
+\begin{equation}
+T - t\left(0.83 + \frac{H}{100}\right)\frac{R}{100}
+\label{eq:time}
+\end{equation}
+
+Note that this is somewhat inaccurate, as the first spell in a fight is guaranteed to take $T$ time to cast, and so this is truly only the expected cast time for all subsequent spells. Factoring in the additional time from the first cast would require making assumptions on the total encounter length, which we hope to avoid here. Over sufficiently long encounters, these will converge to the same, so the effect of thsi is ignored in the following analysis.
+
+Dividing the expected damage in \equationref{damage} by the expected cast time in \equationref{time} yields our expected total DPS, $D$.
+
+\begin{equation}
+D = d\frac{\left(0.83 + \frac{H}{100}\right)\left(mB + cP\right)\left(1 + x\frac{R}{100}\right)}{T - t\left(0.83 + \frac{H}{100}\right)\frac{R}{100}}
+\end{equation}
+
+For completeness, we have added in two additional factors, $d$, and $m$. $m$ is any multiplicative modifier on the base damage of a spell that might arise from talents or set bonuses. For example, the Druid talent Moonfury sets $m=1.1$. $d$ is any multiplicative damage modifer on total damage of the spell, including things like Curse of Shadows and the target's resistance. (TODO: add argument for why we can treat resistance, which really determines a probability distrubution of multiplicative damage reductions, as one simple average damage reduction. Also verify that either resistance cannot cause full 100\% damage reductions, or, that if it does, a spell can still be a crit while being 100\% resisted. If this is untrue, resistance will have an effect on Nature's Grace proc rates.).
+
+\section{Stat Weightings}
+To determine how we should value each stat ($H$, $P$, $R$), we have to examine how DPS varies as you change each stat. To do so, we will use derivatives, which measure the rate of change of the function with respect to a given parameter. The partial derivatives of DPS with respect to $H$, $P$, and $R$ are given below.
+
+\begin{equation}
+\frac{\partial D}{\partial P} = d\frac{c\left(83+H\right)\left(100 + xR\right)}{100^2T - t(83 + H)R}
+\end{equation}
+
+\begin{equation}
+\frac{\partial D}{\partial H} = d\left(mB + cP\right)\left(100+xR\right) \left(\frac{100^2T}{\left(100^2T - t\left(83+H\right)R\right)^2}\right)
+\end{equation}
+
+\begin{equation}
+\frac{\partial D}{\partial R} = d\left(mB+cP\right)\left(83+H\right) \left(\frac{xT + t\left(0.83 + \frac{H}{100}\right)}{\left(100T - t\left(0.83 + \frac{H}{100}\right)R\right)^2}\right)
+\end{equation}
+
+$\frac{\partial D}{\partial P}$ says that, when adding a very small amount of $P$, we expect the function value to change by $\frac{\partial D}{\partial P}$ \textit{per point of $P$ we varied}. It is the limiting value for very small changes of $P$, which gives a sense of how relevant $P$ is to the output function at a given point in the parameter space.
+
+Since we are concerned with stat weights, what we care most about is how these derivatives relate to each other. If we set the value of one spellpower to be 1 by convention, then taking ratios of derivatives will give us values for the other stats, $R$ and $H$. These equations are as follows.
+
+\begin{equation}
+\textrm{HitWeight} = \frac{\frac{\partial D}{\partial H}}{\frac{\partial D}{\partial P}} = \frac{\frac{mB}{c} + P}{83 + H} \left(\frac{100^2 T}{100^2T - t(83 + H)R}\right)
+\end{equation}
+
+\begin{equation}
+\textrm{CritWeight} = \frac{\frac{\partial D}{\partial R}}{\frac{\partial D}{\partial P}} = x\frac{\frac{mB}{c} + P}{100+xR} \left(\frac{T + \frac{t}{x}\left(0.83+\frac{H}{100}\right)}{T - t\left(0.83 + \frac{H}{100}\right)\frac{R}{100}}\right)
+\end{equation}
+
+\subsection{No Nature's Grace}
+To slightly generalize these to other classes, we can remove Nature's Grace from the equations by setting the casting time reduction from a crit to zero. That is, by setting $t=0$. Note that the equations were already factorized to make the impact of Nature's Grace apparent. Upon doing so, we get the following stat weights, which should be applicable to other classes.
+
+\begin{equation}
+\nonumber
+\textrm{SpellpowerWeight} = 1
+\end{equation}
+\begin{equation}
+\nonumber
+\textrm{HitWeight} = \frac{\frac{mB}{c} + P}{83 + H}
+\end{equation}
+\begin{equation}
+\nonumber
+\textrm{CritWeight} = x\frac{\frac{mB}{c} + P}{100 + xR}
+\end{equation}
+
+
+\end{document}

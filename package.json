@@ -1,5 +1,5 @@
 {
-  "version": "0.1.4",
+  "version": "0.1.5",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -15,6 +15,7 @@
     "build": "tsdx build",
     "test": "tsdx test",
     "lint": "tsdx lint",
+    "docs": "typedoc --out dist/docs src",
     "prepare": "tsdx build",
     "playground": "cross-env scripts/tsrun cli/playground.ts"
   },
@@ -47,6 +48,7 @@
     "tslib": "^2.0.0",
     "tslint": "^6.1.2",
     "tslint-config-standard": "^9.0.0",
+    "typedoc": "^0.17.7",
     "typescript": "^3.9.5"
   },
   "dependencies": {

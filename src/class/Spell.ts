@@ -1,4 +1,5 @@
-import Constants from '../module/Constants'
+import Common from '../module/Common'
+import Constants from '../module/DefaultOptions'
 import Query from '../module/Query'
 import SpellCoefficient from '../interface/SpellCoefficient'
 import SpellJSON from '../interface/SpellJSON'
@@ -122,9 +123,9 @@ export default class Spell {
    */
   get castTime(): number {
     if (!this.spellJSON) {
-      return Constants.globalCoolDown
+      return Common.globalCooldown
     }
-    return Math.max(Constants.globalCoolDown, this.spellJSON.castTime)
+    return Math.max(Common.globalCooldown, this.spellJSON.castTime)
   }
 
   /**

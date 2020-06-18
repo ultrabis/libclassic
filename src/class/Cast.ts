@@ -1,11 +1,14 @@
-import constants from '../module/Constants'
+import Common from '../module/Common'
+
 import Character from './Character'
-import Options from '../interface/Options'
 import Spell from './Spell'
 import Target from './Target'
 import Equipment from './Equipment'
+
+import Options from '../interface/Options'
 import CastDmgValues from '../interface/CastDmgValues'
 import CastDmgObject from '../interface/CastDmgObject'
+
 import MagicSchool from '../enum/MagicSchool'
 import Buff from '../enum/Buffs'
 
@@ -305,7 +308,7 @@ export default class Cast {
   }
 
   get effectiveSpellCrit(): number {
-    return constants.baseSpellCrit + this.character.spellCrit + this.improvedMoonfireSpellCritBonus
+    return Common.baseSpellCrit + this.character.spellCrit + this.improvedMoonfireSpellCritBonus
   }
 
   get effectiveTargetResistance(): number {
@@ -374,7 +377,7 @@ export default class Cast {
       case 'STARFIRE':
         return this.spell.castTime - this.character.improvedStarfireBonus
       default:
-        return this.spell.castTime <= constants.globalCoolDown ? constants.globalCoolDown : this.spell.castTime
+        return this.spell.castTime <= Common.globalCooldown ? Common.globalCooldown : this.spell.castTime
     }
   }
 
@@ -386,8 +389,8 @@ export default class Cast {
 
     /* if natures grace would reduce the cast time below the global cooldown then
      * only reduce it by the difference of the cast time and global cooldown */
-    if (this.castTime - this.character.naturesGraceBonus < constants.globalCoolDown) {
-      return this.castTime - constants.globalCoolDown
+    if (this.castTime - this.character.naturesGraceBonus < Common.globalCooldown) {
+      return this.castTime - Common.globalCooldown
     }
 
     return this.character.naturesGraceBonus
@@ -398,11 +401,11 @@ export default class Cast {
    */
   get effectiveCastTime(): number {
     if ((this.character.buffFlags & Buff.BurningAdrenaline) === Buff.BurningAdrenaline) {
-      return constants.globalCoolDown + this.options.castTimePenalty
+      return Common.globalCooldown + this.options.castTimePenalty
     }
 
     return (
-      Math.max(constants.globalCoolDown, this.castTime - this.castTimeReductionOnCrit * (this.chanceToCrit / 100)) +
+      Math.max(Common.globalCooldown, this.castTime - this.castTimeReductionOnCrit * (this.chanceToCrit / 100)) +
       this.options.castTimePenalty
     )
   }
@@ -444,9 +447,9 @@ export default class Cast {
       case 'WRATH':
       case 'STARFIRE':
       case 'MOONFIRE':
-        return constants.baseSpellCritMultiplier + this.character.vengeanceBonus
+        return Common.baseSpellCritMultiplier + this.character.vengeanceBonus
       default:
-        return constants.baseSpellCritMultiplier
+        return Common.baseSpellCritMultiplier
     }
   }
   /**
@@ -460,7 +463,7 @@ export default class Cast {
    * spell crit weight i.e. the amount of spell power 1 point of crit is worth.
    */
   get spellCritWeight(): number {
-    return this.effectiveSpellCrit < constants.spellCritCap ? this.spellCritToSpellDamage : 0
+    return this.effectiveSpellCrit < Common.spellCritCap ? this.spellCritToSpellDamage : 0
   }
 
   /**
@@ -545,7 +548,7 @@ export default class Cast {
    */
   get ffDPS(): number {
     const ffDuration = 40
-    return (ffDuration * this.dps.effective.avg) / (ffDuration + (constants.globalCoolDown * 100) / this.chanceToHit)
+    return (ffDuration * this.dps.effective.avg) / (ffDuration + (Common.globalCooldown * 100) / this.chanceToHit)
   }
   get ffDPSLoss(): number {
     return this.dps.effective.avg - this.ffDPS
@@ -553,7 +556,7 @@ export default class Cast {
 
   get mfDPS(): number {
     const mfDuration = 12
-    return (mfDuration * this.dps.effective.avg) / (mfDuration + (constants.globalCoolDown * 100) / this.chanceToHit)
+    return (mfDuration * this.dps.effective.avg) / (mfDuration + (Common.globalCooldown * 100) / this.chanceToHit)
   }
   get mfDPSLoss(): number {
     return this.dps.effective.avg - this.mfDPS
