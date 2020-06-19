@@ -43,6 +43,17 @@ jobs:
         run: yarn test --ci --coverage --maxWorkers=2
         env:
           CI: true
+          
+      - name: Build
+        run: yarn build
+        env:
+          CI: true
+      
+      - name: Generate typedoc
+        run: yarn docs
+      
+      - name: Copy icons
+        run: yarn copy-icons
 
       - name: Publish
         run: yarn publish
