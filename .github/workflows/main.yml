@@ -37,10 +37,5 @@ jobs:
         env:
           CI: true
 
-      - name: Build
-        run: yarn build
-        env:
-          CI: true
-      
       - name: Generate typedoc
         run: yarn docs
