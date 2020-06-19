@@ -1,13 +1,14 @@
 {
-  "version": "0.1.9",
+  "version": "0.1.10",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist",
-    "dist/docs",
     "src",
-    "assets"
+    "assets",
+    "whitepaper",
+    "docs"
   ],
   "engines": {
     "node": ">=10"
@@ -17,7 +18,7 @@
     "build": "tsdx build",
     "test": "tsdx test",
     "lint": "tsdx lint",
-    "docs": "typedoc --out dist/docs src",
+    "docs": "typedoc --out docs src",
     "prepare": "tsdx build",
     "items": "ts-node -sT cli/convert-items.ts > src/wow/db/items.json",
     "playground": "ts-node -sT cli/playground.ts"
