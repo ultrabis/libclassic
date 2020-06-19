@@ -39,7 +39,7 @@ import TargetType from '../src/enum/TargetType'
 const csvFilePath = 'etc/moonkin-items.csv'
 const supplementalFilePath = 'etc/supplemental-items.csv'
 const xmlOutputDir = 'etc/wowhead/xml'
-const iconOutputDir = 'etc/wowhead/icons'
+const iconOutputDir = 'assets/icons'
 
 const csv = require('csvtojson')
 const axios = require('axios').default
