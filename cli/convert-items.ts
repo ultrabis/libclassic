@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /*
 {
   '$': { id: '10261' },
@@ -21,30 +23,23 @@
 }
 */
 
-import Item from './class/Item'
-import ClassicSim from './module/ClassicSim'
-import ItemJSON from './interface/ItemJSON'
-import Faction from './enum/Faction'
-import ItemQuality from './enum/ItemQuality'
-import ItemClass from './enum/ItemClass'
-import ArmorSubclass from './enum/ArmorSubclass'
-import WeaponSubclass from './enum/WeaponSubclass'
-import ItemSlot from './enum/ItemSlot'
-import PvPRank from './enum/PvPRank'
-import PlayableClass from './enum/PlayableClass'
-import TargetType from './enum/TargetType'
-import ItemOnUseJSON from './interface/ItemOnUseJSON'
+// import classic from '../src'
+import ItemJSON from '../src/interface/ItemJSON'
+import ItemOnUseJSON from '../src/interface/ItemOnUseJSON'
+import Faction from '../src/enum/Faction'
+import ItemQuality from '../src/enum/ItemQuality'
+import ItemClass from '../src/enum/ItemClass'
+import ArmorSubclass from '../src/enum/ArmorSubclass'
+import WeaponSubclass from '../src/enum/WeaponSubclass'
+import ItemSlot from '../src/enum/ItemSlot'
+import PvPRank from '../src/enum/PvPRank'
+import PlayableClass from '../src/enum/PlayableClass'
+import TargetType from '../src/enum/TargetType'
 
-// let csvFilePath = 'vendor/Classic_Balance_Druidv1.3.csv'
-// let csvFilePath = 'vendor/Classic_Balance_Druidv1.4.csv'
-// let csvFilePath = 'vendor/Classic_Balance_Druidv1.5.csv'
-let csvFilePath = 'vendor/Classic_Balance_Druidv1.5.1.2.csv'
-let supplementalFilePath = 'vendor/supplemental-items.csv'
-
-let csim = false
-if (process.env.CSIM && process.env.CSIM === '1') {
-  csim = true
-}
+const csvFilePath = 'etc/moonkin-items.csv'
+const supplementalFilePath = 'etc/supplemental-items.csv'
+const xmlOutputDir = 'etc/wowhead/xml'
+const iconOutputDir = 'etc/wowhead/icons'
 
 const csv = require('csvtojson')
 const axios = require('axios').default
@@ -100,7 +95,7 @@ function toNumber(input: string): number | undefined {
 async function downloadWowheadIcon(iconName: string) {
   const fileName = `${iconName}.jpg`
   const url = `https://wow.zamimg.com/images/wow/icons/large/${fileName}`
-  const outputPath = `public/wow-icons/${fileName}`
+  const outputPath = `${iconOutputDir}/${fileName}`
 
   return downloadFile(url, outputPath)
 }
@@ -108,13 +103,13 @@ async function downloadWowheadIcon(iconName: string) {
 async function downloadWowheadXML(baseName: string) {
   const encodedName = encodeURIComponent(baseName)
   const url = `https://classic.wowhead.com/item=${encodedName}&xml`
-  const outputPath = `vendor/wowhead/xml/${baseName}.xml`
+  const outputPath = `${xmlOutputDir}/${baseName}.xml`
 
   return downloadFile(url, outputPath)
 }
 
 async function parseWowheadXML(baseName: string) {
-  const filePath = `vendor/wowhead/xml/${baseName}.xml`
+  const filePath = `${xmlOutputDir}/${baseName}.xml`
   const xmlString = await readFileAsString(filePath)
   const result = await xml2js.parseStringPromise(xmlString)
   return result.wowhead.error ? null : result.wowhead.item[0]
@@ -631,17 +626,7 @@ const start = async function() {
     }
   }
 
-  if (csim) {
-    console.warn(`Hello, i'm doing csim`)
-    for (let i = 0; i <= myArray.length; i++) {
-      if (myArray[i]) {
-        let myItem = new Item(myArray[i].slot, myArray[i])
-        console.log(ClassicSim.GenerateItemXML(myItem))
-      }
-    }
-  } else {
-    console.log(JSON.stringify(myArray, null, 1))
-  }
+  console.log(JSON.stringify(myArray, null, 1))
   console.warn('Complete.')
 }
 

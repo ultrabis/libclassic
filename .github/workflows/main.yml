@@ -41,3 +41,9 @@ jobs:
         run: yarn build
         env:
           CI: true
+      
+      - name: Generate typedoc
+        run: yarn docs
+      
+      - name: Copy icons
+        run: yarn copy-icons
