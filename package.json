@@ -5,6 +5,7 @@
   "typings": "dist/index.d.ts",
   "files": [
     "dist",
+    "dist/docs",
     "src",
     "assets"
   ],
@@ -17,7 +18,6 @@
     "test": "tsdx test",
     "lint": "tsdx lint",
     "docs": "typedoc --out dist/docs src",
-    "copy-icons": "cp -R etc/wowhead/icons dist",
     "prepare": "tsdx build",
     "items": "ts-node -sT cli/convert-items.ts > src/wow/db/items.json",
     "playground": "ts-node -sT cli/playground.ts"

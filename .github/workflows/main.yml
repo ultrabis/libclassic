@@ -44,6 +44,3 @@ jobs:
       
       - name: Generate typedoc
         run: yarn docs
-      
-      - name: Copy icons
-        run: yarn copy-icons
