@@ -4,13 +4,22 @@
  *        by scraping data from WCL and running it through resistances formulas
  *      - Do spell casters have a spell crit suppression like melee, if so, how does it work?
  */
-import Vendor from './module/Vendor'
-import Tools from './module/Tools'
-import Common from './module/Common'
-import Query from './module/Query'
-import Locked from './module/Locked'
-import Optimal from './module/Optimal'
-import URL from './module/URL'
+import vendor from './module/vendor'
+import tools from './module/tools'
+import common from './module/common'
+import query from './module/query'
+import locked from './module/locked'
+import optimal from './module/optimal'
+import url from './module/url'
+
+/* class */
+import Character from './class/Character'
+import Item from './class/Item'
+import Equipment from './class/Equipment'
+import Target from './class/Target'
+import Spell from './class/Spell'
+import Cast from './class/Cast'
+import Encounter from './class/Encounter'
 
 /* enum */
 import ArmorSubclass from './enum/ArmorSubclass'
@@ -30,14 +39,25 @@ import SpellCritFromIntellectDivisor from './enum/SpellCritFromIntellectDivisor'
 import TargetType from './enum/TargetType'
 import WeaponSubclass from './enum/WeaponSubclass'
 
-/* class */
-import Character from './class/Character'
-import Item from './class/Item'
-import Equipment from './class/Equipment'
-import Target from './class/Target'
-import Spell from './class/Spell'
-import Cast from './class/Cast'
-import Encounter from './class/Encounter'
+/* interface */
+import CastDmgObject from './interface/CastDmgObject'
+import CastDmgValues from './interface/CastDmgValues'
+import ClassicOptions from './interface/ClassicOptions'
+import EnchantJSON from './interface/EnchantJSON'
+import EquipmentArray from './interface/EquipmentArray'
+import ItemJSON from './interface/ItemJSON'
+import ItemOnUseJSON from './interface/ItemOnUseJSON'
+import ItemQuery from './interface/ItemQuery'
+import ItemSearch from './interface/ItemSearch'
+import ItemSetJSON from './interface/ItemSetJSON'
+import LockedEnchants from './interface/LockedEnchants'
+import LockedItems from './interface/LockedItems'
+import ParaminOptions from './interface/ParaminOptions'
+import SpellCoefficient from './interface/SpellCoefficient'
+import SpellJSON from './interface/SpellJSON'
+import SpellQuery from './interface/SpellQuery'
+import WeaponComboJSON from './interface/WeaponComboJSON'
+import Weights from './interface/Weights'
 
 /* TODO: Remove this after adding some tests */
 const sum = (a: number, b: number) => {
@@ -48,15 +68,15 @@ const sum = (a: number, b: number) => {
 }
 
 export default {
-  /* modules */
-  Vendor,
-  Common,
-  Tools,
-  Query,
-  Locked,
-  Optimal,
-  URL,
   sum,
+  /* modules */
+  vendor,
+  common,
+  tools,
+  query,
+  locked,
+  optimal,
+  url,
   // Stupid csim. XML format so goofy it lags rollup trying to generate it
   // ClassicSim
   /* classes */
