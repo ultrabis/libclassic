@@ -5,7 +5,7 @@
  *      - Do spell casters have a spell crit suppression like melee, if so, how does it work?
  */
 import vendor from './module/vendor'
-import tools from './module/tools'
+import utils from './module/utils'
 import common from './module/common'
 import query from './module/query'
 import locked from './module/locked'
@@ -72,7 +72,7 @@ export default {
   /* modules */
   vendor,
   common,
-  tools,
+  utils,
   query,
   locked,
   optimal,

@@ -1,4 +1,4 @@
-import tools from '../module/tools'
+import utils from '../module/utils'
 import locked from '../module/locked'
 import query from '../module/query'
 import common from '../module/common'
@@ -97,7 +97,7 @@ export default class Equipment {
     spellCastTime?: number,
     spellCrit?: number
   ) {
-    let myOptions: ClassicOptions = tools.cloneObject(options)
+    let myOptions: ClassicOptions = utils.cloneObject(options)
     let spell = new Spell(myOptions.spellName)
 
     let mySpellHitWeight = spellHitWeight !== undefined ? spellHitWeight : 15
@@ -202,13 +202,13 @@ export default class Equipment {
 
     let buffedCasts = Math.floor(effectiveActiveTime / castTime)
     let totalCasts = Math.floor(encounterLength / castTime)
-    let naturesGraceBonus = naturesGrace ? trinketBonus * tools.cumulativeChance(4, spellCrit / 100, 2) : 0
+    let naturesGraceBonus = naturesGrace ? trinketBonus * utils.cumulativeChance(4, spellCrit / 100, 2) : 0
     let totalSpellDamage = trinketBonus * buffedCasts + naturesGraceBonus
-    // console.log(Tools.cumulativeChance(4, spellCrit / 100, 2) * trinketBonus)
+    // console.log(utils.cumulativeChance(4, spellCrit / 100, 2) * trinketBonus)
     if (trinketReductionPerCast) {
       // let cooldowns = Math.floor(encounterLength / trinketCooldown)
       // let buffedCastsThisCooldown = Math.floor(cooldowns / buffedCasts)
-      let triangular = tools.triangularNumber(buffedCasts - 1)
+      let triangular = utils.triangularNumber(buffedCasts - 1)
       /*
       console.log(
         `cooldowns=${cooldowns},buffedCasts=${buffedCasts},buffedCastsThisCooldown=${buffedCastsThisCooldown},triangular=${triangular}`

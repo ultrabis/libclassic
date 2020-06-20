@@ -4,8 +4,8 @@ import classic from '../dist'
 import blessed from 'blessed'
 import contrib from 'blessed-contrib'
 
-let myOptions = classic.Common.defaultOptions
-let e = classic.Optimal.equipment(myOptions)
+let o = classic.common.defaultOptions
+let e = classic.optimal.equipment(o)
 
 let screen = blessed.screen()
 let table = contrib.table({

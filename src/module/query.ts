@@ -1,5 +1,9 @@
+/**
+ * interface for JSON files in db/
+ */
+
 import vendor from './vendor'
-import tools from './tools'
+import utils from './utils'
 
 import SpellJSON from '../interface/SpellJSON'
 import ItemJSON from '../interface/ItemJSON'
@@ -19,7 +23,7 @@ import itemSetsDB from '../db/itemSets.json'
 /* return input, deep clone it if cloneResults is true */
 const _result = (o: any, cloneResults: boolean) => {
   if (cloneResults) {
-    return tools.cloneObject(o ? o : {})
+    return utils.cloneObject(o ? o : {})
   }
 
   return o ? o : {}
@@ -39,7 +43,7 @@ const items = (opts: ItemQuery): ItemJSON[] => {
       return true
     }
 
-    return tools.isLetter(itemJSON.customId.charAt(0)) ? false : true
+    return utils.isLetter(itemJSON.customId.charAt(0)) ? false : true
   }
 
   let slot2query = (slot: ItemSlot) => {

@@ -1,5 +1,5 @@
 import vendor from './vendor'
-import tools from './tools'
+import utils from './utils'
 
 import Equipment from '../class/Equipment'
 
@@ -20,7 +20,7 @@ const stringToParamin = (str: string, opts?: ParaminOptions): string => {
   let base64string = btoa(binaryString)
 
   /* encode base64 string for URL */
-  let encoded = tools.encodeURI(base64string)
+  let encoded = utils.encodeURI(base64string)
 
   return encoded
 }
@@ -29,7 +29,7 @@ const paraminToString = (paramin: string, opts?: ParaminOptions): string => {
   let asciiString
 
   /* param -> URI decoded param */
-  let decodedParam = tools.decodeURI(paramin)
+  let decodedParam = utils.decodeURI(paramin)
 
   /* decoded param -> binary string */
   let binaryString = vendor.Base64.atob(decodedParam)
@@ -170,9 +170,9 @@ const publicURL = (equipment: Equipment) => {
 
 const gearUrl = (lockedItems: LockedItems, lockedEnchants: LockedEnchants, opts?: ParaminOptions) => {
   if (opts && opts.version === 2) {
-    return `${tools.baseURL()}?gearv2=${gearParamFromLocked(lockedItems, lockedEnchants, opts)}`
+    return `${utils.baseURL()}?gearv2=${gearParamFromLocked(lockedItems, lockedEnchants, opts)}`
   }
-  return `${tools.baseURL()}?gear=${gearParamFromLocked(lockedItems, null, opts)}`
+  return `${utils.baseURL()}?gear=${gearParamFromLocked(lockedItems, null, opts)}`
 }
 
 const optionFromURL = (name: string): any => {
