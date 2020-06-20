@@ -73,6 +73,6 @@
     "lodash-es": "^4.17.15",
     "mathjs": "^7.0.1",
     "pako": "^1.0.11",
-    "statsjs": "https://github.com/angusgibbs/statsjs.git"
+    "statsjs": "^1.0.7"
   }
 }

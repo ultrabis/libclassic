@@ -5891,9 +5891,10 @@ static-extend@^0.1.1:
     define-property "^0.2.5"
     object-copy "^0.1.0"
 
-"statsjs@https://github.com/angusgibbs/statsjs.git":
+statsjs@^1.0.7:
   version "1.0.7"
-  resolved "https://github.com/angusgibbs/statsjs.git#791d599bbc224999b7de1ae5fc3e9adeb8406861"
+  resolved "https://registry.yarnpkg.com/statsjs/-/statsjs-1.0.7.tgz#e35800ae45cd1c79eb52ef44b9e3c61ea3cca1ca"
+  integrity sha512-fch+88pDPk8y4BwFwStMQR52vgJnrTHPtY15UBSkR8QAAjVBkntrFIiuDTRdknoIabfMEF7qaGhOBI+V4RtMkA==
 
 stealthy-require@^1.1.1:
   version "1.1.1"
