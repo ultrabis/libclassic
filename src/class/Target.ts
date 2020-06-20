@@ -1,4 +1,4 @@
-import Common from '../module/Common'
+import common from '../module/common'
 import ClassicOptions from '../interface/ClassicOptions'
 import Buffs from '../enum/Buffs'
 import MagicSchool from '../enum/MagicSchool'
@@ -28,7 +28,7 @@ export default class Target {
   debuffFlags: Buffs
   constructor(options: ClassicOptions) {
     this.options = options
-    this.debuffFlags = Common.buffListToFlags(options.target.debuffs)
+    this.debuffFlags = common.buffListToFlags(options.target.debuffs)
   }
 
   get level(): number {

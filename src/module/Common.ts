@@ -6,7 +6,7 @@
  * In the future, i'd like more common methods extracted from classes and placed here.
  */
 
-import Tools from '../module/Tools'
+import tools from '../module/tools'
 
 import ArmorSubclass from '../enum/ArmorSubclass'
 import Buffs from '../enum/Buffs'
@@ -161,7 +161,7 @@ const magicSchoolToText = (magicSchool: MagicSchool): string => {
 }
 
 const magicSchoolFromText = (magicSchool: string): MagicSchool => {
-  return parseInt(Tools.getEnumKeyByEnumValue(MagicSchool, magicSchool), 0)
+  return parseInt(tools.getEnumKeyByEnumValue(MagicSchool, magicSchool), 0)
 }
 
 /**

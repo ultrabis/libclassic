@@ -1,5 +1,5 @@
-import Tools from './Tools'
-import Locked from './Locked'
+import tools from './tools'
+import locked from './locked'
 
 import Equipment from '../class/Equipment'
 import Cast from '../class/Cast'
@@ -33,16 +33,16 @@ const itemsForSlot = (options: ClassicOptions) => {
   /* We need the stat weights MINUS the slot we're getting items for. So make a private
    * copy of options, unequip the slot, and run the equipment optimization function.
    * Our stat weights will be contained in the itemSearch. */
-  let tmpOptions: ClassicOptions = Tools.cloneObject(options)
-  Locked.unequipItem(tmpOptions.equipment.lockedItems, slot)
+  let tmpOptions: ClassicOptions = tools.cloneObject(options)
+  locked.unequipItem(tmpOptions.equipment.lockedItems, slot)
   let tmpEquipment: Equipment = equipment(tmpOptions)
   let tmpItemSearch: ItemSearch = tmpEquipment.itemSearch
 
   /* and finally retrieve the items for this slot, using the weights
    * we just got. Copy the original version of what we overwrote above
    * and unlock the slot so it doesn't return a user locked item */
-  tmpItemSearch.lockedItems = Tools.cloneObject(options.equipment.lockedItems)
-  Locked.unlockItem(tmpItemSearch.lockedItems, tmpOptions.equipment.itemSearchSlot)
+  tmpItemSearch.lockedItems = tools.cloneObject(options.equipment.lockedItems)
+  locked.unlockItem(tmpItemSearch.lockedItems, tmpOptions.equipment.itemSearchSlot)
   return Equipment.getWeightedItemsBySlot(slot, tmpItemSearch)
 }
 
@@ -53,19 +53,19 @@ const enchantsForSlot = (options: ClassicOptions) => {
     return undefined
   }
 
-  let tmpOptions: ClassicOptions = Tools.cloneObject(options)
-  Locked.unequipEnchant(tmpOptions.equipment.lockedEnchants, slot)
+  let tmpOptions: ClassicOptions = tools.cloneObject(options)
+  locked.unequipEnchant(tmpOptions.equipment.lockedEnchants, slot)
   let tmpEquipment: Equipment = equipment(tmpOptions)
   let tmpItemSearch: ItemSearch = tmpEquipment.itemSearch
 
-  tmpItemSearch.lockedEnchants = Tools.cloneObject(options.equipment.lockedEnchants)
-  Locked.unlockEnchant(tmpItemSearch.lockedEnchants, tmpOptions.equipment.enchantSearchSlot)
+  tmpItemSearch.lockedEnchants = tools.cloneObject(options.equipment.lockedEnchants)
+  locked.unlockEnchant(tmpItemSearch.lockedEnchants, tmpOptions.equipment.enchantSearchSlot)
   return Equipment.getWeightedEnchantsBySlot(slot, tmpItemSearch)
 }
 
 /* TODO: If itemSearchSlot isn't none, need to ignore that slot when weighting */
 const equipment = (options: ClassicOptions) => {
-  let myOptions = Tools.cloneObject(options)
+  let myOptions = tools.cloneObject(options)
   let maxTries = 5
   let spellCast = undefined
   let equipmentArray = new Array<EquipmentArray>()

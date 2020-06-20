@@ -1,4 +1,4 @@
-import Common from '../module/Common'
+import common from '../module/common'
 import Equipment from './Equipment'
 import PlayableRace from '../enum/PlayableRace'
 import Faction from '../enum/Faction'
@@ -16,7 +16,7 @@ export default class Character {
   constructor(options: ClassicOptions, equipment: Equipment) {
     this.options = options
     this.equipment = equipment
-    this.buffFlags = Common.buffListToFlags(options.character.buffs)
+    this.buffFlags = common.buffListToFlags(options.character.buffs)
   }
 
   get level(): number {
@@ -24,7 +24,7 @@ export default class Character {
   }
 
   get faction(): Faction {
-    return Common.factionFromRace(this.options.character.race)
+    return common.factionFromRace(this.options.character.race)
   }
 
   get isHorde(): boolean {
@@ -144,7 +144,7 @@ export default class Character {
    */
   get spellCrit(): number {
     return Math.min(
-      Common.spellCritCap,
+      common.spellCritCap,
       this.spellCritUnbuffed +
         this.rallyingCryOfTheDragonSlayerSpellCritBonus +
         this.moonkinAuraBonus +
@@ -157,7 +157,7 @@ export default class Character {
    * TODO: Return total spell hit rating (equipment + talents + buffs)
    */
   get effectiveSpellHit(): number {
-    return Math.min(this.spellHit, Common.spellHitCap)
+    return Math.min(this.spellHit, common.spellHitCap)
   }
 
   get spellHit(): number {

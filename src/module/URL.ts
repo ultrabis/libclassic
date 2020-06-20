@@ -1,5 +1,5 @@
-import Vendor from './Vendor'
-import Tools from './Tools'
+import vendor from './vendor'
+import tools from './tools'
 
 import Equipment from '../class/Equipment'
 
@@ -11,16 +11,16 @@ import ParaminOptions from '../interface/ParaminOptions'
 const stringToParamin = (str: string, opts?: ParaminOptions): string => {
   let binaryString
   if (opts && opts.version === 1) {
-    binaryString = Vendor.pako.deflate(str, { to: 'string', level: 9 })
+    binaryString = vendor.pako.deflate(str, { to: 'string', level: 9 })
   } else {
-    binaryString = Vendor.pako.deflateRaw(str, { to: 'string', level: 9 })
+    binaryString = vendor.pako.deflateRaw(str, { to: 'string', level: 9 })
   }
 
   /* base64 encode gzipped jsonString */
   let base64string = btoa(binaryString)
 
   /* encode base64 string for URL */
-  let encoded = Tools.encodeURI(base64string)
+  let encoded = tools.encodeURI(base64string)
 
   return encoded
 }
@@ -29,17 +29,17 @@ const paraminToString = (paramin: string, opts?: ParaminOptions): string => {
   let asciiString
 
   /* param -> URI decoded param */
-  let decodedParam = Tools.decodeURI(paramin)
+  let decodedParam = tools.decodeURI(paramin)
 
   /* decoded param -> binary string */
-  let binaryString = Vendor.Base64.atob(decodedParam)
+  let binaryString = vendor.Base64.atob(decodedParam)
 
   /* binary string -> ascii string */
   if (opts && opts.version === 1) {
-    asciiString = Vendor.pako.inflate(binaryString, { to: 'string' })
+    asciiString = vendor.pako.inflate(binaryString, { to: 'string' })
     asciiString = JSON.parse(asciiString)
   } else {
-    asciiString = Vendor.pako.inflateRaw(binaryString, { to: 'string' })
+    asciiString = vendor.pako.inflateRaw(binaryString, { to: 'string' })
   }
 
   return asciiString
@@ -170,9 +170,9 @@ const publicURL = (equipment: Equipment) => {
 
 const gearUrl = (lockedItems: LockedItems, lockedEnchants: LockedEnchants, opts?: ParaminOptions) => {
   if (opts && opts.version === 2) {
-    return `${Tools.baseURL()}?gearv2=${gearParamFromLocked(lockedItems, lockedEnchants, opts)}`
+    return `${tools.baseURL()}?gearv2=${gearParamFromLocked(lockedItems, lockedEnchants, opts)}`
   }
-  return `${Tools.baseURL()}?gear=${gearParamFromLocked(lockedItems, null, opts)}`
+  return `${tools.baseURL()}?gear=${gearParamFromLocked(lockedItems, null, opts)}`
 }
 
 const optionFromURL = (name: string): any => {

@@ -1,4 +1,4 @@
-import Vendor from './Vendor'
+import vendor from './vendor'
 
 const getEnumKeyByEnumValue = (myEnum: any, enumValue: number | string): string => {
   let keys = Object.keys(myEnum).filter(x => myEnum[x] === enumValue)
@@ -6,21 +6,21 @@ const getEnumKeyByEnumValue = (myEnum: any, enumValue: number | string): string 
 }
 
 const cumulativeChance = (trials: number, chance: number, x: number): number => {
-  return 1 - Vendor.stats.binomcdf(trials, chance, x)
+  return 1 - vendor.stats.binomcdf(trials, chance, x)
 }
 
 const consecutiveChance = (trials: number, chance: number, x: number): number => {
-  let sStart = Vendor.math.zeros([x + 1, x + 1])
+  let sStart = vendor.math.zeros([x + 1, x + 1])
   sStart[0][0] = 1
 
-  let T = Vendor.math.zeros([x + 1, x + 1])
+  let T = vendor.math.zeros([x + 1, x + 1])
   for (let i = 0; i < x; i++) {
     T[0][i] = 1 - chance
     T[i + 1][i] = chance
   }
 
   T[x][x] = 1
-  let sEnd = Vendor.math.multiply(Vendor.math.pow(T, trials), sStart)
+  let sEnd = vendor.math.multiply(vendor.math.pow(T, trials), sStart)
   return sEnd.slice(-1)[0][0]
 }
 
@@ -45,7 +45,7 @@ const isMobile = () => {
 }
 
 const cloneObject = (o: any) => {
-  return Vendor.clonedeep(o)
+  return vendor.clonedeep(o)
 }
 
 const isLetter = (char: string) => {

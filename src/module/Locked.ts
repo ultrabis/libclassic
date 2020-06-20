@@ -1,4 +1,4 @@
-import Query from './Query'
+import query from './query'
 
 import LockedItems from '../interface/LockedItems'
 import LockedEnchants from '../interface/LockedEnchants'
@@ -105,7 +105,7 @@ const getItem = (lockedItems: LockedItems | undefined, slot: ItemSlot): ItemJSON
     return emptyItem()
   }
 
-  let items = Query.items({ customId: id, cloneResults: true })
+  let items = query.items({ customId: id, cloneResults: true })
   return items && items[0] ? items[0] : undefined
 }
 
@@ -141,7 +141,7 @@ const getEnchant = (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot):
     return emptyEnchant()
   }
 
-  let enchants = Query.enchants({ customId: id, cloneResults: true })
+  let enchants = query.enchants({ customId: id, cloneResults: true })
   return enchants && enchants[0] ? enchants[0] : undefined
 }
 

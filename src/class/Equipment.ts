@@ -1,7 +1,7 @@
-import Tools from '../module/Tools'
-import Locked from '../module/Locked'
-import Query from '../module/Query'
-import Common from '../module/Common'
+import tools from '../module/tools'
+import locked from '../module/locked'
+import query from '../module/query'
+import common from '../module/common'
 
 import Item from './Item'
 import Spell from './Spell'
@@ -97,7 +97,7 @@ export default class Equipment {
     spellCastTime?: number,
     spellCrit?: number
   ) {
-    let myOptions: ClassicOptions = Tools.cloneObject(options)
+    let myOptions: ClassicOptions = tools.cloneObject(options)
     let spell = new Spell(myOptions.spellName)
 
     let mySpellHitWeight = spellHitWeight !== undefined ? spellHitWeight : 15
@@ -107,7 +107,7 @@ export default class Equipment {
 
     return {
       phase: myOptions.phase,
-      faction: Common.factionFromRace(myOptions.character.race),
+      faction: common.factionFromRace(myOptions.character.race),
       pvpRank: myOptions.character.pvpRank,
       raids: myOptions.equipment.raids,
       worldBosses: myOptions.equipment.worldBosses,
@@ -202,13 +202,13 @@ export default class Equipment {
 
     let buffedCasts = Math.floor(effectiveActiveTime / castTime)
     let totalCasts = Math.floor(encounterLength / castTime)
-    let naturesGraceBonus = naturesGrace ? trinketBonus * Tools.cumulativeChance(4, spellCrit / 100, 2) : 0
+    let naturesGraceBonus = naturesGrace ? trinketBonus * tools.cumulativeChance(4, spellCrit / 100, 2) : 0
     let totalSpellDamage = trinketBonus * buffedCasts + naturesGraceBonus
     // console.log(Tools.cumulativeChance(4, spellCrit / 100, 2) * trinketBonus)
     if (trinketReductionPerCast) {
       // let cooldowns = Math.floor(encounterLength / trinketCooldown)
       // let buffedCastsThisCooldown = Math.floor(cooldowns / buffedCasts)
-      let triangular = Tools.triangularNumber(buffedCasts - 1)
+      let triangular = tools.triangularNumber(buffedCasts - 1)
       /*
       console.log(
         `cooldowns=${cooldowns},buffedCasts=${buffedCasts},buffedCastsThisCooldown=${buffedCastsThisCooldown},triangular=${triangular}`
@@ -241,7 +241,7 @@ export default class Equipment {
       return 0
     }
 
-    let lockedItem = Locked.getItem(itemSearch.lockedItems, slot)
+    let lockedItem = locked.getItem(itemSearch.lockedItems, slot)
     if (lockedItem) {
       let x = []
       lockedItem.score = Item.scoreItem(
@@ -255,7 +255,7 @@ export default class Equipment {
       return x
     }
 
-    let result = Query.items({
+    let result = query.items({
       cloneResults: true,
       slot: slot,
       phase: itemSearch.phase,
@@ -284,7 +284,7 @@ export default class Equipment {
   }
 
   static getWeightedEnchantsBySlot(slot: ItemSlot, itemSearch: ItemSearch) {
-    let lockedEnchant = Locked.getEnchant(itemSearch.lockedEnchants, slot)
+    let lockedEnchant = locked.getEnchant(itemSearch.lockedEnchants, slot)
     if (lockedEnchant) {
       let x = []
       lockedEnchant.score = Item.scoreEnchant(
@@ -297,7 +297,7 @@ export default class Equipment {
       return x
     }
 
-    let result = Query.enchants({
+    let result = query.enchants({
       cloneResults: true,
       slot: slot,
       phase: itemSearch.phase,
@@ -319,7 +319,7 @@ export default class Equipment {
 
   static getItemSet(name: string, itemSearch: ItemSearch) {
     /* Find the set and filter */
-    let itemSets = Query.itemSets({ cloneResults: false, name: name, raids: itemSearch.raids, phase: itemSearch.phase })
+    let itemSets = query.itemSets({ cloneResults: false, name: name, raids: itemSearch.raids, phase: itemSearch.phase })
     if (!itemSets || !itemSets[0]) {
       return undefined
     }
@@ -331,7 +331,7 @@ export default class Equipment {
     let itemSetItems = []
     let itemSetItemsScore = 0
     for (let itemName of itemSet.itemNames) {
-      let items = Query.items({
+      let items = query.items({
         phase: itemSearch.phase,
         raids: itemSearch.raids,
         cloneResults: false,
@@ -492,7 +492,7 @@ export default class Equipment {
     const offhandscore = offhand && offhand.score ? offhand.score : 0
     const twohandscore = twohand && twohand.score ? twohand.score : 0
 
-    const _offhand = Locked.getItemId(itemSearch.lockedItems, ItemSlot.Offhand)
+    const _offhand = locked.getItemId(itemSearch.lockedItems, ItemSlot.Offhand)
 
     if (!_offhand && twohandscore > onehandscore + offhandscore) {
       return {
