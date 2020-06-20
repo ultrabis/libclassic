@@ -1,33 +1,30 @@
 import Common from '../module/Common'
-
 import Equipment from './Equipment'
-
 import PlayableRace from '../enum/PlayableRace'
 import Faction from '../enum/Faction'
 import Buffs from '../enum/Buffs'
-
-import OptionsCharacter from '../interface/OptionsCharacter'
+import ClassicOptions from '../interface/ClassicOptions'
 
 /**
  * Stores character attributes, Talents, Gear, and Buffs
  */
 export default class Character {
-  options: OptionsCharacter
+  options: ClassicOptions
   equipment: Equipment
   buffFlags: Buffs
 
-  constructor(options: OptionsCharacter, equipment: Equipment) {
+  constructor(options: ClassicOptions, equipment: Equipment) {
     this.options = options
     this.equipment = equipment
-    this.buffFlags = Common.buffListToFlags(options.buffs)
+    this.buffFlags = Common.buffListToFlags(options.character.buffs)
   }
 
   get level(): number {
-    return this.options.level
+    return this.options.character.level
   }
 
   get faction(): Faction {
-    return Common.factionFromRace(this.options.race)
+    return Common.factionFromRace(this.options.character.race)
   }
 
   get isHorde(): boolean {
@@ -39,11 +36,11 @@ export default class Character {
   }
 
   get isTauren(): boolean {
-    return this.options.race === PlayableRace.Tauren
+    return this.options.character.race === PlayableRace.Tauren
   }
 
   get isNightElf(): boolean {
-    return this.options.race === PlayableRace.NightElf
+    return this.options.character.race === PlayableRace.NightElf
   }
 
   /**
@@ -261,7 +258,7 @@ export default class Character {
 
   /* TALENTS */
   get improvedMoonfireBonus(): number {
-    switch (this.options.talents.improvedMoonfireRank) {
+    switch (this.options.character.talents.improvedMoonfireRank) {
       case 1:
         return 2 // rank 1: 2% bonus
       case 2:
@@ -281,7 +278,7 @@ export default class Character {
    * Increases the damage done by Starfire, Moonfire, and Wrath by 2/4/6/8/10%
    */
   get moonFuryBonus(): number {
-    switch (this.options.talents.moonFuryRank) {
+    switch (this.options.character.talents.moonFuryRank) {
       case 1:
         return 1.02 // rank 1: 2% bonus
       case 2:
@@ -301,7 +298,7 @@ export default class Character {
    * Reduces the cast of your Wrath spell by 0.1/0.2/0.3/0.4/0.5 sec
    */
   get improvedWrathBonus(): number {
-    switch (this.options.talents.improvedWrathRank) {
+    switch (this.options.character.talents.improvedWrathRank) {
       case 1:
         return 0.1 // Reduces the cast time of your Wrath spell by 0.1 sec.
       case 2:
@@ -321,7 +318,7 @@ export default class Character {
    * Reduces the cast of your Starfire spell by 0.1/0.2/0.3/0.4/0.5 sec
    */
   get improvedStarfireBonus(): number {
-    switch (this.options.talents.improvedStarfireRank) {
+    switch (this.options.character.talents.improvedStarfireRank) {
       case 1:
         return 0.1 // Reduces the cast time of your Starfire spell by 0.1 sec.
       case 2:
@@ -341,7 +338,7 @@ export default class Character {
    * Increases the critical strike damage bonus of your Starfire, Moonfire, and Wrath spells by x%.
    */
   get vengeanceBonus(): number {
-    switch (this.options.talents.vengeanceRank) {
+    switch (this.options.character.talents.vengeanceRank) {
       case 1:
         return 0.1 // rank 1: Increases the critical strike damage bonus by 20%
       case 2:
@@ -361,7 +358,7 @@ export default class Character {
    * Allows x% of your Mana regeneration to continue while casting.
    */
   get reflectionBonus(): number {
-    switch (this.options.talents.reflectionRank) {
+    switch (this.options.character.talents.reflectionRank) {
       case 1:
         return 0.05
       case 2:
@@ -377,7 +374,7 @@ export default class Character {
    * Returns natures grace reduction, if the talent is learned
    */
   get naturesGraceBonus(): number {
-    return this.options.talents.naturesGraceRank === 1 ? 0.5 : 0
+    return this.options.character.talents.naturesGraceRank === 1 ? 0.5 : 0
   }
 
   toJSON() {

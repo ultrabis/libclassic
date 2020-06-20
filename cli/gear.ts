@@ -4,7 +4,7 @@ import classic from '../dist'
 import blessed from 'blessed'
 import contrib from 'blessed-contrib'
 
-let myOptions = classic.DefaultOptions.defaults
+let myOptions = classic.Common.defaultOptions
 let e = classic.Optimal.equipment(myOptions)
 
 let screen = blessed.screen()

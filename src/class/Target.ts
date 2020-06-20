@@ -1,5 +1,5 @@
 import Common from '../module/Common'
-import OptionsTarget from '../interface/OptionsTarget'
+import ClassicOptions from '../interface/ClassicOptions'
 import Buffs from '../enum/Buffs'
 import MagicSchool from '../enum/MagicSchool'
 
@@ -24,15 +24,15 @@ interface TargetJSON {
 */
 
 export default class Target {
-  options: OptionsTarget
+  options: ClassicOptions
   debuffFlags: Buffs
-  constructor(options: OptionsTarget) {
+  constructor(options: ClassicOptions) {
     this.options = options
-    this.debuffFlags = Common.buffListToFlags(options.debuffs)
+    this.debuffFlags = Common.buffListToFlags(options.target.debuffs)
   }
 
   get level(): number {
-    return this.options.level
+    return this.options.target.level
   }
 
   /* assumes character level 60 */
@@ -56,11 +56,11 @@ export default class Target {
   }
 
   get spellResistance(): number {
-    return this.options.spellResistance
+    return this.options.target.spellResistance
   }
 
   get shimmer(): MagicSchool {
-    return this.options.shimmer
+    return this.options.target.shimmer
   }
 
   get spellVulnBonus(): number {
@@ -78,7 +78,7 @@ export default class Target {
    * ...reducing nature resistances 25 per "jump"...
    */
   get thunderfuryResistBonus(): number {
-    return this.options.thunderfury ? this.options.thunderfury * 25 : 0
+    return this.options.target.thunderfury ? this.options.target.thunderfury * 25 : 0
   }
 
   /**
@@ -96,22 +96,22 @@ export default class Target {
   }
 
   get arcaneSpellResistance(): number {
-    return this.options.spellResistance
+    return this.options.target.spellResistance
   }
 
   get natureSpellResistance(): number {
-    return this.options.spellResistance
+    return this.options.target.spellResistance
   }
 
   get fireSpellResistance(): number {
-    return this.options.spellResistance
+    return this.options.target.spellResistance
   }
 
   get frostSpellResistance(): number {
-    return this.options.spellResistance
+    return this.options.target.spellResistance
   }
 
   get shadowSpellResistance(): number {
-    return this.options.spellResistance
+    return this.options.target.spellResistance
   }
 }

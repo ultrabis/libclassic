@@ -7,7 +7,6 @@
 import Vendor from './module/Vendor'
 import Tools from './module/Tools'
 import Common from './module/Common'
-import DefaultOptions from './module/DefaultOptions'
 import Query from './module/Query'
 import Locked from './module/Locked'
 import Optimal from './module/Optimal'
@@ -53,7 +52,6 @@ export default {
   Vendor,
   Common,
   Tools,
-  DefaultOptions,
   Query,
   Locked,
   Optimal,

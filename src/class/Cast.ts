@@ -5,7 +5,7 @@ import Spell from './Spell'
 import Target from './Target'
 import Equipment from './Equipment'
 
-import Options from '../interface/Options'
+import ClassicOptions from '../interface/ClassicOptions'
 import CastDmgValues from '../interface/CastDmgValues'
 import CastDmgObject from '../interface/CastDmgObject'
 
@@ -24,13 +24,13 @@ interface EquipmentOverride {
  * A Spell cast by Character at Target.
  */
 export default class Cast {
-  options: Options
+  options: ClassicOptions
   spell: Spell
   target: Target
   character: Character
   // equipmentOverride: EquipmentOverride | undefined
 
-  constructor(options: Options, equipmentOverride?: EquipmentOverride) {
+  constructor(options: ClassicOptions, equipmentOverride?: EquipmentOverride) {
     this.options = options
 
     /* By default gear is determined by Equipment(). We can override it by passing our own in.
@@ -55,9 +55,9 @@ export default class Cast {
       )
     }
 
-    this.character = new Character(this.options.character, equipment)
+    this.character = new Character(this.options, equipment)
     this.spell = new Spell(this.options.spellName)
-    this.target = new Target(this.options.target)
+    this.target = new Target(this.options)
 
     /* XXX: Kinda hacky, but update the itemSearch on the equipment to keep
        a record we can reference elsewhere without needing to reprocess it */

@@ -1,5 +1,5 @@
 import Optimal from '../module/Optimal'
-import Options from '../interface/Options'
+import ClassicOptions from '../interface/ClassicOptions'
 import Cast from './Cast'
 import ItemJSON from '../interface/ItemJSON'
 import EnchantJSON from '../interface/EnchantJSON'
@@ -13,12 +13,12 @@ import EnchantJSON from '../interface/EnchantJSON'
 */
 
 export default class Encounter {
-  options: Options
+  options: ClassicOptions
   spellCast: Cast
   items: ItemJSON[] | undefined
   enchants: EnchantJSON[] | undefined
 
-  constructor(options: Options) {
+  constructor(options: ClassicOptions) {
     console.log('Encounter() called')
     this.options = options
     this.items = Optimal.itemsForSlot(this.options)

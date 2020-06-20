@@ -9,7 +9,7 @@ import Spell from './Spell'
 import ItemSlot from '../enum/ItemSlot'
 import SortOrder from '../enum/SortOrder'
 
-import Options from '../interface/Options'
+import ClassicOptions from '../interface/ClassicOptions'
 import ItemSearch from '../interface/ItemSearch'
 import ItemJSON from '../interface/ItemJSON'
 
@@ -24,7 +24,7 @@ import ItemJSON from '../interface/ItemJSON'
  *
  */
 export default class Equipment {
-  options: Options
+  options: ClassicOptions
   itemSearch: ItemSearch
   head: Item
   hands: Item
@@ -46,7 +46,7 @@ export default class Equipment {
 
   /* TODO: can I make it so the constructor could take list of item ids or something instead? */
   constructor(
-    options: Options,
+    options: ClassicOptions,
     spellHitWeight?: number,
     spellCritWeight?: number,
     spellCastTime?: number,
@@ -91,13 +91,13 @@ export default class Equipment {
   }
 
   static itemSearchFromOptions(
-    options: Options,
+    options: ClassicOptions,
     spellHitWeight?: number,
     spellCritWeight?: number,
     spellCastTime?: number,
     spellCrit?: number
   ) {
-    let myOptions: Options = Tools.cloneObject(options)
+    let myOptions: ClassicOptions = Tools.cloneObject(options)
     let spell = new Spell(myOptions.spellName)
 
     let mySpellHitWeight = spellHitWeight !== undefined ? spellHitWeight : 15
@@ -109,13 +109,13 @@ export default class Equipment {
       phase: myOptions.phase,
       faction: Common.factionFromRace(myOptions.character.race),
       pvpRank: myOptions.character.pvpRank,
-      raids: myOptions.raids,
-      worldBosses: myOptions.worldBosses,
-      randomEnchants: myOptions.randomEnchants,
-      tailoring: myOptions.tailoring,
-      enchantExploit: myOptions.enchantExploit,
+      raids: myOptions.equipment.raids,
+      worldBosses: myOptions.equipment.worldBosses,
+      randomEnchants: myOptions.equipment.randomEnchants,
+      tailoring: myOptions.equipment.tailoring,
+      enchantExploit: myOptions.equipment.enchantExploit,
       encounterLength: myOptions.encounterLength,
-      onUseItems: myOptions.onUseItems,
+      onUseItems: myOptions.equipment.onUseItems,
       magicSchool: spell.magicSchool,
       targetType: myOptions.target.type,
       spellHitWeight: mySpellHitWeight,
@@ -123,9 +123,9 @@ export default class Equipment {
       spellCastTime: mySpellCastTime,
       spellCrit: mySpellCrit,
       naturesGrace: myOptions.character.talents.naturesGraceRank === 1 ? true : false,
-      lockedItems: myOptions.character.lockedItems,
-      lockedEnchants: myOptions.character.lockedEnchants,
-      slot: myOptions.itemSearchSlot,
+      lockedItems: myOptions.equipment.lockedItems,
+      lockedEnchants: myOptions.equipment.lockedEnchants,
+      slot: myOptions.equipment.itemSearchSlot,
       sortOrder: SortOrder.Descending
     }
   }
@@ -737,5 +737,157 @@ export default class Equipment {
   /* TODO: There's isn't any spell pen gear yet */
   get spellPenetration(): number {
     return 0
+  }
+
+  get itemsAsBlessedTable(): any {
+    return {
+      headers: ['Slot', 'Name', 'Score', 'Spell Damage', 'Spell Hit', 'Spell Crit', 'Intellect'],
+      data: [
+        [
+          'Head',
+          this.head.name,
+          this.head.score.toString(),
+          this.head.spellDamage.toString(),
+          this.head.spellHit.toString(),
+          this.head.spellCrit.toString(),
+          this.head.intellect.toString()
+        ],
+        [
+          'Hands',
+          this.hands.name,
+          this.hands.score.toFixed(3).toString(),
+          this.hands.spellDamage.toString(),
+          this.hands.spellHit.toString(),
+          this.hands.spellCrit.toString(),
+          this.hands.intellect.toString()
+        ],
+        [
+          'Neck',
+          this.neck.name,
+          this.neck.score.toFixed(3).toString(),
+          this.neck.spellDamage.toString(),
+          this.neck.spellHit.toString(),
+          this.neck.spellCrit.toString(),
+          this.neck.intellect.toString()
+        ],
+        [
+          'Waist',
+          this.waist.name,
+          this.waist.score.toFixed(3).toString(),
+          this.waist.spellDamage.toString(),
+          this.waist.spellHit.toString(),
+          this.waist.spellCrit.toString(),
+          this.waist.intellect.toString()
+        ],
+        [
+          'Shoulder',
+          this.shoulder.name,
+          this.shoulder.score.toFixed(3).toString(),
+          this.shoulder.spellDamage.toString(),
+          this.shoulder.spellHit.toString(),
+          this.shoulder.spellCrit.toString(),
+          this.shoulder.intellect.toString()
+        ],
+        [
+          'Legs',
+          this.legs.name,
+          this.legs.score.toFixed(3).toString(),
+          this.legs.spellDamage.toString(),
+          this.legs.spellHit.toString(),
+          this.legs.spellCrit.toString(),
+          this.legs.intellect.toString()
+        ],
+        [
+          'Back',
+          this.back.name,
+          this.back.score.toFixed(3).toString(),
+          this.back.spellDamage.toString(),
+          this.back.spellHit.toString(),
+          this.back.spellCrit.toString(),
+          this.back.intellect.toString()
+        ],
+        [
+          'Feet',
+          this.feet.name,
+          this.feet.score.toFixed(3).toString(),
+          this.feet.spellDamage.toString(),
+          this.feet.spellHit.toString(),
+          this.feet.spellCrit.toString(),
+          this.feet.intellect.toString()
+        ],
+        [
+          'Chest',
+          this.chest.name,
+          this.chest.score.toFixed(3).toString(),
+          this.chest.spellDamage.toString(),
+          this.chest.spellHit.toString(),
+          this.chest.spellCrit.toString(),
+          this.chest.intellect.toString()
+        ],
+        [
+          'Wrist',
+          this.wrist.name,
+          this.wrist.score.toFixed(3).toString(),
+          this.wrist.spellDamage.toString(),
+          this.wrist.spellHit.toString(),
+          this.wrist.spellCrit.toString(),
+          this.wrist.intellect.toString()
+        ],
+        [
+          'Mainhand',
+          this.mainhand.name,
+          this.mainhand.score.toFixed(3).toString(),
+          this.mainhand.spellDamage.toString(),
+          this.mainhand.spellHit.toString(),
+          this.mainhand.spellCrit.toString(),
+          this.mainhand.intellect.toString()
+        ],
+        [
+          'Offhand',
+          this.offhand.name,
+          this.offhand.score.toFixed(3).toString(),
+          this.offhand.spellDamage.toString(),
+          this.offhand.spellHit.toString(),
+          this.offhand.spellCrit.toString(),
+          this.offhand.intellect.toString()
+        ],
+        [
+          'Finger',
+          this.finger.name,
+          this.finger.score.toFixed(3).toString(),
+          this.finger.spellDamage.toString(),
+          this.finger.spellHit.toString(),
+          this.finger.spellCrit.toString(),
+          this.finger.intellect.toString()
+        ],
+        [
+          'Finger 2',
+          this.finger2.name,
+          this.finger2.score.toFixed(3).toString(),
+          this.finger2.spellDamage.toString(),
+          this.finger2.spellHit.toString(),
+          this.finger2.spellCrit.toString(),
+          this.finger2.intellect.toString()
+        ],
+        [
+          'Trinket',
+          this.trinket.name,
+          this.trinket.score.toFixed(3).toString(),
+          this.trinket.spellDamage.toString(),
+          this.trinket.spellHit.toString(),
+          this.trinket.spellCrit.toString(),
+          this.trinket.intellect.toString()
+        ],
+        [
+          'Trinket 2',
+          this.trinket2.name,
+          this.trinket2.score.toFixed(3).toString(),
+          this.trinket2.spellDamage.toString(),
+          this.trinket2.spellHit.toString(),
+          this.trinket2.spellCrit.toString(),
+          this.trinket2.intellect.toString()
+        ]
+      ]
+    }
   }
 }
