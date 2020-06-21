@@ -19,10 +19,10 @@
     "cli:playground": "ts-node -sT cli/playground.ts",
     "lint": "tsdx lint",
     "test": "tsdx test",
-    "build": "tsdx build",
+    "build": "tsdx --format cjs,esm,umd build",
     "items": "ts-node -sT cli/convert-items.ts > src/wow/db/items.json",
     "docs": "typedoc --out docs src",
-    "prepare": "tsdx build"
+    "prepare": "tsdx --format cjs,esm,umd build"
   },
   "peerDependencies": {},
   "husky": {
@@ -46,7 +46,6 @@
     "@types/js-base64": "^2.3.1",
     "@types/json-query": "^2.2.0",
     "@types/jszip": "^3.4.1",
-    "@types/lodash": "^4.14.155",
     "@types/pako": "^1.0.1",
     "axios": "^0.19.2",
     "blessed": "^0.1.81",
@@ -58,8 +57,6 @@
     "ts-node": "8.5.4",
     "tsdx": "^0.13.2",
     "tslib": "^2.0.0",
-    "tslint": "^6.1.2",
-    "tslint-config-standard": "^9.0.0",
     "typedoc": "^0.17.7",
     "typescript": "^3.9.5",
     "xml2js": "^0.4.23"
@@ -69,8 +66,7 @@
     "js-base64": "^2.5.2",
     "json-query": "^2.2.2",
     "jszip": "^3.5.0",
-    "lodash": "^4.17.15",
-    "lodash-es": "^4.17.15",
+    "lodash.clonedeep": "^4.5.0",
     "mathjs": "^7.0.1",
     "pako": "^1.0.11",
     "statsjs": "^1.0.7"

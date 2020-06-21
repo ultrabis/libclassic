@@ -1,10 +1,10 @@
 import jszip from 'jszip'
 import filesaver from 'file-saver'
 import jsonQuery from 'json-query'
-import clonedeep from 'lodash/cloneDeep'
 import pako from 'pako'
 import { Base64 } from 'js-base64'
 // import math from 'mathjs'
+const clonedeep = require('lodash.clonedeep')
 const math = require('mathjs')
 const stats = require('statsjs')
 
