@@ -62,10 +62,8 @@
     "xml2js": "^0.4.23"
   },
   "dependencies": {
-    "file-saver": "^2.0.2",
     "js-base64": "^2.5.2",
     "json-query": "^2.2.2",
-    "jszip": "^3.5.0",
     "lodash.clonedeep": "^4.5.0",
     "mathjs": "^7.0.1",
     "pako": "^1.0.11",

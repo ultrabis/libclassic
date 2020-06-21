@@ -1,5 +1,3 @@
-import jszip from 'jszip'
-import filesaver from 'file-saver'
 import jsonQuery from 'json-query'
 import pako from 'pako'
 import { Base64 } from 'js-base64'
@@ -9,8 +7,6 @@ const math = require('mathjs')
 const stats = require('statsjs')
 
 export default {
-  jszip,
-  filesaver,
   jsonQuery,
   clonedeep,
   pako,
