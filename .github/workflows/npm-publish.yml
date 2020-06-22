@@ -51,3 +51,9 @@ jobs:
 
       - name: Generate typedoc
         run: yarn build:docs
+
+      - name: Publish
+        run: yarn publish
+        env:
+          CI: true
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
