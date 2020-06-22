@@ -357,9 +357,11 @@ export default class Item {
     return this.isEmpty || !this.itemJSON ? `${emptySlot}.jpg` : `${this.itemJSON.icon}.jpg`
   }
 
+  /*
   get iconFullPath(): string {
     return process.env.BASE_URL + 'wow-icons/' + this.icon
   }
+  */
 
   get location(): string {
     return this.itemJSON && this.itemJSON.location ? this.itemJSON.location : ''
