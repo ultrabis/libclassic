@@ -2,7 +2,7 @@
  * interface for JSON files in db/
  */
 
-import vendor from './vendor'
+import jsonQuery from 'json-query'
 import utils from './utils'
 
 import SpellJSON from '../interface/SpellJSON'
@@ -30,7 +30,7 @@ const _result = (o: any, cloneResults: boolean) => {
 }
 
 const item = (opts: ItemQuery): ItemJSON | undefined => {
-  let _items = items(opts)
+  const _items = items(opts)
   if (_items && _items[0]) {
     return _items[0]
   }
@@ -38,7 +38,7 @@ const item = (opts: ItemQuery): ItemJSON | undefined => {
 }
 
 const items = (opts: ItemQuery): ItemJSON[] => {
-  let noRandomEnchants = (itemJSON: ItemJSON) => {
+  const noRandomEnchants = (itemJSON: ItemJSON) => {
     if (!itemJSON || !itemJSON.customId) {
       return true
     }
@@ -46,7 +46,7 @@ const items = (opts: ItemQuery): ItemJSON[] => {
     return utils.isLetter(itemJSON.customId.charAt(0)) ? false : true
   }
 
-  let slot2query = (slot: ItemSlot) => {
+  const slot2query = (slot: ItemSlot) => {
     switch (slot) {
       case ItemSlot.Finger2:
         return `[* slot=${ItemSlot.Finger}]`
@@ -61,9 +61,9 @@ const items = (opts: ItemQuery): ItemJSON[] => {
     }
   }
 
-  let singleItemQuery = (query: string): ItemJSON[] => {
-    let result: ItemJSON[] = []
-    let x = vendor.jsonQuery(query, { data: itemsDB }).value
+  const singleItemQuery = (query: string): ItemJSON[] => {
+    const result: ItemJSON[] = []
+    const x = jsonQuery(query, { data: itemsDB }).value
     if (x) {
       result.push(x)
     }
@@ -88,28 +88,28 @@ const items = (opts: ItemQuery): ItemJSON[] => {
     return result
   }
 
-  result = vendor.jsonQuery(slot2query(opts.slot), { data: itemsDB }).value
+  result = jsonQuery(slot2query(opts.slot), { data: itemsDB }).value
 
   if (opts.faction !== undefined) {
-    result = vendor.jsonQuery(`[* faction = ${opts.faction} | faction = ${Faction.Horde | Faction.Alliance}]`, {
+    result = jsonQuery(`[* faction = ${opts.faction} | faction = ${Faction.Horde | Faction.Alliance}]`, {
       data: result
     }).value
   }
 
   if (opts.phase !== undefined) {
-    result = vendor.jsonQuery(`[* phase <= ${opts.phase}]`, { data: result }).value
+    result = jsonQuery(`[* phase <= ${opts.phase}]`, { data: result }).value
   }
 
   if (opts.pvpRank !== undefined) {
-    result = vendor.jsonQuery(`[* pvpRank <= ${opts.pvpRank}]`, { data: result }).value
+    result = jsonQuery(`[* pvpRank <= ${opts.pvpRank}]`, { data: result }).value
   }
 
   if (opts.worldBosses !== undefined && opts.worldBosses === false) {
-    result = vendor.jsonQuery(`[* worldBoss = false ]`, { data: result }).value
+    result = jsonQuery(`[* worldBoss = false ]`, { data: result }).value
   }
 
   if (opts.raids !== undefined && opts.raids === false) {
-    result = vendor.jsonQuery(`[* raid = false ]`, { data: result }).value
+    result = jsonQuery(`[* raid = false ]`, { data: result }).value
   }
 
   if (opts.randomEnchants !== undefined && opts.randomEnchants === false) {
@@ -120,7 +120,7 @@ const items = (opts: ItemQuery): ItemJSON[] => {
 }
 
 const itemSet = (opts: ItemQuery): ItemSetJSON | undefined => {
-  let _itemSets = itemSets(opts)
+  const _itemSets = itemSets(opts)
   if (_itemSets && _itemSets[0]) {
     return _itemSets[0]
   }
@@ -128,9 +128,9 @@ const itemSet = (opts: ItemQuery): ItemSetJSON | undefined => {
 }
 
 const itemSets = (opts: ItemQuery): ItemSetJSON[] => {
-  let singleItemSetQuery = (query: string): ItemSetJSON[] => {
-    let result: ItemSetJSON[] = []
-    let x = vendor.jsonQuery(query, { data: itemSetsDB }).value
+  const singleItemSetQuery = (query: string): ItemSetJSON[] => {
+    const result: ItemSetJSON[] = []
+    const x = jsonQuery(query, { data: itemSetsDB }).value
     if (x) {
       result.push(x)
     }
@@ -142,22 +142,22 @@ const itemSets = (opts: ItemQuery): ItemSetJSON[] => {
   if (opts.name) {
     result = singleItemSetQuery(`[name=${opts.name}]`)
   } else {
-    result = vendor.jsonQuery(``, { data: itemSetsDB }).value
+    result = jsonQuery(``, { data: itemSetsDB }).value
   }
 
   if (opts.phase !== undefined) {
-    result = vendor.jsonQuery(`[* phase <= ${opts.phase}]`, { data: result }).value
+    result = jsonQuery(`[* phase <= ${opts.phase}]`, { data: result }).value
   }
 
   if (opts.raids !== undefined && opts.raids === false) {
-    result = vendor.jsonQuery(`[* raid = false ]`, { data: result }).value
+    result = jsonQuery(`[* raid = false ]`, { data: result }).value
   }
 
   return _result(result, opts.cloneResults ? opts.cloneResults : false)
 }
 
 const enchant = (opts: ItemQuery): EnchantJSON | undefined => {
-  let _enchants = enchants(opts)
+  const _enchants = enchants(opts)
   if (_enchants && _enchants[0]) {
     return _enchants[0]
   }
@@ -165,16 +165,16 @@ const enchant = (opts: ItemQuery): EnchantJSON | undefined => {
 }
 
 const enchants = (opts: ItemQuery): EnchantJSON[] => {
-  let singleEnchantQuery = (query: string): EnchantJSON[] => {
-    let result: EnchantJSON[] = []
-    let x = vendor.jsonQuery(query, { data: enchantsDB }).value
+  const singleEnchantQuery = (query: string): EnchantJSON[] => {
+    const result: EnchantJSON[] = []
+    const x = jsonQuery(query, { data: enchantsDB }).value
     if (x) {
       result.push(x)
     }
     return _result(result, opts.cloneResults ? opts.cloneResults : false)
   }
 
-  let noExploit = (enchantJSON: EnchantJSON) => {
+  const noExploit = (enchantJSON: EnchantJSON) => {
     if (!enchantJSON || !enchantJSON.exploit) {
       return true
     }
@@ -197,10 +197,10 @@ const enchants = (opts: ItemQuery): EnchantJSON[] => {
     return result
   }
 
-  result = vendor.jsonQuery(`[* slot = ${opts.slot} | slot = -2 ]`, { data: enchantsDB }).value
+  result = jsonQuery(`[* slot = ${opts.slot} | slot = -2 ]`, { data: enchantsDB }).value
 
   if (opts.phase !== undefined) {
-    result = vendor.jsonQuery(`[* phase <= ${opts.phase}]`, { data: result }).value
+    result = jsonQuery(`[* phase <= ${opts.phase}]`, { data: result }).value
   }
 
   if (!opts.enchantExploit) {
@@ -211,17 +211,17 @@ const enchants = (opts: ItemQuery): EnchantJSON[] => {
 }
 
 const spell = (opts: SpellQuery): SpellJSON | undefined => {
-  let _spells = spells(opts)
+  const _spells = spells(opts)
   if (_spells && _spells[0]) {
     return _spells[0]
   }
   return undefined
 }
 
-const spells = (opts: SpellQuery) => {
-  let singleSpellQuery = (query: string): SpellJSON[] => {
-    let result: SpellJSON[] = []
-    let x = vendor.jsonQuery(query, { data: spellsDB }).value
+const spells = (opts: SpellQuery): SpellJSON[] => {
+  const singleSpellQuery = (query: string): SpellJSON[] => {
+    const result: SpellJSON[] = []
+    const x = jsonQuery(query, { data: spellsDB }).value
     if (x) {
       result.push(x)
     }
@@ -239,7 +239,7 @@ const spells = (opts: SpellQuery) => {
   let result: SpellJSON[] = []
 
   if (opts.phase !== undefined) {
-    result = vendor.jsonQuery(`[* phase <= ${opts.phase}]`, { data: spellsDB }).value
+    result = jsonQuery(`[* phase <= ${opts.phase}]`, { data: spellsDB }).value
   }
 
   return _result(result, opts.cloneResults ? opts.cloneResults : false)

@@ -1,23 +1,22 @@
 {
   "include": ["src", "types"],
   "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "typeRoots": ["src/@types", "node_modules/@types"],
     "target": "es5",
     "module": "esnext",
     "lib": ["dom", "esnext"],
-    "importHelpers": true,
-    "declaration": true,
+    "moduleResolution": "node",
     "sourceMap": true,
-    "rootDir": "./src",
+    "declaration": true,
+    "importHelpers": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "strict": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "resolveJsonModule": true,
-    "moduleResolution": "node",
-    "baseUrl": "./",
-    "paths": {
-      "*": ["src/*", "node_modules/*"]
-    },
-    "jsx": "react",
-    "esModuleInterop": true
+    "noImplicitAny": false,
+    "noFallthroughCasesInSwitch": true
   }
 }

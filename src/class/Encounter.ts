@@ -24,7 +24,28 @@ export default class Encounter {
     this.items = optimal.itemsForSlot(this.options)
     this.enchants = optimal.enchantsForSlot(this.options)
 
-    let equipment = optimal.equipment(this.options)
+    const equipment = optimal.equipment(this.options)
     this.spellCast = new Cast(options, { equipment: equipment })
+  }
+
+  toJSON(): any {
+    const proto = Object.getPrototypeOf(this)
+    const jsonObj: any = Object.assign({}, this)
+
+    Object.entries(Object.getOwnPropertyDescriptors(proto))
+      /* eslint-disable @typescript-eslint/no-unused-vars */
+      .filter(([key, descriptor]) => typeof descriptor.get === 'function')
+      .map(([key, descriptor]) => {
+        if (descriptor && key[0] !== '_') {
+          try {
+            const val = (this as any)[key]
+            jsonObj[key] = val
+          } catch (error) {
+            console.error(`Error calling getter ${key}`, error)
+          }
+        }
+      })
+
+    return jsonObj
   }
 }

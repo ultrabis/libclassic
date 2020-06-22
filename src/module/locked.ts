@@ -87,7 +87,7 @@ const getEnchantId = (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot
 }
 
 const getItem = (lockedItems: LockedItems | undefined, slot: ItemSlot): ItemJSON | undefined => {
-  let emptyItem = () => {
+  const emptyItem = () => {
     return {
       id: 1,
       customId: '1',
@@ -98,19 +98,19 @@ const getItem = (lockedItems: LockedItems | undefined, slot: ItemSlot): ItemJSON
     }
   }
 
-  let id = getItemId(lockedItems, slot)
+  const id = getItemId(lockedItems, slot)
   if (!id || id === '') {
     return undefined
   } else if (id === '1') {
     return emptyItem()
   }
 
-  let items = query.items({ customId: id, cloneResults: true })
+  const items = query.items({ customId: id, cloneResults: true })
   return items && items[0] ? items[0] : undefined
 }
 
 const getEnchant = (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot): EnchantJSON | undefined => {
-  let emptyEnchant = () => {
+  const emptyEnchant = () => {
     return {
       id: 1,
       customId: '1',
@@ -133,7 +133,7 @@ const getEnchant = (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot):
     }
   }
 
-  let id = getEnchantId(lockedEnchants, slot)
+  const id = getEnchantId(lockedEnchants, slot)
 
   if (!id || id === '') {
     return undefined
@@ -141,11 +141,11 @@ const getEnchant = (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot):
     return emptyEnchant()
   }
 
-  let enchants = query.enchants({ customId: id, cloneResults: true })
+  const enchants = query.enchants({ customId: id, cloneResults: true })
   return enchants && enchants[0] ? enchants[0] : undefined
 }
 
-const setItem = (lockedItems: LockedItems | undefined, slot: ItemSlot, value: string) => {
+const setItem = (lockedItems: LockedItems | undefined, slot: ItemSlot, value: string): number => {
   if (lockedItems) {
     switch (slot) {
       case ItemSlot.Head:
@@ -203,9 +203,10 @@ const setItem = (lockedItems: LockedItems | undefined, slot: ItemSlot, value: st
         break
     }
   }
+  return 0
 }
 
-const setEnchant = (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot, value: string) => {
+const setEnchant = (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot, value: string): number => {
   if (lockedEnchants) {
     switch (slot) {
       case ItemSlot.Head:
@@ -239,33 +240,34 @@ const setEnchant = (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot, 
         break
     }
   }
+  return 0
 }
 
-const lockItem = (lockedItems: LockedItems | undefined, slot: ItemSlot, value: string) => {
+const lockItem = (lockedItems: LockedItems | undefined, slot: ItemSlot, value: string): number => {
   return setItem(lockedItems, slot, value)
 }
 
-const lockEnchant = (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot, value: string) => {
+const lockEnchant = (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot, value: string): number => {
   return setEnchant(lockedEnchants, slot, value)
 }
 
-const unequipItem = (lockedItems: LockedItems | undefined, slot: ItemSlot) => {
+const unequipItem = (lockedItems: LockedItems | undefined, slot: ItemSlot): number => {
   return setItem(lockedItems, slot, '1')
 }
 
-const unequipEnchant = (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot) => {
+const unequipEnchant = (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot): number => {
   return setEnchant(lockedEnchants, slot, '1')
 }
 
-const unlockItem = (lockedItems: LockedItems | undefined, slot: ItemSlot) => {
+const unlockItem = (lockedItems: LockedItems | undefined, slot: ItemSlot): number => {
   return setItem(lockedItems, slot, '')
 }
 
-const unlockEnchant = (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot) => {
+const unlockEnchant = (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot): number => {
   return setEnchant(lockedEnchants, slot, '')
 }
 
-const unequipItems = (lockedItems: LockedItems | undefined) => {
+const unequipItems = (lockedItems: LockedItems | undefined): number => {
   if (lockedItems) {
     lockedItems.head = '1'
     lockedItems.hands = '1'
@@ -285,9 +287,10 @@ const unequipItems = (lockedItems: LockedItems | undefined) => {
     lockedItems.trinket2 = '1'
     lockedItems.idol = '1'
   }
+  return 0
 }
 
-const unequipEnchants = (lockedEnchants: LockedEnchants | undefined) => {
+const unequipEnchants = (lockedEnchants: LockedEnchants | undefined): number => {
   if (lockedEnchants) {
     lockedEnchants.head = '1'
     lockedEnchants.hands = '1'
@@ -299,9 +302,10 @@ const unequipEnchants = (lockedEnchants: LockedEnchants | undefined) => {
     lockedEnchants.wrist = '1'
     lockedEnchants.mainhand = '1'
   }
+  return 0
 }
 
-const unlockItems = (lockedItems: LockedItems | undefined) => {
+const unlockItems = (lockedItems: LockedItems | undefined): number => {
   if (lockedItems) {
     lockedItems.head = ''
     lockedItems.hands = ''
@@ -321,9 +325,10 @@ const unlockItems = (lockedItems: LockedItems | undefined) => {
     lockedItems.trinket2 = ''
     lockedItems.idol = ''
   }
+  return 0
 }
 
-const unlockEnchants = (lockedEnchants: LockedEnchants) => {
+const unlockEnchants = (lockedEnchants: LockedEnchants): number => {
   if (lockedEnchants) {
     lockedEnchants.head = ''
     lockedEnchants.hands = ''
@@ -335,10 +340,11 @@ const unlockEnchants = (lockedEnchants: LockedEnchants) => {
     lockedEnchants.wrist = ''
     lockedEnchants.mainhand = ''
   }
+  return 0
 }
 
 const itemLocked = (lockedItems: LockedItems | undefined, slot: ItemSlot): boolean => {
-  let id = getItemId(lockedItems, slot)
+  const id = getItemId(lockedItems, slot)
   if (id === '') {
     return false
   }
@@ -347,7 +353,7 @@ const itemLocked = (lockedItems: LockedItems | undefined, slot: ItemSlot): boole
 }
 
 const enchantLocked = (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot): boolean => {
-  let id = getEnchantId(lockedEnchants, slot)
+  const id = getEnchantId(lockedEnchants, slot)
   if (id === '') {
     return false
   }
@@ -356,7 +362,7 @@ const enchantLocked = (lockedEnchants: LockedEnchants | undefined, slot: ItemSlo
 }
 
 const itemEquipped = (lockedItems: LockedItems | undefined, slot: ItemSlot): boolean => {
-  let id = getItemId(lockedItems, slot)
+  const id = getItemId(lockedItems, slot)
   if (id !== '1') {
     return true
   }
@@ -365,7 +371,7 @@ const itemEquipped = (lockedItems: LockedItems | undefined, slot: ItemSlot): boo
 }
 
 const enchantEquipped = (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot): boolean => {
-  let id = getEnchantId(lockedEnchants, slot)
+  const id = getEnchantId(lockedEnchants, slot)
   if (id !== '1') {
     return true
   }

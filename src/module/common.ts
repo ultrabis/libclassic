@@ -16,7 +16,8 @@ import MagicSchool from '../enum/MagicSchool'
 import PlayableClass from '../enum/PlayableClass'
 import PlayableRace from '../enum/PlayableRace'
 import TargetType from '../enum/TargetType'
-import ClassicOptions from 'interface/ClassicOptions'
+
+import ClassicOptions from '../interface/ClassicOptions'
 
 declare type BuffFlagType = keyof typeof Buffs
 
@@ -41,7 +42,7 @@ const spellCritCap = 100
 const baseSpellCrit = 1.8 /* FIXME: should be a function with class as input*/
 const baseSpellCritMultiplier = 1.5
 
-let defaultOptions: ClassicOptions = {
+const defaultOptions: ClassicOptions = {
   debug: false,
   experimental: false,
   phase: 4,
@@ -143,7 +144,7 @@ const factionFromRace = (race: PlayableRace): Faction => {
 const buffListToFlags = (buffList: string[]): Buffs => {
   let buffs: Buffs = Buffs.None
 
-  for (let buffName of buffList) {
+  for (const buffName of buffList) {
     buffs |= Buffs[buffName as BuffFlagType]
   }
   return buffs
@@ -253,7 +254,7 @@ const spellChanceToNormal = (targetLevel: number, spellHit: number, spellCrit: n
  * @param opts
  */
 const spellCritBonusMultiplier = (opts?: { vengeanceRank?: number }): number => {
-  let x: number = 0
+  let x = 0
 
   if (opts && opts.vengeanceRank) {
     switch (opts.vengeanceRank) {
@@ -436,7 +437,7 @@ const spellPartialResistAvg = (
   characterSpellPenetration: number,
   isBinarySpell?: boolean
 ): number => {
-  let sr = targetSpellResistance(
+  const sr = targetSpellResistance(
     targetLevel,
     targetBaseSpellResistance,
     characterLevel,

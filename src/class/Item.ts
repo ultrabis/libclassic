@@ -25,11 +25,11 @@ export default class Item {
     this.enchantJSON = enchantJSON ? enchantJSON : undefined
   }
 
-  static sortScoreAsc(a: ItemJSON | EnchantJSON, b: ItemJSON | EnchantJSON) {
+  static sortScoreAsc(a: ItemJSON | EnchantJSON, b: ItemJSON | EnchantJSON): number {
     return (a.score ? a.score : 0) - (b.score ? b.score : 0)
   }
 
-  static sortScoreDes(a: ItemJSON | EnchantJSON, b: ItemJSON | EnchantJSON) {
+  static sortScoreDes(a: ItemJSON | EnchantJSON, b: ItemJSON | EnchantJSON): number {
     return (b.score ? b.score : 0) - (a.score ? a.score : 0)
   }
 
@@ -321,7 +321,7 @@ export default class Item {
   }
 
   get allowableClassesText(): string {
-    let ac = this.allowableClasses
+    const ac = this.allowableClasses
     let text = ''
 
     for (let _i = 0; _i < ac.length; _i++) {
@@ -386,8 +386,8 @@ export default class Item {
       return ``
     }
 
-    let effect = this.itemJSON.onUse.effect
-    let cooldown = this.itemJSON.onUse.cooldown ? `(${this.itemJSON.onUse.cooldown})` : ``
+    const effect = this.itemJSON.onUse.effect
+    const cooldown = this.itemJSON.onUse.cooldown ? `(${this.itemJSON.onUse.cooldown})` : ``
 
     return `${effect} ${cooldown}`
   }
@@ -505,8 +505,8 @@ export default class Item {
   }
 
   get dmgText(): string {
-    let minDmg = this.itemJSON && this.itemJSON.minDmg ? this.itemJSON.minDmg.toFixed(0) : 0
-    let maxDmg = this.itemJSON && this.itemJSON.maxDmg ? this.itemJSON.maxDmg.toFixed(0) : 0
+    const minDmg = this.itemJSON && this.itemJSON.minDmg ? this.itemJSON.minDmg.toFixed(0) : 0
+    const maxDmg = this.itemJSON && this.itemJSON.maxDmg ? this.itemJSON.maxDmg.toFixed(0) : 0
     return `${minDmg} - ${maxDmg}`
   }
 
@@ -533,8 +533,8 @@ export default class Item {
   }
 
   get enchantText(): string {
-    let slot = this.itemJSON ? this.itemJSON.slot : ItemSlot.Any
-    let text = this.enchantJSON ? this.enchantJSON.text : 'No Enchant'
+    const slot = this.itemJSON ? this.itemJSON.slot : ItemSlot.Any
+    const text = this.enchantJSON ? this.enchantJSON.text : 'No Enchant'
 
     switch (slot) {
       case ItemSlot.Head:
@@ -555,7 +555,7 @@ export default class Item {
   }
 
   get enchantClass(): string {
-    let slot = this.enchantJSON ? this.enchantJSON.slot : ItemSlot.Any
+    const slot = this.enchantJSON ? this.enchantJSON.slot : ItemSlot.Any
 
     if (this.enchantJSON && this.enchantJSON.id === 1) {
       return `poor`
@@ -579,7 +579,7 @@ export default class Item {
   }
 
   get bonusesList(): string[] {
-    let bonuses: string[] = []
+    const bonuses: string[] = []
     if (
       this.name.includes(`of Arcane Wrath`) ||
       this.name.includes(`of Nature's Wrath`) ||
@@ -638,7 +638,7 @@ export default class Item {
   }
 
   get statsList(): Object[] {
-    let stats: Object[] = []
+    const stats: Object[] = []
     if (this.name.includes(`of Arcane Wrath`)) {
       stats.push({ stat: 'Arcane Damage', value: this._arcaneDamage, type: 'primary' })
     } else if (this.name.includes(`of Nature's Wrath`)) {
@@ -669,16 +669,17 @@ export default class Item {
   }
 
   get chanceOnHitList(): string[] {
-    let arr: string[] = []
+    const arr: string[] = []
 
     return arr
   }
 
-  toJSON() {
+  toJSON(): any {
     const proto = Object.getPrototypeOf(this)
     const jsonObj: any = Object.assign({}, this)
 
     Object.entries(Object.getOwnPropertyDescriptors(proto))
+      /* eslint-disable @typescript-eslint/no-unused-vars */
       .filter(([key, descriptor]) => typeof descriptor.get === 'function')
       .map(([key, descriptor]) => {
         if (descriptor && key[0] !== '_') {

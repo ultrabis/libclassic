@@ -7,6 +7,8 @@ import Cast from '../class/Cast'
 import ClassicOptions from '../interface/ClassicOptions'
 import ItemSearch from '../interface/ItemSearch'
 import EquipmentArray from '../interface/EquipmentArray'
+import ItemJSON from '../interface/ItemJSON'
+import EnchantJSON from '../interface/EnchantJSON'
 
 import ItemSlot from '../enum/ItemSlot'
 
@@ -18,14 +20,14 @@ interface OptimalEquipment {
 }
 */
 
-const sortByDPS = (a: EquipmentArray, b: EquipmentArray) => {
+const sortByDPS = (a: EquipmentArray, b: EquipmentArray): number => {
   return (b.dps ? b.dps : 0) - (a.dps ? a.dps : 0)
 }
 
-const itemsForSlot = (options: ClassicOptions) => {
+const itemsForSlot = (options: ClassicOptions): ItemJSON[] | undefined => {
   /* itemSearchSlot is only set when a user clicks a slot to equip an item. If that's not
    * the case then we don't need to do anything */
-  let slot = options.equipment.itemSearchSlot
+  const slot = options.equipment.itemSearchSlot
   if (slot === ItemSlot.None) {
     return undefined
   }
@@ -33,10 +35,10 @@ const itemsForSlot = (options: ClassicOptions) => {
   /* We need the stat weights MINUS the slot we're getting items for. So make a private
    * copy of options, unequip the slot, and run the equipment optimization function.
    * Our stat weights will be contained in the itemSearch. */
-  let tmpOptions: ClassicOptions = utils.cloneObject(options)
+  const tmpOptions: ClassicOptions = utils.cloneObject(options)
   locked.unequipItem(tmpOptions.equipment.lockedItems, slot)
-  let tmpEquipment: Equipment = equipment(tmpOptions)
-  let tmpItemSearch: ItemSearch = tmpEquipment.itemSearch
+  const tmpEquipment: Equipment = equipment(tmpOptions)
+  const tmpItemSearch: ItemSearch = tmpEquipment.itemSearch
 
   /* and finally retrieve the items for this slot, using the weights
    * we just got. Copy the original version of what we overwrote above
@@ -46,17 +48,17 @@ const itemsForSlot = (options: ClassicOptions) => {
   return Equipment.getWeightedItemsBySlot(slot, tmpItemSearch)
 }
 
-const enchantsForSlot = (options: ClassicOptions) => {
+const enchantsForSlot = (options: ClassicOptions): EnchantJSON[] | undefined => {
   /* Same process as above, but for enchants */
-  let slot = options.equipment.enchantSearchSlot
+  const slot = options.equipment.enchantSearchSlot
   if (slot === ItemSlot.None) {
     return undefined
   }
 
-  let tmpOptions: ClassicOptions = utils.cloneObject(options)
+  const tmpOptions: ClassicOptions = utils.cloneObject(options)
   locked.unequipEnchant(tmpOptions.equipment.lockedEnchants, slot)
-  let tmpEquipment: Equipment = equipment(tmpOptions)
-  let tmpItemSearch: ItemSearch = tmpEquipment.itemSearch
+  const tmpEquipment: Equipment = equipment(tmpOptions)
+  const tmpItemSearch: ItemSearch = tmpEquipment.itemSearch
 
   tmpItemSearch.lockedEnchants = utils.cloneObject(options.equipment.lockedEnchants)
   locked.unlockEnchant(tmpItemSearch.lockedEnchants, tmpOptions.equipment.enchantSearchSlot)
@@ -64,11 +66,11 @@ const enchantsForSlot = (options: ClassicOptions) => {
 }
 
 /* TODO: If itemSearchSlot isn't none, need to ignore that slot when weighting */
-const equipment = (options: ClassicOptions) => {
-  let myOptions = utils.cloneObject(options)
-  let maxTries = 5
-  let spellCast = undefined
-  let equipmentArray = new Array<EquipmentArray>()
+const equipment = (options: ClassicOptions): Equipment => {
+  const myOptions = utils.cloneObject(options)
+  const maxTries = 5
+  let spellCast: Cast | undefined = undefined
+  const equipmentArray = new Array<EquipmentArray>()
 
   console.log(`--- starting gear optimization with maximum of ${maxTries} tries ---`)
   for (let i = 0; i <= maxTries - 1; i++) {

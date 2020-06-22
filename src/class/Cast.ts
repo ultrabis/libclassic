@@ -4,6 +4,7 @@ import Character from './Character'
 import Spell from './Spell'
 import Target from './Target'
 import Equipment from './Equipment'
+import Item from './Item'
 
 import ClassicOptions from '../interface/ClassicOptions'
 import CastDmgValues from '../interface/CastDmgValues'
@@ -68,20 +69,20 @@ export default class Cast {
   }
 
   get normalDmg(): CastDmgObject {
-    let myObj = {} as CastDmgObject
+    const myObj = {} as CastDmgObject
     myObj.base = {} as CastDmgValues
     myObj.actual = {} as CastDmgValues
     myObj.effective = {} as CastDmgValues
 
-    let _baseDmg = (dmg: number) => {
+    const _baseDmg = (dmg: number) => {
       return dmg * this.baseDmgMultiplier
     }
 
-    let _actualDmg = (dmg: number) => {
+    const _actualDmg = (dmg: number) => {
       return dmg + this.spell.coefficient.direct * (this.effectiveSpellDamage + this.onUseSpellDamageBonus)
     }
 
-    let _effectiveDmg = (dmg: number) => {
+    const _effectiveDmg = (dmg: number) => {
       return dmg * this.effectiveDmgMultiplier
     }
 
@@ -108,13 +109,13 @@ export default class Cast {
   }
 
   get critDmg(): CastDmgObject {
-    let myObj = {} as CastDmgObject
+    const myObj = {} as CastDmgObject
     myObj.base = {} as CastDmgValues
     myObj.actual = {} as CastDmgValues
     myObj.effective = {} as CastDmgValues
-    let normalObj = this.normalDmg
+    const normalObj = this.normalDmg
 
-    let _critDmg = (dmg: number) => {
+    const _critDmg = (dmg: number) => {
       return dmg * this.critMultiplier
     }
 
@@ -141,7 +142,7 @@ export default class Cast {
   }
 
   get periodicDmg(): CastDmgObject {
-    let myObj = {} as CastDmgObject
+    const myObj = {} as CastDmgObject
     myObj.base = {} as CastDmgValues
     myObj.actual = {} as CastDmgValues
     myObj.effective = {} as CastDmgValues
@@ -171,12 +172,12 @@ export default class Cast {
   }
 
   get dps(): CastDmgObject {
-    let myObj = {} as CastDmgObject
+    const myObj = {} as CastDmgObject
     myObj.base = {} as CastDmgValues
     myObj.actual = {} as CastDmgValues
     myObj.effective = {} as CastDmgValues
 
-    let _dps = (normalDmg: number, critDmg: number) => {
+    const _dps = (normalDmg: number, critDmg: number) => {
       return (normalDmg * this.chanceToNormal + critDmg * this.chanceToCrit) / 100 / this.effectiveCastTime
     }
 
@@ -203,7 +204,7 @@ export default class Cast {
   }
 
   get periodicDPS(): CastDmgObject {
-    let myObj = {} as CastDmgObject
+    const myObj = {} as CastDmgObject
     myObj.base = {} as CastDmgValues
     myObj.actual = {} as CastDmgValues
     myObj.effective = {} as CastDmgValues
@@ -250,7 +251,7 @@ export default class Cast {
    *
    */
   get shimmerBonus(): number {
-    let modifier = this.target.shimmer ? 1 - 0.75 : 1
+    const modifier = this.target.shimmer ? 1 - 0.75 : 1
     return this.target.shimmer === this.spell.magicSchool ? modifier * (1 + 11) : modifier
   }
 
@@ -263,17 +264,15 @@ export default class Cast {
   }
 
   get onUseSpellDamageBonus(): number {
-    let trinket = undefined
-    let trinket1 = this.character.equipment.trinket
-    let trinket2 = this.character.equipment.trinket2
+    const trinket1: Item = this.character.equipment.trinket
+    const trinket2 = this.character.equipment.trinket2
+    let trinket: Item = trinket1
 
     if (trinket1 && Equipment.isOnUseEquip(trinket1.itemJSON)) {
       trinket = trinket1
     } else if (trinket2 && Equipment.isOnUseEquip(trinket2.itemJSON)) {
       trinket = trinket2
-    }
-
-    if (!trinket) {
+    } else {
       return 0
     }
 
@@ -567,11 +566,12 @@ export default class Cast {
     return 488 - 62 + 289 / 12 + 71
   }
 
-  toJSON() {
+  toJSON(): any {
     const proto = Object.getPrototypeOf(this)
     const jsonObj: any = Object.assign({}, this)
 
     Object.entries(Object.getOwnPropertyDescriptors(proto))
+      /* eslint-disable @typescript-eslint/no-unused-vars */
       .filter(([key, descriptor]) => typeof descriptor.get === 'function')
       .map(([key, descriptor]) => {
         if (descriptor && key[0] !== '_') {

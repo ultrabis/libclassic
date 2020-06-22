@@ -114,4 +114,25 @@ export default class Target {
   get shadowSpellResistance(): number {
     return this.options.target.spellResistance
   }
+
+  toJSON(): any {
+    const proto = Object.getPrototypeOf(this)
+    const jsonObj: any = Object.assign({}, this)
+
+    Object.entries(Object.getOwnPropertyDescriptors(proto))
+      /* eslint-disable @typescript-eslint/no-unused-vars */
+      .filter(([key, descriptor]) => typeof descriptor.get === 'function')
+      .map(([key, descriptor]) => {
+        if (descriptor && key[0] !== '_') {
+          try {
+            const val = (this as any)[key]
+            jsonObj[key] = val
+          } catch (error) {
+            console.error(`Error calling getter ${key}`, error)
+          }
+        }
+      })
+
+    return jsonObj
+  }
 }

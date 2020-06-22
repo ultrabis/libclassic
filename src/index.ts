@@ -4,7 +4,6 @@
  *        by scraping data from WCL and running it through resistances formulas
  *      - Do spell casters have a spell crit suppression like melee, if so, how does it work?
  */
-import vendor from './module/vendor'
 import utils from './module/utils'
 import common from './module/common'
 import query from './module/query'
@@ -40,6 +39,7 @@ import TargetType from './enum/TargetType'
 import WeaponSubclass from './enum/WeaponSubclass'
 
 /* interface */
+/*
 import CastDmgObject from './interface/CastDmgObject'
 import CastDmgValues from './interface/CastDmgValues'
 import ClassicOptions from './interface/ClassicOptions'
@@ -58,9 +58,10 @@ import SpellJSON from './interface/SpellJSON'
 import SpellQuery from './interface/SpellQuery'
 import WeaponComboJSON from './interface/WeaponComboJSON'
 import Weights from './interface/Weights'
+*/
 
 /* TODO: Remove this after adding some tests */
-const sum = (a: number, b: number) => {
+const sum = (a: number, b: number): number => {
   if ('development' === process.env.NODE_ENV) {
     console.log('bap')
   }
@@ -70,7 +71,6 @@ const sum = (a: number, b: number) => {
 export default {
   sum,
   /* modules */
-  vendor,
   common,
   utils,
   query,

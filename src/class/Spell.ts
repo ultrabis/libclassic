@@ -23,7 +23,7 @@ export default class Spell {
     if (!this.spellJSON) {
       return 'None'
     }
-    let splitStr = this.spellJSON.name.split(' ')
+    const splitStr = this.spellJSON.name.split(' ')
     splitStr.length = splitStr.length - 2
     return splitStr.join(' ')
   }
@@ -35,7 +35,7 @@ export default class Spell {
     if (!this.spellJSON) {
       return '0'
     }
-    let splitStr = this.spellJSON.name.split(' ')
+    const splitStr = this.spellJSON.name.split(' ')
     return splitStr[splitStr.length - 1]
   }
 
@@ -290,11 +290,12 @@ export default class Spell {
     }
   }
 
-  toJSON() {
+  toJSON(): any {
     const proto = Object.getPrototypeOf(this)
     const jsonObj: any = Object.assign({}, this)
 
     Object.entries(Object.getOwnPropertyDescriptors(proto))
+      /* eslint-disable @typescript-eslint/no-unused-vars */
       .filter(([key, descriptor]) => typeof descriptor.get === 'function')
       .map(([key, descriptor]) => {
         if (descriptor && key[0] !== '_') {

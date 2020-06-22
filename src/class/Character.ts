@@ -92,17 +92,17 @@ export default class Character {
   }
 
   get manaPerTickNotCasting(): number {
-    let fromBase = (15 * this.level) / 60
-    let fromSpirit = this.spirit / 5
-    let fromMp5 = this.mp5 ? (this.mp5 / 5) * 2 : 0
+    const fromBase = (15 * this.level) / 60
+    const fromSpirit = this.spirit / 5
+    const fromMp5 = this.mp5 ? (this.mp5 / 5) * 2 : 0
 
     return fromBase + fromSpirit + fromMp5
   }
 
   get manaPerTickCasting(): number {
-    let fromBase = ((15 * this.level) / 60) * this.reflectionBonus
-    let fromSpirit = (this.spirit / 5) * this.reflectionBonus
-    let fromMp5 = this.mp5 ? (this.mp5 / 5) * 2 : 0
+    const fromBase = ((15 * this.level) / 60) * this.reflectionBonus
+    const fromSpirit = (this.spirit / 5) * this.reflectionBonus
+    const fromMp5 = this.mp5 ? (this.mp5 / 5) * 2 : 0
 
     return fromBase + fromSpirit + fromMp5
   }
@@ -377,11 +377,12 @@ export default class Character {
     return this.options.character.talents.naturesGraceRank === 1 ? 0.5 : 0
   }
 
-  toJSON() {
+  toJSON(): any {
     const proto = Object.getPrototypeOf(this)
     const jsonObj: any = Object.assign({}, this)
 
     Object.entries(Object.getOwnPropertyDescriptors(proto))
+      /* eslint-disable @typescript-eslint/no-unused-vars */
       .filter(([key, descriptor]) => typeof descriptor.get === 'function')
       .map(([key, descriptor]) => {
         if (descriptor && key[0] !== '_') {

@@ -12,6 +12,9 @@ import SortOrder from '../enum/SortOrder'
 import ClassicOptions from '../interface/ClassicOptions'
 import ItemSearch from '../interface/ItemSearch'
 import ItemJSON from '../interface/ItemJSON'
+import ItemSetJSON from '../interface/ItemSetJSON'
+import EnchantJSON from '../interface/EnchantJSON'
+// import LockedItems from '../interface/LockedItems'
 
 /* Object containing:
  *
@@ -52,7 +55,7 @@ export default class Equipment {
     spellCastTime?: number,
     spellCrit?: number
   ) {
-    let _bis = (slot: number) => {
+    const _bis = (slot: number) => {
       return Equipment.getBestInSlotItemWithEnchant(slot, this.itemSearch)
     }
 
@@ -65,10 +68,10 @@ export default class Equipment {
       spellCrit
     )
 
-    let bisTrinkets = Equipment.getBestInSlotTrinkets(this.itemSearch)
-    let bisRings = Equipment.getBestInSlotRings(this.itemSearch)
-    let bisWeaponCombo = Equipment.getBestInSlotWeaponCombo(this.itemSearch)
-    let bisChestLegsFeet = Equipment.getBestInSlotChestLegsFeet(this.itemSearch)
+    const bisTrinkets = Equipment.getBestInSlotTrinkets(this.itemSearch)
+    const bisRings = Equipment.getBestInSlotRings(this.itemSearch)
+    const bisWeaponCombo = Equipment.getBestInSlotWeaponCombo(this.itemSearch)
+    const bisChestLegsFeet = Equipment.getBestInSlotChestLegsFeet(this.itemSearch)
     this.head = _bis(ItemSlot.Head)
     this.hands = _bis(ItemSlot.Hands)
     this.neck = _bis(ItemSlot.Neck)
@@ -96,14 +99,14 @@ export default class Equipment {
     spellCritWeight?: number,
     spellCastTime?: number,
     spellCrit?: number
-  ) {
-    let myOptions: ClassicOptions = utils.cloneObject(options)
-    let spell = new Spell(myOptions.spellName)
+  ): ItemSearch {
+    const myOptions: ClassicOptions = utils.cloneObject(options)
+    const spell = new Spell(myOptions.spellName)
 
-    let mySpellHitWeight = spellHitWeight !== undefined ? spellHitWeight : 15
-    let mySpellCritWeight = spellCritWeight !== undefined ? spellCritWeight : 10
-    let mySpellCastTime = spellCastTime !== undefined ? spellCastTime : spell.castTime
-    let mySpellCrit = spellCrit !== undefined ? spellCrit : 30
+    const mySpellHitWeight = spellHitWeight !== undefined ? spellHitWeight : 15
+    const mySpellCritWeight = spellCritWeight !== undefined ? spellCritWeight : 10
+    const mySpellCastTime = spellCastTime !== undefined ? spellCastTime : spell.castTime
+    const mySpellCrit = spellCrit !== undefined ? spellCrit : 30
 
     return {
       phase: myOptions.phase,
@@ -130,7 +133,7 @@ export default class Equipment {
     }
   }
 
-  static printItemNames(equipment: Equipment) {
+  static printItemNames(equipment: Equipment): number {
     console.log(`
       ${equipment.head.name}, ${equipment.hands.name}, ${equipment.neck.name},
       ${equipment.waist.name}, ${equipment.shoulder.name}, ${equipment.legs.name},
@@ -138,16 +141,18 @@ export default class Equipment {
       ${equipment.finger.name}, ${equipment.wrist.name}, ${equipment.finger2.name},
       ${equipment.mainhand.name}, ${equipment.trinket.name}, ${equipment.offhand.name},
       ${equipment.trinket2.name}, ${equipment.idol.spellDamage}`)
+
+    return 0
   }
 
   /*************************** TODO **********************************/
   /*************************** UGLY **********************************/
   /*************************** STUFF **********************************/
-  static isUniqueEquip(itemJSON: ItemJSON) {
+  static isUniqueEquip(itemJSON: ItemJSON): boolean {
     return itemJSON.unique || (itemJSON.boss && itemJSON.boss.includes('Quest:')) ? true : false
   }
 
-  static isOnUseEquip(itemJSON: ItemJSON | undefined) {
+  static isOnUseEquip(itemJSON: ItemJSON | undefined): boolean {
     return itemJSON && itemJSON.onUse ? true : false
   }
 
@@ -157,7 +162,7 @@ export default class Equipment {
     castTime: number,
     spellCrit: number,
     naturesGrace: boolean
-  ) {
+  ): number {
     if (!itemJSON) {
       return 0
     }
@@ -189,26 +194,26 @@ export default class Equipment {
     castTime: number,
     spellCrit: number,
     naturesGrace: boolean
-  ) {
+  ): number {
     let effectiveActiveTime = 0
     if (trinketDuration >= encounterLength) {
       effectiveActiveTime = encounterLength
     } else if (encounterLength > trinketCooldown) {
-      let x = trinketCooldown / encounterLength - trinketDuration / encounterLength
+      const x = trinketCooldown / encounterLength - trinketDuration / encounterLength
       effectiveActiveTime = encounterLength * (1 - x)
     } else {
       effectiveActiveTime = trinketDuration
     }
 
-    let buffedCasts = Math.floor(effectiveActiveTime / castTime)
-    let totalCasts = Math.floor(encounterLength / castTime)
-    let naturesGraceBonus = naturesGrace ? trinketBonus * utils.cumulativeChance(4, spellCrit / 100, 2) : 0
+    const buffedCasts = Math.floor(effectiveActiveTime / castTime)
+    const totalCasts = Math.floor(encounterLength / castTime)
+    const naturesGraceBonus = naturesGrace ? trinketBonus * utils.cumulativeChance(4, spellCrit / 100, 2) : 0
     let totalSpellDamage = trinketBonus * buffedCasts + naturesGraceBonus
     // console.log(utils.cumulativeChance(4, spellCrit / 100, 2) * trinketBonus)
     if (trinketReductionPerCast) {
       // let cooldowns = Math.floor(encounterLength / trinketCooldown)
       // let buffedCastsThisCooldown = Math.floor(cooldowns / buffedCasts)
-      let triangular = utils.triangularNumber(buffedCasts - 1)
+      const triangular = utils.triangularNumber(buffedCasts - 1)
       /*
       console.log(
         `cooldowns=${cooldowns},buffedCasts=${buffedCasts},buffedCastsThisCooldown=${buffedCastsThisCooldown},triangular=${triangular}`
@@ -216,7 +221,7 @@ export default class Equipment {
       */
       totalSpellDamage -= triangular * trinketReductionPerCast
     }
-    let effectiveSpellDamage = totalSpellDamage / buffedCasts / (totalCasts / buffedCasts)
+    const effectiveSpellDamage = totalSpellDamage / buffedCasts / (totalCasts / buffedCasts)
 
     /*
     console.log(
@@ -226,8 +231,8 @@ export default class Equipment {
     return effectiveSpellDamage
   }
 
-  static getWeightedItemsBySlot(slot: ItemSlot, itemSearch: ItemSearch) {
-    let _scoreOnUseTrinket = (itemJSON: ItemJSON): number => {
+  static getWeightedItemsBySlot(slot: ItemSlot, itemSearch: ItemSearch): ItemJSON[] {
+    const _scoreOnUseTrinket = (itemJSON: ItemJSON): number => {
       /* Add additional score from onUse effect */
       if (itemSearch.onUseItems && (slot === ItemSlot.Trinket || slot === ItemSlot.Trinket2) && itemJSON.onUse) {
         return this.trinketEffectiveSpellDamage(
@@ -241,9 +246,9 @@ export default class Equipment {
       return 0
     }
 
-    let lockedItem = locked.getItem(itemSearch.lockedItems, slot)
+    const lockedItem = locked.getItem(itemSearch.lockedItems, slot)
     if (lockedItem) {
-      let x = []
+      const x: ItemJSON[] = []
       lockedItem.score = Item.scoreItem(
         lockedItem,
         itemSearch.magicSchool,
@@ -255,7 +260,7 @@ export default class Equipment {
       return x
     }
 
-    let result = query.items({
+    const result = query.items({
       cloneResults: true,
       slot: slot,
       phase: itemSearch.phase,
@@ -283,10 +288,10 @@ export default class Equipment {
     return result
   }
 
-  static getWeightedEnchantsBySlot(slot: ItemSlot, itemSearch: ItemSearch) {
-    let lockedEnchant = locked.getEnchant(itemSearch.lockedEnchants, slot)
+  static getWeightedEnchantsBySlot(slot: ItemSlot, itemSearch: ItemSearch): EnchantJSON[] {
+    const lockedEnchant: EnchantJSON | undefined = locked.getEnchant(itemSearch.lockedEnchants, slot)
     if (lockedEnchant) {
-      let x = []
+      const x: EnchantJSON[] = []
       lockedEnchant.score = Item.scoreEnchant(
         lockedEnchant,
         itemSearch.magicSchool,
@@ -297,15 +302,15 @@ export default class Equipment {
       return x
     }
 
-    let result = query.enchants({
+    const result = query.enchants({
       cloneResults: true,
       slot: slot,
       phase: itemSearch.phase,
       enchantExploit: itemSearch.enchantExploit
     })
 
-    for (let i in result) {
-      let score = Item.scoreEnchant(
+    for (const i in result) {
+      const score = Item.scoreEnchant(
         result[i],
         itemSearch.magicSchool,
         itemSearch.spellHitWeight,
@@ -317,28 +322,33 @@ export default class Equipment {
     return result
   }
 
-  static getItemSet(name: string, itemSearch: ItemSearch) {
+  static getItemSet(name: string, itemSearch: ItemSearch): ItemSetJSON | undefined {
     /* Find the set and filter */
-    let itemSets = query.itemSets({ cloneResults: false, name: name, raids: itemSearch.raids, phase: itemSearch.phase })
+    const itemSets = query.itemSets({
+      cloneResults: false,
+      name: name,
+      raids: itemSearch.raids,
+      phase: itemSearch.phase
+    })
     if (!itemSets || !itemSets[0]) {
       return undefined
     }
-    let itemSet = itemSets[0]
+    const itemSet = itemSets[0]
 
     /* TODO: Should be aborting here custom selections are disallowing the set */
 
     /* Find each item in set, score them and add to array */
-    let itemSetItems = []
+    const itemSetItems: ItemJSON[] = []
     let itemSetItemsScore = 0
-    for (let itemName of itemSet.itemNames) {
-      let items = query.items({
+    for (const itemName of itemSet.itemNames) {
+      const items = query.items({
         phase: itemSearch.phase,
         raids: itemSearch.raids,
         cloneResults: false,
         name: itemName
       })
       // let item = this.itemByName(itemName)
-      let item = items[0]
+      const item: ItemJSON = items[0]
       item.score = Item.scoreItem(
         item,
         itemSearch.magicSchool,
@@ -353,7 +363,7 @@ export default class Equipment {
     /* Combine score of items plus set bonus */
     itemSet.score = itemSetItemsScore
     if (itemSearch.tailoring) {
-      let isb = Item.scoreItemSetBonus(
+      const isb = Item.scoreItemSetBonus(
         itemSet,
         itemSearch.magicSchool,
         itemSearch.targetType,
@@ -368,46 +378,46 @@ export default class Equipment {
     return itemSet
   }
 
-  static getBestInSlotItem(slot: ItemSlot, itemSearch: ItemSearch) {
-    let result = this.getWeightedItemsBySlot(slot, itemSearch)
+  static getBestInSlotItem(slot: ItemSlot, itemSearch: ItemSearch): ItemJSON {
+    const result = this.getWeightedItemsBySlot(slot, itemSearch)
     return result[0]
   }
 
-  static getBestInSlotEnchant(slot: ItemSlot, itemSearch: ItemSearch) {
-    let result = this.getWeightedEnchantsBySlot(slot, itemSearch)
+  static getBestInSlotEnchant(slot: ItemSlot, itemSearch: ItemSearch): EnchantJSON {
+    const result = this.getWeightedEnchantsBySlot(slot, itemSearch)
     return result[0]
   }
 
-  static getBestInSlotItemWithEnchant(slot: ItemSlot, itemSearch: ItemSearch) {
+  static getBestInSlotItemWithEnchant(slot: ItemSlot, itemSearch: ItemSearch): Item {
     const item = this.getBestInSlotItem(slot, itemSearch)
-    let enchant = this.getBestInSlotEnchant(slot, itemSearch)
+    const enchant = this.getBestInSlotEnchant(slot, itemSearch)
 
     return new Item(slot, item, enchant)
   }
 
-  static getBestInSlotChestLegsFeet(itemSearch: ItemSearch) {
+  static getBestInSlotChestLegsFeet(itemSearch: ItemSearch): any {
     let chest: ItemJSON | undefined = this.getBestInSlotItem(ItemSlot.Chest, itemSearch)
     let legs: ItemJSON | undefined = this.getBestInSlotItem(ItemSlot.Legs, itemSearch)
     let feet: ItemJSON | undefined = this.getBestInSlotItem(ItemSlot.Feet, itemSearch)
-    let bloodvine = this.getItemSet(`Bloodvine Garb`, itemSearch)
-    let bloodvineScore = bloodvine && bloodvine.score ? bloodvine.score : 0
+    const bloodvine = this.getItemSet(`Bloodvine Garb`, itemSearch)
+    const bloodvineScore = bloodvine && bloodvine.score ? bloodvine.score : 0
 
-    let normScore =
+    const normScore =
       (chest && chest.score ? chest.score : 0) +
       (legs && legs.score ? legs.score : 0) +
       (feet && feet.score ? feet.score : 0)
 
-    let customChest =
+    const customChest =
       itemSearch &&
       itemSearch.lockedItems &&
       itemSearch.lockedItems.chest !== '' &&
       itemSearch.lockedItems.chest !== '19682'
-    let customLegs =
+    const customLegs =
       itemSearch &&
       itemSearch.lockedItems &&
       itemSearch.lockedItems.legs !== '' &&
       itemSearch.lockedItems.legs !== '19683'
-    let customFeet =
+    const customFeet =
       itemSearch &&
       itemSearch.lockedItems &&
       itemSearch.lockedItems.feet !== '' &&
@@ -429,11 +439,11 @@ export default class Equipment {
     }
   }
 
-  static getBestInSlotTrinkets(itemSearch: ItemSearch) {
-    let result = this.getWeightedItemsBySlot(ItemSlot.Trinket, itemSearch)
-    let result2 = this.getWeightedItemsBySlot(ItemSlot.Trinket2, itemSearch)
+  static getBestInSlotTrinkets(itemSearch: ItemSearch): any {
+    const result = this.getWeightedItemsBySlot(ItemSlot.Trinket, itemSearch)
+    const result2 = this.getWeightedItemsBySlot(ItemSlot.Trinket2, itemSearch)
 
-    let t1 = 0
+    const t1 = 0
     let t2 = 0
 
     if (this.isUniqueEquip(result[t1]) && result[t1].name === result2[t2].name) {
@@ -444,8 +454,8 @@ export default class Equipment {
       t2++
     }
 
-    let trinket1 = result[t1]
-    let trinket2 = result2[t2]
+    const trinket1 = result[t1]
+    const trinket2 = result2[t2]
 
     return {
       trinket: trinket1,
@@ -453,10 +463,10 @@ export default class Equipment {
     }
   }
 
-  static getBestInSlotRings(itemSearch: ItemSearch) {
-    let zanzils = undefined
-    let result = this.getWeightedItemsBySlot(ItemSlot.Finger, itemSearch)
-    let result2 = this.getWeightedItemsBySlot(ItemSlot.Finger2, itemSearch)
+  static getBestInSlotRings(itemSearch: ItemSearch): any {
+    let zanzils: ItemSetJSON | undefined = undefined
+    const result = this.getWeightedItemsBySlot(ItemSlot.Finger, itemSearch)
+    const result2 = this.getWeightedItemsBySlot(ItemSlot.Finger2, itemSearch)
 
     let ring1: ItemJSON | undefined = result[0]
     let ring2: ItemJSON | undefined = result2[0]
@@ -464,9 +474,9 @@ export default class Equipment {
       ring2 = result2[1]
     }
 
-    let basicScore = (ring1 && ring1.score ? ring1.score : 0) + (ring2 && ring2.score ? ring2.score : 0)
-    let customFinger = itemSearch.lockedItems !== undefined && itemSearch.lockedItems.finger
-    let customFinger2 = itemSearch.lockedItems !== undefined && itemSearch.lockedItems.finger2
+    const basicScore = (ring1 && ring1.score ? ring1.score : 0) + (ring2 && ring2.score ? ring2.score : 0)
+    const customFinger = itemSearch.lockedItems !== undefined && itemSearch.lockedItems.finger
+    const customFinger2 = itemSearch.lockedItems !== undefined && itemSearch.lockedItems.finger2
 
     if (!customFinger && !customFinger2) {
       zanzils = this.getItemSet(`Zanzil's Concentration`, itemSearch)
@@ -482,7 +492,7 @@ export default class Equipment {
     }
   }
 
-  static getBestInSlotWeaponCombo(itemSearch: ItemSearch) {
+  static getBestInSlotWeaponCombo(itemSearch: ItemSearch): any {
     const twohand = this.getBestInSlotItem(ItemSlot.Twohand, itemSearch)
     const onehand = this.getBestInSlotItem(ItemSlot.Onehand, itemSearch)
     const offhand = this.getBestInSlotItem(ItemSlot.Offhand, itemSearch)
@@ -501,7 +511,7 @@ export default class Equipment {
       }
     }
 
-    let mainhand = onehand
+    const mainhand = onehand
 
     return {
       mainHand: mainhand,
@@ -511,7 +521,7 @@ export default class Equipment {
   }
 
   /*************************** /UGLY **********************************/
-  get hasBloodvine() {
+  get hasBloodvine(): boolean {
     if (
       this.itemSearch.tailoring &&
       this.chest.name === `Bloodvine Vest` &&
@@ -523,7 +533,7 @@ export default class Equipment {
     return false
   }
 
-  get hasZanzils() {
+  get hasZanzils(): boolean {
     if (
       (this.finger.name === `Zanzil's Band` || this.finger.name === `Zanzil's Seal`) &&
       (this.finger2.name === `Zanzil's Band` || this.finger2.name === `Zanzil's Seal`)
@@ -889,5 +899,25 @@ export default class Equipment {
         ]
       ]
     }
+  }
+  toJSON(): any {
+    const proto = Object.getPrototypeOf(this)
+    const jsonObj: any = Object.assign({}, this)
+
+    Object.entries(Object.getOwnPropertyDescriptors(proto))
+      /* eslint-disable @typescript-eslint/no-unused-vars */
+      .filter(([key, descriptor]) => typeof descriptor.get === 'function')
+      .map(([key, descriptor]) => {
+        if (descriptor && key[0] !== '_') {
+          try {
+            const val = (this as any)[key]
+            jsonObj[key] = val
+          } catch (error) {
+            console.error(`Error calling getter ${key}`, error)
+          }
+        }
+      })
+
+    return jsonObj
   }
 }

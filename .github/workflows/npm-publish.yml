@@ -33,22 +33,21 @@ jobs:
         run: yarn install --frozen-lockfile
         env:
           CI: true
-
+          
       - name: Lint
         run: yarn lint
         env:
           CI: true
-
+          
       - name: Test
         run: yarn test --ci --coverage --maxWorkers=2
         env:
           CI: true
-          
-      - name: Generate typedoc
-        run: yarn docs
-      
-      - name: Publish
-        run: yarn publish
+
+      - name: Build production
+        run: yarn build
         env:
           CI: true
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+
+      - name: Generate typedoc
+        run: yarn build:docs

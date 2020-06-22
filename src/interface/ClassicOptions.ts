@@ -1,12 +1,13 @@
+import LockedItems from './LockedItems'
+import LockedEnchants from './LockedEnchants'
+
 import ItemSlot from '../enum/ItemSlot'
-import LockedItems from '../interface/LockedItems'
-import LockedEnchants from '../interface/LockedEnchants'
-import Gender from 'enum/Gender'
-import PlayableRace from 'enum/PlayableRace'
-import PlayableClass from 'enum/PlayableClass'
-import PvPRank from 'enum/PvPRank'
-import MagicSchool from 'enum/MagicSchool'
-import TargetType from 'enum/TargetType'
+import Gender from '../enum/Gender'
+import PlayableRace from '../enum/PlayableRace'
+import PlayableClass from '../enum/PlayableClass'
+import PvPRank from '../enum/PvPRank'
+import MagicSchool from '../enum/MagicSchool'
+import TargetType from '../enum/TargetType'
 
 export default interface ClassicOptions {
   phase: number

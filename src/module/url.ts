@@ -1,8 +1,8 @@
-import vendor from './vendor'
+import pako from 'pako'
+import { Base64 } from 'js-base64'
+
 import utils from './utils'
-
 import Equipment from '../class/Equipment'
-
 import LockedItems from '../interface/LockedItems'
 import LockedEnchants from '../interface/LockedEnchants'
 import ParaminOptions from '../interface/ParaminOptions'
@@ -11,16 +11,16 @@ import ParaminOptions from '../interface/ParaminOptions'
 const stringToParamin = (str: string, opts?: ParaminOptions): string => {
   let binaryString
   if (opts && opts.version === 1) {
-    binaryString = vendor.pako.deflate(str, { to: 'string', level: 9 })
+    binaryString = pako.deflate(str, { to: 'string', level: 9 })
   } else {
-    binaryString = vendor.pako.deflateRaw(str, { to: 'string', level: 9 })
+    binaryString = pako.deflateRaw(str, { to: 'string', level: 9 })
   }
 
   /* base64 encode gzipped jsonString */
-  let base64string = btoa(binaryString)
+  const base64string = btoa(binaryString)
 
   /* encode base64 string for URL */
-  let encoded = utils.encodeURI(base64string)
+  const encoded = utils.encodeURI(base64string)
 
   return encoded
 }
@@ -29,29 +29,28 @@ const paraminToString = (paramin: string, opts?: ParaminOptions): string => {
   let asciiString
 
   /* param -> URI decoded param */
-  let decodedParam = utils.decodeURI(paramin)
+  const decodedParam = utils.decodeURI(paramin)
 
   /* decoded param -> binary string */
-  let binaryString = vendor.Base64.atob(decodedParam)
+  const binaryString = Base64.atob(decodedParam)
 
   /* binary string -> ascii string */
   if (opts && opts.version === 1) {
-    asciiString = vendor.pako.inflate(binaryString, { to: 'string' })
+    asciiString = pako.inflate(binaryString, { to: 'string' })
     asciiString = JSON.parse(asciiString)
   } else {
-    asciiString = vendor.pako.inflateRaw(binaryString, { to: 'string' })
+    asciiString = pako.inflateRaw(binaryString, { to: 'string' })
   }
 
   return asciiString
 }
 
 const lockedFromGearParam = (param: string, opts?: ParaminOptions): Object => {
-  let myString = paraminToString(param, opts)
-  let arr = JSON.parse(myString)
-  let lockedItems: LockedItems
+  const myString = paraminToString(param, opts)
+  const arr = JSON.parse(myString)
   let lockedEnchants: LockedEnchants | undefined = undefined
 
-  lockedItems = {
+  const lockedItems: LockedItems = {
     head: arr[0],
     hands: arr[1],
     neck: arr[2],
@@ -96,8 +95,8 @@ const gearParamFromLocked = (
   lockedItems: LockedItems,
   lockedEnchants: LockedEnchants | null,
   opts?: ParaminOptions
-) => {
-  let lockedArr = []
+): string => {
+  const lockedArr: string[] = []
   lockedArr.push(lockedItems.head)
   lockedArr.push(lockedItems.hands)
   lockedArr.push(lockedItems.neck)
@@ -132,8 +131,8 @@ const gearParamFromLocked = (
   return stringToParamin(JSON.stringify(lockedArr), opts)
 }
 
-const publicURL = (equipment: Equipment) => {
-  let lockedItems: LockedItems = {
+const publicURL = (equipment: Equipment): string => {
+  const lockedItems: LockedItems = {
     head: equipment.head.customId,
     hands: equipment.hands.customId,
     neck: equipment.neck.customId,
@@ -153,7 +152,7 @@ const publicURL = (equipment: Equipment) => {
     idol: equipment.idol.customId
   }
 
-  let lockedEnchants: LockedEnchants = {
+  const lockedEnchants: LockedEnchants = {
     head: equipment.head.enchantCustomId,
     hands: equipment.hands.enchantCustomId,
     shoulder: equipment.shoulder.enchantCustomId,
@@ -176,9 +175,9 @@ const gearUrl = (lockedItems: LockedItems, lockedEnchants: LockedEnchants, opts?
 }
 
 const optionFromURL = (name: string): any => {
-  let uri = window.location.search.substring(1)
-  let params = new URLSearchParams(uri)
-  let value = params.get(name.toLowerCase())
+  const uri = window.location.search.substring(1)
+  const params = new URLSearchParams(uri)
+  const value = params.get(name.toLowerCase())
 
   if (value === null) {
     return null

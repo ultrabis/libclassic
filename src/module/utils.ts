@@ -1,20 +1,19 @@
-import vendor from './vendor'
+import stats from 'statsjs'
+import mathjs from 'mathjs/dist/math'
+import clonedeep from 'lodash.clonedeep'
 
 /* TODO: dumb. should go elsehwere. this won't work forever. */
-const baseURL = () => {
+const baseURL = (): string => {
   return `https://kmmiles.gitlab.io/moonkin-calc/`
 }
 
 const paramFromURL = (paramName: string, URL?: string): string | null => {
-  let urlSearchParams = new URLSearchParams(URL ? URL : window.location.search.substring(1))
+  const urlSearchParams = new URLSearchParams(URL ? URL : window.location.search.substring(1))
   return urlSearchParams.get(paramName.toLowerCase())
 }
 
-const encodeURI = (str: string) => {
-  return str
-    .replace(/\+/g, '-')
-    .replace(/\//g, '_')
-    .replace(/=+$/, '')
+const encodeURI = (str: string): string => {
+  return str.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
 }
 
 const decodeURI = (str: string): string => {
@@ -23,7 +22,7 @@ const decodeURI = (str: string): string => {
 }
 
 const isMobile = (): boolean => {
-  let mql = window.matchMedia('(max-width: 768px)')
+  const mql = window.matchMedia('(max-width: 768px)')
   if (!mql.matches) {
     return true
   }
@@ -40,20 +39,22 @@ const isWebWorker: boolean =
 /* eslint-enable no-restricted-globals */
 const isNode = typeof process !== 'undefined' && process.versions != null && process.versions.node != null
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 const getEnumKeyByEnumValue = (myEnum: any, enumValue: number | string): string => {
-  let keys = Object.keys(myEnum).filter(x => myEnum[x] === enumValue)
+  const keys = Object.keys(myEnum).filter((x) => myEnum[x] === enumValue)
   return keys.length > 0 ? keys[0] : ''
 }
 
-const cloneObject = (o: any) => {
-  return vendor.clonedeep(o)
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+const cloneObject = (o: any): any => {
+  return clonedeep(o)
 }
 
-const isLetter = (char: string) => {
+const isLetter = (char: string): boolean => {
   return char.length === 1 && char.match(/[a-z]/i) ? true : false
 }
 
-const capitalize = (s: string) => {
+const capitalize = (s: string): string => {
   return s.charAt(0).toUpperCase() + s.slice(1)
 }
 
@@ -64,26 +65,27 @@ const roundedString = (num: number, decimals: number): string => {
   })
 }
 
-const triangularNumber = (n: number) => {
+const triangularNumber = (n: number): number => {
   return (n * (n + 1)) / 2
 }
 
 const cumulativeChance = (trials: number, chance: number, x: number): number => {
-  return 1 - vendor.stats.binomcdf(trials, chance, x)
+  return 1 - stats.binomcdf(trials, chance, x)
 }
 
 const consecutiveChance = (trials: number, chance: number, x: number): number => {
-  let sStart = vendor.math.zeros([x + 1, x + 1])
+  const sStart = mathjs.zeros([x + 1, x + 1])
   sStart[0][0] = 1
 
-  let T = vendor.math.zeros([x + 1, x + 1])
+  const T = mathjs.zeros([x + 1, x + 1])
   for (let i = 0; i < x; i++) {
     T[0][i] = 1 - chance
     T[i + 1][i] = chance
   }
 
   T[x][x] = 1
-  let sEnd = vendor.math.multiply(vendor.math.pow(T, trials), sStart)
+  const sEnd = mathjs.multiply(mathjs.pow(T, trials), sStart)
+  // @ts-ignore
   return sEnd.slice(-1)[0][0]
 }
 
