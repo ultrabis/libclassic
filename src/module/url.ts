@@ -169,9 +169,9 @@ const publicURL = (equipment: Equipment): string => {
 
 const gearUrl = (lockedItems: LockedItems, lockedEnchants: LockedEnchants, opts?: ParaminOptions) => {
   if (opts && opts.version === 2) {
-    return `${utils.baseURL()}?gearv2=${gearParamFromLocked(lockedItems, lockedEnchants, opts)}`
+    return `gearv2=${gearParamFromLocked(lockedItems, lockedEnchants, opts)}`
   }
-  return `${utils.baseURL()}?gear=${gearParamFromLocked(lockedItems, null, opts)}`
+  return `gear=${gearParamFromLocked(lockedItems, null, opts)}`
 }
 
 const optionFromURL = (name: string): any => {

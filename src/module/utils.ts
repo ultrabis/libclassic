@@ -2,11 +2,6 @@ import stats from 'statsjs'
 import mathjs from 'mathjs/dist/math'
 import clonedeep from 'lodash.clonedeep'
 
-/* TODO: dumb. should go elsehwere. this won't work forever. */
-const baseURL = (): string => {
-  return `https://kmmiles.gitlab.io/moonkin-calc/`
-}
-
 const paramFromURL = (paramName: string, URL?: string): string | null => {
   const urlSearchParams = new URLSearchParams(URL ? URL : window.location.search.substring(1))
   return urlSearchParams.get(paramName.toLowerCase())
