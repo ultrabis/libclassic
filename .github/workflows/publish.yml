@@ -39,8 +39,8 @@ jobs:
       - name: Generate typedoc
         run: yarn build:docs
         
-      - name: Copy contrib
-        run: yarn build:contrib
+      - name: Copy contrib (pruned for npmjs)
+        run: yarn build:contrib-npmjs
 
       - name: Publish to npmjs
         run: yarn publish
