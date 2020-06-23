@@ -4,7 +4,7 @@ library for wow classic web apps
 
 ### status
 
-![build](https://github.com/ultrabis/libclassic/workflows/CI/badge.svg) ![deploy](https://github.com/ultrabis/libclassic/workflows/Node.js%20Package/badge.svg)
+![build](https://github.com/ultrabis/libclassic/workflows/build/badge.svg) ![deploy](https://github.com/ultrabis/libclassic/workflows/deploy/badge.svg)
 
 ### creators
 
