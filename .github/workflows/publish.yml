@@ -40,7 +40,7 @@ jobs:
         run: yarn build:docs
         
       - name: Copy contrib
-        run: yearn build:contrib
+        run: yarn build:contrib
 
       - name: Publish to npmjs
         run: yarn publish
