@@ -44,6 +44,9 @@ jobs:
 
       - name: Generate typedoc
         run: yarn build:docs
+
+      - name: Copy contrib
+        run: yearn build:contrib
         
       - name: Deploy to github pages
         uses: peaceiris/actions-gh-pages@v3
