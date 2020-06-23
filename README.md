@@ -1,6 +1,19 @@
 # libclassic
 
-Javascript calculations for the game World of Warcraft Classic, in the form of  an open source MIT licensed typescript library. 
+library for wow classic web apps
 
-This project was born out of the Moonkin Calculator app, which was initially a web conversion of
-Keftenk's Balance Druid spreadsheet.
+### creators
+
+  - beefbroccoli
+  - keftenk
+  - balor
+
+### contributers
+
+ - turudd
+
+### thanks 
+
+ - scary pirates guild
+ - classic druid discord balance channel
+ - theorycrafting channels of classic warlock and mage discords
