@@ -8,9 +8,7 @@
   "files": [
     "dist",
     "src",
-    "assets",
-    "whitepaper",
-    "docs"
+    "contrib"
   ],
   "prettier": {
     "semi": false,
@@ -21,17 +19,17 @@
   },
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js && cp index.html ./dist/",
     "lint": "yarn lint:tsc && yarn lint:eslint",
     "test": "echo TODO",
+    "build": "webpack --config webpack.prod.js && cp index.html ./dist/",
+    "show-gear": "ts-node -sT bin/show-gear.ts",
+    "show-encounter": "ts-node -sT bin/show-encounter.ts",
     "build:release": "yarn build && yarn build:docs",
-    "build:docs": "typedoc --out docs src",
-    "build:items": "ts-node -sT src/cli/convert-items.ts > src/db/items.json",
+    "build:docs": "typedoc --out dist/docs src",
+    "build:items": "ts-node -sT bin/build-items.ts > src/db/items.json",
     "lint:fix": "eslint --fix --quiet src",
     "lint:eslint": "eslint src",
-    "lint:tsc": "tsc --noEmit",
-    "cli:gear": "ts-node -sT src/cli/gear.ts",
-    "cli:encounter": "ts-node -sT src/cli/encounter.ts"
+    "lint:tsc": "tsc --noEmit"
   },
   "dependencies": {
     "js-base64": "^2.6.1",

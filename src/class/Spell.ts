@@ -93,12 +93,6 @@ export default class Spell {
     return `${this.spellJSON.icon}.jpg`
   }
 
-  /*
-  get iconFullPath(): string {
-    return process.env.BASE_URL + 'wow-icons/' + this.icon
-  }
-  */
-
   /**
    * Return spell type (direct, periodic or hybrid)
    */
