@@ -26,7 +26,7 @@
     "build:release": "yarn build && yarn build:docs && yarn build:contrib",
     "build:docs": "typedoc --out dist/docs src",
     "build:contrib": "cp -R contrib ./dist",
-    "build:contrib-npmjs": "mkdir -p ./dist/contrib && cp contrib/favicon.ico ./dist/contrib && cp -R icons ./dist/contrib",
+    "build:contrib-npmjs": "mkdir -p ./dist/contrib && cp contrib/favicon.ico ./dist/contrib && cp -R contrib/icons ./dist/contrib",
     "build:items": "ts-node -sT bin/build-items.ts > src/db/items.json",
     "lint:fix": "eslint --fix --quiet src",
     "lint:eslint": "eslint src",

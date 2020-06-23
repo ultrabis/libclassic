@@ -36,9 +36,6 @@ jobs:
         env:
           CI: true
 
-      - name: Generate typedoc
-        run: yarn build:docs
-        
       - name: Copy contrib (pruned for npmjs)
         run: yarn build:contrib-npmjs
 
