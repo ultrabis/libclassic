@@ -1,4 +1,4 @@
-name: deploy
+name: publish
 
 on:
   release:
@@ -31,16 +31,6 @@ jobs:
         env:
           CI: true
           
-      - name: Lint
-        run: yarn lint
-        env:
-          CI: true
-          
-      - name: Test
-        run: yarn test --ci --coverage --maxWorkers=2
-        env:
-          CI: true
-
       - name: Build production
         run: yarn build
         env:
@@ -54,9 +44,3 @@ jobs:
         env:
           CI: true
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
-
-      - name: Publish to github pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.github_token }}
-          publish_dir: ./dist
