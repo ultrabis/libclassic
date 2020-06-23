@@ -1,0 +1,27 @@
+<html>
+  <body>
+    <h1>libclassic kitchen sink</h1>
+
+    <img src="contrib/icons/inv_stone_15.jpg"></img>
+    <img src="contrib/icons/classic_temp.jpg"></img>
+
+    <div>DPS: <span id="dps"></span></div>
+    <div>spellHitWeight: <span id="spellHitWeight"></span></div>
+    <div>spellCritWeight: <span id="spellCritWeight"></span></div>
+    <div>intWeight: <span id="intWeight"></span></div>
+    
+    <h2>Encounter class with default options</h2>
+    <pre id="t"></pre>
+    <script src="index.js"></script>
+    <script>
+      let o = libclassic.url.defaultClassicOptions()
+      let e = new libclassic.Encounter(o)
+      // let e = libclassic.optimal.equipment(o)
+      document.getElementById("dps").innerHTML = e.spellCast.dps.effective.avg
+      document.getElementById("spellHitWeight").innerHTML = e.spellCast.spellHitWeight
+      document.getElementById("spellCritWeight").innerHTML = e.spellCast.spellCritWeight
+      document.getElementById("intWeight").innerHTML = e.spellCast.intWeight
+      document.getElementById("t").innerHTML = JSON.stringify(e, null, 2)
+    </script>
+  </body>
+</html>

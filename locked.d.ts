@@ -1,0 +1,28 @@
+import LockedItems from './interface/LockedItems';
+import LockedEnchants from './interface/LockedEnchants';
+import ItemJSON from './interface/ItemJSON';
+import EnchantJSON from './interface/EnchantJSON';
+import ItemSlot from './enum/ItemSlot';
+declare const _default: {
+    getItemId: (lockedItems: LockedItems | undefined, slot: ItemSlot) => string;
+    getEnchantId: (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot) => string;
+    getItem: (lockedItems: LockedItems | undefined, slot: ItemSlot) => ItemJSON | undefined;
+    getEnchant: (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot) => EnchantJSON | undefined;
+    setItem: (lockedItems: LockedItems | undefined, slot: ItemSlot, value: string) => number;
+    setEnchant: (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot, value: string) => number;
+    lockItem: (lockedItems: LockedItems | undefined, slot: ItemSlot, value: string) => number;
+    lockEnchant: (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot, value: string) => number;
+    unequipItem: (lockedItems: LockedItems | undefined, slot: ItemSlot) => number;
+    unequipEnchant: (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot) => number;
+    unlockItem: (lockedItems: LockedItems | undefined, slot: ItemSlot) => number;
+    unlockEnchant: (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot) => number;
+    unequipItems: (lockedItems: LockedItems | undefined) => number;
+    unequipEnchants: (lockedEnchants: LockedEnchants | undefined) => number;
+    unlockItems: (lockedItems: LockedItems | undefined) => number;
+    unlockEnchants: (lockedEnchants: LockedEnchants) => number;
+    itemLocked: (lockedItems: LockedItems | undefined, slot: ItemSlot) => boolean;
+    enchantLocked: (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot) => boolean;
+    itemEquipped: (lockedItems: LockedItems | undefined, slot: ItemSlot) => boolean;
+    enchantEquipped: (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot) => boolean;
+};
+export default _default;
