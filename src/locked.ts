@@ -1,12 +1,12 @@
 import query from './query'
 
-import LockedItems from '../interface/LockedItems'
-import LockedEnchants from '../interface/LockedEnchants'
-import ItemJSON from '../interface/ItemJSON'
-import EnchantJSON from '../interface/EnchantJSON'
+import LockedItems from './interface/LockedItems'
+import LockedEnchants from './interface/LockedEnchants'
+import ItemJSON from './interface/ItemJSON'
+import EnchantJSON from './interface/EnchantJSON'
 
-import ItemSlot from '../enum/ItemSlot'
-import PvPRank from '../enum/PvPRank'
+import ItemSlot from './enum/ItemSlot'
+import PvPRank from './enum/PvPRank'
 
 const getItemId = (lockedItems: LockedItems | undefined, slot: ItemSlot): string => {
   if (!lockedItems) {

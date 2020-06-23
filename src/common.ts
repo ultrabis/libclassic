@@ -6,18 +6,18 @@
  * In the future, i'd like more common methods extracted from classes and placed here.
  */
 
-import utils from '../module/utils'
+import utils from './utils'
 
-import Buffs from '../enum/Buffs'
-import Faction from '../enum/Faction'
-import Gender from '../enum/Gender'
-import ItemSlot from '../enum/ItemSlot'
-import MagicSchool from '../enum/MagicSchool'
-import PlayableClass from '../enum/PlayableClass'
-import PlayableRace from '../enum/PlayableRace'
-import TargetType from '../enum/TargetType'
+import Buffs from './enum/Buffs'
+import Faction from './enum/Faction'
+import Gender from './enum/Gender'
+import ItemSlot from './enum/ItemSlot'
+import MagicSchool from './enum/MagicSchool'
+import PlayableClass from './enum/PlayableClass'
+import PlayableRace from './enum/PlayableRace'
+import TargetType from './enum/TargetType'
 
-import ClassicOptions from '../interface/ClassicOptions'
+import ClassicOptions from './interface/ClassicOptions'
 
 declare type BuffFlagType = keyof typeof Buffs
 

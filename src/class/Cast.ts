@@ -1,4 +1,4 @@
-import common from '../module/common'
+import common from '../common'
 
 import Character from './Character'
 import Spell from './Spell'

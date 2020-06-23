@@ -2,10 +2,12 @@ import pako from 'pako'
 import { Base64 } from 'js-base64'
 
 import utils from './utils'
-import Equipment from '../class/Equipment'
-import LockedItems from '../interface/LockedItems'
-import LockedEnchants from '../interface/LockedEnchants'
-import ParaminOptions from '../interface/ParaminOptions'
+import common from './common'
+import Equipment from './class/Equipment'
+import ClassicOptions from './interface/ClassicOptions'
+import LockedItems from './interface/LockedItems'
+import LockedEnchants from './interface/LockedEnchants'
+import ParaminOptions from './interface/ParaminOptions'
 
 /* Gzip and encode string for use as a URI parameter */
 const stringToParamin = (str: string, opts?: ParaminOptions): string => {
@@ -200,11 +202,60 @@ const optionFromURL = (name: string): any => {
   }
 }
 
+const defaultClassicOptions = (): ClassicOptions => {
+  const o: ClassicOptions = utils.cloneObject(common.defaultOptions)
+
+  /* gear */
+  const gearv1 = optionFromURL('gear')
+  const gearv2 = optionFromURL('gearv2')
+
+  if (gearv2) {
+    o.equipment.lockedItems = gearv2.items
+    o.equipment.lockedEnchants = gearv2.enchants
+  } else if (gearv1) {
+    o.equipment.lockedItems = gearv1.items
+  }
+
+  /* other options*/
+  const phase = optionFromURL('phase')
+  if (phase !== null && phase !== undefined) {
+    o.phase = phase
+  }
+
+  const raids = optionFromURL('raids')
+  if (raids !== null && raids !== undefined) {
+    o.equipment.raids = raids
+  }
+
+  const worldbosses = optionFromURL('worldbosses')
+  if (worldbosses !== null && worldbosses !== undefined) {
+    o.equipment.worldBosses = worldbosses
+  }
+
+  const randomenchants = optionFromURL('randomenchants')
+  if (randomenchants !== null && randomenchants !== undefined) {
+    o.equipment.randomEnchants = randomenchants
+  }
+
+  const tailoring = optionFromURL('tailoring')
+  if (tailoring !== null && tailoring !== undefined) {
+    o.equipment.tailoring = tailoring
+  }
+
+  const pvprank = optionFromURL('pvprank')
+  if (pvprank !== null && pvprank !== undefined) {
+    o.character.pvpRank = pvprank
+  }
+
+  return o
+}
+
 export default {
   stringToParamin,
   paraminToString,
   lockedFromGearParam,
   gearParamFromLocked,
   optionFromURL,
-  publicURL
+  publicURL,
+  defaultClassicOptions
 }

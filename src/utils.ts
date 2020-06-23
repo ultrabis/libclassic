@@ -97,7 +97,6 @@ export default {
   cloneObject,
   isLetter,
   capitalize,
-  baseURL,
   encodeURI,
   decodeURI,
   paramFromURL

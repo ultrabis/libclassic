@@ -1,7 +1,7 @@
-import utils from '../module/utils'
-import locked from '../module/locked'
-import query from '../module/query'
-import common from '../module/common'
+import utils from '../utils'
+import locked from '../locked'
+import query from '../query'
+import common from '../common'
 
 import Item from './Item'
 import Spell from './Spell'

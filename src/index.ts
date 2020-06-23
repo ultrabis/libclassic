@@ -4,12 +4,12 @@
  *        by scraping data from WCL and running it through resistances formulas
  *      - Do spell casters have a spell crit suppression like melee, if so, how does it work?
  */
-import utils from './module/utils'
-import common from './module/common'
-import query from './module/query'
-import locked from './module/locked'
-import optimal from './module/optimal'
-import url from './module/url'
+import utils from './utils'
+import common from './common'
+import query from './query'
+import locked from './locked'
+import optimal from './optimal'
+import url from './url'
 
 /* class */
 import Character from './class/Character'

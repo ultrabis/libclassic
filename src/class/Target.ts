@@ -1,4 +1,4 @@
-import common from '../module/common'
+import common from '../common'
 import ClassicOptions from '../interface/ClassicOptions'
 import Buffs from '../enum/Buffs'
 import MagicSchool from '../enum/MagicSchool'

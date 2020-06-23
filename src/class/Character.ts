@@ -1,4 +1,4 @@
-import common from '../module/common'
+import common from '../common'
 import Equipment from './Equipment'
 import PlayableRace from '../enum/PlayableRace'
 import Faction from '../enum/Faction'

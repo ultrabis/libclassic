@@ -1,5 +1,5 @@
-import common from '../module/common'
-import query from '../module/query'
+import common from '../common'
+import query from '../query'
 import SpellCoefficient from '../interface/SpellCoefficient'
 import SpellJSON from '../interface/SpellJSON'
 import MagicSchool from '../enum/MagicSchool'

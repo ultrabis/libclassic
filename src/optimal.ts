@@ -1,16 +1,16 @@
 import utils from './utils'
 import locked from './locked'
 
-import Equipment from '../class/Equipment'
-import Cast from '../class/Cast'
+import Equipment from './class/Equipment'
+import Cast from './class/Cast'
 
-import ClassicOptions from '../interface/ClassicOptions'
-import ItemSearch from '../interface/ItemSearch'
-import EquipmentArray from '../interface/EquipmentArray'
-import ItemJSON from '../interface/ItemJSON'
-import EnchantJSON from '../interface/EnchantJSON'
+import ClassicOptions from './interface/ClassicOptions'
+import ItemSearch from './interface/ItemSearch'
+import EquipmentArray from './interface/EquipmentArray'
+import ItemJSON from './interface/ItemJSON'
+import EnchantJSON from './interface/EnchantJSON'
 
-import ItemSlot from '../enum/ItemSlot'
+import ItemSlot from './enum/ItemSlot'
 
 /*
 interface OptimalEquipment {

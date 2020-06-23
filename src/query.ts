@@ -5,20 +5,20 @@
 import jsonQuery from 'json-query'
 import utils from './utils'
 
-import SpellJSON from '../interface/SpellJSON'
-import ItemJSON from '../interface/ItemJSON'
-import ItemSetJSON from '../interface/ItemSetJSON'
-import EnchantJSON from '../interface/EnchantJSON'
-import ItemQuery from '../interface/ItemQuery'
-import SpellQuery from '../interface/SpellQuery'
+import SpellJSON from './interface/SpellJSON'
+import ItemJSON from './interface/ItemJSON'
+import ItemSetJSON from './interface/ItemSetJSON'
+import EnchantJSON from './interface/EnchantJSON'
+import ItemQuery from './interface/ItemQuery'
+import SpellQuery from './interface/SpellQuery'
 
-import ItemSlot from '../enum/ItemSlot'
-import Faction from '../enum/Faction'
+import ItemSlot from './enum/ItemSlot'
+import Faction from './enum/Faction'
 
-import spellsDB from '../db/spells.json'
-import itemsDB from '../db/items.json'
-import enchantsDB from '../db/enchants.json'
-import itemSetsDB from '../db/itemSets.json'
+import spellsDB from './db/spells.json'
+import itemsDB from './db/items.json'
+import enchantsDB from './db/enchants.json'
+import itemSetsDB from './db/itemSets.json'
 
 /* return input, deep clone it if cloneResults is true */
 const _result = (o: any, cloneResults: boolean) => {

@@ -21,9 +21,10 @@
   },
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js",
+    "build": "webpack --config webpack.prod.js && cp index.html ./dist/",
     "lint": "yarn lint:tsc && yarn lint:eslint",
     "test": "echo TODO",
+    "build:release": "yarn build && yarn build:docs",
     "build:docs": "typedoc --out docs src",
     "build:items": "ts-node -sT src/cli/convert-items.ts > src/db/items.json",
     "lint:fix": "eslint --fix --quiet src",
