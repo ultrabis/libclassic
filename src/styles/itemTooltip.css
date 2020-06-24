@@ -1,0 +1,145 @@
+.poor {
+    color: #999;
+}
+
+.common {
+    color: white;
+}
+
+.uncommon {
+    color: #24ee10;
+}
+
+.rare {
+    color: #0070DD;
+}
+
+.epic {
+    color: #ad23ed;
+}
+
+.legendary {
+    color: #fa7c18;
+}
+
+.wow-item {
+    border-style: solid;
+    border-width: 5px;
+    border-image: url(../../node_modules/libclassic/dist/contrib/icons/wow-tooltip-border.png) 5 repeat;
+    border-radius: 4px;
+    position: absolute;
+    color: white;
+    background-color: rgba(10, 0, 5, 0.8);
+    font-family: Verdana, "Open Sans", Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    padding: 0.5em 0.6em;
+    text-shadow: 0 1px 0 black;
+    box-shadow: -1px -1px 1px rgba(10, 0, 5, 0.5), -1px 1px 1px rgba(10, 0, 5, 0.5), 1px 1px 1px rgba(10, 0, 5, 0.5), 1px -1px 1px rgba(10, 0, 5, 0.5);
+    max-width: 24em;
+    transition: opacity 0.05s ease-out 0.05s, transform 0.1s ease-out 0.05s;
+}
+
+.wow-item.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+.wow-item p {
+    padding: 0;
+    margin: 0;
+}
+
+.wow-item[data-quality=Poor] .header__title {
+    color: #999;
+}
+
+.wow-item[data-quality=Common] .header__title {
+    color: white;
+}
+
+.wow-item[data-quality=Uncommon] .header__title {
+    color: #24ee10;
+}
+
+.wow-item[data-quality=Rare] .header__title {
+    color: #0070DD;
+}
+
+.wow-item[data-quality=Epic] .header__title {
+    color: #ad23ed;
+}
+
+.wow-item[data-quality=Legendary] .header__title {
+    color: #fa7c18;
+}
+
+.wow-item__header .header__title {
+    margin-bottom: 3px;
+    font-size: 1.12em;
+    margin-right: 1em;
+}
+
+.wow-item__header .header__item-level {
+    color: #FFD100;
+}
+
+.wow-item__type {
+    overflow: hidden;
+    margin-top: 3px;
+}
+
+.wow-item__type .type__slot, .wow-item__type .type__item {
+    float: left;
+}
+
+.wow-item__type .type__item {
+    float: right;
+    text-align: right;
+}
+
+.wow-item__stats {
+    overflow: hidden;
+}
+
+.wow-item__stats .stats__damage-armor {
+    float: left;
+    margin-right: 5em;
+}
+
+.wow-item__stats .stats__speed {
+    float: right;
+    text-align: right;
+}
+
+.wow-item__stats .stats__list-item:first-child {
+    margin-top: 3px;
+}
+
+.wow-item__stats .stats__dps {
+    float: none;
+    clear: both;
+}
+
+.wow-item__stats .stats__secondary {
+    color: #24ee10;
+}
+
+.wow-item__info .info__chance-on-hit {
+    color: #24ee10;
+}
+
+.wow-item__info .info__flavour-text {
+    color: #FFD100;
+    margin-top: 3px;
+}
+
+.wow-item__bonuses {
+    margin-top: 3px;
+}
+
+.wow-item__bonuses .bonuses__bonus {
+    color: #24ee10;
+    margin: 3px 0 0;
+}

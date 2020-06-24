@@ -40,6 +40,25 @@ const getEnumKeyByEnumValue = (myEnum: any, enumValue: number | string): string 
   return keys.length > 0 ? keys[0] : ''
 }
 
+const getEnumValueFromFuzzyKey = (myEnum: any, fuzzyKey: string): number | string => {
+  const keys = Object.keys(myEnum).filter((key) => sanitizeStringForEnum(key) === sanitizeStringForEnum(fuzzyKey))
+  return keys.length > 0 ? myEnum[keys[0]] : 0
+}
+
+/* strips chars for easier comparisons */
+const sanitizeStringForEnum = (s: string): string => {
+  return s
+    .replace(/ /g, '')
+    .replace(/-/g, '')
+    .replace(/'/g, '')
+    .replace(/:/g, '')
+    .replace(/\./g, '')
+    .replace(/\(/g, '')
+    .replace(/\)/g, '')
+    .replace(/%/g, '')
+    .toUpperCase()
+}
+
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 const cloneObject = (o: any): any => {
   return clonedeep(o)
@@ -86,6 +105,8 @@ const consecutiveChance = (trials: number, chance: number, x: number): number =>
 
 export default {
   getEnumKeyByEnumValue,
+  getEnumValueFromFuzzyKey,
+  sanitizeStringForEnum,
   cumulativeChance,
   consecutiveChance,
   triangularNumber,

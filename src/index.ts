@@ -10,6 +10,7 @@ import query from './query'
 import locked from './locked'
 import optimal from './optimal'
 import url from './url'
+import gear from './gear'
 
 /* class */
 import Character from './class/Character'
@@ -37,6 +38,7 @@ import SortOrder from './enum/SortOrder'
 import SpellCritFromIntellectDivisor from './enum/SpellCritFromIntellectDivisor'
 import TargetType from './enum/TargetType'
 import WeaponSubclass from './enum/WeaponSubclass'
+import ItemSuffixType from './enum/ItemSuffixType'
 
 /* interface */
 /*
@@ -77,6 +79,7 @@ export default {
   locked,
   optimal,
   url,
+  gear,
   // Stupid csim. XML format so goofy it lags rollup trying to generate it
   // ClassicSim
   /* classes */
@@ -103,5 +106,6 @@ export default {
   SortOrder,
   SpellCritFromIntellectDivisor,
   TargetType,
-  WeaponSubclass
+  WeaponSubclass,
+  ItemSuffixType
 }

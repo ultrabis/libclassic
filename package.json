@@ -17,10 +17,10 @@
     "tabWidth": 2
   },
   "scripts": {
-    "start": "webpack-dev-server --open --config webpack.dev.js",
+    "serve": "webpack-dev-server --open --config webpack.dev.js",
     "lint": "yarn lint:tsc && yarn lint:eslint",
     "test": "echo TODO",
-    "build": "webpack --config webpack.prod.js && cp index.html ./dist/",
+    "build": "webpack --config webpack.prod.js && yarn build:index",
     "show-gear": "ts-node -sT bin/show-gear.ts",
     "show-encounter": "ts-node -sT bin/show-encounter.ts",
     "build:for-gh": "yarn build && yarn build:docs && yarn build:contrib",
@@ -29,6 +29,8 @@
     "build:contrib": "cp -R contrib ./dist",
     "build:contrib-npmjs": "mkdir -p ./dist/contrib && cp contrib/favicon.ico ./dist/contrib && cp -R contrib/icons ./dist/contrib",
     "build:items": "ts-node -sT bin/build-items.ts > src/db/items.json",
+    "build:suffix": "ts-node -sT bin/build-suffix.ts > src/db/itemSuffix.json",
+    "build:index": "cp index.html ./dist/",
     "lint:fix": "eslint --fix --quiet src",
     "lint:eslint": "eslint src",
     "lint:tsc": "tsc --noEmit"

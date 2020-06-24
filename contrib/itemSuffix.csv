@@ -1,0 +1,2012 @@
+id,type,bonus,bonus2,bonus3
+1179,the Bear,+1 Stamina,+1 Strength
+1180,the Bear,+2 Stamina,+1 Strength
+1181,the Bear,+1 Stamina,+2 Strength
+1182,the Bear,+2 Stamina,+2 Strength
+1183,the Bear,+3 Stamina,+2 Strength
+1184,the Bear,+2 Stamina,+3 Strength
+1185,the Bear,+3 Stamina,+3 Strength
+1186,the Bear,+4 Stamina,+3 Strength
+1187,the Bear,+3 Stamina,+4 Strength
+1188,the Bear,+4 Stamina,+4 Strength
+1189,the Bear,+5 Stamina,+4 Strength
+1190,the Bear,+4 Stamina,+5 Strength
+1191,the Bear,+5 Stamina,+5 Strength
+1192,the Bear,+6 Stamina,+5 Strength
+1193,the Bear,+5 Stamina,+6 Strength
+1194,the Bear,+6 Stamina,+6 Strength
+1195,the Bear,+7 Stamina,+6 Strength
+1196,the Bear,+6 Stamina,+7 Strength
+1197,the Bear,+7 Stamina,+7 Strength
+1198,the Bear,+8 Stamina,+7 Strength
+1199,the Bear,+7 Stamina,+8 Strength
+1200,the Bear,+8 Stamina,+8 Strength
+1201,the Bear,+9 Stamina,+8 Strength
+1202,the Bear,+8 Stamina,+9 Strength
+1203,the Bear,+9 Stamina,+9 Strength
+1204,the Bear,+10 Stamina,+9 Strength
+1205,the Bear,+9 Stamina,+10 Strength
+1206,the Bear,+10 Stamina,+10 Strength
+1207,the Bear,+11 Stamina,+10 Strength
+1208,the Bear,+10 Stamina,+11 Strength
+1209,the Bear,+11 Stamina,+11 Strength
+1210,the Bear,+12 Stamina,+11 Strength
+1211,the Bear,+11 Stamina,+12 Strength
+1212,the Bear,+12 Stamina,+12 Strength
+1213,the Bear,+13 Stamina,+12 Strength
+1214,the Bear,+12 Stamina,+13 Strength
+1215,the Bear,+13 Stamina,+13 Strength
+1216,the Bear,+14 Stamina,+13 Strength
+1217,the Bear,+13 Stamina,+14 Strength
+1218,the Bear,+14 Stamina,+14 Strength
+1219,the Bear,+15 Stamina,+14 Strength
+1220,the Bear,+14 Stamina,+15 Strength
+1221,the Bear,+15 Stamina,+15 Strength
+1222,the Bear,+16 Stamina,+15 Strength
+1223,the Bear,+15 Stamina,+16 Strength
+1224,the Bear,+16 Stamina,+16 Strength
+1225,the Bear,+17 Stamina,+16 Strength
+1226,the Bear,+16 Stamina,+17 Strength
+1227,the Bear,+17 Stamina,+17 Strength
+1228,the Bear,+18 Stamina,+17 Strength
+1229,the Bear,+17 Stamina,+18 Strength
+1230,the Bear,+18 Stamina,+18 Strength
+1231,the Bear,+19 Stamina,+18 Strength
+1232,the Bear,+18 Stamina,+19 Strength
+1233,the Bear,+19 Stamina,+19 Strength
+1234,the Bear,+20 Stamina,+19 Strength
+1235,the Bear,+19 Stamina,+20 Strength
+1236,the Bear,+20 Stamina,+20 Strength
+1237,the Bear,+21 Stamina,+20 Strength
+1238,the Bear,+20 Stamina,+21 Strength
+1239,the Bear,+21 Stamina,+21 Strength
+1240,the Bear,+22 Stamina,+21 Strength
+1241,the Bear,+21 Stamina,+22 Strength
+1242,the Bear,+22 Stamina,+22 Strength
+1243,the Bear,+23 Stamina,+22 Strength
+1244,the Bear,+22 Stamina,+23 Strength
+1245,the Bear,+23 Stamina,+23 Strength
+1246,the Bear,+24 Stamina,+23 Strength
+1247,the Bear,+23 Stamina,+24 Strength
+1248,the Bear,+24 Stamina,+24 Strength
+1249,the Bear,+25 Stamina,+24 Strength
+1250,the Bear,+24 Stamina,+25 Strength
+1251,the Bear,+25 Stamina,+25 Strength
+1252,the Bear,+26 Stamina,+25 Strength
+1253,the Bear,+25 Stamina,+26 Strength
+1254,the Bear,+26 Stamina,+26 Strength
+1255,the Bear,+27 Stamina,+26 Strength
+1256,the Bear,+26 Stamina,+27 Strength
+1257,the Bear,+27 Stamina,+27 Strength
+1258,the Bear,+28 Stamina,+27 Strength
+1259,the Bear,+27 Stamina,+28 Strength
+1260,the Bear,+28 Stamina,+28 Strength
+1261,the Bear,+29 Stamina,+28 Strength
+1262,the Bear,+28 Stamina,+29 Strength
+1263,the Bear,+29 Stamina,+29 Strength
+1094,the Boar,+1 Spirit,+1 Strength
+1095,the Boar,+2 Spirit,+1 Strength
+1096,the Boar,+1 Spirit,+2 Strength
+1097,the Boar,+2 Spirit,+2 Strength
+1098,the Boar,+3 Spirit,+2 Strength
+1099,the Boar,+2 Spirit,+3 Strength
+1100,the Boar,+3 Spirit,+3 Strength
+1101,the Boar,+4 Spirit,+3 Strength
+1102,the Boar,+3 Spirit,+4 Strength
+1103,the Boar,+4 Spirit,+4 Strength
+1104,the Boar,+5 Spirit,+4 Strength
+1105,the Boar,+4 Spirit,+5 Strength
+1106,the Boar,+5 Spirit,+5 Strength
+1107,the Boar,+6 Spirit,+5 Strength
+1108,the Boar,+5 Spirit,+6 Strength
+1109,the Boar,+6 Spirit,+6 Strength
+1110,the Boar,+7 Spirit,+6 Strength
+1111,the Boar,+6 Spirit,+7 Strength
+1112,the Boar,+7 Spirit,+7 Strength
+1113,the Boar,+8 Spirit,+7 Strength
+1114,the Boar,+7 Spirit,+8 Strength
+1115,the Boar,+8 Spirit,+8 Strength
+1116,the Boar,+9 Spirit,+8 Strength
+1117,the Boar,+8 Spirit,+9 Strength
+1118,the Boar,+9 Spirit,+9 Strength
+1119,the Boar,+10 Spirit,+9 Strength
+1120,the Boar,+9 Spirit,+10 Strength
+1121,the Boar,+10 Spirit,+10 Strength
+1122,the Boar,+11 Spirit,+10 Strength
+1123,the Boar,+10 Spirit,+11 Strength
+1124,the Boar,+11 Spirit,+11 Strength
+1125,the Boar,+12 Spirit,+11 Strength
+1126,the Boar,+11 Spirit,+12 Strength
+1127,the Boar,+12 Spirit,+12 Strength
+1128,the Boar,+13 Spirit,+12 Strength
+1129,the Boar,+12 Spirit,+13 Strength
+1130,the Boar,+13 Spirit,+13 Strength
+1131,the Boar,+14 Spirit,+13 Strength
+1132,the Boar,+13 Spirit,+14 Strength
+1133,the Boar,+14 Spirit,+14 Strength
+1134,the Boar,+15 Spirit,+14 Strength
+1135,the Boar,+14 Spirit,+15 Strength
+1136,the Boar,+15 Spirit,+15 Strength
+1137,the Boar,+16 Spirit,+15 Strength
+1138,the Boar,+15 Spirit,+16 Strength
+1139,the Boar,+16 Spirit,+16 Strength
+1140,the Boar,+17 Spirit,+16 Strength
+1141,the Boar,+16 Spirit,+17 Strength
+1142,the Boar,+17 Spirit,+17 Strength
+1143,the Boar,+18 Spirit,+17 Strength
+1144,the Boar,+17 Spirit,+18 Strength
+1145,the Boar,+18 Spirit,+18 Strength
+1146,the Boar,+19 Spirit,+18 Strength
+1147,the Boar,+18 Spirit,+19 Strength
+1148,the Boar,+19 Spirit,+19 Strength
+1149,the Boar,+20 Spirit,+19 Strength
+1150,the Boar,+19 Spirit,+20 Strength
+1151,the Boar,+20 Spirit,+20 Strength
+1152,the Boar,+21 Spirit,+20 Strength
+1153,the Boar,+20 Spirit,+21 Strength
+1154,the Boar,+21 Spirit,+21 Strength
+1155,the Boar,+22 Spirit,+21 Strength
+1156,the Boar,+21 Spirit,+22 Strength
+1157,the Boar,+22 Spirit,+22 Strength
+1158,the Boar,+23 Spirit,+22 Strength
+1159,the Boar,+22 Spirit,+23 Strength
+1160,the Boar,+23 Spirit,+23 Strength
+1161,the Boar,+24 Spirit,+23 Strength
+1162,the Boar,+23 Spirit,+24 Strength
+1163,the Boar,+24 Spirit,+24 Strength
+1164,the Boar,+25 Spirit,+24 Strength
+1165,the Boar,+24 Spirit,+25 Strength
+1166,the Boar,+25 Spirit,+25 Strength
+1167,the Boar,+26 Spirit,+25 Strength
+1168,the Boar,+25 Spirit,+26 Strength
+1169,the Boar,+26 Spirit,+26 Strength
+1170,the Boar,+27 Spirit,+26 Strength
+1171,the Boar,+26 Spirit,+27 Strength
+1172,the Boar,+27 Spirit,+27 Strength
+1173,the Boar,+28 Spirit,+27 Strength
+1174,the Boar,+27 Spirit,+28 Strength
+1175,the Boar,+28 Spirit,+28 Strength
+1176,the Boar,+29 Spirit,+28 Strength
+1177,the Boar,+28 Spirit,+29 Strength
+1178,the Boar,+29 Spirit,+29 Strength
+839,the Eagle,+1 Intellect,+1 Stamina
+840,the Eagle,+2 Intellect,+1 Stamina
+841,the Eagle,+1 Intellect,+2 Stamina
+842,the Eagle,+2 Intellect,+2 Stamina
+843,the Eagle,+3 Intellect,+2 Stamina
+844,the Eagle,+2 Intellect,+3 Stamina
+845,the Eagle,+3 Intellect,+3 Stamina
+846,the Eagle,+4 Intellect,+3 Stamina
+847,the Eagle,+3 Intellect,+4 Stamina
+848,the Eagle,+4 Intellect,+4 Stamina
+849,the Eagle,+5 Intellect,+4 Stamina
+850,the Eagle,+4 Intellect,+5 Stamina
+851,the Eagle,+5 Intellect,+5 Stamina
+852,the Eagle,+6 Intellect,+5 Stamina
+853,the Eagle,+5 Intellect,+6 Stamina
+854,the Eagle,+6 Intellect,+6 Stamina
+855,the Eagle,+7 Intellect,+6 Stamina
+856,the Eagle,+6 Intellect,+7 Stamina
+857,the Eagle,+7 Intellect,+7 Stamina
+858,the Eagle,+8 Intellect,+7 Stamina
+859,the Eagle,+7 Intellect,+8 Stamina
+860,the Eagle,+8 Intellect,+8 Stamina
+861,the Eagle,+9 Intellect,+8 Stamina
+862,the Eagle,+8 Intellect,+9 Stamina
+863,the Eagle,+9 Intellect,+9 Stamina
+864,the Eagle,+10 Intellect,+9 Stamina
+865,the Eagle,+9 Intellect,+10 Stamina
+866,the Eagle,+10 Intellect,+10 Stamina
+867,the Eagle,+11 Intellect,+10 Stamina
+868,the Eagle,+10 Intellect,+11 Stamina
+869,the Eagle,+11 Intellect,+11 Stamina
+870,the Eagle,+12 Intellect,+11 Stamina
+871,the Eagle,+11 Intellect,+12 Stamina
+872,the Eagle,+12 Intellect,+12 Stamina
+873,the Eagle,+13 Intellect,+12 Stamina
+874,the Eagle,+12 Intellect,+13 Stamina
+875,the Eagle,+13 Intellect,+13 Stamina
+876,the Eagle,+14 Intellect,+13 Stamina
+877,the Eagle,+13 Intellect,+14 Stamina
+878,the Eagle,+14 Intellect,+14 Stamina
+879,the Eagle,+15 Intellect,+14 Stamina
+880,the Eagle,+14 Intellect,+15 Stamina
+881,the Eagle,+15 Intellect,+15 Stamina
+882,the Eagle,+16 Intellect,+15 Stamina
+883,the Eagle,+15 Intellect,+16 Stamina
+884,the Eagle,+16 Intellect,+16 Stamina
+885,the Eagle,+17 Intellect,+16 Stamina
+886,the Eagle,+16 Intellect,+17 Stamina
+887,the Eagle,+17 Intellect,+17 Stamina
+888,the Eagle,+18 Intellect,+17 Stamina
+889,the Eagle,+17 Intellect,+18 Stamina
+890,the Eagle,+18 Intellect,+18 Stamina
+891,the Eagle,+19 Intellect,+18 Stamina
+892,the Eagle,+18 Intellect,+19 Stamina
+893,the Eagle,+19 Intellect,+19 Stamina
+894,the Eagle,+20 Intellect,+19 Stamina
+895,the Eagle,+19 Intellect,+20 Stamina
+896,the Eagle,+20 Intellect,+20 Stamina
+897,the Eagle,+21 Intellect,+20 Stamina
+898,the Eagle,+20 Intellect,+21 Stamina
+899,the Eagle,+21 Intellect,+21 Stamina
+900,the Eagle,+22 Intellect,+21 Stamina
+901,the Eagle,+21 Intellect,+22 Stamina
+902,the Eagle,+22 Intellect,+22 Stamina
+903,the Eagle,+23 Intellect,+22 Stamina
+904,the Eagle,+22 Intellect,+23 Stamina
+905,the Eagle,+23 Intellect,+23 Stamina
+906,the Eagle,+24 Intellect,+23 Stamina
+907,the Eagle,+23 Intellect,+24 Stamina
+908,the Eagle,+24 Intellect,+24 Stamina
+909,the Eagle,+25 Intellect,+24 Stamina
+910,the Eagle,+24 Intellect,+25 Stamina
+911,the Eagle,+25 Intellect,+25 Stamina
+912,the Eagle,+26 Intellect,+25 Stamina
+913,the Eagle,+25 Intellect,+26 Stamina
+914,the Eagle,+26 Intellect,+26 Stamina
+915,the Eagle,+27 Intellect,+26 Stamina
+916,the Eagle,+26 Intellect,+27 Stamina
+917,the Eagle,+27 Intellect,+27 Stamina
+918,the Eagle,+28 Intellect,+27 Stamina
+919,the Eagle,+27 Intellect,+28 Stamina
+920,the Eagle,+28 Intellect,+28 Stamina
+921,the Eagle,+29 Intellect,+28 Stamina
+922,the Eagle,+28 Intellect,+29 Stamina
+923,the Eagle,+29 Intellect,+29 Stamina
+227,the Falcon,+1 Agility,+1 Intellect
+229,the Falcon,+2 Agility,+1 Intellect
+231,the Falcon,+1 Agility,+2 Intellect
+232,the Falcon,+2 Agility,+3 Intellect
+233,the Falcon,+3 Agility,+2 Intellect
+234,the Falcon,+3 Agility,+3 Intellect
+235,the Falcon,+4 Agility,+3 Intellect
+236,the Falcon,+3 Agility,+4 Intellect
+237,the Falcon,+4 Agility,+5 Intellect
+238,the Falcon,+2 Agility,+2 Intellect
+247,the Falcon,+5 Agility,+5 Intellect
+248,the Falcon,+4 Agility,+4 Intellect
+249,the Falcon,+5 Agility,+4 Intellect
+250,the Falcon,+5 Agility,+6 Intellect
+251,the Falcon,+6 Agility,+6 Intellect
+252,the Falcon,+6 Agility,+5 Intellect
+253,the Falcon,+6 Agility,+7 Intellect
+254,the Falcon,+7 Agility,+7 Intellect
+255,the Falcon,+7 Agility,+6 Intellect
+435,the Falcon,+8 Agility,+7 Intellect
+436,the Falcon,+7 Agility,+8 Intellect
+437,the Falcon,+8 Agility,+8 Intellect
+438,the Falcon,+9 Agility,+8 Intellect
+439,the Falcon,+8 Agility,+9 Intellect
+440,the Falcon,+9 Agility,+9 Intellect
+441,the Falcon,+10 Agility,+9 Intellect
+442,the Falcon,+9 Agility,+10 Intellect
+443,the Falcon,+10 Agility,+10 Intellect
+444,the Falcon,+11 Agility,+10 Intellect
+445,the Falcon,+10 Agility,+11 Intellect
+446,the Falcon,+11 Agility,+11 Intellect
+447,the Falcon,+12 Agility,+11 Intellect
+448,the Falcon,+11 Agility,+12 Intellect
+449,the Falcon,+12 Agility,+12 Intellect
+450,the Falcon,+13 Agility,+12 Intellect
+451,the Falcon,+12 Agility,+13 Intellect
+452,the Falcon,+13 Agility,+13 Intellect
+453,the Falcon,+14 Agility,+13 Intellect
+454,the Falcon,+13 Agility,+14 Intellect
+455,the Falcon,+14 Agility,+14 Intellect
+456,the Falcon,+15 Agility,+14 Intellect
+457,the Falcon,+14 Agility,+15 Intellect
+458,the Falcon,+15 Agility,+15 Intellect
+459,the Falcon,+16 Agility,+15 Intellect
+460,the Falcon,+15 Agility,+16 Intellect
+461,the Falcon,+16 Agility,+16 Intellect
+462,the Falcon,+17 Agility,+16 Intellect
+463,the Falcon,+16 Agility,+17 Intellect
+464,the Falcon,+17 Agility,+17 Intellect
+465,the Falcon,+18 Agility,+17 Intellect
+466,the Falcon,+17 Agility,+18 Intellect
+467,the Falcon,+18 Agility,+18 Intellect
+468,the Falcon,+19 Agility,+18 Intellect
+469,the Falcon,+18 Agility,+19 Intellect
+470,the Falcon,+19 Agility,+19 Intellect
+471,the Falcon,+20 Agility,+19 Intellect
+472,the Falcon,+19 Agility,+20 Intellect
+473,the Falcon,+20 Agility,+20 Intellect
+474,the Falcon,+21 Agility,+20 Intellect
+475,the Falcon,+20 Agility,+21 Intellect
+476,the Falcon,+21 Agility,+21 Intellect
+477,the Falcon,+22 Agility,+21 Intellect
+478,the Falcon,+21 Agility,+22 Intellect
+479,the Falcon,+22 Agility,+22 Intellect
+480,the Falcon,+23 Agility,+22 Intellect
+481,the Falcon,+22 Agility,+23 Intellect
+482,the Falcon,+23 Agility,+23 Intellect
+483,the Falcon,+24 Agility,+23 Intellect
+484,the Falcon,+23 Agility,+24 Intellect
+485,the Falcon,+24 Agility,+24 Intellect
+486,the Falcon,+25 Agility,+24 Intellect
+487,the Falcon,+24 Agility,+25 Intellect
+488,the Falcon,+25 Agility,+25 Intellect
+489,the Falcon,+26 Agility,+25 Intellect
+490,the Falcon,+25 Agility,+26 Intellect
+491,the Falcon,+26 Agility,+26 Intellect
+492,the Falcon,+27 Agility,+26 Intellect
+493,the Falcon,+26 Agility,+27 Intellect
+494,the Falcon,+27 Agility,+27 Intellect
+495,the Falcon,+28 Agility,+27 Intellect
+496,the Falcon,+27 Agility,+28 Intellect
+497,the Falcon,+28 Agility,+28 Intellect
+498,the Falcon,+29 Agility,+28 Intellect
+499,the Falcon,+28 Agility,+29 Intellect
+500,the Falcon,+29 Agility,+29 Intellect
+924,the Gorilla,+1 Intellect,+1 Strength
+925,the Gorilla,+2 Intellect,+1 Strength
+926,the Gorilla,+1 Intellect,+2 Strength
+927,the Gorilla,+2 Intellect,+2 Strength
+928,the Gorilla,+3 Intellect,+2 Strength
+929,the Gorilla,+2 Intellect,+3 Strength
+930,the Gorilla,+3 Intellect,+3 Strength
+931,the Gorilla,+4 Intellect,+3 Strength
+932,the Gorilla,+3 Intellect,+4 Strength
+933,the Gorilla,+4 Intellect,+4 Strength
+934,the Gorilla,+5 Intellect,+4 Strength
+935,the Gorilla,+4 Intellect,+5 Strength
+936,the Gorilla,+5 Intellect,+5 Strength
+937,the Gorilla,+6 Intellect,+5 Strength
+938,the Gorilla,+5 Intellect,+6 Strength
+939,the Gorilla,+6 Intellect,+6 Strength
+940,the Gorilla,+7 Intellect,+6 Strength
+941,the Gorilla,+6 Intellect,+7 Strength
+942,the Gorilla,+7 Intellect,+7 Strength
+943,the Gorilla,+8 Intellect,+7 Strength
+944,the Gorilla,+7 Intellect,+8 Strength
+945,the Gorilla,+8 Intellect,+8 Strength
+946,the Gorilla,+9 Intellect,+8 Strength
+947,the Gorilla,+8 Intellect,+9 Strength
+948,the Gorilla,+9 Intellect,+9 Strength
+949,the Gorilla,+10 Intellect,+9 Strength
+950,the Gorilla,+9 Intellect,+10 Strength
+951,the Gorilla,+10 Intellect,+10 Strength
+952,the Gorilla,+11 Intellect,+10 Strength
+953,the Gorilla,+10 Intellect,+11 Strength
+954,the Gorilla,+11 Intellect,+11 Strength
+955,the Gorilla,+12 Intellect,+11 Strength
+956,the Gorilla,+11 Intellect,+12 Strength
+957,the Gorilla,+12 Intellect,+12 Strength
+958,the Gorilla,+13 Intellect,+12 Strength
+959,the Gorilla,+12 Intellect,+13 Strength
+960,the Gorilla,+13 Intellect,+13 Strength
+961,the Gorilla,+14 Intellect,+13 Strength
+962,the Gorilla,+13 Intellect,+14 Strength
+963,the Gorilla,+14 Intellect,+14 Strength
+964,the Gorilla,+15 Intellect,+14 Strength
+965,the Gorilla,+14 Intellect,+15 Strength
+966,the Gorilla,+15 Intellect,+15 Strength
+967,the Gorilla,+16 Intellect,+15 Strength
+968,the Gorilla,+15 Intellect,+16 Strength
+969,the Gorilla,+16 Intellect,+16 Strength
+970,the Gorilla,+17 Intellect,+16 Strength
+971,the Gorilla,+16 Intellect,+17 Strength
+972,the Gorilla,+17 Intellect,+17 Strength
+973,the Gorilla,+18 Intellect,+17 Strength
+974,the Gorilla,+17 Intellect,+18 Strength
+975,the Gorilla,+18 Intellect,+18 Strength
+976,the Gorilla,+19 Intellect,+18 Strength
+977,the Gorilla,+18 Intellect,+19 Strength
+978,the Gorilla,+19 Intellect,+19 Strength
+979,the Gorilla,+20 Intellect,+19 Strength
+980,the Gorilla,+19 Intellect,+20 Strength
+981,the Gorilla,+20 Intellect,+20 Strength
+982,the Gorilla,+21 Intellect,+20 Strength
+983,the Gorilla,+20 Intellect,+21 Strength
+984,the Gorilla,+21 Intellect,+21 Strength
+985,the Gorilla,+22 Intellect,+21 Strength
+986,the Gorilla,+21 Intellect,+22 Strength
+987,the Gorilla,+22 Intellect,+22 Strength
+988,the Gorilla,+23 Intellect,+22 Strength
+989,the Gorilla,+22 Intellect,+23 Strength
+990,the Gorilla,+23 Intellect,+23 Strength
+991,the Gorilla,+24 Intellect,+23 Strength
+992,the Gorilla,+23 Intellect,+24 Strength
+993,the Gorilla,+24 Intellect,+24 Strength
+994,the Gorilla,+25 Intellect,+24 Strength
+995,the Gorilla,+24 Intellect,+25 Strength
+996,the Gorilla,+25 Intellect,+25 Strength
+997,the Gorilla,+26 Intellect,+25 Strength
+998,the Gorilla,+25 Intellect,+26 Strength
+999,the Gorilla,+26 Intellect,+26 Strength
+1000,the Gorilla,+27 Intellect,+26 Strength
+1001,the Gorilla,+26 Intellect,+27 Strength
+1002,the Gorilla,+27 Intellect,+27 Strength
+1003,the Gorilla,+28 Intellect,+27 Strength
+1004,the Gorilla,+27 Intellect,+28 Strength
+1005,the Gorilla,+28 Intellect,+28 Strength
+1006,the Gorilla,+29 Intellect,+28 Strength
+1007,the Gorilla,+28 Intellect,+29 Strength
+1008,the Gorilla,+29 Intellect,+29 Strength
+584,the Monkey,+1 Agility,+1 Stamina
+585,the Monkey,+2 Agility,+1 Stamina
+586,the Monkey,+1 Agility,+2 Stamina
+587,the Monkey,+2 Agility,+2 Stamina
+588,the Monkey,+3 Agility,+2 Stamina
+589,the Monkey,+2 Agility,+3 Stamina
+590,the Monkey,+3 Agility,+3 Stamina
+591,the Monkey,+4 Agility,+3 Stamina
+592,the Monkey,+3 Agility,+4 Stamina
+593,the Monkey,+4 Agility,+4 Stamina
+594,the Monkey,+5 Agility,+4 Stamina
+595,the Monkey,+4 Agility,+5 Stamina
+596,the Monkey,+5 Agility,+5 Stamina
+597,the Monkey,+6 Agility,+5 Stamina
+598,the Monkey,+5 Agility,+6 Stamina
+599,the Monkey,+6 Agility,+6 Stamina
+600,the Monkey,+7 Agility,+6 Stamina
+601,the Monkey,+6 Agility,+7 Stamina
+602,the Monkey,+7 Agility,+7 Stamina
+603,the Monkey,+8 Agility,+7 Stamina
+604,the Monkey,+7 Agility,+8 Stamina
+605,the Monkey,+8 Agility,+8 Stamina
+606,the Monkey,+9 Agility,+8 Stamina
+607,the Monkey,+8 Agility,+9 Stamina
+608,the Monkey,+9 Agility,+9 Stamina
+609,the Monkey,+10 Agility,+9 Stamina
+610,the Monkey,+9 Agility,+10 Stamina
+611,the Monkey,+10 Agility,+10 Stamina
+612,the Monkey,+11 Agility,+10 Stamina
+613,the Monkey,+10 Agility,+11 Stamina
+614,the Monkey,+11 Agility,+11 Stamina
+615,the Monkey,+12 Agility,+11 Stamina
+616,the Monkey,+11 Agility,+12 Stamina
+617,the Monkey,+12 Agility,+12 Stamina
+618,the Monkey,+13 Agility,+12 Stamina
+619,the Monkey,+12 Agility,+13 Stamina
+620,the Monkey,+13 Agility,+13 Stamina
+621,the Monkey,+14 Agility,+13 Stamina
+622,the Monkey,+13 Agility,+14 Stamina
+623,the Monkey,+14 Agility,+14 Stamina
+624,the Monkey,+15 Agility,+14 Stamina
+625,the Monkey,+14 Agility,+15 Stamina
+626,the Monkey,+15 Agility,+15 Stamina
+627,the Monkey,+16 Agility,+15 Stamina
+628,the Monkey,+15 Agility,+16 Stamina
+629,the Monkey,+16 Agility,+16 Stamina
+630,the Monkey,+17 Agility,+16 Stamina
+631,the Monkey,+16 Agility,+17 Stamina
+632,the Monkey,+17 Agility,+17 Stamina
+633,the Monkey,+18 Agility,+17 Stamina
+634,the Monkey,+17 Agility,+18 Stamina
+635,the Monkey,+18 Agility,+18 Stamina
+636,the Monkey,+19 Agility,+18 Stamina
+637,the Monkey,+18 Agility,+19 Stamina
+638,the Monkey,+19 Agility,+19 Stamina
+639,the Monkey,+20 Agility,+19 Stamina
+640,the Monkey,+19 Agility,+20 Stamina
+641,the Monkey,+20 Agility,+20 Stamina
+642,the Monkey,+21 Agility,+20 Stamina
+643,the Monkey,+20 Agility,+21 Stamina
+644,the Monkey,+21 Agility,+21 Stamina
+645,the Monkey,+22 Agility,+21 Stamina
+646,the Monkey,+21 Agility,+22 Stamina
+647,the Monkey,+22 Agility,+22 Stamina
+648,the Monkey,+23 Agility,+22 Stamina
+649,the Monkey,+22 Agility,+23 Stamina
+650,the Monkey,+23 Agility,+23 Stamina
+651,the Monkey,+24 Agility,+23 Stamina
+652,the Monkey,+23 Agility,+24 Stamina
+653,the Monkey,+24 Agility,+24 Stamina
+654,the Monkey,+25 Agility,+24 Stamina
+655,the Monkey,+24 Agility,+25 Stamina
+656,the Monkey,+25 Agility,+25 Stamina
+657,the Monkey,+26 Agility,+25 Stamina
+658,the Monkey,+25 Agility,+26 Stamina
+659,the Monkey,+26 Agility,+26 Stamina
+660,the Monkey,+27 Agility,+26 Stamina
+661,the Monkey,+26 Agility,+27 Stamina
+662,the Monkey,+27 Agility,+27 Stamina
+663,the Monkey,+28 Agility,+27 Stamina
+664,the Monkey,+27 Agility,+28 Stamina
+665,the Monkey,+28 Agility,+28 Stamina
+666,the Monkey,+29 Agility,+28 Stamina
+667,the Monkey,+28 Agility,+29 Stamina
+668,the Monkey,+29 Agility,+29 Stamina
+754,the Owl,+1 Intellect,+1 Spirit
+755,the Owl,+2 Intellect,+1 Spirit
+756,the Owl,+1 Intellect,+2 Spirit
+757,the Owl,+2 Intellect,+2 Spirit
+758,the Owl,+3 Intellect,+2 Spirit
+759,the Owl,+2 Intellect,+3 Spirit
+760,the Owl,+3 Intellect,+3 Spirit
+761,the Owl,+4 Intellect,+3 Spirit
+762,the Owl,+3 Intellect,+4 Spirit
+763,the Owl,+4 Intellect,+4 Spirit
+764,the Owl,+5 Intellect,+4 Spirit
+765,the Owl,+4 Intellect,+5 Spirit
+766,the Owl,+5 Intellect,+5 Spirit
+767,the Owl,+6 Intellect,+5 Spirit
+768,the Owl,+5 Intellect,+6 Spirit
+769,the Owl,+6 Intellect,+6 Spirit
+770,the Owl,+7 Intellect,+6 Spirit
+771,the Owl,+6 Intellect,+7 Spirit
+772,the Owl,+7 Intellect,+7 Spirit
+773,the Owl,+8 Intellect,+7 Spirit
+774,the Owl,+7 Intellect,+8 Spirit
+775,the Owl,+8 Intellect,+8 Spirit
+776,the Owl,+9 Intellect,+8 Spirit
+777,the Owl,+8 Intellect,+9 Spirit
+778,the Owl,+9 Intellect,+9 Spirit
+779,the Owl,+10 Intellect,+9 Spirit
+780,the Owl,+9 Intellect,+10 Spirit
+781,the Owl,+10 Intellect,+10 Spirit
+782,the Owl,+11 Intellect,+10 Spirit
+783,the Owl,+10 Intellect,+11 Spirit
+784,the Owl,+11 Intellect,+11 Spirit
+785,the Owl,+12 Intellect,+11 Spirit
+786,the Owl,+11 Intellect,+12 Spirit
+787,the Owl,+12 Intellect,+12 Spirit
+788,the Owl,+13 Intellect,+12 Spirit
+789,the Owl,+12 Intellect,+13 Spirit
+790,the Owl,+13 Intellect,+13 Spirit
+791,the Owl,+14 Intellect,+13 Spirit
+792,the Owl,+13 Intellect,+14 Spirit
+793,the Owl,+14 Intellect,+14 Spirit
+794,the Owl,+15 Intellect,+14 Spirit
+795,the Owl,+14 Intellect,+15 Spirit
+796,the Owl,+15 Intellect,+15 Spirit
+797,the Owl,+16 Intellect,+15 Spirit
+798,the Owl,+15 Intellect,+16 Spirit
+799,the Owl,+16 Intellect,+16 Spirit
+800,the Owl,+17 Intellect,+16 Spirit
+801,the Owl,+16 Intellect,+17 Spirit
+802,the Owl,+17 Intellect,+17 Spirit
+803,the Owl,+18 Intellect,+17 Spirit
+804,the Owl,+17 Intellect,+18 Spirit
+805,the Owl,+18 Intellect,+18 Spirit
+806,the Owl,+19 Intellect,+18 Spirit
+807,the Owl,+18 Intellect,+19 Spirit
+808,the Owl,+19 Intellect,+19 Spirit
+809,the Owl,+20 Intellect,+19 Spirit
+810,the Owl,+19 Intellect,+20 Spirit
+811,the Owl,+20 Intellect,+20 Spirit
+812,the Owl,+21 Intellect,+20 Spirit
+813,the Owl,+20 Intellect,+21 Spirit
+814,the Owl,+21 Intellect,+21 Spirit
+815,the Owl,+22 Intellect,+21 Spirit
+816,the Owl,+21 Intellect,+22 Spirit
+817,the Owl,+22 Intellect,+22 Spirit
+818,the Owl,+23 Intellect,+22 Spirit
+819,the Owl,+22 Intellect,+23 Spirit
+820,the Owl,+23 Intellect,+23 Spirit
+821,the Owl,+24 Intellect,+23 Spirit
+822,the Owl,+23 Intellect,+24 Spirit
+823,the Owl,+24 Intellect,+24 Spirit
+824,the Owl,+25 Intellect,+24 Spirit
+825,the Owl,+24 Intellect,+25 Spirit
+826,the Owl,+25 Intellect,+25 Spirit
+827,the Owl,+26 Intellect,+25 Spirit
+828,the Owl,+25 Intellect,+26 Spirit
+829,the Owl,+26 Intellect,+26 Spirit
+830,the Owl,+27 Intellect,+26 Spirit
+831,the Owl,+26 Intellect,+27 Spirit
+832,the Owl,+27 Intellect,+27 Spirit
+833,the Owl,+28 Intellect,+27 Spirit
+834,the Owl,+27 Intellect,+28 Spirit
+835,the Owl,+28 Intellect,+28 Spirit
+836,the Owl,+29 Intellect,+28 Spirit
+837,the Owl,+28 Intellect,+29 Spirit
+838,the Owl,+29 Intellect,+29 Spirit
+669,the Tiger,+1 Agility,+1 Strength
+670,the Tiger,+2 Agility,+1 Strength
+671,the Tiger,+1 Agility,+2 Strength
+672,the Tiger,+2 Agility,+2 Strength
+673,the Tiger,+3 Agility,+2 Strength
+674,the Tiger,+2 Agility,+3 Strength
+675,the Tiger,+3 Agility,+3 Strength
+676,the Tiger,+4 Agility,+3 Strength
+677,the Tiger,+3 Agility,+4 Strength
+678,the Tiger,+4 Agility,+4 Strength
+679,the Tiger,+5 Agility,+4 Strength
+680,the Tiger,+4 Agility,+5 Strength
+681,the Tiger,+5 Agility,+5 Strength
+682,the Tiger,+6 Agility,+5 Strength
+683,the Tiger,+5 Agility,+6 Strength
+684,the Tiger,+6 Agility,+6 Strength
+685,the Tiger,+7 Agility,+6 Strength
+686,the Tiger,+6 Agility,+7 Strength
+687,the Tiger,+7 Agility,+7 Strength
+688,the Tiger,+8 Agility,+7 Strength
+689,the Tiger,+7 Agility,+8 Strength
+690,the Tiger,+8 Agility,+8 Strength
+691,the Tiger,+9 Agility,+8 Strength
+692,the Tiger,+8 Agility,+9 Strength
+693,the Tiger,+9 Agility,+9 Strength
+694,the Tiger,+10 Agility,+9 Strength
+695,the Tiger,+9 Agility,+10 Strength
+696,the Tiger,+10 Agility,+10 Strength
+697,the Tiger,+11 Agility,+10 Strength
+698,the Tiger,+10 Agility,+11 Strength
+699,the Tiger,+11 Agility,+11 Strength
+700,the Tiger,+12 Agility,+11 Strength
+701,the Tiger,+11 Agility,+12 Strength
+702,the Tiger,+12 Agility,+12 Strength
+703,the Tiger,+13 Agility,+12 Strength
+704,the Tiger,+12 Agility,+13 Strength
+705,the Tiger,+13 Agility,+13 Strength
+706,the Tiger,+14 Agility,+13 Strength
+707,the Tiger,+13 Agility,+14 Strength
+708,the Tiger,+14 Agility,+14 Strength
+709,the Tiger,+15 Agility,+14 Strength
+710,the Tiger,+14 Agility,+15 Strength
+711,the Tiger,+15 Agility,+15 Strength
+712,the Tiger,+16 Agility,+15 Strength
+713,the Tiger,+15 Agility,+16 Strength
+714,the Tiger,+16 Agility,+16 Strength
+715,the Tiger,+17 Agility,+16 Strength
+716,the Tiger,+16 Agility,+17 Strength
+717,the Tiger,+17 Agility,+17 Strength
+718,the Tiger,+18 Agility,+17 Strength
+719,the Tiger,+17 Agility,+18 Strength
+720,the Tiger,+18 Agility,+18 Strength
+721,the Tiger,+19 Agility,+18 Strength
+722,the Tiger,+18 Agility,+19 Strength
+723,the Tiger,+19 Agility,+19 Strength
+724,the Tiger,+20 Agility,+19 Strength
+725,the Tiger,+19 Agility,+20 Strength
+726,the Tiger,+20 Agility,+20 Strength
+727,the Tiger,+21 Agility,+20 Strength
+728,the Tiger,+20 Agility,+21 Strength
+729,the Tiger,+21 Agility,+21 Strength
+730,the Tiger,+22 Agility,+21 Strength
+731,the Tiger,+21 Agility,+22 Strength
+732,the Tiger,+22 Agility,+22 Strength
+733,the Tiger,+23 Agility,+22 Strength
+734,the Tiger,+22 Agility,+23 Strength
+735,the Tiger,+23 Agility,+23 Strength
+736,the Tiger,+24 Agility,+23 Strength
+737,the Tiger,+23 Agility,+24 Strength
+738,the Tiger,+24 Agility,+24 Strength
+739,the Tiger,+25 Agility,+24 Strength
+740,the Tiger,+24 Agility,+25 Strength
+741,the Tiger,+25 Agility,+25 Strength
+742,the Tiger,+26 Agility,+25 Strength
+743,the Tiger,+25 Agility,+26 Strength
+744,the Tiger,+26 Agility,+26 Strength
+745,the Tiger,+27 Agility,+26 Strength
+746,the Tiger,+26 Agility,+27 Strength
+747,the Tiger,+27 Agility,+27 Strength
+748,the Tiger,+28 Agility,+27 Strength
+749,the Tiger,+27 Agility,+28 Strength
+750,the Tiger,+28 Agility,+28 Strength
+751,the Tiger,+29 Agility,+28 Strength
+752,the Tiger,+28 Agility,+29 Strength
+753,the Tiger,+29 Agility,+29 Strength
+1009,the Whale,+1 Spirit,+1 Stamina
+1010,the Whale,+2 Spirit,+1 Stamina
+1011,the Whale,+1 Spirit,+2 Stamina
+1012,the Whale,+2 Spirit,+2 Stamina
+1013,the Whale,+3 Spirit,+2 Stamina
+1014,the Whale,+2 Spirit,+3 Stamina
+1015,the Whale,+3 Spirit,+3 Stamina
+1016,the Whale,+4 Spirit,+3 Stamina
+1017,the Whale,+3 Spirit,+4 Stamina
+1018,the Whale,+4 Spirit,+4 Stamina
+1019,the Whale,+5 Spirit,+4 Stamina
+1020,the Whale,+4 Spirit,+5 Stamina
+1021,the Whale,+5 Spirit,+5 Stamina
+1022,the Whale,+6 Spirit,+5 Stamina
+1023,the Whale,+5 Spirit,+6 Stamina
+1024,the Whale,+6 Spirit,+6 Stamina
+1025,the Whale,+7 Spirit,+6 Stamina
+1026,the Whale,+6 Spirit,+7 Stamina
+1027,the Whale,+7 Spirit,+7 Stamina
+1028,the Whale,+8 Spirit,+7 Stamina
+1029,the Whale,+7 Spirit,+8 Stamina
+1030,the Whale,+8 Spirit,+8 Stamina
+1031,the Whale,+9 Spirit,+8 Stamina
+1032,the Whale,+8 Spirit,+9 Stamina
+1033,the Whale,+9 Spirit,+9 Stamina
+1034,the Whale,+10 Spirit,+9 Stamina
+1035,the Whale,+9 Spirit,+10 Stamina
+1036,the Whale,+10 Spirit,+10 Stamina
+1037,the Whale,+11 Spirit,+10 Stamina
+1038,the Whale,+10 Spirit,+11 Stamina
+1039,the Whale,+11 Spirit,+11 Stamina
+1040,the Whale,+12 Spirit,+11 Stamina
+1041,the Whale,+11 Spirit,+12 Stamina
+1042,the Whale,+12 Spirit,+12 Stamina
+1043,the Whale,+13 Spirit,+12 Stamina
+1044,the Whale,+12 Spirit,+13 Stamina
+1045,the Whale,+13 Spirit,+13 Stamina
+1046,the Whale,+14 Spirit,+13 Stamina
+1047,the Whale,+13 Spirit,+14 Stamina
+1048,the Whale,+14 Spirit,+14 Stamina
+1049,the Whale,+15 Spirit,+14 Stamina
+1050,the Whale,+14 Spirit,+15 Stamina
+1051,the Whale,+15 Spirit,+15 Stamina
+1052,the Whale,+16 Spirit,+15 Stamina
+1053,the Whale,+15 Spirit,+16 Stamina
+1054,the Whale,+16 Spirit,+16 Stamina
+1055,the Whale,+17 Spirit,+16 Stamina
+1056,the Whale,+16 Spirit,+17 Stamina
+1057,the Whale,+17 Spirit,+17 Stamina
+1058,the Whale,+18 Spirit,+17 Stamina
+1059,the Whale,+17 Spirit,+18 Stamina
+1060,the Whale,+18 Spirit,+18 Stamina
+1061,the Whale,+19 Spirit,+18 Stamina
+1062,the Whale,+18 Spirit,+19 Stamina
+1063,the Whale,+19 Spirit,+19 Stamina
+1064,the Whale,+20 Spirit,+19 Stamina
+1065,the Whale,+19 Spirit,+20 Stamina
+1066,the Whale,+20 Spirit,+20 Stamina
+1067,the Whale,+21 Spirit,+20 Stamina
+1068,the Whale,+20 Spirit,+21 Stamina
+1069,the Whale,+21 Spirit,+21 Stamina
+1070,the Whale,+22 Spirit,+21 Stamina
+1071,the Whale,+21 Spirit,+22 Stamina
+1072,the Whale,+22 Spirit,+22 Stamina
+1073,the Whale,+23 Spirit,+22 Stamina
+1074,the Whale,+22 Spirit,+23 Stamina
+1075,the Whale,+23 Spirit,+23 Stamina
+1076,the Whale,+24 Spirit,+23 Stamina
+1077,the Whale,+23 Spirit,+24 Stamina
+1078,the Whale,+24 Spirit,+24 Stamina
+1079,the Whale,+25 Spirit,+24 Stamina
+1080,the Whale,+24 Spirit,+25 Stamina
+1081,the Whale,+25 Spirit,+25 Stamina
+1082,the Whale,+26 Spirit,+25 Stamina
+1083,the Whale,+25 Spirit,+26 Stamina
+1084,the Whale,+26 Spirit,+26 Stamina
+1085,the Whale,+27 Spirit,+26 Stamina
+1086,the Whale,+26 Spirit,+27 Stamina
+1087,the Whale,+27 Spirit,+27 Stamina
+1088,the Whale,+28 Spirit,+27 Stamina
+1089,the Whale,+27 Spirit,+28 Stamina
+1090,the Whale,+28 Spirit,+28 Stamina
+1091,the Whale,+29 Spirit,+28 Stamina
+1092,the Whale,+28 Spirit,+29 Stamina
+1093,the Whale,+29 Spirit,+29 Stamina
+228,the Wolf,+1 Agility,+1 Spirit
+256,the Wolf,+1 Agility,+2 Spirit
+501,the Wolf,+2 Agility,+1 Spirit
+502,the Wolf,+2 Agility,+2 Spirit
+503,the Wolf,+3 Agility,+2 Spirit
+504,the Wolf,+2 Agility,+3 Spirit
+505,the Wolf,+3 Agility,+3 Spirit
+506,the Wolf,+4 Agility,+3 Spirit
+507,the Wolf,+3 Agility,+4 Spirit
+508,the Wolf,+4 Agility,+4 Spirit
+509,the Wolf,+5 Agility,+4 Spirit
+510,the Wolf,+4 Agility,+5 Spirit
+511,the Wolf,+5 Agility,+5 Spirit
+512,the Wolf,+6 Agility,+5 Spirit
+513,the Wolf,+5 Agility,+6 Spirit
+514,the Wolf,+6 Agility,+6 Spirit
+515,the Wolf,+7 Agility,+6 Spirit
+516,the Wolf,+6 Agility,+7 Spirit
+517,the Wolf,+7 Agility,+7 Spirit
+518,the Wolf,+8 Agility,+7 Spirit
+519,the Wolf,+7 Agility,+8 Spirit
+520,the Wolf,+8 Agility,+8 Spirit
+521,the Wolf,+9 Agility,+8 Spirit
+522,the Wolf,+8 Agility,+9 Spirit
+523,the Wolf,+9 Agility,+9 Spirit
+524,the Wolf,+10 Agility,+9 Spirit
+525,the Wolf,+9 Agility,+10 Spirit
+526,the Wolf,+10 Agility,+10 Spirit
+527,the Wolf,+11 Agility,+10 Spirit
+528,the Wolf,+10 Agility,+11 Spirit
+529,the Wolf,+11 Agility,+11 Spirit
+530,the Wolf,+12 Agility,+11 Spirit
+531,the Wolf,+11 Agility,+12 Spirit
+532,the Wolf,+12 Agility,+12 Spirit
+533,the Wolf,+13 Agility,+12 Spirit
+534,the Wolf,+12 Agility,+13 Spirit
+535,the Wolf,+13 Agility,+13 Spirit
+536,the Wolf,+14 Agility,+13 Spirit
+537,the Wolf,+13 Agility,+14 Spirit
+538,the Wolf,+14 Agility,+14 Spirit
+539,the Wolf,+15 Agility,+14 Spirit
+540,the Wolf,+14 Agility,+15 Spirit
+541,the Wolf,+15 Agility,+15 Spirit
+542,the Wolf,+16 Agility,+15 Spirit
+543,the Wolf,+15 Agility,+16 Spirit
+544,the Wolf,+16 Agility,+16 Spirit
+545,the Wolf,+17 Agility,+16 Spirit
+546,the Wolf,+16 Agility,+17 Spirit
+547,the Wolf,+17 Agility,+17 Spirit
+548,the Wolf,+18 Agility,+17 Spirit
+549,the Wolf,+17 Agility,+18 Spirit
+550,the Wolf,+18 Agility,+18 Spirit
+551,the Wolf,+19 Agility,+18 Spirit
+552,the Wolf,+18 Agility,+19 Spirit
+553,the Wolf,+19 Agility,+19 Spirit
+554,the Wolf,+20 Agility,+19 Spirit
+555,the Wolf,+19 Agility,+20 Spirit
+556,the Wolf,+20 Agility,+20 Spirit
+557,the Wolf,+21 Agility,+20 Spirit
+558,the Wolf,+20 Agility,+21 Spirit
+559,the Wolf,+21 Agility,+21 Spirit
+560,the Wolf,+22 Agility,+21 Spirit
+561,the Wolf,+21 Agility,+22 Spirit
+562,the Wolf,+22 Agility,+22 Spirit
+563,the Wolf,+23 Agility,+22 Spirit
+564,the Wolf,+22 Agility,+23 Spirit
+565,the Wolf,+23 Agility,+23 Spirit
+566,the Wolf,+24 Agility,+23 Spirit
+567,the Wolf,+23 Agility,+24 Spirit
+568,the Wolf,+24 Agility,+24 Spirit
+569,the Wolf,+25 Agility,+24 Spirit
+570,the Wolf,+24 Agility,+25 Spirit
+571,the Wolf,+25 Agility,+25 Spirit
+572,the Wolf,+26 Agility,+25 Spirit
+573,the Wolf,+25 Agility,+26 Spirit
+574,the Wolf,+26 Agility,+26 Spirit
+575,the Wolf,+27 Agility,+26 Spirit
+576,the Wolf,+26 Agility,+27 Spirit
+577,the Wolf,+27 Agility,+27 Spirit
+578,the Wolf,+28 Agility,+27 Spirit
+579,the Wolf,+27 Agility,+28 Spirit
+580,the Wolf,+28 Agility,+28 Spirit
+581,the Wolf,+29 Agility,+28 Spirit
+582,the Wolf,+28 Agility,+29 Spirit
+583,the Wolf,+29 Agility,+29 Spirit
+14,Agility,+1 Agility
+17,Agility,+2 Agility
+18,Agility,+3 Agility
+93,Agility,+4 Agility
+111,Agility,+5 Agility
+132,Agility,+6 Agility
+151,Agility,+7 Agility
+167,Agility,+8 Agility
+168,Agility,+9 Agility
+171,Agility,+10 Agility
+172,Agility,+11 Agility
+173,Agility,+12 Agility
+211,Agility,+13 Agility
+212,Agility,+14 Agility
+267,Agility,+15 Agility
+358,Agility,+16 Agility
+359,Agility,+17 Agility
+360,Agility,+18 Agility
+361,Agility,+19 Agility
+362,Agility,+20 Agility
+363,Agility,+21 Agility
+364,Agility,+22 Agility
+365,Agility,+23 Agility
+366,Agility,+24 Agility
+367,Agility,+25 Agility
+368,Agility,+26 Agility
+369,Agility,+27 Agility
+370,Agility,+28 Agility
+371,Agility,+29 Agility
+372,Agility,+30 Agility
+373,Agility,+31 Agility
+374,Agility,+32 Agility
+375,Agility,+33 Agility
+376,Agility,+34 Agility
+377,Agility,+35 Agility
+378,Agility,+36 Agility
+379,Agility,+37 Agility
+380,Agility,+38 Agility
+381,Agility,+39 Agility
+382,Agility,+40 Agility
+127,Agility,+41 Agility
+128,Agility,+42 Agility
+128,Agility,+43 Agility
+128,Agility,+44 Agility
+128,Agility,+45 Agility
+1284,Agility,+46 Agility
+48,Defense,+1 Defense
+62,Defense,+1 Defense
+74,Defense,+2 Defense
+89,Defense,+3 Defense
+108,Defense,+3 Defense
+128,Defense,+4 Defense
+147,Defense,+5 Defense
+1607,Defense,+8 Defense
+1608,Defense,+5 Defense
+1609,Defense,+6 Defense
+1610,Defense,+7 Defense
+1611,Defense,+7 Defense
+1612,Defense,+9 Defense
+1613,Defense,+9 Defense
+1614,Defense,+10 Defense
+1615,Defense,+11 Defense
+1616,Defense,+13 Defense
+1617,Defense,+15 Defense
+1618,Defense,+17 Defense
+1619,Defense,+21 Defense
+1620,Defense,+11 Defense
+1621,Defense,+12 Defense
+1622,Defense,+13 Defense
+1623,Defense,+14 Defense
+1624,Defense,+15 Defense
+1625,Defense,+16 Defense
+1626,Defense,+17 Defense
+1627,Defense,+18 Defense
+1628,Defense,+19 Defense
+1629,Defense,+19 Defense
+1630,Defense,+20 Defense
+1631,Defense,+21 Defense
+1632,Defense,+22 Defense
+1633,Defense,+23 Defense
+1634,Defense,+23 Defense
+1635,Defense,+24 Defense
+1636,Defense,+25 Defense
+1637,Defense,+25 Defense
+5,Intellect,+1 Intellect
+25,Intellect,+2 Intellect
+26,Intellect,+3 Intellect
+94,Intellect,+4 Intellect
+112,Intellect,+5 Intellect
+133,Intellect,+6 Intellect
+152,Intellect,+7 Intellect
+174,Intellect,+8 Intellect
+175,Intellect,+9 Intellect
+176,Intellect,+10 Intellect
+177,Intellect,+11 Intellect
+178,Intellect,+12 Intellect
+213,Intellect,+13 Intellect
+214,Intellect,+14 Intellect
+383,Intellect,+15 Intellect
+384,Intellect,+16 Intellect
+385,Intellect,+17 Intellect
+386,Intellect,+18 Intellect
+387,Intellect,+19 Intellect
+388,Intellect,+20 Intellect
+389,Intellect,+21 Intellect
+390,Intellect,+22 Intellect
+391,Intellect,+23 Intellect
+392,Intellect,+24 Intellect
+393,Intellect,+25 Intellect
+394,Intellect,+26 Intellect
+395,Intellect,+27 Intellect
+396,Intellect,+28 Intellect
+397,Intellect,+29 Intellect
+398,Intellect,+30 Intellect
+399,Intellect,+31 Intellect
+400,Intellect,+32 Intellect
+401,Intellect,+33 Intellect
+402,Intellect,+34 Intellect
+403,Intellect,+35 Intellect
+404,Intellect,+36 Intellect
+405,Intellect,+37 Intellect
+406,Intellect,+38 Intellect
+407,Intellect,+39 Intellect
+408,Intellect,+40 Intellect
+1285,Intellect,+41 Intellect
+1286,Intellect,+42 Intellect
+1287,Intellect,+43 Intellect
+1288,Intellect,+44 Intellect
+1289,Intellect,+45 Intellect
+1290,Intellect,+46 Intellect
+16,Spirit,+1 Spirit
+27,Spirit,+2 Spirit
+28,Spirit,+3 Spirit
+95,Spirit,+4 Spirit
+113,Spirit,+5 Spirit
+134,Spirit,+6 Spirit
+153,Spirit,+7 Spirit
+179,Spirit,+8 Spirit
+180,Spirit,+9 Spirit
+181,Spirit,+10 Spirit
+182,Spirit,+11 Spirit
+183,Spirit,+12 Spirit
+215,Spirit,+13 Spirit
+216,Spirit,+14 Spirit
+409,Spirit,+15 Spirit
+410,Spirit,+16 Spirit
+411,Spirit,+17 Spirit
+412,Spirit,+18 Spirit
+413,Spirit,+19 Spirit
+414,Spirit,+20 Spirit
+415,Spirit,+21 Spirit
+416,Spirit,+22 Spirit
+417,Spirit,+23 Spirit
+418,Spirit,+24 Spirit
+419,Spirit,+25 Spirit
+420,Spirit,+26 Spirit
+421,Spirit,+27 Spirit
+422,Spirit,+28 Spirit
+423,Spirit,+29 Spirit
+424,Spirit,+30 Spirit
+425,Spirit,+31 Spirit
+426,Spirit,+32 Spirit
+427,Spirit,+33 Spirit
+428,Spirit,+34 Spirit
+429,Spirit,+36 Spirit
+430,Spirit,+37 Spirit
+431,Spirit,+38 Spirit
+432,Spirit,+39 Spirit
+433,Spirit,+40 Spirit
+434,Spirit,+35 Spirit
+1291,Spirit,+41 Spirit
+1292,Spirit,+42 Spirit
+1293,Spirit,+43 Spirit
+1294,Spirit,+44 Spirit
+1295,Spirit,+45 Spirit
+1296,Spirit,+46 Spirit
+15,Stamina,+1 Stamina
+19,Stamina,+2 Stamina
+22,Stamina,+3 Stamina
+96,Stamina,+4 Stamina
+114,Stamina,+5 Stamina
+135,Stamina,+6 Stamina
+154,Stamina,+7 Stamina
+184,Stamina,+8 Stamina
+185,Stamina,+9 Stamina
+186,Stamina,+10 Stamina
+187,Stamina,+11 Stamina
+188,Stamina,+12 Stamina
+217,Stamina,+13 Stamina
+218,Stamina,+14 Stamina
+287,Stamina,+15 Stamina
+333,Stamina,+16 Stamina
+334,Stamina,+17 Stamina
+335,Stamina,+18 Stamina
+336,Stamina,+19 Stamina
+337,Stamina,+20 Stamina
+338,Stamina,+21 Stamina
+339,Stamina,+22 Stamina
+340,Stamina,+23 Stamina
+341,Stamina,+24 Stamina
+342,Stamina,+25 Stamina
+343,Stamina,+26 Stamina
+344,Stamina,+27 Stamina
+345,Stamina,+28 Stamina
+346,Stamina,+29 Stamina
+347,Stamina,+30 Stamina
+348,Stamina,+31 Stamina
+349,Stamina,+32 Stamina
+350,Stamina,+33 Stamina
+351,Stamina,+34 Stamina
+352,Stamina,+35 Stamina
+353,Stamina,+36 Stamina
+354,Stamina,+37 Stamina
+355,Stamina,+38 Stamina
+356,Stamina,+39 Stamina
+357,Stamina,+40 Stamina
+1267,Stamina,+41 Stamina
+1268,Stamina,+42 Stamina
+1269,Stamina,+43 Stamina
+1270,Stamina,+44 Stamina
+1271,Stamina,+45 Stamina
+1272,Stamina,+46 Stamina
+6,Strength,+1 Strength
+23,Strength,+2 Strength
+24,Strength,+3 Strength
+97,Strength,+4 Strength
+115,Strength,+5 Strength
+136,Strength,+6 Strength
+155,Strength,+7 Strength
+189,Strength,+8 Strength
+190,Strength,+9 Strength
+191,Strength,+10 Strength
+192,Strength,+11 Strength
+193,Strength,+12 Strength
+219,Strength,+13 Strength
+220,Strength,+14 Strength
+307,Strength,+15 Strength
+308,Strength,+16 Strength
+309,Strength,+17 Strength
+310,Strength,+18 Strength
+311,Strength,+19 Strength
+312,Strength,+20 Strength
+313,Strength,+21 Strength
+314,Strength,+22 Strength
+315,Strength,+23 Strength
+316,Strength,+24 Strength
+317,Strength,+25 Strength
+318,Strength,+26 Strength
+319,Strength,+27 Strength
+320,Strength,+28 Strength
+321,Strength,+29 Strength
+322,Strength,+30 Strength
+323,Strength,+31 Strength
+324,Strength,+32 Strength
+325,Strength,+33 Strength
+326,Strength,+34 Strength
+327,Strength,+35 Strength
+328,Strength,+36 Strength
+329,Strength,+37 Strength
+330,Strength,+38 Strength
+331,Strength,+39 Strength
+332,Strength,+40 Strength
+1273,Strength,+41 Strength
+1274,Strength,+42 Strength
+1275,Strength,+43 Strength
+1276,Strength,+44 Strength
+1277,Strength,+45 Strength
+1278,Strength,+46 Strength
+1307,Arcane Resistance,+1 Arcane Resistance
+1308,Arcane Resistance,+2 Arcane Resistance
+1309,Arcane Resistance,+3 Arcane Resistance
+1310,Arcane Resistance,+4 Arcane Resistance
+1311,Arcane Resistance,+5 Arcane Resistance
+1312,Arcane Resistance,+6 Arcane Resistance
+1313,Arcane Resistance,+7 Arcane Resistance
+1314,Arcane Resistance,+8 Arcane Resistance
+1315,Arcane Resistance,+9 Arcane Resistance
+1316,Arcane Resistance,+10 Arcane Resistance
+1317,Arcane Resistance,+11 Arcane Resistance
+1318,Arcane Resistance,+12 Arcane Resistance
+1319,Arcane Resistance,+13 Arcane Resistance
+1320,Arcane Resistance,+14 Arcane Resistance
+1321,Arcane Resistance,+15 Arcane Resistance
+1322,Arcane Resistance,+16 Arcane Resistance
+1323,Arcane Resistance,+17 Arcane Resistance
+1324,Arcane Resistance,+18 Arcane Resistance
+1325,Arcane Resistance,+19 Arcane Resistance
+1326,Arcane Resistance,+20 Arcane Resistance
+1327,Arcane Resistance,+21 Arcane Resistance
+1328,Arcane Resistance,+22 Arcane Resistance
+1329,Arcane Resistance,+23 Arcane Resistance
+1330,Arcane Resistance,+24 Arcane Resistance
+1331,Arcane Resistance,+25 Arcane Resistance
+1332,Arcane Resistance,+26 Arcane Resistance
+1333,Arcane Resistance,+27 Arcane Resistance
+1334,Arcane Resistance,+28 Arcane Resistance
+1335,Arcane Resistance,+29 Arcane Resistance
+1336,Arcane Resistance,+30 Arcane Resistance
+1337,Arcane Resistance,+31 Arcane Resistance
+1338,Arcane Resistance,+32 Arcane Resistance
+1339,Arcane Resistance,+33 Arcane Resistance
+1340,Arcane Resistance,+34 Arcane Resistance
+1341,Arcane Resistance,+35 Arcane Resistance
+1342,Arcane Resistance,+36 Arcane Resistance
+1343,Arcane Resistance,+37 Arcane Resistance
+1344,Arcane Resistance,+38 Arcane Resistance
+1345,Arcane Resistance,+39 Arcane Resistance
+1346,Arcane Resistance,+40 Arcane Resistance
+1347,Arcane Resistance,+41 Arcane Resistance
+1348,Arcane Resistance,+42 Arcane Resistance
+1349,Arcane Resistance,+43 Arcane Resistance
+1350,Arcane Resistance,+44 Arcane Resistance
+1351,Arcane Resistance,+45 Arcane Resistance
+1352,Arcane Resistance,+46 Arcane Resistance
+1399,Fire Resistance,+1 Fire Resistance
+1400,Fire Resistance,+2 Fire Resistance
+1401,Fire Resistance,+3 Fire Resistance
+1402,Fire Resistance,+4 Fire Resistance
+1403,Fire Resistance,+5 Fire Resistance
+1404,Fire Resistance,+6 Fire Resistance
+1405,Fire Resistance,+7 Fire Resistance
+1406,Fire Resistance,+8 Fire Resistance
+1407,Fire Resistance,+9 Fire Resistance
+1408,Fire Resistance,+10 Fire Resistance
+1409,Fire Resistance,+11 Fire Resistance
+1410,Fire Resistance,+12 Fire Resistance
+1411,Fire Resistance,+13 Fire Resistance
+1412,Fire Resistance,+14 Fire Resistance
+1413,Fire Resistance,+15 Fire Resistance
+1414,Fire Resistance,+16 Fire Resistance
+1415,Fire Resistance,+17 Fire Resistance
+1416,Fire Resistance,+18 Fire Resistance
+1417,Fire Resistance,+19 Fire Resistance
+1418,Fire Resistance,+20 Fire Resistance
+1419,Fire Resistance,+21 Fire Resistance
+1420,Fire Resistance,+22 Fire Resistance
+1421,Fire Resistance,+23 Fire Resistance
+1422,Fire Resistance,+24 Fire Resistance
+1423,Fire Resistance,+25 Fire Resistance
+1424,Fire Resistance,+26 Fire Resistance
+1425,Fire Resistance,+27 Fire Resistance
+1426,Fire Resistance,+28 Fire Resistance
+1427,Fire Resistance,+29 Fire Resistance
+1428,Fire Resistance,+30 Fire Resistance
+1429,Fire Resistance,+31 Fire Resistance
+1430,Fire Resistance,+32 Fire Resistance
+1431,Fire Resistance,+33 Fire Resistance
+1432,Fire Resistance,+34 Fire Resistance
+1433,Fire Resistance,+35 Fire Resistance
+1434,Fire Resistance,+36 Fire Resistance
+1435,Fire Resistance,+37 Fire Resistance
+1436,Fire Resistance,+38 Fire Resistance
+1437,Fire Resistance,+39 Fire Resistance
+1438,Fire Resistance,+40 Fire Resistance
+1439,Fire Resistance,+41 Fire Resistance
+1440,Fire Resistance,+42 Fire Resistance
+1441,Fire Resistance,+43 Fire Resistance
+1442,Fire Resistance,+44 Fire Resistance
+1443,Fire Resistance,+45 Fire Resistance
+1444,Fire Resistance,+46 Fire Resistance
+1353,Frost Resistance,+1 Frost Resistance
+1354,Frost Resistance,+2 Frost Resistance
+1355,Frost Resistance,+3 Frost Resistance
+1356,Frost Resistance,+4 Frost Resistance
+1357,Frost Resistance,+5 Frost Resistance
+1358,Frost Resistance,+6 Frost Resistance
+1359,Frost Resistance,+7 Frost Resistance
+1360,Frost Resistance,+8 Frost Resistance
+1361,Frost Resistance,+9 Frost Resistance
+1362,Frost Resistance,+10 Frost Resistance
+1363,Frost Resistance,+11 Frost Resistance
+1364,Frost Resistance,+12 Frost Resistance
+1365,Frost Resistance,+13 Frost Resistance
+1366,Frost Resistance,+14 Frost Resistance
+1367,Frost Resistance,+15 Frost Resistance
+1368,Frost Resistance,+16 Frost Resistance
+1369,Frost Resistance,+17 Frost Resistance
+1370,Frost Resistance,+18 Frost Resistance
+1371,Frost Resistance,+19 Frost Resistance
+1372,Frost Resistance,+20 Frost Resistance
+1373,Frost Resistance,+21 Frost Resistance
+1374,Frost Resistance,+22 Frost Resistance
+1375,Frost Resistance,+23 Frost Resistance
+1376,Frost Resistance,+24 Frost Resistance
+1377,Frost Resistance,+25 Frost Resistance
+1378,Frost Resistance,+26 Frost Resistance
+1379,Frost Resistance,+27 Frost Resistance
+1380,Frost Resistance,+28 Frost Resistance
+1381,Frost Resistance,+29 Frost Resistance
+1382,Frost Resistance,+30 Frost Resistance
+1383,Frost Resistance,+31 Frost Resistance
+1384,Frost Resistance,+32 Frost Resistance
+1385,Frost Resistance,+33 Frost Resistance
+1386,Frost Resistance,+34 Frost Resistance
+1387,Frost Resistance,+35 Frost Resistance
+1388,Frost Resistance,+36 Frost Resistance
+1389,Frost Resistance,+37 Frost Resistance
+1390,Frost Resistance,+38 Frost Resistance
+1391,Frost Resistance,+39 Frost Resistance
+1392,Frost Resistance,+40 Frost Resistance
+1393,Frost Resistance,+41 Frost Resistance
+1394,Frost Resistance,+42 Frost Resistance
+1395,Frost Resistance,+43 Frost Resistance
+1396,Frost Resistance,+44 Frost Resistance
+1397,Frost Resistance,+45 Frost Resistance
+1398,Frost Resistance,+46 Frost Resistance
+1491,Nature Resistance,+1 Nature Resistance
+1492,Nature Resistance,+2 Nature Resistance
+1493,Nature Resistance,+3 Nature Resistance
+1494,Nature Resistance,+4 Nature Resistance
+1495,Nature Resistance,+5 Nature Resistance
+1496,Nature Resistance,+6 Nature Resistance
+1497,Nature Resistance,+7 Nature Resistance
+1498,Nature Resistance,+8 Nature Resistance
+1499,Nature Resistance,+9 Nature Resistance
+1500,Nature Resistance,+10 Nature Resistance
+1501,Nature Resistance,+11 Nature Resistance
+1502,Nature Resistance,+12 Nature Resistance
+1503,Nature Resistance,+13 Nature Resistance
+1504,Nature Resistance,+14 Nature Resistance
+1505,Nature Resistance,+15 Nature Resistance
+1506,Nature Resistance,+16 Nature Resistance
+1507,Nature Resistance,+17 Nature Resistance
+1508,Nature Resistance,+18 Nature Resistance
+1509,Nature Resistance,+19 Nature Resistance
+1510,Nature Resistance,+20 Nature Resistance
+1511,Nature Resistance,+21 Nature Resistance
+1512,Nature Resistance,+22 Nature Resistance
+1513,Nature Resistance,+23 Nature Resistance
+1514,Nature Resistance,+24 Nature Resistance
+1515,Nature Resistance,+25 Nature Resistance
+1516,Nature Resistance,+26 Nature Resistance
+1517,Nature Resistance,+27 Nature Resistance
+1518,Nature Resistance,+28 Nature Resistance
+1519,Nature Resistance,+29 Nature Resistance
+1520,Nature Resistance,+30 Nature Resistance
+1521,Nature Resistance,+31 Nature Resistance
+1522,Nature Resistance,+32 Nature Resistance
+1523,Nature Resistance,+33 Nature Resistance
+1524,Nature Resistance,+34 Nature Resistance
+1525,Nature Resistance,+35 Nature Resistance
+1526,Nature Resistance,+36 Nature Resistance
+1527,Nature Resistance,+37 Nature Resistance
+1528,Nature Resistance,+38 Nature Resistance
+1529,Nature Resistance,+39 Nature Resistance
+1530,Nature Resistance,+40 Nature Resistance
+1531,Nature Resistance,+41 Nature Resistance
+1532,Nature Resistance,+42 Nature Resistance
+1533,Nature Resistance,+43 Nature Resistance
+1534,Nature Resistance,+44 Nature Resistance
+1535,Nature Resistance,+45 Nature Resistance
+1536,Nature Resistance,+46 Nature Resistance
+1445,Shadow Resistance,+1 Shadow Resistance
+1446,Shadow Resistance,+2 Shadow Resistance
+1447,Shadow Resistance,+3 Shadow Resistance
+1448,Shadow Resistance,+4 Shadow Resistance
+1449,Shadow Resistance,+5 Shadow Resistance
+1450,Shadow Resistance,+6 Shadow Resistance
+1451,Shadow Resistance,+7 Shadow Resistance
+1452,Shadow Resistance,+8 Shadow Resistance
+1453,Shadow Resistance,+9 Shadow Resistance
+1454,Shadow Resistance,+10 Shadow Resistance
+1455,Shadow Resistance,+11 Shadow Resistance
+1456,Shadow Resistance,+12 Shadow Resistance
+1457,Shadow Resistance,+13 Shadow Resistance
+1458,Shadow Resistance,+14 Shadow Resistance
+1459,Shadow Resistance,+15 Shadow Resistance
+1460,Shadow Resistance,+16 Shadow Resistance
+1461,Shadow Resistance,+17 Shadow Resistance
+1462,Shadow Resistance,+18 Shadow Resistance
+1463,Shadow Resistance,+19 Shadow Resistance
+1464,Shadow Resistance,+20 Shadow Resistance
+1465,Shadow Resistance,+21 Shadow Resistance
+1466,Shadow Resistance,+22 Shadow Resistance
+1467,Shadow Resistance,+23 Shadow Resistance
+1468,Shadow Resistance,+24 Shadow Resistance
+1469,Shadow Resistance,+25 Shadow Resistance
+1470,Shadow Resistance,+26 Shadow Resistance
+1471,Shadow Resistance,+27 Shadow Resistance
+1472,Shadow Resistance,+28 Shadow Resistance
+1473,Shadow Resistance,+29 Shadow Resistance
+1474,Shadow Resistance,+30 Shadow Resistance
+1475,Shadow Resistance,+31 Shadow Resistance
+1476,Shadow Resistance,+32 Shadow Resistance
+1477,Shadow Resistance,+33 Shadow Resistance
+1478,Shadow Resistance,+34 Shadow Resistance
+1479,Shadow Resistance,+35 Shadow Resistance
+1480,Shadow Resistance,+36 Shadow Resistance
+1481,Shadow Resistance,+37 Shadow Resistance
+1482,Shadow Resistance,+38 Shadow Resistance
+1483,Shadow Resistance,+39 Shadow Resistance
+1484,Shadow Resistance,+40 Shadow Resistance
+1485,Shadow Resistance,+41 Shadow Resistance
+1486,Shadow Resistance,+42 Shadow Resistance
+1487,Shadow Resistance,+43 Shadow Resistance
+1488,Shadow Resistance,+44 Shadow Resistance
+1489,Shadow Resistance,+45 Shadow Resistance
+1490,Shadow Resistance,+46 Shadow Resistance
+1799,Arcane Wrath,+1 Arcane Spell Damage
+1800,Arcane Wrath,+3 Arcane Spell Damage
+1801,Arcane Wrath,+4 Arcane Spell Damage
+1802,Arcane Wrath,+6 Arcane Spell Damage
+1803,Arcane Wrath,+7 Arcane Spell Damage
+1804,Arcane Wrath,+9 Arcane Spell Damage
+1805,Arcane Wrath,+10 Arcane Spell Damage
+1806,Arcane Wrath,+11 Arcane Spell Damage
+1807,Arcane Wrath,+13 Arcane Spell Damage
+1808,Arcane Wrath,+14 Arcane Spell Damage
+1809,Arcane Wrath,+16 Arcane Spell Damage
+1810,Arcane Wrath,+17 Arcane Spell Damage
+1811,Arcane Wrath,+19 Arcane Spell Damage
+1812,Arcane Wrath,+20 Arcane Spell Damage
+1813,Arcane Wrath,+21 Arcane Spell Damage
+1814,Arcane Wrath,+23 Arcane Spell Damage
+1815,Arcane Wrath,+24 Arcane Spell Damage
+1816,Arcane Wrath,+26 Arcane Spell Damage
+1817,Arcane Wrath,+27 Arcane Spell Damage
+1818,Arcane Wrath,+29 Arcane Spell Damage
+1819,Arcane Wrath,+30 Arcane Spell Damage
+1820,Arcane Wrath,+31 Arcane Spell Damage
+1821,Arcane Wrath,+33 Arcane Spell Damage
+1822,Arcane Wrath,+34 Arcane Spell Damage
+1823,Arcane Wrath,+36 Arcane Spell Damage
+1824,Arcane Wrath,+37 Arcane Spell Damage
+1825,Arcane Wrath,+39 Arcane Spell Damage
+1826,Arcane Wrath,+40 Arcane Spell Damage
+1827,Arcane Wrath,+41 Arcane Spell Damage
+1828,Arcane Wrath,+43 Arcane Spell Damage
+1829,Arcane Wrath,+44 Arcane Spell Damage
+1830,Arcane Wrath,+46 Arcane Spell Damage
+1831,Arcane Wrath,+47 Arcane Spell Damage
+1832,Arcane Wrath,+49 Arcane Spell Damage
+1833,Arcane Wrath,+50 Arcane Spell Damage
+1834,Arcane Wrath,+51 Arcane Spell Damage
+1835,Arcane Wrath,+53 Arcane Spell Damage
+1836,Arcane Wrath,+54 Arcane Spell Damage
+1875,Fiery Wrath,+1 Fire Spell Damage
+1876,Fiery Wrath,+3 Fire Spell Damage
+1877,Fiery Wrath,+4 Fire Spell Damage
+1878,Fiery Wrath,+6 Fire Spell Damage
+1879,Fiery Wrath,+7 Fire Spell Damage
+1880,Fiery Wrath,+9 Fire Spell Damage
+1881,Fiery Wrath,+10 Fire Spell Damage
+1882,Fiery Wrath,+11 Fire Spell Damage
+1883,Fiery Wrath,+13 Fire Spell Damage
+1884,Fiery Wrath,+14 Fire Spell Damage
+1885,Fiery Wrath,+16 Fire Spell Damage
+1886,Fiery Wrath,+17 Fire Spell Damage
+1887,Fiery Wrath,+19 Fire Spell Damage
+1888,Fiery Wrath,+20 Fire Spell Damage
+1889,Fiery Wrath,+21 Fire Spell Damage
+1890,Fiery Wrath,+23 Fire Spell Damage
+1891,Fiery Wrath,+24 Fire Spell Damage
+1892,Fiery Wrath,+26 Fire Spell Damage
+1893,Fiery Wrath,+27 Fire Spell Damage
+1894,Fiery Wrath,+29 Fire Spell Damage
+1895,Fiery Wrath,+30 Fire Spell Damage
+1896,Fiery Wrath,+31 Fire Spell Damage
+1897,Fiery Wrath,+33 Fire Spell Damage
+1898,Fiery Wrath,+34 Fire Spell Damage
+1899,Fiery Wrath,+36 Fire Spell Damage
+1900,Fiery Wrath,+37 Fire Spell Damage
+1901,Fiery Wrath,+39 Fire Spell Damage
+1902,Fiery Wrath,+40 Fire Spell Damage
+1903,Fiery Wrath,+41 Fire Spell Damage
+1904,Fiery Wrath,+43 Fire Spell Damage
+1905,Fiery Wrath,+44 Fire Spell Damage
+1906,Fiery Wrath,+46 Fire Spell Damage
+1907,Fiery Wrath,+47 Fire Spell Damage
+1908,Fiery Wrath,+49 Fire Spell Damage
+1909,Fiery Wrath,+50 Fire Spell Damage
+1910,Fiery Wrath,+51 Fire Spell Damage
+1911,Fiery Wrath,+53 Fire Spell Damage
+1912,Fiery Wrath,+54 Fire Spell Damage
+1951,Frozen Wrath,+1 Frost Spell Damage
+1952,Frozen Wrath,+3 Frost Spell Damage
+1953,Frozen Wrath,+4 Frost Spell Damage
+1954,Frozen Wrath,+6 Frost Spell Damage
+1955,Frozen Wrath,+7 Frost Spell Damage
+1956,Frozen Wrath,+9 Frost Spell Damage
+1957,Frozen Wrath,+10 Frost Spell Damage
+1958,Frozen Wrath,+11 Frost Spell Damage
+1959,Frozen Wrath,+13 Frost Spell Damage
+1960,Frozen Wrath,+14 Frost Spell Damage
+1961,Frozen Wrath,+16 Frost Spell Damage
+1962,Frozen Wrath,+17 Frost Spell Damage
+1963,Frozen Wrath,+19 Frost Spell Damage
+1964,Frozen Wrath,+20 Frost Spell Damage
+1965,Frozen Wrath,+21 Frost Spell Damage
+1966,Frozen Wrath,+23 Frost Spell Damage
+1967,Frozen Wrath,+24 Frost Spell Damage
+1968,Frozen Wrath,+26 Frost Spell Damage
+1969,Frozen Wrath,+27 Frost Spell Damage
+1970,Frozen Wrath,+29 Frost Spell Damage
+1971,Frozen Wrath,+30 Frost Spell Damage
+1972,Frozen Wrath,+31 Frost Spell Damage
+1973,Frozen Wrath,+33 Frost Spell Damage
+1974,Frozen Wrath,+34 Frost Spell Damage
+1975,Frozen Wrath,+36 Frost Spell Damage
+1976,Frozen Wrath,+37 Frost Spell Damage
+1977,Frozen Wrath,+39 Frost Spell Damage
+1978,Frozen Wrath,+40 Frost Spell Damage
+1979,Frozen Wrath,+41 Frost Spell Damage
+1980,Frozen Wrath,+43 Frost Spell Damage
+1981,Frozen Wrath,+44 Frost Spell Damage
+1982,Frozen Wrath,+46 Frost Spell Damage
+1983,Frozen Wrath,+47 Frost Spell Damage
+1984,Frozen Wrath,+49 Frost Spell Damage
+1985,Frozen Wrath,+50 Frost Spell Damage
+1986,Frozen Wrath,+51 Frost Spell Damage
+1987,Frozen Wrath,+53 Frost Spell Damage
+1988,Frozen Wrath,+54 Frost Spell Damage
+1913,Holy Wrath,+1 Holy Spell Damage
+1914,Holy Wrath,+3 Holy Spell Damage
+1915,Holy Wrath,+4 Holy Spell Damage
+1916,Holy Wrath,+6 Holy Spell Damage
+1917,Holy Wrath,+7 Holy Spell Damage
+1918,Holy Wrath,+9 Holy Spell Damage
+1919,Holy Wrath,+10 Holy Spell Damage
+1920,Holy Wrath,+11 Holy Spell Damage
+1921,Holy Wrath,+13 Holy Spell Damage
+1922,Holy Wrath,+14 Holy Spell Damage
+1923,Holy Wrath,+16 Holy Spell Damage
+1924,Holy Wrath,+17 Holy Spell Damage
+1925,Holy Wrath,+19 Holy Spell Damage
+1926,Holy Wrath,+20 Holy Spell Damage
+1927,Holy Wrath,+21 Holy Spell Damage
+1928,Holy Wrath,+23 Holy Spell Damage
+1929,Holy Wrath,+24 Holy Spell Damage
+1930,Holy Wrath,+26 Holy Spell Damage
+1931,Holy Wrath,+27 Holy Spell Damage
+1932,Holy Wrath,+29 Holy Spell Damage
+1933,Holy Wrath,+30 Holy Spell Damage
+1934,Holy Wrath,+31 Holy Spell Damage
+1935,Holy Wrath,+33 Holy Spell Damage
+1936,Holy Wrath,+34 Holy Spell Damage
+1937,Holy Wrath,+36 Holy Spell Damage
+1938,Holy Wrath,+37 Holy Spell Damage
+1939,Holy Wrath,+39 Holy Spell Damage
+1940,Holy Wrath,+40 Holy Spell Damage
+1941,Holy Wrath,+41 Holy Spell Damage
+1942,Holy Wrath,+43 Holy Spell Damage
+1943,Holy Wrath,+44 Holy Spell Damage
+1944,Holy Wrath,+46 Holy Spell Damage
+1945,Holy Wrath,+47 Holy Spell Damage
+1946,Holy Wrath,+49 Holy Spell Damage
+1947,Holy Wrath,+50 Holy Spell Damage
+1948,Holy Wrath,+51 Holy Spell Damage
+1949,Holy Wrath,+53 Holy Spell Damage
+1950,Holy Wrath,+54 Holy Spell Damage
+1989,Nature's Wrath,+1 Nature Spell Damage
+1990,Nature's Wrath,+3 Nature Spell Damage
+1991,Nature's Wrath,+4 Nature Spell Damage
+1992,Nature's Wrath,+6 Nature Spell Damage
+1993,Nature's Wrath,+7 Nature Spell Damage
+1994,Nature's Wrath,+9 Nature Spell Damage
+1995,Nature's Wrath,+10 Nature Spell Damage
+1996,Nature's Wrath,+11 Nature Spell Damage
+1997,Nature's Wrath,+13 Nature Spell Damage
+1998,Nature's Wrath,+14 Nature Spell Damage
+1999,Nature's Wrath,+16 Nature Spell Damage
+2000,Nature's Wrath,+17 Nature Spell Damage
+2001,Nature's Wrath,+19 Nature Spell Damage
+2002,Nature's Wrath,+20 Nature Spell Damage
+2003,Nature's Wrath,+21 Nature Spell Damage
+2004,Nature's Wrath,+23 Nature Spell Damage
+2005,Nature's Wrath,+24 Nature Spell Damage
+2006,Nature's Wrath,+26 Nature Spell Damage
+2007,Nature's Wrath,+27 Nature Spell Damage
+2008,Nature's Wrath,+29 Nature Spell Damage
+2009,Nature's Wrath,+30 Nature Spell Damage
+2010,Nature's Wrath,+31 Nature Spell Damage
+2011,Nature's Wrath,+33 Nature Spell Damage
+2012,Nature's Wrath,+34 Nature Spell Damage
+2013,Nature's Wrath,+36 Nature Spell Damage
+2014,Nature's Wrath,+37 Nature Spell Damage
+2015,Nature's Wrath,+39 Nature Spell Damage
+2016,Nature's Wrath,+40 Nature Spell Damage
+2017,Nature's Wrath,+41 Nature Spell Damage
+2018,Nature's Wrath,+43 Nature Spell Damage
+2019,Nature's Wrath,+44 Nature Spell Damage
+2020,Nature's Wrath,+46 Nature Spell Damage
+2021,Nature's Wrath,+47 Nature Spell Damage
+2022,Nature's Wrath,+49 Nature Spell Damage
+2023,Nature's Wrath,+50 Nature Spell Damage
+2024,Nature's Wrath,+51 Nature Spell Damage
+2025,Nature's Wrath,+53 Nature Spell Damage
+2026,Nature's Wrath,+54 Nature Spell Damage
+1837,Shadow Wrath,+1 Shadow Spell Damage
+1838,Shadow Wrath,+3 Shadow Spell Damage
+1839,Shadow Wrath,+4 Shadow Spell Damage
+1840,Shadow Wrath,+6 Shadow Spell Damage
+1841,Shadow Wrath,+7 Shadow Spell Damage
+1842,Shadow Wrath,+9 Shadow Spell Damage
+1843,Shadow Wrath,+10 Shadow Spell Damage
+1844,Shadow Wrath,+11 Shadow Spell Damage
+1845,Shadow Wrath,+13 Shadow Spell Damage
+1846,Shadow Wrath,+14 Shadow Spell Damage
+1847,Shadow Wrath,+16 Shadow Spell Damage
+1848,Shadow Wrath,+17 Shadow Spell Damage
+1849,Shadow Wrath,+19 Shadow Spell Damage
+1850,Shadow Wrath,+20 Shadow Spell Damage
+1851,Shadow Wrath,+21 Shadow Spell Damage
+1852,Shadow Wrath,+23 Shadow Spell Damage
+1853,Shadow Wrath,+24 Shadow Spell Damage
+1854,Shadow Wrath,+26 Shadow Spell Damage
+1855,Shadow Wrath,+27 Shadow Spell Damage
+1856,Shadow Wrath,+29 Shadow Spell Damage
+1857,Shadow Wrath,+30 Shadow Spell Damage
+1858,Shadow Wrath,+31 Shadow Spell Damage
+1859,Shadow Wrath,+33 Shadow Spell Damage
+1860,Shadow Wrath,+34 Shadow Spell Damage
+1861,Shadow Wrath,+36 Shadow Spell Damage
+1862,Shadow Wrath,+37 Shadow Spell Damage
+1863,Shadow Wrath,+39 Shadow Spell Damage
+1864,Shadow Wrath,+40 Shadow Spell Damage
+1865,Shadow Wrath,+41 Shadow Spell Damage
+1866,Shadow Wrath,+43 Shadow Spell Damage
+1867,Shadow Wrath,+44 Shadow Spell Damage
+1868,Shadow Wrath,+46 Shadow Spell Damage
+1869,Shadow Wrath,+47 Shadow Spell Damage
+1870,Shadow Wrath,+49 Shadow Spell Damage
+1871,Shadow Wrath,+50 Shadow Spell Damage
+1872,Shadow Wrath,+51 Shadow Spell Damage
+1873,Shadow Wrath,+53 Shadow Spell Damage
+1874,Shadow Wrath,+54 Shadow Spell Damage
+1647,Blocking,+1% Block
+1648,Blocking,+1% Block,+1 Strength
+1649,Blocking,+1% Block,+1 Strength
+1650,Blocking,+1% Block,+2 Strength
+1651,Blocking,+1% Block,+2 Strength
+1652,Blocking,+1% Block,+3 Strength
+1653,Blocking,+1% Block,+3 Strength
+1654,Blocking,+1% Block,+4 Strength
+1655,Blocking,+1% Block,+4 Strength
+1656,Blocking,+1% Block,+5 Strength
+1657,Blocking,+2% Block,+5 Strength
+1658,Blocking,+2% Block,+6 Strength
+1659,Blocking,+2% Block,+6 Strength
+1660,Blocking,+2% Block,+7 Strength
+1661,Blocking,+2% Block,+7 Strength
+1662,Blocking,+2% Block,+8 Strength
+1663,Blocking,+2% Block,+8 Strength
+1664,Blocking,+2% Block,+9 Strength
+1665,Blocking,+2% Block,+9 Strength
+1666,Blocking,+2% Block,+9 Strength
+1667,Blocking,+3% Block,+9 Strength
+1668,Blocking,+3% Block,+10 Strength
+1669,Blocking,+3% Block,+10 Strength
+1670,Blocking,+3% Block,+10 Strength
+1671,Blocking,+3% Block,+10 Strength
+1672,Blocking,+3% Block,+11 Strength
+1673,Blocking,+3% Block,+11 Strength
+1674,Blocking,+3% Block,+12 Strength
+1675,Blocking,+3% Block,+12 Strength
+1676,Blocking,+3% Block,+12 Strength
+1677,Blocking,+4% Block,+12 Strength
+1678,Blocking,+4% Block,+12 Strength
+1679,Blocking,+4% Block,+12 Strength
+1680,Blocking,+4% Block,+12 Strength
+1681,Blocking,+4% Block,+12 Strength
+1682,Blocking,+4% Block,+13 Strength
+1683,Blocking,+4% Block,+13 Strength
+1684,Blocking,+4% Block,+14 Strength
+1685,Blocking,+4% Block,+14 Strength
+1686,Blocking,+4% Block,+14 Strength
+1687,Blocking,+4% Block,+14 Strength
+1688,Blocking,+4% Block,+15 Strength
+1689,Blocking,+4% Block,+15 Strength
+1690,Blocking,+4% Block,+16 Strength
+1691,Blocking,+4% Block,+16 Strength
+1692,Blocking,+4% Block,+16 Strength
+1693,Blocking,+4% Block,+16 Strength
+1694,Blocking,+4% Block,+17 Strength
+1695,Blocking,+4% Block,+17 Strength
+1696,Blocking,+4% Block,+18 Strength
+1697,Blocking,+4% Block,+18 Strength
+1698,Blocking,+4% Block,+18 Strength
+1699,Blocking,+4% Block,+18 Strength
+1700,Blocking,+4% Block,+19 Strength
+1701,Blocking,+4% Block,+19 Strength
+1702,Blocking,+4% Block,+20 Strength
+1703,Blocking,+4% Block,+20 Strength
+49,Beast Slaying,+2 Beast Slaying
+64,Beast Slaying,+4 Beast Slaying
+76,Beast Slaying,+6 Beast Slaying
+91,Beast Slaying,+8 Beast Slaying
+110,Beast Slaying,+10 Beast Slaying
+130,Beast Slaying,+12 Beast Slaying
+149,Beast Slaying,+14 Beast Slaying
+2067,Concentration,+1 mana every 5 sec.
+2068,Concentration,+1 mana every 5 sec.
+2069,Concentration,+1 mana every 5 sec.
+2070,Concentration,+2 mana every 5 sec.
+2071,Concentration,+2 mana every 5 sec.
+2072,Concentration,+2 mana every 5 sec.
+2073,Concentration,+3 mana every 5 sec.
+2074,Concentration,+3 mana every 5 sec.
+2075,Concentration,+4 mana every 5 sec.
+2076,Concentration,+4 mana every 5 sec.
+2077,Concentration,+4 mana every 5 sec.
+2078,Concentration,+5 mana every 5 sec.
+2079,Concentration,+5 mana every 5 sec.
+2080,Concentration,+6 mana every 5 sec.
+2081,Concentration,+6 mana every 5 sec.
+2082,Concentration,+6 mana every 5 sec.
+2083,Concentration,+7 mana every 5 sec.
+2084,Concentration,+7 mana every 5 sec.
+2085,Concentration,+8 mana every 5 sec.
+2086,Concentration,+8 mana every 5 sec.
+2087,Concentration,+8 mana every 5 sec.
+2088,Concentration,+9 mana every 5 sec.
+2089,Concentration,+9 mana every 5 sec.
+2090,Concentration,+10 mana every 5 sec.
+2091,Concentration,+10 mana every 5 sec.
+2092,Concentration,+10 mana every 5 sec.
+2093,Concentration,+11 mana every 5 sec.
+2094,Concentration,+11 mana every 5 sec.
+2095,Concentration,+12 mana every 5 sec.
+2096,Concentration,+12 mana every 5 sec.
+2097,Concentration,+12 mana every 5 sec.
+2098,Concentration,+13 mana every 5 sec.
+2099,Concentration,+13 mana every 5 sec.
+2100,Concentration,+14 mana every 5 sec.
+2101,Concentration,+14 mana every 5 sec.
+2102,Concentration,+14 mana every 5 sec.
+2103,Concentration,+15 mana every 5 sec.
+2104,Concentration,+15 mana every 5 sec.
+1742,Eluding,+1% Dodge
+1743,Eluding,+1% Dodge
+1744,Eluding,+1% Dodge
+1745,Eluding,+1% Dodge
+1746,Eluding,+1% Dodge
+1747,Eluding,+1% Dodge
+1748,Eluding,+1% Dodge,+1 Agility
+1749,Eluding,+1% Dodge,+1 Agility
+1750,Eluding,+1% Dodge,+1 Agility
+1751,Eluding,+1% Dodge,+2 Agility
+1752,Eluding,+1% Dodge,+2 Agility
+1753,Eluding,+1% Dodge,+2 Agility
+1754,Eluding,+1% Dodge,+3 Agility
+1755,Eluding,+1% Dodge,+3 Agility
+1756,Eluding,+1% Dodge,+3 Agility
+1757,Eluding,+1% Dodge,+4 Agility
+1758,Eluding,+1% Dodge,+4 Agility
+1759,Eluding,+1% Dodge,+4 Agility
+1760,Eluding,+1% Dodge,+5 Agility
+1761,Eluding,+1% Dodge,+5 Agility
+1762,Eluding,+1% Dodge,+5 Agility
+1763,Eluding,+1% Dodge,+6 Agility
+1764,Eluding,+1% Dodge,+6 Agility
+1765,Eluding,+1% Dodge,+6 Agility
+1766,Eluding,+1% Dodge,+7 Agility
+1767,Eluding,+1% Dodge,+7 Agility
+1768,Eluding,+1% Dodge,+7 Agility
+1769,Eluding,+1% Dodge,+8 Agility
+1770,Eluding,+1% Dodge,+8 Agility
+1771,Eluding,+1% Dodge,+8 Agility
+1772,Eluding,+1% Dodge,+9 Agility
+1773,Eluding,+1% Dodge,+9 Agility
+1774,Eluding,+1% Dodge,+9 Agility
+1775,Eluding,+1% Dodge,+9 Agility
+1776,Eluding,+1% Dodge,+9 Agility
+1777,Eluding,+1% Dodge,+9 Agility
+1778,Eluding,+1% Dodge,+9 Agility
+1779,Eluding,+1% Dodge,+9 Agility
+1780,Eluding,+1% Dodge,+10 Agility
+1781,Eluding,+1% Dodge,+10 Agility
+1782,Eluding,+1% Dodge,+10 Agility
+1783,Eluding,+1% Dodge,+11 Agility
+1784,Eluding,+1% Dodge,+11 Agility
+1785,Eluding,+1% Dodge,+11 Agility
+1786,Eluding,+1% Dodge,+12 Agility
+1787,Eluding,+1% Dodge,+12 Agility
+1788,Eluding,+1% Dodge,+12 Agility
+1789,Eluding,+1% Dodge,+12 Agility
+1790,Eluding,+1% Dodge,+13 Agility
+1791,Eluding,+1% Dodge,+13 Agility
+1792,Eluding,+1% Dodge,+13 Agility
+1793,Eluding,+1% Dodge,+14 Agility
+1794,Eluding,+1% Dodge,+14 Agility
+1795,Eluding,+1% Dodge,+14 Agility
+1796,Eluding,+1% Dodge,+14 Agility
+1797,Eluding,+1% Dodge,+15 Agility
+1798,Eluding,+1% Dodge,+15 Agility
+2027,Healing,+2 Healing Spells
+2028,Healing,+4 Healing Spells
+2029,Healing,+7 Healing Spells
+2030,Healing,+9 Healing Spells
+2031,Healing,+11 Healing Spells
+2032,Healing,+13 Healing Spells
+2033,Healing,+15 Healing Spells
+2034,Healing,+18 Healing Spells
+2035,Healing,+20 Healing Spells
+2036,Healing,+22 Healing Spells
+2037,Healing,+24 Healing Spells
+2038,Healing,+26 Healing Spells
+2039,Healing,+29 Healing Spells
+2040,Healing,+31 Healing Spells
+2041,Healing,+33 Healing Spells
+2042,Healing,+35 Healing Spells
+2043,Healing,+37 Healing Spells
+2044,Healing,+40 Healing Spells
+2045,Healing,+42 Healing Spells
+2046,Healing,+44 Healing Spells
+2047,Healing,+46 Healing Spells
+2048,Healing,+48 Healing Spells
+2049,Healing,+51 Healing Spells
+2050,Healing,+53 Healing Spells
+2051,Healing,+55 Healing Spells
+2052,Healing,+57 Healing Spells
+2053,Healing,+59 Healing Spells
+2054,Healing,+62 Healing Spells
+2055,Healing,+64 Healing Spells
+2056,Healing,+66 Healing Spells
+2057,Healing,+68 Healing Spells
+2058,Healing,+70 Healing Spells
+2059,Healing,+73 Healing Spells
+2060,Healing,+75 Healing Spells
+2061,Healing,+77 Healing Spells
+2062,Healing,+79 Healing Spells
+2063,Healing,+81 Healing Spells
+2064,Healing,+84 Healing Spells
+1704,Marksmanship,+2 Ranged Attack Power
+1705,Marksmanship,+5 Ranged Attack Power
+1706,Marksmanship,+7 Ranged Attack Power
+1707,Marksmanship,+10 Ranged Attack Power
+1708,Marksmanship,+12 Ranged Attack Power
+1709,Marksmanship,+14 Ranged Attack Power
+1710,Marksmanship,+17 Ranged Attack Power
+1711,Marksmanship,+19 Ranged Attack Power
+1712,Marksmanship,+22 Ranged Attack Power
+1713,Marksmanship,+24 Ranged Attack Power
+1714,Marksmanship,+26 Ranged Attack Power
+1715,Marksmanship,+29 Ranged Attack Power
+1716,Marksmanship,+31 Ranged Attack Power
+1717,Marksmanship,+34 Ranged Attack Power
+1718,Marksmanship,+36 Ranged Attack Power
+1719,Marksmanship,+38 Ranged Attack Power
+1720,Marksmanship,+41 Ranged Attack Power
+1721,Marksmanship,+43 Ranged Attack Power
+1722,Marksmanship,+46 Ranged Attack Power
+1723,Marksmanship,+48 Ranged Attack Power
+1724,Marksmanship,+50 Ranged Attack Power
+1725,Marksmanship,+53 Ranged Attack Power
+1726,Marksmanship,+55 Ranged Attack Power
+1727,Marksmanship,+58 Ranged Attack Power
+1728,Marksmanship,+60 Ranged Attack Power
+1729,Marksmanship,+62 Ranged Attack Power
+1730,Marksmanship,+65 Ranged Attack Power
+1731,Marksmanship,+67 Ranged Attack Power
+1732,Marksmanship,+70 Ranged Attack Power
+1733,Marksmanship,+72 Ranged Attack Power
+1734,Marksmanship,+74 Ranged Attack Power
+1735,Marksmanship,+77 Ranged Attack Power
+1736,Marksmanship,+79 Ranged Attack Power
+1737,Marksmanship,+82 Ranged Attack Power
+1738,Marksmanship,+84 Ranged Attack Power
+1739,Marksmanship,+86 Ranged Attack Power
+1740,Marksmanship,+89 Ranged Attack Power
+1741,Marksmanship,+91 Ranged Attack Power
+1547,Power,+2 Attack Power
+1548,Power,+4 Attack Power
+1549,Power,+6 Attack Power
+1550,Power,+8 Attack Power
+1551,Power,+10 Attack Power
+1552,Power,+12 Attack Power
+1553,Power,+14 Attack Power
+1554,Power,+16 Attack Power
+1555,Power,+18 Attack Power
+1556,Power,+20 Attack Power
+1557,Power,+22 Attack Power
+1558,Power,+24 Attack Power
+1559,Power,+26 Attack Power
+1560,Power,+28 Attack Power
+1561,Power,+30 Attack Power
+1562,Power,+32 Attack Power
+1563,Power,+34 Attack Power
+1564,Power,+36 Attack Power
+1565,Power,+38 Attack Power
+1566,Power,+40 Attack Power
+1567,Power,+42 Attack Power
+1568,Power,+44 Attack Power
+1569,Power,+46 Attack Power
+1570,Power,+48 Attack Power
+1571,Power,+50 Attack Power
+1572,Power,+52 Attack Power
+1573,Power,+54 Attack Power
+1574,Power,+56 Attack Power
+1575,Power,+58 Attack Power
+1576,Power,+60 Attack Power
+1577,Power,+62 Attack Power
+1578,Power,+64 Attack Power
+1579,Power,+66 Attack Power
+1580,Power,+68 Attack Power
+1581,Power,+70 Attack Power
+1582,Power,+72 Attack Power
+1583,Power,+74 Attack Power
+1584,Power,+76 Attack Power
+1585,Power,+78 Attack Power
+1586,Power,+80 Attack Power
+1587,Power,+82 Attack Power
+1588,Power,+84 Attack Power
+1589,Power,+86 Attack Power
+1590,Power,+88 Attack Power
+1591,Power,+90 Attack Power
+1592,Power,+92 Attack Power
+39,Proficiency,Axe Skill +1
+40,Proficiency,Mace Skill +1
+41,Proficiency,Sword Skill +1
+42,Proficiency,Two-Handed Axe Skill +1
+43,Proficiency,Two-Handed Mace Skill +1
+44,Proficiency,Two-Handed Sword Skill +1
+45,Proficiency,Bow Skill +1
+46,Proficiency,Dagger Skill +1
+47,Proficiency,Gun Skill +1
+52,Proficiency,Axe Skill +2
+53,Proficiency,Mace Skill +2
+54,Proficiency,Sword Skill +2
+56,Proficiency,Two-Handed Axe Skill +2
+57,Proficiency,Two-Handed Mace Skill +2
+58,Proficiency,Two-Handed Sword Skill +2
+59,Proficiency,Bow Skill +2
+60,Proficiency,Dagger Skill +2
+63,Proficiency,Gun Skill +2
+66,Proficiency,Axe Skill +3
+67,Proficiency,Mace Skill +3
+68,Proficiency,Sword Skill +3
+69,Proficiency,Two-Handed Axe Skill +3
+70,Proficiency,Two-Handed Mace Skill +3
+71,Proficiency,Two-Handed Sword Skill +3
+72,Proficiency,Bow Skill +3
+73,Proficiency,Dagger Skill +3
+75,Proficiency,Gun Skill +3
+81,Proficiency,Axe Skill +4
+82,Proficiency,Mace Skill +4
+83,Proficiency,Sword Skill +4
+84,Proficiency,Two-Handed Axe Skill +4
+85,Proficiency,Two-Handed Mace Skill +4
+86,Proficiency,Two-Handed Sword Skill +4
+87,Proficiency,Bow Skill +4
+88,Proficiency,Dagger Skill +4
+90,Proficiency,Gun Skill +4
+100,Proficiency,Axe Skill +5
+101,Proficiency,Mace Skill +5
+102,Proficiency,Sword Skill +5
+103,Proficiency,Two-Handed Axe Skill +5
+104,Proficiency,Two-Handed Mace Skill +5
+105,Proficiency,Two-Handed Sword Skill +5
+106,Proficiency,Bow Skill +5
+107,Proficiency,Dagger Skill +5
+109,Proficiency,Gun Skill +5
+120,Proficiency,Axe Skill +6
+121,Proficiency,Mace Skill +6
+122,Proficiency,Sword Skill +6
+123,Proficiency,Two-Handed Axe Skill +6
+124,Proficiency,Two-Handed Mace Skill +6
+125,Proficiency,Two-Handed Sword Skill +6
+126,Proficiency,Bow Skill +6
+127,Proficiency,Dagger Skill +6
+129,Proficiency,Gun Skill +6
+139,Proficiency,Axe Skill +7
+140,Proficiency,Mace Skill +7
+141,Proficiency,Sword Skill +7
+142,Proficiency,Two-Handed Axe Skill +7
+143,Proficiency,Two-Handed Mace Skill +7
+144,Proficiency,Two-Handed Sword Skill +7
+145,Proficiency,Bow Skill +7
+146,Proficiency,Dagger Skill +7
+148,Proficiency,Gun Skill +7
+2105,Regeneration,+1 health every 5 sec.
+2106,Regeneration,+1 health every 5 sec.
+2107,Regeneration,+1 health every 5 sec.
+2108,Regeneration,+1 health every 5 sec.
+2109,Regeneration,+1 health every 5 sec.
+2110,Regeneration,+2 health every 5 sec.
+2111,Regeneration,+2 health every 5 sec.
+2112,Regeneration,+2 health every 5 sec.
+2113,Regeneration,+2 health every 5 sec.
+2114,Regeneration,+3 health every 5 sec.
+2115,Regeneration,+3 health every 5 sec.
+2116,Regeneration,+3 health every 5 sec.
+2117,Regeneration,+3 health every 5 sec.
+2118,Regeneration,+4 health every 5 sec.
+2119,Regeneration,+4 health every 5 sec.
+2120,Regeneration,+4 health every 5 sec.
+2121,Regeneration,+4 health every 5 sec.
+2122,Regeneration,+5 health every 5 sec.
+2123,Regeneration,+5 health every 5 sec.
+2124,Regeneration,+5 health every 5 sec.
+2125,Regeneration,+5 health every 5 sec.
+2126,Regeneration,+6 health every 5 sec.
+2127,Regeneration,+6 health every 5 sec.
+2128,Regeneration,+6 health every 5 sec.
+2129,Regeneration,+6 health every 5 sec.
+2130,Regeneration,+7 health every 5 sec.
+2131,Regeneration,+7 health every 5 sec.
+2132,Regeneration,+7 health every 5 sec.
+2133,Regeneration,+7 health every 5 sec.
+2134,Regeneration,+8 health every 5 sec.
+2135,Regeneration,+8 health every 5 sec.
+2136,Regeneration,+8 health every 5 sec.
+2137,Regeneration,+8 health every 5 sec.
+2138,Regeneration,+9 health every 5 sec.
+2139,Regeneration,+9 health every 5 sec.
+2140,Regeneration,+9 health every 5 sec.
+2141,Regeneration,+9 health every 5 sec.
+2142,Regeneration,+10 health every 5 sec.
+2146,Restoration,+10 Stamina,+22 Healing Spells,+4 mana every 5 sec.
+2147,Restoration,+11 Stamina,+22 Healing Spells,+4 mana every 5 sec.
+2148,Restoration,+10 Stamina,+24 Healing Spells,+4 mana every 5 sec.
+2153,Restoration,+11 Stamina,+24 Healing Spells,+4 mana every 5 sec.
+2156,Restoration,+15 Stamina,+33 Healing Spells,+6 mana every 5 sec.
+2160,Restoration,+13 Stamina,+29 Healing Spells,+5 mana every 5 sec.
+2162,Restoration,+11 Stamina,+26 Healing Spells,+4 mana every 5 sec.
+2143,Sorcery,+11 Stamina,+10 Intellect,+12 Damage and Healing Spells
+2144,Sorcery,+11 Stamina,+10 Intellect,+12 Damage and Healing Spells
+2145,Sorcery,+10 Stamina,+10 Intellect,+13 Damage and Healing Spells
+2152,Sorcery,+11 Stamina,+11 Intellect,+13 Damage and Healing Spells
+2155,Sorcery,+15 Stamina,+15 Intellect,+18 Damage and Healing Spells
+2159,Sorcery,+13 Stamina,+13 Intellect,+15 Damage and Healing Spells
+2161,Sorcery,+11 Stamina,+11 Intellect,+14 Damage and Healing Spells
+2149,Striking,+11 Strength,+10 Agility,+10 Stamina
+2150,Striking,+10 Strength,+11 Agility,+10 Stamina
+2151,Striking,+10 Strength,+10 Agility,+11 Stamina
+2154,Striking,+11 Strength,+11 Agility,+11 Stamina
+2157,Striking,+15 Strength,+15 Agility,+15 Stamina
+2158,Striking,+13 Strength,+13 Agility,+13 Stamina
+2163,Striking,+11 Strength,+11 Agility,+12 Stamina
+51,Critical Strike,Critical Hit +1%
+78,Critical Strike,Critical Hit +2%
+116,Critical Strike,Critical Hit +3%
+156,Critical Strike,Critical Hit +4%
+32,Quality,+1 Damage
+33,Quality,+2 Damage
+34,Quality,+3 Damage
+80,Quality,+4 Damage
+99,Quality,+5 Damage
+119,Quality,+6 Damage
+138,Quality,+7 Damage
+50,Retaliation,10% On Get Hit: Shadow Bolt (10 Damage)
+65,Retaliation,10% On Get Hit: Shadow Bolt (20 Damage)
+77,Retaliation,10% On Get Hit: Shadow Bolt (30 Damage)
+92,Retaliation,10% On Get Hit: Shadow Bolt (40 Damage)
+131,Retaliation,10% On Get Hit: Shadow Bolt (60 Damage)
+150,Retaliation,10% On Get Hit: Shadow Bolt (70 Damage)
+29,Toughness,+3 Armor
+30,Toughness,+12 Armor
+31,Toughness,+8 Armor
+79,Toughness,+16 Armor
+98,Toughness,+20 Armor
+118,Toughness,+24 Armor
+137,Toughness,+28 Armor
+194,Toughness,+32 Armor
+195,Toughness,+36 Armor
+196,Toughness,+40 Armor
+197,Toughness,+44 Armor
+198,Toughness,+48 Armor
+207,Toughness,+52 Armor
+210,Toughness,+56 Armor
+117,Twain,10% On Get Hit: Shadow Bolt (20 Damage),+2 Beast Slaying,+1 Defense

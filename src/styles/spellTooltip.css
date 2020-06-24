@@ -1,0 +1,180 @@
+.poor {
+    color: #999;
+}
+
+.common {
+    color: white;
+}
+
+.uncommon {
+    color: #24ee10;
+}
+
+.rare {
+    color: #0070DD;
+}
+
+.epic {
+    color: #ad23ed;
+}
+
+.legendary {
+    color: #fa7c18;
+}
+
+.wow-spell {
+    max-width: 40em;
+    border-style: solid;
+    border-width: 5px;
+    border-image: url(../../node_modules/libclassic/dist/contrib/icons/wow-tooltip-border.png) 5 repeat;
+    border-radius: 4px;
+    color: white;
+    background-color: rgba(10, 0, 5, 0.8);
+    font-family: Verdana, "Open Sans", Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    padding: 0.5em 0.6em;
+    text-shadow: 0 1px 0 black;
+    box-shadow: -1px -1px 1px rgba(10, 0, 5, 0.5), -1px 1px 1px rgba(10, 0, 5, 0.5), 1px 1px 1px rgba(10, 0, 5, 0.5), 1px -1px 1px rgba(10, 0, 5, 0.5);
+    transition: opacity 0.05s ease-out 0.05s, transform 0.1s ease-out 0.05s;
+}
+
+.wow-spell.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+.wow-spell p {
+    padding: 0;
+    margin: 0;
+}
+
+.wow-spell[data-quality=Poor] .header__title {
+    color: #999;
+}
+
+.wow-spell[data-quality=Common] .header__title {
+    color: white;
+}
+
+.wow-spell[data-quality=Uncommon] .header__title {
+    color: #24ee10;
+}
+
+.wow-spell[data-quality=Rare] .header__title {
+    color: #0070DD;
+}
+
+.wow-spell[data-quality=Epic] .header__title {
+    color: #ad23ed;
+}
+
+.wow-spell[data-quality=Legendary] .header__title {
+    color: #fa7c18;
+}
+
+.wow-spell__footer .footer__text {
+    margin-bottom: 3px;
+    color: #FFD100;
+}
+
+/*
+  
+.wow-spell__header {
+
+  .header__title {
+
+    margin-bottom: $gap;
+    font-size: 1.12em;
+    margin-right: 1em;
+
+  }
+
+  .header__item-level {
+    color: $flavour;
+  }
+
+}
+*/
+.wow-spell__header {
+    overflow: hidden;
+    font-size: 1.12em;
+}
+
+.wow-spell__header .header__name, .wow-spell__header .header__rank {
+    float: left;
+}
+
+.wow-spell__header .header__rank {
+    float: right;
+    text-align: right;
+    color: #999;
+}
+
+.wow-spell__type {
+    overflow: hidden;
+    margin-top: 3px;
+}
+
+.wow-spell__type .type__slot, .wow-spell__type .type__item {
+    float: left;
+}
+
+.wow-spell__type .type__item {
+    float: right;
+    text-align: right;
+}
+
+.wow-spell__stats {
+    overflow: hidden;
+}
+
+.wow-spell__stats .stats__damage-armor {
+    float: left;
+    margin-right: 5em;
+}
+
+.wow-spell__stats .stats__speed {
+    float: right;
+    text-align: right;
+}
+
+.wow-spell__stats .stats__list-item:first-child {
+    margin-top: 3px;
+}
+
+.wow-spell__stats .stats__dps {
+    float: none;
+    clear: both;
+}
+
+.wow-spell__stats .stats__secondary {
+    color: #24ee10;
+}
+
+.wow-spell__icon {
+    border-style: solid;
+    border-width: 5px;
+    border-image: url(../../node_modules/libclassic/dist/contrib/icons/wow-tooltip-border.png) 5 repeat;
+    border-radius: 4px;
+    padding: 0px;
+}
+
+.wow-spell__info .info__chance-on-hit {
+    color: #24ee10;
+}
+
+.wow-spell__info .info__flavour-text {
+    color: #FFD100;
+    margin-top: 3px;
+}
+
+.wow-spell__bonuses {
+    margin-top: 3px;
+}
+
+.wow-spell__bonuses .bonuses__bonus {
+    color: #24ee10;
+    margin: 3px 0 0;
+}

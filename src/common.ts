@@ -155,7 +155,8 @@ const magicSchoolToText = (magicSchool: MagicSchool): string => {
 }
 
 const magicSchoolFromText = (magicSchool: string): MagicSchool => {
-  return parseInt(utils.getEnumKeyByEnumValue(MagicSchool, magicSchool), 0)
+  return 1
+  // return parseInt(utils.getEnumValueFromFuzzyKey(MagicSchool, magicSchool), 0)
 }
 
 /**
