@@ -21,6 +21,7 @@ import SortOrder from './enum/SortOrder';
 import SpellCritFromIntellectDivisor from './enum/SpellCritFromIntellectDivisor';
 import TargetType from './enum/TargetType';
 import WeaponSubclass from './enum/WeaponSubclass';
+import ItemSuffixType from './enum/ItemSuffixType';
 declare const _default: {
     sum: (a: number, b: number) => number;
     common: {
@@ -59,6 +60,8 @@ declare const _default: {
     };
     utils: {
         getEnumKeyByEnumValue: (myEnum: any, enumValue: string | number) => string;
+        getEnumValueFromFuzzyKey: (myEnum: any, fuzzyKey: string) => string | number;
+        sanitizeStringForEnum: (s: string) => string;
         cumulativeChance: (trials: number, chance: number, x: number) => number;
         consecutiveChance: (trials: number, chance: number, x: number) => number;
         triangularNumber: (n: number) => number;
@@ -121,6 +124,13 @@ declare const _default: {
         publicURL: (equipment: Equipment) => string;
         defaultClassicOptions: () => import("./interface/ClassicOptions").default;
     };
+    gear: {
+        itemBonusTypeFromText: (text: string) => import("./enum/ItemBonusType").default;
+        itemBonusFromText: (bonus: string) => import("./interface/ItemBonus").default;
+        itemSuffixTypeFromText: (text: string) => ItemSuffixType;
+        itemSuffixTypeFromItemName: (itemName: string) => ItemSuffixType;
+        itemSuffixJSONFromText: (id: string, type: string, bonus: string, bonus2?: string | undefined, bonus3?: string | undefined) => import("./interface/ItemSuffixJSON").default;
+    };
     Character: typeof Character;
     Item: typeof Item;
     Equipment: typeof Equipment;
@@ -144,5 +154,6 @@ declare const _default: {
     SpellCritFromIntellectDivisor: typeof SpellCritFromIntellectDivisor;
     TargetType: typeof TargetType;
     WeaponSubclass: typeof WeaponSubclass;
+    ItemSuffixType: typeof ItemSuffixType;
 };
 export default _default;

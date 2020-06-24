@@ -1,5 +1,7 @@
 declare const _default: {
     getEnumKeyByEnumValue: (myEnum: any, enumValue: string | number) => string;
+    getEnumValueFromFuzzyKey: (myEnum: any, fuzzyKey: string) => string | number;
+    sanitizeStringForEnum: (s: string) => string;
     cumulativeChance: (trials: number, chance: number, x: number) => number;
     consecutiveChance: (trials: number, chance: number, x: number) => number;
     triangularNumber: (n: number) => number;
