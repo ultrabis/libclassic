@@ -9,6 +9,7 @@ import SpellJSON from './interface/SpellJSON'
 import ItemJSON from './interface/ItemJSON'
 import ItemSetJSON from './interface/ItemSetJSON'
 import EnchantJSON from './interface/EnchantJSON'
+import ItemSuffixJSON from './interface/ItemSuffixJSON'
 import ItemQuery from './interface/ItemQuery'
 import SpellQuery from './interface/SpellQuery'
 
@@ -19,6 +20,7 @@ import spellsDB from './db/spells.json'
 import itemsDB from './db/items.json'
 import enchantsDB from './db/enchants.json'
 import itemSetsDB from './db/itemSets.json'
+import itemSuffixDB from './db/itemSuffix.json'
 
 /* return input, deep clone it if cloneResults is true */
 const _result = (o: any, cloneResults: boolean) => {
@@ -245,11 +247,17 @@ const spells = (opts: SpellQuery): SpellJSON[] => {
   return _result(result, opts.cloneResults ? opts.cloneResults : false)
 }
 
+const itemSuffixes = (opts: any): ItemSuffixJSON[] => {
+  const result = jsonQuery(`[* type = ${opts.type}]`, { data: itemSuffixDB }).value
+  return result
+}
+
 export default {
   item,
   items,
   itemSet,
   itemSets,
+  itemSuffixes,
   enchant,
   enchants,
   spell,

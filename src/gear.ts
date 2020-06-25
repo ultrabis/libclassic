@@ -1,4 +1,6 @@
 import utils from './utils'
+import query from './query'
+
 import ItemSuffixType from './enum/ItemSuffixType'
 import ItemBonusType from './enum/ItemBonusType'
 
@@ -79,10 +81,31 @@ const itemSuffixTypeFromText = (text: string): ItemSuffixType => {
   return _(text)
 }
 
+const itemSuffixesFromItemName = (itemName: string): ItemSuffixJSON[] => {
+  const x = itemSuffixTypeFromItemName(itemName)
+  return query.itemSuffixes({ type: x })
+}
+
+const itemSuffixFromItemNameAndBonusValue = (itemName: string, bonusValue: number): ItemSuffixJSON | undefined => {
+  const itemSuffixes: ItemSuffixJSON[] = itemSuffixesFromItemName(itemName)
+
+  for (let i = 0; i < itemSuffixes.length; i++) {
+    for (let x = 0; x < itemSuffixes[i].bonus.length; x++) {
+      if (itemSuffixes[i].bonus[x].value === bonusValue) {
+        return itemSuffixes[i]
+      }
+    }
+  }
+
+  return undefined
+}
+
 export default {
   itemBonusTypeFromText,
   itemBonusFromText,
   itemSuffixTypeFromText,
   itemSuffixTypeFromItemName,
-  itemSuffixJSONFromText
+  itemSuffixJSONFromText,
+  itemSuffixesFromItemName,
+  itemSuffixFromItemNameAndBonusValue
 }

@@ -1,6 +1,6 @@
-import stats from 'statsjs'
-import mathjs from 'mathjs/dist/math'
-import clonedeep from 'lodash.clonedeep'
+// import stats from 'statsjs'
+// import mathjs from 'mathjs/dist/math'
+// import clonedeep from 'lodash.clonedeep'
 
 const paramFromURL = (paramName: string, URL?: string): string | null => {
   const urlSearchParams = new URLSearchParams(URL ? URL : window.location.search.substring(1))
@@ -61,7 +61,8 @@ const sanitizeStringForEnum = (s: string): string => {
 
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 const cloneObject = (o: any): any => {
-  return clonedeep(o)
+  return JSON.parse(JSON.stringify(o, null, 1))
+  // return clonedeep(o)
 }
 
 const isLetter = (char: string): boolean => {
@@ -83,6 +84,7 @@ const triangularNumber = (n: number): number => {
   return (n * (n + 1)) / 2
 }
 
+/*
 const cumulativeChance = (trials: number, chance: number, x: number): number => {
   return 1 - stats.binomcdf(trials, chance, x)
 }
@@ -102,13 +104,14 @@ const consecutiveChance = (trials: number, chance: number, x: number): number =>
   // @ts-ignore
   return sEnd.slice(-1)[0][0]
 }
+*/
 
 export default {
   getEnumKeyByEnumValue,
   getEnumValueFromFuzzyKey,
   sanitizeStringForEnum,
-  cumulativeChance,
-  consecutiveChance,
+  // cumulativeChance,
+  // consecutiveChance,
   triangularNumber,
   roundedString,
   isNode,

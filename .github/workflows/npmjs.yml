@@ -1,7 +1,11 @@
-name: build
-on: [push]
+name: npmjs
+
+on:
+  release:
+    types: [created]
+
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,30 +30,14 @@ jobs:
         run: yarn install --frozen-lockfile
         env:
           CI: true
-          
-      - name: Lint
-        run: yarn lint
+
+      - name: Run build:npmjs
+        run: yarn build:npmjs
         env:
           CI: true
           
-      - name: Test
-        run: yarn test --ci --coverage --maxWorkers=2
+      - name: Publish to npmjs
+        run: yarn publish
         env:
           CI: true
-
-      - name: Build production
-        run: yarn build
-        env:
-          CI: true
-
-      - name: Generate typedoc
-        run: yarn build:docs
-
-      - name: Copy contrib
-        run: yarn build:contrib
-        
-      - name: Deploy to github pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}

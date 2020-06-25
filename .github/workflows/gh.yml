@@ -1,11 +1,7 @@
-name: publish
-
-on:
-  release:
-    types: [created]
-
+name: gh
+on: [push]
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -31,16 +27,13 @@ jobs:
         env:
           CI: true
           
-      - name: Build production
-        run: yarn build
+      - name: Build for gh
+        run: yarn build:gh
         env:
           CI: true
-
-      - name: Copy contrib (pruned for npmjs)
-        run: yarn build:contrib-npmjs
-
-      - name: Publish to npmjs
-        run: yarn publish
-        env:
-          CI: true
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+        
+      - name: Publish to github pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist

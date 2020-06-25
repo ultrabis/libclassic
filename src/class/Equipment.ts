@@ -207,8 +207,9 @@ export default class Equipment {
 
     const buffedCasts = Math.floor(effectiveActiveTime / castTime)
     const totalCasts = Math.floor(encounterLength / castTime)
-    const naturesGraceBonus = naturesGrace ? trinketBonus * utils.cumulativeChance(4, spellCrit / 100, 2) : 0
-    let totalSpellDamage = trinketBonus * buffedCasts + naturesGraceBonus
+    // const naturesGraceBonus = naturesGrace ? trinketBonus * utils.cumulativeChance(4, spellCrit / 100, 2) : 0
+    // let totalSpellDamage = trinketBonus * buffedCasts + naturesGraceBonus
+    let totalSpellDamage = trinketBonus * buffedCasts
     // console.log(utils.cumulativeChance(4, spellCrit / 100, 2) * trinketBonus)
     if (trinketReductionPerCast) {
       // let cooldowns = Math.floor(encounterLength / trinketCooldown)
