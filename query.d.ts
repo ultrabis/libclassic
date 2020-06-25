@@ -5,6 +5,7 @@ import SpellJSON from './interface/SpellJSON';
 import ItemJSON from './interface/ItemJSON';
 import ItemSetJSON from './interface/ItemSetJSON';
 import EnchantJSON from './interface/EnchantJSON';
+import ItemSuffixJSON from './interface/ItemSuffixJSON';
 import ItemQuery from './interface/ItemQuery';
 import SpellQuery from './interface/SpellQuery';
 declare const _default: {
@@ -12,6 +13,7 @@ declare const _default: {
     items: (opts: ItemQuery) => ItemJSON[];
     itemSet: (opts: ItemQuery) => ItemSetJSON | undefined;
     itemSets: (opts: ItemQuery) => ItemSetJSON[];
+    itemSuffixes: (opts: any) => ItemSuffixJSON[];
     enchant: (opts: ItemQuery) => EnchantJSON | undefined;
     enchants: (opts: ItemQuery) => EnchantJSON[];
     spell: (opts: SpellQuery) => SpellJSON | undefined;

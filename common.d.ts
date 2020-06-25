@@ -5,11 +5,17 @@
  *
  * In the future, i'd like more common methods extracted from classes and placed here.
  */
+import ClassicOptions from './interface/ClassicOptions';
 import Buffs from './enum/Buffs';
 import Faction from './enum/Faction';
-import MagicSchool from './enum/MagicSchool';
+import Raid from './enum/Raid';
+import WorldBoss from './enum/WorldBoss';
+import PlayableClass from './enum/PlayableClass';
 import PlayableRace from './enum/PlayableRace';
-import ClassicOptions from './interface/ClassicOptions';
+import ItemBonusType from './enum/ItemBonusType';
+import ItemSuffixType from './enum/ItemSuffixType';
+import ItemQuality from './enum/ItemQuality';
+import PvPRank from './enum/PvPRank';
 declare const _default: {
     globalCooldown: number;
     playerLevelCap: number;
@@ -20,8 +26,17 @@ declare const _default: {
     defaultOptions: ClassicOptions;
     factionFromRace: (race: PlayableRace) => Faction;
     buffListToFlags: (buffList: string[]) => Buffs;
-    magicSchoolFromText: (magicSchool: string) => MagicSchool;
-    magicSchoolToText: (magicSchool: MagicSchool) => string;
+    raidFromText: (text: string) => Raid;
+    raidsFromText: (text: string) => Raid[];
+    worldBossFromText: (text: string) => WorldBoss;
+    worldBossesFromText: (text: string) => WorldBoss[];
+    pvpRankFromText: (text: string) => PvPRank;
+    playableRaceFromText: (text: string) => PlayableRace;
+    playableClassFromText: (text: string) => PlayableClass;
+    playableClassesFromText: (text: string) => PlayableClass[];
+    itemBonusTypeFromText: (text: string) => ItemBonusType;
+    itemSuffixTypeFromText: (text: string) => ItemSuffixType;
+    itemQualityFromText: (text: string) => ItemQuality;
     spellChanceToHit: (targetLevel: number, spellHit: number) => number;
     spellChanceToMiss: (targetLevel: number, spellHit: number) => number;
     spellChanceToCrit: (targetLevel: number, spellHit: number, spellCrit: number) => number;

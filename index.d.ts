@@ -34,8 +34,17 @@ declare const _default: {
         defaultOptions: import("./interface/ClassicOptions").default;
         factionFromRace: (race: PlayableRace) => Faction;
         buffListToFlags: (buffList: string[]) => Buffs;
-        magicSchoolFromText: (magicSchool: string) => MagicSchool;
-        magicSchoolToText: (magicSchool: MagicSchool) => string;
+        raidFromText: (text: string) => import("./enum/Raid").default;
+        raidsFromText: (text: string) => import("./enum/Raid").default[];
+        worldBossFromText: (text: string) => import("./enum/WorldBoss").default;
+        worldBossesFromText: (text: string) => import("./enum/WorldBoss").default[];
+        pvpRankFromText: (text: string) => PvPRank;
+        playableRaceFromText: (text: string) => PlayableRace;
+        playableClassFromText: (text: string) => PlayableClass;
+        playableClassesFromText: (text: string) => PlayableClass[];
+        itemBonusTypeFromText: (text: string) => import("./enum/ItemBonusType").default;
+        itemSuffixTypeFromText: (text: string) => ItemSuffixType;
+        itemQualityFromText: (text: string) => ItemQuality;
         spellChanceToHit: (targetLevel: number, spellHit: number) => number;
         spellChanceToMiss: (targetLevel: number, spellHit: number) => number;
         spellChanceToCrit: (targetLevel: number, spellHit: number, spellCrit: number) => number;
@@ -60,10 +69,9 @@ declare const _default: {
     };
     utils: {
         getEnumKeyByEnumValue: (myEnum: any, enumValue: string | number) => string;
-        getEnumValueFromFuzzyKey: (myEnum: any, fuzzyKey: string) => string | number;
+        getEnumValueFromFuzzyText: (myEnum: any, fuzzyText: string, exact?: boolean | undefined) => string | number;
+        getEnumValuesFromFuzzyText: (myEnum: any, fuzzyText: string) => any[];
         sanitizeStringForEnum: (s: string) => string;
-        cumulativeChance: (trials: number, chance: number, x: number) => number;
-        consecutiveChance: (trials: number, chance: number, x: number) => number;
         triangularNumber: (n: number) => number;
         roundedString: (num: number, decimals: number) => string;
         isNode: boolean;
@@ -82,6 +90,7 @@ declare const _default: {
         items: (opts: import("./interface/ItemQuery").default) => import("./interface/ItemJSON").default[];
         itemSet: (opts: import("./interface/ItemQuery").default) => import("./interface/ItemSetJSON").default | undefined;
         itemSets: (opts: import("./interface/ItemQuery").default) => import("./interface/ItemSetJSON").default[];
+        itemSuffixes: (opts: any) => import("./interface/ItemSuffixJSON").default[];
         enchant: (opts: import("./interface/ItemQuery").default) => import("./interface/EnchantJSON").default | undefined;
         enchants: (opts: import("./interface/ItemQuery").default) => import("./interface/EnchantJSON").default[];
         spell: (opts: import("./interface/SpellQuery").default) => import("./interface/SpellJSON").default | undefined;
@@ -125,11 +134,11 @@ declare const _default: {
         defaultClassicOptions: () => import("./interface/ClassicOptions").default;
     };
     gear: {
-        itemBonusTypeFromText: (text: string) => import("./enum/ItemBonusType").default;
         itemBonusFromText: (bonus: string) => import("./interface/ItemBonus").default;
-        itemSuffixTypeFromText: (text: string) => ItemSuffixType;
         itemSuffixTypeFromItemName: (itemName: string) => ItemSuffixType;
-        itemSuffixJSONFromText: (id: string, type: string, bonus: string, bonus2?: string | undefined, bonus3?: string | undefined) => import("./interface/ItemSuffixJSON").default;
+        itemSuffixFromText: (id: string, type: string, bonus: string, bonus2?: string | undefined, bonus3?: string | undefined) => import("./interface/ItemSuffixJSON").default;
+        itemSuffixFromItemNameAndBonusValue: (itemName: string, bonusValue: number) => import("./interface/ItemSuffixJSON").default | undefined;
+        itemSuffixesFromItemName: (itemName: string) => import("./interface/ItemSuffixJSON").default[];
     };
     Character: typeof Character;
     Item: typeof Item;
