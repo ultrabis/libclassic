@@ -83,6 +83,27 @@ const getEnumValueFromFuzzyText = (myEnum: any, fuzzyText: string, exact?: boole
   return partialMatch ? partialMatch : 0
 }
 
+/* Returns array of enum values from fuzzy text */
+const getEnumValuesFromFuzzyText = (myEnum: any, fuzzyText: string): any[] => {
+  const values: any[] = []
+  const sanText = sanitizeStringForEnum(fuzzyText)
+
+  /* loop through all keys */
+  const keys = Object.keys(myEnum)
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i]
+    const value = myEnum[key]
+    const sanKey = sanitizeStringForEnum(key)
+
+    /* a match, somewhere in the text */
+    if (sanText.includes(sanKey)) {
+      values.push(value)
+    }
+  }
+
+  return values
+}
+
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 const cloneObject = (o: any): any => {
   return JSON.parse(JSON.stringify(o, null, 1))
@@ -133,6 +154,7 @@ const consecutiveChance = (trials: number, chance: number, x: number): number =>
 export default {
   getEnumKeyByEnumValue,
   getEnumValueFromFuzzyText,
+  getEnumValuesFromFuzzyText,
   sanitizeStringForEnum,
   // cumulativeChance,
   // consecutiveChance,

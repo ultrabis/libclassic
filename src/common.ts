@@ -14,6 +14,7 @@ import Buffs from './enum/Buffs'
 import Faction from './enum/Faction'
 import Gender from './enum/Gender'
 import Raid from './enum/Raid'
+import WorldBoss from './enum/WorldBoss'
 import ItemSlot from './enum/ItemSlot'
 import PlayableClass from './enum/PlayableClass'
 import PlayableRace from './enum/PlayableRace'
@@ -161,6 +162,27 @@ const raidFromText = (text: string): Raid => {
   return _(text)
 }
 
+const raidsFromText = (text: string): Raid[] => {
+  const _ = (text: string): typeof Raid[keyof typeof Raid][] => {
+    return utils.getEnumValuesFromFuzzyText(Raid, text)
+  }
+  return _(text)
+}
+
+const worldBossFromText = (text: string): WorldBoss => {
+  const _ = (text: string): typeof WorldBoss[keyof typeof WorldBoss] => {
+    return Number(utils.getEnumValueFromFuzzyText(WorldBoss, text))
+  }
+  return _(text)
+}
+
+const worldBossesFromText = (text: string): WorldBoss[] => {
+  const _ = (text: string): typeof WorldBoss[keyof typeof WorldBoss][] => {
+    return utils.getEnumValuesFromFuzzyText(WorldBoss, text)
+  }
+  return _(text)
+}
+
 const pvpRankFromText = (text: string): PvPRank => {
   const _ = (text: string): typeof PvPRank[keyof typeof PvPRank] => {
     return Number(utils.getEnumValueFromFuzzyText(PvPRank, text))
@@ -178,6 +200,14 @@ const playableRaceFromText = (text: string): PlayableRace => {
 const playableClassFromText = (text: string): PlayableClass => {
   const _ = (text: string): typeof PlayableClass[keyof typeof PlayableClass] => {
     return Number(utils.getEnumValueFromFuzzyText(PlayableClass, text))
+  }
+  return _(text)
+}
+
+/* Returns array of classes from strings like: Classes: Priest, Shaman, Mage, Warlock, Druid */
+const playableClassesFromText = (text: string): PlayableClass[] => {
+  const _ = (text: string): typeof PlayableClass[keyof typeof PlayableClass][] => {
+    return utils.getEnumValuesFromFuzzyText(PlayableClass, text)
   }
   return _(text)
 }
@@ -505,9 +535,13 @@ export default {
   factionFromRace,
   buffListToFlags,
   raidFromText,
+  raidsFromText,
+  worldBossFromText,
+  worldBossesFromText,
   pvpRankFromText,
   playableRaceFromText,
   playableClassFromText,
+  playableClassesFromText,
   itemBonusTypeFromText,
   itemSuffixTypeFromText,
   itemQualityFromText,
