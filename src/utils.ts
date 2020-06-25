@@ -1,3 +1,5 @@
+/* Utility functions that have nothing to do with world of warcraft */
+
 // import stats from 'statsjs'
 // import mathjs from 'mathjs/dist/math'
 // import clonedeep from 'lodash.clonedeep'
@@ -34,17 +36,6 @@ const isWebWorker: boolean =
 /* eslint-enable no-restricted-globals */
 const isNode = typeof process !== 'undefined' && process.versions != null && process.versions.node != null
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-const getEnumKeyByEnumValue = (myEnum: any, enumValue: number | string): string => {
-  const keys = Object.keys(myEnum).filter((x) => myEnum[x] === enumValue)
-  return keys.length > 0 ? keys[0] : ''
-}
-
-const getEnumValueFromFuzzyKey = (myEnum: any, fuzzyKey: string): number | string => {
-  const keys = Object.keys(myEnum).filter((key) => sanitizeStringForEnum(key) === sanitizeStringForEnum(fuzzyKey))
-  return keys.length > 0 ? myEnum[keys[0]] : 0
-}
-
 /* strips chars for easier comparisons */
 const sanitizeStringForEnum = (s: string): string => {
   return s
@@ -57,6 +48,39 @@ const sanitizeStringForEnum = (s: string): string => {
     .replace(/\)/g, '')
     .replace(/%/g, '')
     .toUpperCase()
+}
+
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+const getEnumKeyByEnumValue = (myEnum: any, enumValue: number | string): string => {
+  const keys = Object.keys(myEnum).filter((x) => myEnum[x] === enumValue)
+  return keys.length > 0 ? keys[0] : ''
+}
+
+/* Find enum value by a fuzzy text search of it's key. Comparisons are sanitized to ignore
+   invalid characters, case and whitespace. If an 'exact' match is found, return it. Otherwise
+   try to find the key name anywhere in the text */
+const getEnumValueFromFuzzyText = (myEnum: any, fuzzyText: string, exact?: boolean): number | string => {
+  const keys = Object.keys(myEnum)
+  let partialMatch = undefined
+
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i]
+    const value = myEnum[key]
+    const sanKey = sanitizeStringForEnum(key)
+    const sanText = sanitizeStringForEnum(fuzzyText)
+
+    /* an exact match */
+    if (sanKey === sanText) {
+      return value
+    }
+
+    /* a match, somewhere in the string */
+    if (!exact && sanText.includes(sanKey)) {
+      partialMatch = value
+    }
+  }
+
+  return partialMatch ? partialMatch : 0
 }
 
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
@@ -108,7 +132,7 @@ const consecutiveChance = (trials: number, chance: number, x: number): number =>
 
 export default {
   getEnumKeyByEnumValue,
-  getEnumValueFromFuzzyKey,
+  getEnumValueFromFuzzyText,
   sanitizeStringForEnum,
   // cumulativeChance,
   // consecutiveChance,

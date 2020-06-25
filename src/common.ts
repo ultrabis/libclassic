@@ -8,16 +8,20 @@
 
 import utils from './utils'
 
+import ClassicOptions from './interface/ClassicOptions'
+
 import Buffs from './enum/Buffs'
 import Faction from './enum/Faction'
 import Gender from './enum/Gender'
+import Raid from './enum/Raid'
 import ItemSlot from './enum/ItemSlot'
-import MagicSchool from './enum/MagicSchool'
 import PlayableClass from './enum/PlayableClass'
 import PlayableRace from './enum/PlayableRace'
 import TargetType from './enum/TargetType'
-
-import ClassicOptions from './interface/ClassicOptions'
+import ItemBonusType from './enum/ItemBonusType'
+import ItemSuffixType from './enum/ItemSuffixType'
+import ItemQuality from './enum/ItemQuality'
+import PvPRank from './enum/PvPRank'
 
 declare type BuffFlagType = keyof typeof Buffs
 
@@ -150,13 +154,53 @@ const buffListToFlags = (buffList: string[]): Buffs => {
   return buffs
 }
 
-const magicSchoolToText = (magicSchool: MagicSchool): string => {
-  return MagicSchool[magicSchool]
+const raidFromText = (text: string): Raid => {
+  const _ = (text: string): typeof Raid[keyof typeof Raid] => {
+    return Number(utils.getEnumValueFromFuzzyText(Raid, text))
+  }
+  return _(text)
 }
 
-const magicSchoolFromText = (magicSchool: string): MagicSchool => {
-  return 1
-  // return parseInt(utils.getEnumValueFromFuzzyKey(MagicSchool, magicSchool), 0)
+const pvpRankFromText = (text: string): PvPRank => {
+  const _ = (text: string): typeof PvPRank[keyof typeof PvPRank] => {
+    return Number(utils.getEnumValueFromFuzzyText(PvPRank, text))
+  }
+  return _(text)
+}
+
+const playableRaceFromText = (text: string): PlayableRace => {
+  const _ = (text: string): typeof PlayableRace[keyof typeof PlayableRace] => {
+    return Number(utils.getEnumValueFromFuzzyText(PlayableRace, text))
+  }
+  return _(text)
+}
+
+const playableClassFromText = (text: string): PlayableClass => {
+  const _ = (text: string): typeof PlayableClass[keyof typeof PlayableClass] => {
+    return Number(utils.getEnumValueFromFuzzyText(PlayableClass, text))
+  }
+  return _(text)
+}
+
+const itemBonusTypeFromText = (text: string): ItemBonusType => {
+  const _ = (text: string): typeof ItemBonusType[keyof typeof ItemBonusType] => {
+    return Number(utils.getEnumValueFromFuzzyText(ItemBonusType, text))
+  }
+  return _(text)
+}
+
+const itemSuffixTypeFromText = (text: string): ItemSuffixType => {
+  const _ = (text: string): typeof ItemSuffixType[keyof typeof ItemSuffixType] => {
+    return Number(utils.getEnumValueFromFuzzyText(ItemSuffixType, text))
+  }
+  return _(text)
+}
+
+const itemQualityFromText = (text: string): ItemQuality => {
+  const _ = (text: string): typeof ItemQuality[keyof typeof ItemQuality] => {
+    return Number(utils.getEnumValueFromFuzzyText(ItemQuality, text))
+  }
+  return _(text)
 }
 
 /**
@@ -457,11 +501,17 @@ export default {
   baseSpellCrit,
   baseSpellCritMultiplier,
   defaultOptions,
-  /* functions */
+  /* enum functions */
   factionFromRace,
   buffListToFlags,
-  magicSchoolFromText,
-  magicSchoolToText,
+  raidFromText,
+  pvpRankFromText,
+  playableRaceFromText,
+  playableClassFromText,
+  itemBonusTypeFromText,
+  itemSuffixTypeFromText,
+  itemQualityFromText,
+  /* spell functions */
   spellChanceToHit,
   spellChanceToMiss,
   spellChanceToCrit,
@@ -471,6 +521,7 @@ export default {
   spellCritMultiplier,
   spellBaseDmgMultiplier,
   spellBaseDmg,
+  /* target functions */
   targetSpellResistanceFromLevel,
   targetSpellResistance
 }

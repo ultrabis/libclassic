@@ -1,13 +1,12 @@
-import utils from './utils'
+import common from './common'
 import query from './query'
 
 import ItemSuffixType from './enum/ItemSuffixType'
-import ItemBonusType from './enum/ItemBonusType'
 
 import ItemBonus from './interface/ItemBonus'
 import ItemSuffixJSON from './interface/ItemSuffixJSON'
 
-const itemSuffixJSONFromText = (
+const itemSuffixFromText = (
   id: string,
   type: string,
   bonus: string,
@@ -25,7 +24,7 @@ const itemSuffixJSONFromText = (
 
   return {
     id: Number(id),
-    type: itemSuffixTypeFromText(type),
+    type: common.itemSuffixTypeFromText(type),
     bonus: _bonus
   }
 }
@@ -51,7 +50,7 @@ const itemBonusFromText = (bonus: string): ItemBonus => {
   }
 
   return {
-    type: itemBonusTypeFromText(type),
+    type: common.itemBonusTypeFromText(type),
     value: Number(value)
   }
 }
@@ -63,22 +62,7 @@ const itemSuffixTypeFromItemName = (itemName: string): ItemSuffixType => {
   }
 
   const right = itemName.slice(of + 4)
-  return itemSuffixTypeFromText(right)
-}
-
-const itemBonusTypeFromText = (text: string): ItemBonusType => {
-  const _ = (text: string): typeof ItemBonusType[keyof typeof ItemBonusType] => {
-    return Number(utils.getEnumValueFromFuzzyKey(ItemBonusType, text))
-  }
-  return _(text)
-}
-
-const itemSuffixTypeFromText = (text: string): ItemSuffixType => {
-  const _ = (text: string): typeof ItemSuffixType[keyof typeof ItemSuffixType] => {
-    const of = text.toUpperCase().indexOf('OF') // allow both 'the bear' and 'of the bear'
-    return Number(utils.getEnumValueFromFuzzyKey(ItemSuffixType, of === -1 ? text : text.slice(of + 2)))
-  }
-  return _(text)
+  return common.itemSuffixTypeFromText(right)
 }
 
 const itemSuffixesFromItemName = (itemName: string): ItemSuffixJSON[] => {
@@ -101,11 +85,9 @@ const itemSuffixFromItemNameAndBonusValue = (itemName: string, bonusValue: numbe
 }
 
 export default {
-  itemBonusTypeFromText,
   itemBonusFromText,
-  itemSuffixTypeFromText,
   itemSuffixTypeFromItemName,
-  itemSuffixJSONFromText,
-  itemSuffixesFromItemName,
-  itemSuffixFromItemNameAndBonusValue
+  itemSuffixFromText,
+  itemSuffixFromItemNameAndBonusValue,
+  itemSuffixesFromItemName
 }
