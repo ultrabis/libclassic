@@ -1,12 +1,12 @@
 # libclassic
 
-
-
 library for wow classic web apps
 
-this is moonkin-calc minus the inferface
+moonkin-calc minus the inferface
 
-the goal is to port more spreadsheets
+used by: https://github.com/ultrabis/moonkin
+
+goal: port more spreadsheets.
 
 ### status
 
