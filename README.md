@@ -6,7 +6,7 @@ moonkin-calc minus the inferface
 
 used by: https://github.com/ultrabis/moonkin
 
-goal: port more spreadsheets.
+goal: port more spreadsheets
 
 ### status
 
