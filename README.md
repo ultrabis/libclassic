@@ -17,3 +17,11 @@ goal: port more spreadsheets
 q. why is the bundle so large?
 
 a. it includes everything (databases, icons, etc). there are plans to create new release bundle types.
+
+q. when will it support my class / spec?
+
+a. i dunno. fire mage is on the way.
+
+### credits
+
+beefbroccoli, keftenk, balor
