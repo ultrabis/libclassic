@@ -2,11 +2,11 @@
 
 library for wow classic web apps
 
-moonkin-calc minus the inferface
+- used by: https://github.com/ultrabis/moonkin
+- codepen: https://codepen.io/beef_broccoli/pen/eYJRovW
+- goal: port more spreadsheets, generify
 
-used by: https://github.com/ultrabis/moonkin
 
-goal: port more spreadsheets, generify
 
 ### status
 
