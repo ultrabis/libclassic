@@ -22,6 +22,14 @@ q. when will it support my class / spec?
 
 a. i dunno. fire mage is on the way.
 
+q. why does the code suck?
+
+a. 
+
 ### credits
 
-beefbroccoli, keftenk, balor
+- originally [keftenks balance druid spreadsheet](https://forum.classicwow.live/topic/726/by-the-great-winds-i-come-classic-balance-druid-theorycraft-spreadsheet-v1-5-1/16)
+- converted to a web app [moonkin-calc](https://gitlab.com/kmmiles/moonkin-calc) by beefbroccoli
+- with balors damage and weighting math (see contrib/whitepaper)
+
+
