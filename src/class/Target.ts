@@ -1,5 +1,5 @@
 import common from '../common'
-import ClassicOptions from '../interface/ClassicOptions'
+import Settings from '../interface/Settings'
 import Buffs from '../enum/Buffs'
 import MagicSchool from '../enum/MagicSchool'
 
@@ -24,15 +24,15 @@ interface TargetJSON {
 */
 
 export default class Target {
-  options: ClassicOptions
+  settings: Settings
   debuffFlags: Buffs
-  constructor(options: ClassicOptions) {
-    this.options = options
-    this.debuffFlags = common.buffListToFlags(options.target.debuffs)
+  constructor(settings: Settings) {
+    this.settings = settings
+    this.debuffFlags = common.enums.buffListToFlags(settings.target.debuffs)
   }
 
   get level(): number {
-    return this.options.target.level
+    return this.settings.target.level
   }
 
   /* assumes character level 60 */
@@ -56,11 +56,11 @@ export default class Target {
   }
 
   get spellResistance(): number {
-    return this.options.target.spellResistance
+    return this.settings.target.spellResistance
   }
 
   get shimmer(): MagicSchool {
-    return this.options.target.shimmer
+    return this.settings.target.shimmer
   }
 
   get spellVulnBonus(): number {
@@ -78,7 +78,7 @@ export default class Target {
    * ...reducing nature resistances 25 per "jump"...
    */
   get thunderfuryResistBonus(): number {
-    return this.options.target.thunderfury ? this.options.target.thunderfury * 25 : 0
+    return this.settings.target.thunderfury ? this.settings.target.thunderfury * 25 : 0
   }
 
   /**
@@ -96,23 +96,23 @@ export default class Target {
   }
 
   get arcaneSpellResistance(): number {
-    return this.options.target.spellResistance
+    return this.settings.target.spellResistance
   }
 
   get natureSpellResistance(): number {
-    return this.options.target.spellResistance
+    return this.settings.target.spellResistance
   }
 
   get fireSpellResistance(): number {
-    return this.options.target.spellResistance
+    return this.settings.target.spellResistance
   }
 
   get frostSpellResistance(): number {
-    return this.options.target.spellResistance
+    return this.settings.target.spellResistance
   }
 
   get shadowSpellResistance(): number {
-    return this.options.target.spellResistance
+    return this.settings.target.spellResistance
   }
 
   toJSON(): any {

@@ -6,7 +6,7 @@ import Target from './Target'
 import Equipment from './Equipment'
 import Item from './Item'
 
-import ClassicOptions from '../interface/ClassicOptions'
+import Settings from '../interface/Settings'
 import CastDmgValues from '../interface/CastDmgValues'
 import CastDmgObject from '../interface/CastDmgObject'
 
@@ -25,14 +25,14 @@ interface EquipmentOverride {
  * A Spell cast by Character at Target.
  */
 export default class Cast {
-  options: ClassicOptions
+  settings: Settings
   spell: Spell
   target: Target
   character: Character
   // equipmentOverride: EquipmentOverride | undefined
 
-  constructor(options: ClassicOptions, equipmentOverride?: EquipmentOverride) {
-    this.options = options
+  constructor(settings: Settings, equipmentOverride?: EquipmentOverride) {
+    this.settings = settings
 
     /* By default gear is determined by Equipment(). We can override it by passing our own in.
      * If we don't pass our own equipment in, we can also override the stat weights used
@@ -42,7 +42,7 @@ export default class Cast {
       equipment = equipmentOverride.equipment
     } else {
       equipment = new Equipment(
-        options,
+        settings,
         equipmentOverride && equipmentOverride.spellHitWeight !== undefined
           ? equipmentOverride.spellHitWeight
           : undefined,
@@ -56,9 +56,9 @@ export default class Cast {
       )
     }
 
-    this.character = new Character(this.options, equipment)
-    this.spell = new Spell(this.options.spellName)
-    this.target = new Target(this.options)
+    this.character = new Character(this.settings, equipment)
+    this.spell = new Spell(this.settings.spellName)
+    this.target = new Target(this.settings)
 
     /* XXX: Kinda hacky, but update the itemSearch on the equipment to keep
        a record we can reference elsewhere without needing to reprocess it */
@@ -278,10 +278,10 @@ export default class Cast {
 
     return Equipment.trinketEffectiveSpellDamage(
       trinket.itemJSON,
-      this.options.encounterLength,
+      this.settings.encounterLength,
       this.effectiveCastTime,
       this.effectiveSpellCrit,
-      this.options.character.talents.naturesGraceRank === 1 ? true : false
+      this.settings.character.talents.naturesGraceRank === 1 ? true : false
     )
   }
 
@@ -307,7 +307,7 @@ export default class Cast {
   }
 
   get effectiveSpellCrit(): number {
-    return common.baseSpellCrit + this.character.spellCrit + this.improvedMoonfireSpellCritBonus
+    return common.calc.baseSpellCrit + this.character.spellCrit + this.improvedMoonfireSpellCritBonus
   }
 
   get effectiveTargetResistance(): number {
@@ -376,7 +376,7 @@ export default class Cast {
       case 'STARFIRE':
         return this.spell.castTime - this.character.improvedStarfireBonus
       default:
-        return this.spell.castTime <= common.globalCooldown ? common.globalCooldown : this.spell.castTime
+        return this.spell.castTime <= common.calc.globalCooldown ? common.calc.globalCooldown : this.spell.castTime
     }
   }
 
@@ -388,8 +388,8 @@ export default class Cast {
 
     /* if natures grace would reduce the cast time below the global cooldown then
      * only reduce it by the difference of the cast time and global cooldown */
-    if (this.castTime - this.character.naturesGraceBonus < common.globalCooldown) {
-      return this.castTime - common.globalCooldown
+    if (this.castTime - this.character.naturesGraceBonus < common.calc.globalCooldown) {
+      return this.castTime - common.calc.globalCooldown
     }
 
     return this.character.naturesGraceBonus
@@ -400,12 +400,12 @@ export default class Cast {
    */
   get effectiveCastTime(): number {
     if ((this.character.buffFlags & Buff.BurningAdrenaline) === Buff.BurningAdrenaline) {
-      return common.globalCooldown + this.options.castTimePenalty
+      return common.calc.globalCooldown + this.settings.castTimePenalty
     }
 
     return (
-      Math.max(common.globalCooldown, this.castTime - this.castTimeReductionOnCrit * (this.chanceToCrit / 100)) +
-      this.options.castTimePenalty
+      Math.max(common.calc.globalCooldown, this.castTime - this.castTimeReductionOnCrit * (this.chanceToCrit / 100)) +
+      this.settings.castTimePenalty
     )
   }
 
@@ -446,9 +446,9 @@ export default class Cast {
       case 'WRATH':
       case 'STARFIRE':
       case 'MOONFIRE':
-        return common.baseSpellCritMultiplier + this.character.vengeanceBonus
+        return common.calc.baseSpellCritMultiplier + this.character.vengeanceBonus
       default:
-        return common.baseSpellCritMultiplier
+        return common.calc.baseSpellCritMultiplier
     }
   }
   /**
@@ -462,7 +462,7 @@ export default class Cast {
    * spell crit weight i.e. the amount of spell power 1 point of crit is worth.
    */
   get spellCritWeight(): number {
-    return this.effectiveSpellCrit < common.spellCritCap ? this.spellCritToSpellDamage : 0
+    return this.effectiveSpellCrit < common.calc.spellCritCap ? this.spellCritToSpellDamage : 0
   }
 
   /**
@@ -547,7 +547,7 @@ export default class Cast {
    */
   get ffDPS(): number {
     const ffDuration = 40
-    return (ffDuration * this.dps.effective.avg) / (ffDuration + (common.globalCooldown * 100) / this.chanceToHit)
+    return (ffDuration * this.dps.effective.avg) / (ffDuration + (common.calc.globalCooldown * 100) / this.chanceToHit)
   }
   get ffDPSLoss(): number {
     return this.dps.effective.avg - this.ffDPS
@@ -555,7 +555,7 @@ export default class Cast {
 
   get mfDPS(): number {
     const mfDuration = 12
-    return (mfDuration * this.dps.effective.avg) / (mfDuration + (common.globalCooldown * 100) / this.chanceToHit)
+    return (mfDuration * this.dps.effective.avg) / (mfDuration + (common.calc.globalCooldown * 100) / this.chanceToHit)
   }
   get mfDPSLoss(): number {
     return this.dps.effective.avg - this.mfDPS

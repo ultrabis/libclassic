@@ -1,10 +1,9 @@
-import common from './common'
+import common from '../common'
 import query from './query'
 
-import ItemSuffixType from './enum/ItemSuffixType'
-
-import ItemBonus from './interface/ItemBonus'
-import ItemSuffixJSON from './interface/ItemSuffixJSON'
+import ItemSuffixType from '../enum/ItemSuffixType'
+import ItemBonus from '../interface/ItemBonus'
+import ItemSuffixJSON from '../interface/ItemSuffixJSON'
 
 const itemSuffixFromText = (
   id: string,
@@ -24,7 +23,7 @@ const itemSuffixFromText = (
 
   return {
     id: Number(id),
-    type: common.itemSuffixTypeFromText(type),
+    type: common.enums.itemSuffixTypeFromText(type),
     bonus: _bonus
   }
 }
@@ -50,7 +49,7 @@ const itemBonusFromText = (bonus: string): ItemBonus => {
   }
 
   return {
-    type: common.itemBonusTypeFromText(type),
+    type: common.enums.itemBonusTypeFromText(type),
     value: Number(value)
   }
 }
@@ -62,7 +61,7 @@ const itemSuffixTypeFromItemName = (itemName: string): ItemSuffixType => {
   }
 
   const right = itemName.slice(of + 4)
-  return common.itemSuffixTypeFromText(right)
+  return common.enums.itemSuffixTypeFromText(right)
 }
 
 const itemSuffixesFromItemName = (itemName: string): ItemSuffixJSON[] => {

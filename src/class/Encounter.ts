@@ -1,11 +1,11 @@
-import optimal from '../optimal'
+import optimal from '../mt/optimal'
 import Cast from './Cast'
-import ClassicOptions from '../interface/ClassicOptions'
+import Settings from '../interface/Settings'
 import ItemJSON from '../interface/ItemJSON'
 import EnchantJSON from '../interface/EnchantJSON'
 
 /* Encounter is the big top level object for all wow calculations. We want it run exactly once
-   whenever a value in Options is changed.
+   whenever a value in Settings is changed.
 
    - Creates the Cast() object where most work is done
    - Generates the item and enchant list when clicking an item/enchant
@@ -17,32 +17,11 @@ export default class Encounter {
   items: ItemJSON[] | undefined
   enchants: EnchantJSON[] | undefined
 
-  constructor(options: ClassicOptions) {
-    this.items = optimal.itemsForSlot(options)
-    this.enchants = optimal.enchantsForSlot(options)
+  constructor(settings: Settings) {
+    this.items = optimal.itemsForSlot(settings)
+    this.enchants = optimal.enchantsForSlot(settings)
 
-    const equipment = optimal.equipment(options)
-    this.spellCast = new Cast(options, { equipment: equipment })
-  }
-
-  toJSON(): any {
-    const proto = Object.getPrototypeOf(this)
-    const jsonObj: any = Object.assign({}, this)
-
-    Object.entries(Object.getOwnPropertyDescriptors(proto))
-      /* eslint-disable @typescript-eslint/no-unused-vars */
-      .filter(([key, descriptor]) => typeof descriptor.get === 'function')
-      .map(([key, descriptor]) => {
-        if (descriptor && key[0] !== '_') {
-          try {
-            const val = (this as any)[key]
-            jsonObj[key] = val
-          } catch (error) {
-            console.error(`Error calling getter ${key}`, error)
-          }
-        }
-      })
-
-    return jsonObj
+    const equipment = optimal.equipment(settings)
+    this.spellCast = new Cast(settings, { equipment: equipment })
   }
 }

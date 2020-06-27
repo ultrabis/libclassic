@@ -1,5 +1,5 @@
 import common from '../common'
-import query from '../query'
+import query from '../mt/query'
 import SpellCoefficient from '../interface/SpellCoefficient'
 import SpellJSON from '../interface/SpellJSON'
 import MagicSchool from '../enum/MagicSchool'
@@ -118,9 +118,9 @@ export default class Spell {
    */
   get castTime(): number {
     if (!this.spellJSON) {
-      return common.globalCooldown
+      return common.calc.globalCooldown
     }
-    return Math.max(common.globalCooldown, this.spellJSON.castTime)
+    return Math.max(common.calc.globalCooldown, this.spellJSON.castTime)
   }
 
   /**

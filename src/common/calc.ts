@@ -1,32 +1,5 @@
-/**
- * Common values and functions. These are general game related things that could apply
- * to various classes / specs. They should be relatively low level and self-contained,
- * not requiring any higher level modules or classes.
- *
- * In the future, i'd like more common methods extracted from classes and placed here.
- */
+/* generic calculations that don't need the database (items and spells data) */
 
-import utils from './utils'
-
-import ClassicOptions from './interface/ClassicOptions'
-
-import Buffs from './enum/Buffs'
-import Faction from './enum/Faction'
-import Gender from './enum/Gender'
-import Raid from './enum/Raid'
-import WorldBoss from './enum/WorldBoss'
-import ItemSlot from './enum/ItemSlot'
-import PlayableClass from './enum/PlayableClass'
-import PlayableRace from './enum/PlayableRace'
-import TargetType from './enum/TargetType'
-import ItemBonusType from './enum/ItemBonusType'
-import ItemSuffixType from './enum/ItemSuffixType'
-import ItemQuality from './enum/ItemQuality'
-import PvPRank from './enum/PvPRank'
-
-declare type BuffFlagType = keyof typeof Buffs
-
-/* define some constants */
 const globalCooldown = 1.5
 const playerLevelCap = 60 /* FIXME: needs to be a function for tbc/wotlk */
 const spellHitCap = 16
@@ -46,192 +19,6 @@ const spellCritCap = 100
  */
 const baseSpellCrit = 1.8 /* FIXME: should be a function with class as input*/
 const baseSpellCritMultiplier = 1.5
-
-const defaultOptions: ClassicOptions = {
-  debug: false,
-  experimental: false,
-  phase: 4,
-  encounterLength: 100,
-  spellName: 'Starfire Rank 6',
-  castTimePenalty: 0.05, // This is an artifact from Ayz's spell damage calculator. No one knows what it is. Human factor? Latency factor?
-  equipment: {
-    raids: true,
-    tailoring: true,
-    worldBosses: false,
-    randomEnchants: true,
-    enchantExploit: false,
-    onUseItems: true,
-    itemSearchSlot: ItemSlot.None,
-    enchantSearchSlot: ItemSlot.None,
-    lockedItems: {
-      head: '',
-      hands: '',
-      neck: '',
-      waist: '',
-      shoulder: '',
-      legs: '',
-      back: '',
-      feet: '',
-      chest: '',
-      wrist: '',
-      finger: '',
-      finger2: '',
-      mainhand: '',
-      offhand: '',
-      trinket: '',
-      trinket2: '',
-      idol: ''
-    },
-    lockedEnchants: {
-      head: '',
-      hands: '',
-      shoulder: '',
-      legs: '',
-      back: '',
-      feet: '',
-      chest: '',
-      wrist: '',
-      mainhand: ''
-    }
-  },
-  character: {
-    level: 60,
-    gender: Gender.Male,
-    race: PlayableRace.Tauren,
-    class: PlayableClass.Druid,
-    pvpRank: 1,
-    talents: {
-      naturesGraceRank: 1,
-      moonFuryRank: 5,
-      vengeanceRank: 5,
-      improvedWrathRank: 5,
-      improvedStarfireRank: 5,
-      improvedMoonfireRank: 5,
-      reflectionRank: 3
-    },
-    buffs: [
-      'MoonkinAura',
-      'FlaskOfSupremePower',
-      'GreaterArcaneElixir',
-      'CerebralCortexCompound',
-      'RunnTumTuberSurprise',
-      'RallyingCryOfTheDragonSlayer',
-      'SlipkiksSavvy',
-      'ArcaneBrilliance',
-      'SongflowerSerenade',
-      'BlessingOfKings',
-      'ImprovedGiftOfTheWild',
-      'SpiritOfZandalar'
-    ]
-  },
-  target: {
-    level: 63,
-    type: TargetType.Elemental,
-    spellResistance: 75,
-    shimmer: 0,
-    thunderfury: 0,
-    debuffs: ['CurseOfShadow']
-  }
-}
-
-const factionFromRace = (race: PlayableRace): Faction => {
-  switch (race) {
-    case PlayableRace.Tauren:
-    case PlayableRace.Orc:
-    case PlayableRace.Undead:
-    case PlayableRace.Troll:
-      return Faction.Horde
-    default:
-      return Faction.Alliance
-  }
-}
-
-const buffListToFlags = (buffList: string[]): Buffs => {
-  let buffs: Buffs = Buffs.None
-
-  for (const buffName of buffList) {
-    buffs |= Buffs[buffName as BuffFlagType]
-  }
-  return buffs
-}
-
-const raidFromText = (text: string): Raid => {
-  const _ = (text: string): typeof Raid[keyof typeof Raid] => {
-    return Number(utils.getEnumValueFromFuzzyText(Raid, text))
-  }
-  return _(text)
-}
-
-const raidsFromText = (text: string): Raid[] => {
-  const _ = (text: string): typeof Raid[keyof typeof Raid][] => {
-    return utils.getEnumValuesFromFuzzyText(Raid, text)
-  }
-  return _(text)
-}
-
-const worldBossFromText = (text: string): WorldBoss => {
-  const _ = (text: string): typeof WorldBoss[keyof typeof WorldBoss] => {
-    return Number(utils.getEnumValueFromFuzzyText(WorldBoss, text))
-  }
-  return _(text)
-}
-
-const worldBossesFromText = (text: string): WorldBoss[] => {
-  const _ = (text: string): typeof WorldBoss[keyof typeof WorldBoss][] => {
-    return utils.getEnumValuesFromFuzzyText(WorldBoss, text)
-  }
-  return _(text)
-}
-
-const pvpRankFromText = (text: string): PvPRank => {
-  const _ = (text: string): typeof PvPRank[keyof typeof PvPRank] => {
-    return Number(utils.getEnumValueFromFuzzyText(PvPRank, text))
-  }
-  return _(text)
-}
-
-const playableRaceFromText = (text: string): PlayableRace => {
-  const _ = (text: string): typeof PlayableRace[keyof typeof PlayableRace] => {
-    return Number(utils.getEnumValueFromFuzzyText(PlayableRace, text))
-  }
-  return _(text)
-}
-
-const playableClassFromText = (text: string): PlayableClass => {
-  const _ = (text: string): typeof PlayableClass[keyof typeof PlayableClass] => {
-    return Number(utils.getEnumValueFromFuzzyText(PlayableClass, text))
-  }
-  return _(text)
-}
-
-/* Returns array of classes from strings like: Classes: Priest, Shaman, Mage, Warlock, Druid */
-const playableClassesFromText = (text: string): PlayableClass[] => {
-  const _ = (text: string): typeof PlayableClass[keyof typeof PlayableClass][] => {
-    return utils.getEnumValuesFromFuzzyText(PlayableClass, text)
-  }
-  return _(text)
-}
-
-const itemBonusTypeFromText = (text: string): ItemBonusType => {
-  const _ = (text: string): typeof ItemBonusType[keyof typeof ItemBonusType] => {
-    return Number(utils.getEnumValueFromFuzzyText(ItemBonusType, text))
-  }
-  return _(text)
-}
-
-const itemSuffixTypeFromText = (text: string): ItemSuffixType => {
-  const _ = (text: string): typeof ItemSuffixType[keyof typeof ItemSuffixType] => {
-    return Number(utils.getEnumValueFromFuzzyText(ItemSuffixType, text))
-  }
-  return _(text)
-}
-
-const itemQualityFromText = (text: string): ItemQuality => {
-  const _ = (text: string): typeof ItemQuality[keyof typeof ItemQuality] => {
-    return Number(utils.getEnumValueFromFuzzyText(ItemQuality, text))
-  }
-  return _(text)
-}
 
 /**
  *
@@ -523,29 +310,12 @@ const spellPartialResistAvg = (
 }
 
 export default {
-  /* constants */
   globalCooldown,
   playerLevelCap,
-  spellHitCap,
-  spellCritCap,
   baseSpellCrit,
   baseSpellCritMultiplier,
-  defaultOptions,
-  /* enum functions */
-  factionFromRace,
-  buffListToFlags,
-  raidFromText,
-  raidsFromText,
-  worldBossFromText,
-  worldBossesFromText,
-  pvpRankFromText,
-  playableRaceFromText,
-  playableClassFromText,
-  playableClassesFromText,
-  itemBonusTypeFromText,
-  itemSuffixTypeFromText,
-  itemQualityFromText,
-  /* spell functions */
+  spellHitCap,
+  spellCritCap,
   spellChanceToHit,
   spellChanceToMiss,
   spellChanceToCrit,
@@ -555,7 +325,6 @@ export default {
   spellCritMultiplier,
   spellBaseDmgMultiplier,
   spellBaseDmg,
-  /* target functions */
   targetSpellResistanceFromLevel,
   targetSpellResistance
 }

@@ -3,28 +3,28 @@ import Equipment from './Equipment'
 import PlayableRace from '../enum/PlayableRace'
 import Faction from '../enum/Faction'
 import Buffs from '../enum/Buffs'
-import ClassicOptions from '../interface/ClassicOptions'
+import Settings from '../interface/Settings'
 
 /**
  * Stores character attributes, Talents, Gear, and Buffs
  */
 export default class Character {
-  options: ClassicOptions
+  settings: Settings
   equipment: Equipment
   buffFlags: Buffs
 
-  constructor(options: ClassicOptions, equipment: Equipment) {
-    this.options = options
+  constructor(settings: Settings, equipment: Equipment) {
+    this.settings = settings
     this.equipment = equipment
-    this.buffFlags = common.buffListToFlags(options.character.buffs)
+    this.buffFlags = common.enums.buffListToFlags(settings.character.buffs)
   }
 
   get level(): number {
-    return this.options.character.level
+    return this.settings.character.level
   }
 
   get faction(): Faction {
-    return common.factionFromRace(this.options.character.race)
+    return common.enums.factionFromRace(this.settings.character.race)
   }
 
   get isHorde(): boolean {
@@ -36,11 +36,11 @@ export default class Character {
   }
 
   get isTauren(): boolean {
-    return this.options.character.race === PlayableRace.Tauren
+    return this.settings.character.race === PlayableRace.Tauren
   }
 
   get isNightElf(): boolean {
-    return this.options.character.race === PlayableRace.NightElf
+    return this.settings.character.race === PlayableRace.NightElf
   }
 
   /**
@@ -144,7 +144,7 @@ export default class Character {
    */
   get spellCrit(): number {
     return Math.min(
-      common.spellCritCap,
+      common.calc.spellCritCap,
       this.spellCritUnbuffed +
         this.rallyingCryOfTheDragonSlayerSpellCritBonus +
         this.moonkinAuraBonus +
@@ -157,7 +157,7 @@ export default class Character {
    * TODO: Return total spell hit rating (equipment + talents + buffs)
    */
   get effectiveSpellHit(): number {
-    return Math.min(this.spellHit, common.spellHitCap)
+    return Math.min(this.spellHit, common.calc.spellHitCap)
   }
 
   get spellHit(): number {
@@ -258,7 +258,7 @@ export default class Character {
 
   /* TALENTS */
   get improvedMoonfireBonus(): number {
-    switch (this.options.character.talents.improvedMoonfireRank) {
+    switch (this.settings.character.talents.improvedMoonfireRank) {
       case 1:
         return 2 // rank 1: 2% bonus
       case 2:
@@ -278,7 +278,7 @@ export default class Character {
    * Increases the damage done by Starfire, Moonfire, and Wrath by 2/4/6/8/10%
    */
   get moonFuryBonus(): number {
-    switch (this.options.character.talents.moonFuryRank) {
+    switch (this.settings.character.talents.moonFuryRank) {
       case 1:
         return 1.02 // rank 1: 2% bonus
       case 2:
@@ -298,7 +298,7 @@ export default class Character {
    * Reduces the cast of your Wrath spell by 0.1/0.2/0.3/0.4/0.5 sec
    */
   get improvedWrathBonus(): number {
-    switch (this.options.character.talents.improvedWrathRank) {
+    switch (this.settings.character.talents.improvedWrathRank) {
       case 1:
         return 0.1 // Reduces the cast time of your Wrath spell by 0.1 sec.
       case 2:
@@ -318,7 +318,7 @@ export default class Character {
    * Reduces the cast of your Starfire spell by 0.1/0.2/0.3/0.4/0.5 sec
    */
   get improvedStarfireBonus(): number {
-    switch (this.options.character.talents.improvedStarfireRank) {
+    switch (this.settings.character.talents.improvedStarfireRank) {
       case 1:
         return 0.1 // Reduces the cast time of your Starfire spell by 0.1 sec.
       case 2:
@@ -338,7 +338,7 @@ export default class Character {
    * Increases the critical strike damage bonus of your Starfire, Moonfire, and Wrath spells by x%.
    */
   get vengeanceBonus(): number {
-    switch (this.options.character.talents.vengeanceRank) {
+    switch (this.settings.character.talents.vengeanceRank) {
       case 1:
         return 0.1 // rank 1: Increases the critical strike damage bonus by 20%
       case 2:
@@ -358,7 +358,7 @@ export default class Character {
    * Allows x% of your Mana regeneration to continue while casting.
    */
   get reflectionBonus(): number {
-    switch (this.options.character.talents.reflectionRank) {
+    switch (this.settings.character.talents.reflectionRank) {
       case 1:
         return 0.05
       case 2:
@@ -374,7 +374,7 @@ export default class Character {
    * Returns natures grace reduction, if the talent is learned
    */
   get naturesGraceBonus(): number {
-    return this.options.character.talents.naturesGraceRank === 1 ? 0.5 : 0
+    return this.settings.character.talents.naturesGraceRank === 1 ? 0.5 : 0
   }
 
   toJSON(): any {

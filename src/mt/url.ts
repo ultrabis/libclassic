@@ -1,13 +1,13 @@
+// FIXME: ditch requirement to Equipment and move to common/settings
 import pako from 'pako'
 import { Base64 } from 'js-base64'
 
-import utils from './utils'
-import common from './common'
-import Equipment from './class/Equipment'
-import ClassicOptions from './interface/ClassicOptions'
-import LockedItems from './interface/LockedItems'
-import LockedEnchants from './interface/LockedEnchants'
-import ParaminOptions from './interface/ParaminOptions'
+import common from '../common'
+import Equipment from '../class/Equipment'
+import Settings from '../interface/Settings'
+import LockedItems from '../interface/LockedItems'
+import LockedEnchants from '../interface/LockedEnchants'
+import ParaminOptions from '../interface/ParaminOptions'
 
 /* Gzip and encode string for use as a URI parameter */
 const stringToParamin = (str: string, opts?: ParaminOptions): string => {
@@ -22,7 +22,7 @@ const stringToParamin = (str: string, opts?: ParaminOptions): string => {
   const base64string = btoa(binaryString)
 
   /* encode base64 string for URL */
-  const encoded = utils.encodeURI(base64string)
+  const encoded = common.utils.encodeURI(base64string)
 
   return encoded
 }
@@ -31,7 +31,7 @@ const paraminToString = (paramin: string, opts?: ParaminOptions): string => {
   let asciiString
 
   /* param -> URI decoded param */
-  const decodedParam = utils.decodeURI(paramin)
+  const decodedParam = common.utils.decodeURI(paramin)
 
   /* decoded param -> binary string */
   const binaryString = Base64.atob(decodedParam)
@@ -202,8 +202,8 @@ const optionFromURL = (name: string): any => {
   }
 }
 
-const defaultClassicOptions = (): ClassicOptions => {
-  const o: ClassicOptions = utils.cloneObject(common.defaultOptions)
+const defaultSettings = (): Settings => {
+  const o: Settings = common.utils.cloneObject(common.settings)
 
   /* gear */
   const gearv1 = optionFromURL('gear')
@@ -257,5 +257,5 @@ export default {
   gearParamFromLocked,
   optionFromURL,
   publicURL,
-  defaultClassicOptions
+  defaultSettings
 }

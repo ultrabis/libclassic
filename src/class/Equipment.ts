@@ -1,7 +1,6 @@
-import utils from '../utils'
-import locked from '../locked'
-import query from '../query'
 import common from '../common'
+import query from '../mt/query'
+import locked from '../mt/locked'
 
 import Item from './Item'
 import Spell from './Spell'
@@ -9,7 +8,7 @@ import Spell from './Spell'
 import ItemSlot from '../enum/ItemSlot'
 import SortOrder from '../enum/SortOrder'
 
-import ClassicOptions from '../interface/ClassicOptions'
+import Settings from '../interface/Settings'
 import ItemSearch from '../interface/ItemSearch'
 import ItemJSON from '../interface/ItemJSON'
 import ItemSetJSON from '../interface/ItemSetJSON'
@@ -27,7 +26,7 @@ import EnchantJSON from '../interface/EnchantJSON'
  *
  */
 export default class Equipment {
-  options: ClassicOptions
+  settings: Settings
   itemSearch: ItemSearch
   head: Item
   hands: Item
@@ -49,7 +48,7 @@ export default class Equipment {
 
   /* TODO: can I make it so the constructor could take list of item ids or something instead? */
   constructor(
-    options: ClassicOptions,
+    settings: Settings,
     spellHitWeight?: number,
     spellCritWeight?: number,
     spellCastTime?: number,
@@ -59,9 +58,9 @@ export default class Equipment {
       return Equipment.getBestInSlotItemWithEnchant(slot, this.itemSearch)
     }
 
-    this.options = options
-    this.itemSearch = Equipment.itemSearchFromOptions(
-      options,
+    this.settings = settings
+    this.itemSearch = Equipment.itemSearchFromSettings(
+      settings,
       spellHitWeight,
       spellCritWeight,
       spellCastTime,
@@ -93,15 +92,15 @@ export default class Equipment {
     this.idol = _bis(ItemSlot.Relic)
   }
 
-  static itemSearchFromOptions(
-    options: ClassicOptions,
+  static itemSearchFromSettings(
+    settings: Settings,
     spellHitWeight?: number,
     spellCritWeight?: number,
     spellCastTime?: number,
     spellCrit?: number
   ): ItemSearch {
-    const myOptions: ClassicOptions = utils.cloneObject(options)
-    const spell = new Spell(myOptions.spellName)
+    const mySettings: Settings = common.utils.cloneObject(settings)
+    const spell = new Spell(mySettings.spellName)
 
     const mySpellHitWeight = spellHitWeight !== undefined ? spellHitWeight : 15
     const mySpellCritWeight = spellCritWeight !== undefined ? spellCritWeight : 10
@@ -109,26 +108,26 @@ export default class Equipment {
     const mySpellCrit = spellCrit !== undefined ? spellCrit : 30
 
     return {
-      phase: myOptions.phase,
-      faction: common.factionFromRace(myOptions.character.race),
-      pvpRank: myOptions.character.pvpRank,
-      raids: myOptions.equipment.raids,
-      worldBosses: myOptions.equipment.worldBosses,
-      randomEnchants: myOptions.equipment.randomEnchants,
-      tailoring: myOptions.equipment.tailoring,
-      enchantExploit: myOptions.equipment.enchantExploit,
-      encounterLength: myOptions.encounterLength,
-      onUseItems: myOptions.equipment.onUseItems,
+      phase: mySettings.phase,
+      faction: common.enums.factionFromRace(mySettings.character.race),
+      pvpRank: mySettings.character.pvpRank,
+      raids: mySettings.equipment.raids,
+      worldBosses: mySettings.equipment.worldBosses,
+      randomEnchants: mySettings.equipment.randomEnchants,
+      tailoring: mySettings.equipment.tailoring,
+      enchantExploit: mySettings.equipment.enchantExploit,
+      encounterLength: mySettings.encounterLength,
+      onUseItems: mySettings.equipment.onUseItems,
       magicSchool: spell.magicSchool,
-      targetType: myOptions.target.type,
+      targetType: mySettings.target.type,
       spellHitWeight: mySpellHitWeight,
       spellCritWeight: mySpellCritWeight,
       spellCastTime: mySpellCastTime,
       spellCrit: mySpellCrit,
-      naturesGrace: myOptions.character.talents.naturesGraceRank === 1 ? true : false,
-      lockedItems: myOptions.equipment.lockedItems,
-      lockedEnchants: myOptions.equipment.lockedEnchants,
-      slot: myOptions.equipment.itemSearchSlot,
+      naturesGrace: mySettings.character.talents.naturesGraceRank === 1 ? true : false,
+      lockedItems: mySettings.equipment.lockedItems,
+      lockedEnchants: mySettings.equipment.lockedEnchants,
+      slot: mySettings.equipment.itemSearchSlot,
       sortOrder: SortOrder.Descending
     }
   }
@@ -214,7 +213,7 @@ export default class Equipment {
     if (trinketReductionPerCast) {
       // let cooldowns = Math.floor(encounterLength / trinketCooldown)
       // let buffedCastsThisCooldown = Math.floor(cooldowns / buffedCasts)
-      const triangular = utils.triangularNumber(buffedCasts - 1)
+      const triangular = common.utils.triangularNumber(buffedCasts - 1)
       /*
       console.log(
         `cooldowns=${cooldowns},buffedCasts=${buffedCasts},buffedCastsThisCooldown=${buffedCastsThisCooldown},triangular=${triangular}`

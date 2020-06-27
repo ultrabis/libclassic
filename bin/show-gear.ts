@@ -2,8 +2,8 @@ import libclassic from '..'
 import blessed from 'blessed'
 import contrib from 'blessed-contrib'
 
-const o = libclassic.common.defaultOptions
-const e = libclassic.optimal.equipment(o)
+const s = libclassic.common.defaultSettings
+const e = libclassic.optimal.equipment(s)
 
 const screen = blessed.screen()
 const table = contrib.table({

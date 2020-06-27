@@ -1,16 +1,12 @@
-/**
- *   - Theorycrafting unknowns
- *      - What are the resistance values of bosses? This could be determined
- *        by scraping data from WCL and running it through resistances formulas
- *      - Do spell casters have a spell crit suppression like melee, if so, how does it work?
- */
-import utils from './utils'
+/* common */
 import common from './common'
-import query from './query'
-import locked from './locked'
-import optimal from './optimal'
-import url from './url'
-import gear from './gear'
+
+/* mt */
+import query from './mt/query'
+import locked from './mt/locked'
+import optimal from './mt/optimal'
+import url from './mt/url'
+import gear from './mt/gear'
 
 /* class */
 import Character from './class/Character'
@@ -21,46 +17,8 @@ import Spell from './class/Spell'
 import Cast from './class/Cast'
 import Encounter from './class/Encounter'
 
-/* enum */
-import ArmorSubclass from './enum/ArmorSubclass'
-import Buffs from './enum/Buffs'
-import Faction from './enum/Faction'
-import Gender from './enum/Gender'
-import ItemClass from './enum/ItemClass'
-import ItemQuality from './enum/ItemQuality'
-import ItemSlot from './enum/ItemSlot'
-import MagicSchool from './enum/MagicSchool'
-import PlayableClass from './enum/PlayableClass'
-import PlayableRace from './enum/PlayableRace'
-import PowerType from './enum/PowerType'
-import PvPRank from './enum/PvPRank'
-import SortOrder from './enum/SortOrder'
-import SpellCritFromIntellectDivisor from './enum/SpellCritFromIntellectDivisor'
-import TargetType from './enum/TargetType'
-import WeaponSubclass from './enum/WeaponSubclass'
-import ItemSuffixType from './enum/ItemSuffixType'
-
-/* interface */
-/*
-import CastDmgObject from './interface/CastDmgObject'
-import CastDmgValues from './interface/CastDmgValues'
-import ClassicOptions from './interface/ClassicOptions'
-import EnchantJSON from './interface/EnchantJSON'
-import EquipmentArray from './interface/EquipmentArray'
-import ItemJSON from './interface/ItemJSON'
-import ItemOnUseJSON from './interface/ItemOnUseJSON'
-import ItemQuery from './interface/ItemQuery'
-import ItemSearch from './interface/ItemSearch'
-import ItemSetJSON from './interface/ItemSetJSON'
-import LockedEnchants from './interface/LockedEnchants'
-import LockedItems from './interface/LockedItems'
-import ParaminOptions from './interface/ParaminOptions'
-import SpellCoefficient from './interface/SpellCoefficient'
-import SpellJSON from './interface/SpellJSON'
-import SpellQuery from './interface/SpellQuery'
-import WeaponComboJSON from './interface/WeaponComboJSON'
-import Weights from './interface/Weights'
-*/
+import Settings from './interface/Settings'
+import EncounterResults from './interface/EncounterResults'
 
 /* TODO: Remove this after adding some tests */
 const sum = (a: number, b: number): number => {
@@ -70,16 +28,37 @@ const sum = (a: number, b: number): number => {
   return a + b
 }
 
+/* entry functions */
+const getDefaultSettings = (): Settings => {
+  return common.settings.defaults()
+}
+
+const run = (settings?: Settings): EncounterResults => {
+  const mySettings = settings ? settings : getDefaultSettings()
+  const encounter = new Encounter(mySettings)
+
+  const encounterResults: EncounterResults = {
+    dps: encounter.spellCast.dps.effective.avg,
+    spellHitWeight: encounter.spellCast.spellHitWeight,
+    spellCritWeight: encounter.spellCast.spellCritWeight,
+    intWeight: encounter.spellCast.intWeight,
+    gearTable: encounter.spellCast.character.equipment.itemsAsBlessedTable
+  }
+  return encounterResults
+}
+
 export default {
   sum,
   /* modules */
   common,
-  utils,
   query,
   locked,
   optimal,
   url,
   gear,
+  /* entry functions */
+  run,
+  getDefaultSettings,
   // Stupid csim. XML format so goofy it lags rollup trying to generate it
   // ClassicSim
   /* classes */
@@ -89,23 +68,5 @@ export default {
   Target,
   Spell,
   Cast,
-  Encounter,
-  /* enums */
-  ArmorSubclass,
-  Buffs,
-  Faction,
-  Gender,
-  ItemClass,
-  ItemQuality,
-  ItemSlot,
-  MagicSchool,
-  PlayableClass,
-  PlayableRace,
-  PowerType,
-  PvPRank,
-  SortOrder,
-  SpellCritFromIntellectDivisor,
-  TargetType,
-  WeaponSubclass,
-  ItemSuffixType
+  Encounter
 }

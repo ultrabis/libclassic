@@ -2,7 +2,7 @@
 
 // import stats from 'statsjs'
 // import mathjs from 'mathjs/dist/math'
-// import clonedeep from 'lodash.clonedeep'
+import clonedeep from 'lodash.clonedeep'
 
 const paramFromURL = (paramName: string, URL?: string): string | null => {
   const urlSearchParams = new URLSearchParams(URL ? URL : window.location.search.substring(1))
@@ -36,8 +36,13 @@ const isWebWorker: boolean =
 /* eslint-enable no-restricted-globals */
 const isNode = typeof process !== 'undefined' && process.versions != null && process.versions.node != null
 
-/* strips chars for easier comparisons */
+// FIXME:
 const sanitizeStringForEnum = (s: string): string => {
+  return fuzzyTextFromString(s)
+}
+
+/* strips chars for easier comparisons */
+const fuzzyTextFromString = (s: string): string => {
   return s
     .replace(/ /g, '')
     .replace(/-/g, '')
@@ -106,8 +111,8 @@ const getEnumValuesFromFuzzyText = (myEnum: any, fuzzyText: string): any[] => {
 
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 const cloneObject = (o: any): any => {
-  return JSON.parse(JSON.stringify(o, null, 1))
-  // return clonedeep(o)
+  // return JSON.parse(JSON.stringify(o, null, 1))
+  return clonedeep(o)
 }
 
 const isLetter = (char: string): boolean => {
@@ -134,6 +139,7 @@ const cumulativeChance = (trials: number, chance: number, x: number): number => 
   return 1 - stats.binomcdf(trials, chance, x)
 }
 
+// thanks zia
 const consecutiveChance = (trials: number, chance: number, x: number): number => {
   const sStart = mathjs.zeros([x + 1, x + 1])
   sStart[0][0] = 1
@@ -167,6 +173,7 @@ export default {
   cloneObject,
   isLetter,
   capitalize,
+  fuzzyTextFromString,
   encodeURI,
   decodeURI,
   paramFromURL
