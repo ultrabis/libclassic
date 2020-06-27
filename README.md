@@ -11,12 +11,15 @@ a library for wow classic web apps.
 ### faq
 
 q. why is the bundle so large?
+
 a. it includes everything (databases, icons, etc). there are plans to create new release bundle types.
 
 q. when will it support my class / spec?
+
 a. mage is the next goal.
 
 q. why does the code suck?
+
 a. the plan is to rewrite most of `./src/class`  as plain old functions. 
 
 
