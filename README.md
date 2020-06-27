@@ -6,10 +6,6 @@ library for wow classic web apps
 - codepen: https://codepen.io/beef_broccoli/pen/eYJRovW
 - goal: port more spreadsheets, generify
 
-
-
-### status
-
 ![build](https://github.com/ultrabis/libclassic/workflows/build/badge.svg) ![publish](https://github.com/ultrabis/libclassic/workflows/publish/badge.svg)
 
 ### faq
