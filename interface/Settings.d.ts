@@ -7,7 +7,9 @@ import PlayableClass from '../enum/PlayableClass';
 import PvPRank from '../enum/PvPRank';
 import MagicSchool from '../enum/MagicSchool';
 import TargetType from '../enum/TargetType';
-export default interface ClassicOptions {
+import Game from '../enum/Game';
+export default interface Setings {
+    game: Game;
     phase: number;
     spellName: string;
     encounterLength: number;
@@ -23,6 +25,7 @@ export default interface ClassicOptions {
         enchantSearchSlot: ItemSlot;
         lockedItems: LockedItems;
         lockedEnchants: LockedEnchants;
+        gear: number[][];
     };
     character: {
         level: number;

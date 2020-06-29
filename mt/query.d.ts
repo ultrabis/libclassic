@@ -1,13 +1,13 @@
 /**
  * interface for JSON files in db/
  */
-import SpellJSON from './interface/SpellJSON';
-import ItemJSON from './interface/ItemJSON';
-import ItemSetJSON from './interface/ItemSetJSON';
-import EnchantJSON from './interface/EnchantJSON';
-import ItemSuffixJSON from './interface/ItemSuffixJSON';
-import ItemQuery from './interface/ItemQuery';
-import SpellQuery from './interface/SpellQuery';
+import SpellJSON from '../interface/SpellJSON';
+import ItemJSON from '../interface/ItemJSON';
+import ItemSetJSON from '../interface/ItemSetJSON';
+import EnchantJSON from '../interface/EnchantJSON';
+import ItemSuffixJSON from '../interface/ItemSuffixJSON';
+import ItemQuery from '../interface/ItemQuery';
+import SpellQuery from '../interface/SpellQuery';
 declare const _default: {
     item: (opts: ItemQuery) => ItemJSON | undefined;
     items: (opts: ItemQuery) => ItemJSON[];

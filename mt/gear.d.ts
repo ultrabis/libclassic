@@ -1,6 +1,6 @@
-import ItemSuffixType from './enum/ItemSuffixType';
-import ItemBonus from './interface/ItemBonus';
-import ItemSuffixJSON from './interface/ItemSuffixJSON';
+import ItemSuffixType from '../enum/ItemSuffixType';
+import ItemBonus from '../interface/ItemBonus';
+import ItemSuffixJSON from '../interface/ItemSuffixJSON';
 declare const _default: {
     itemBonusFromText: (bonus: string) => ItemBonus;
     itemSuffixTypeFromItemName: (itemName: string) => ItemSuffixType;

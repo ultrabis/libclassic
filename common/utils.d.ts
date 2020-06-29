@@ -12,6 +12,7 @@ declare const _default: {
     cloneObject: (o: any) => any;
     isLetter: (char: string) => boolean;
     capitalize: (s: string) => string;
+    fuzzyTextFromString: (s: string) => string;
     encodeURI: (str: string) => string;
     decodeURI: (str: string) => string;
     paramFromURL: (paramName: string, URL?: string | undefined) => string | null;

@@ -2,7 +2,7 @@ import Character from './Character';
 import Spell from './Spell';
 import Target from './Target';
 import Equipment from './Equipment';
-import ClassicOptions from '../interface/ClassicOptions';
+import Settings from '../interface/Settings';
 import CastDmgObject from '../interface/CastDmgObject';
 interface EquipmentOverride {
     equipment?: Equipment;
@@ -15,11 +15,11 @@ interface EquipmentOverride {
  * A Spell cast by Character at Target.
  */
 export default class Cast {
-    options: ClassicOptions;
+    settings: Settings;
     spell: Spell;
     target: Target;
     character: Character;
-    constructor(options: ClassicOptions, equipmentOverride?: EquipmentOverride);
+    constructor(settings: Settings, equipmentOverride?: EquipmentOverride);
     get normalDmg(): CastDmgObject;
     get critDmg(): CastDmgObject;
     get periodicDmg(): CastDmgObject;

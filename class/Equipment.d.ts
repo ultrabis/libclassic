@@ -1,12 +1,12 @@
 import Item from './Item';
 import ItemSlot from '../enum/ItemSlot';
-import ClassicOptions from '../interface/ClassicOptions';
+import Settings from '../interface/Settings';
 import ItemSearch from '../interface/ItemSearch';
 import ItemJSON from '../interface/ItemJSON';
 import ItemSetJSON from '../interface/ItemSetJSON';
 import EnchantJSON from '../interface/EnchantJSON';
 export default class Equipment {
-    options: ClassicOptions;
+    settings: Settings;
     itemSearch: ItemSearch;
     head: Item;
     hands: Item;
@@ -25,8 +25,8 @@ export default class Equipment {
     trinket: Item;
     trinket2: Item;
     idol: Item;
-    constructor(options: ClassicOptions, spellHitWeight?: number, spellCritWeight?: number, spellCastTime?: number, spellCrit?: number);
-    static itemSearchFromOptions(options: ClassicOptions, spellHitWeight?: number, spellCritWeight?: number, spellCastTime?: number, spellCrit?: number): ItemSearch;
+    constructor(settings: Settings, spellHitWeight?: number, spellCritWeight?: number, spellCastTime?: number, spellCrit?: number);
+    static itemSearchFromSettings(settings: Settings, spellHitWeight?: number, spellCritWeight?: number, spellCastTime?: number, spellCrit?: number): ItemSearch;
     static printItemNames(equipment: Equipment): number;
     /*************************** TODO **********************************/
     /*************************** UGLY **********************************/

@@ -1,8 +1,8 @@
-import LockedItems from './interface/LockedItems';
-import LockedEnchants from './interface/LockedEnchants';
-import ItemJSON from './interface/ItemJSON';
-import EnchantJSON from './interface/EnchantJSON';
-import ItemSlot from './enum/ItemSlot';
+import LockedItems from '../interface/LockedItems';
+import LockedEnchants from '../interface/LockedEnchants';
+import ItemJSON from '../interface/ItemJSON';
+import EnchantJSON from '../interface/EnchantJSON';
+import ItemSlot from '../enum/ItemSlot';
 declare const _default: {
     getItemId: (lockedItems: LockedItems | undefined, slot: ItemSlot) => string;
     getEnchantId: (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot) => string;

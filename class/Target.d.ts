@@ -1,10 +1,10 @@
-import ClassicOptions from '../interface/ClassicOptions';
+import Settings from '../interface/Settings';
 import Buffs from '../enum/Buffs';
 import MagicSchool from '../enum/MagicSchool';
 export default class Target {
-    options: ClassicOptions;
+    settings: Settings;
     debuffFlags: Buffs;
-    constructor(options: ClassicOptions);
+    constructor(settings: Settings);
     get level(): number;
     get hitChance(): number;
     get spellResistance(): number;

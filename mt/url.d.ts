@@ -1,8 +1,8 @@
-import Equipment from './class/Equipment';
-import ClassicOptions from './interface/ClassicOptions';
-import LockedItems from './interface/LockedItems';
-import LockedEnchants from './interface/LockedEnchants';
-import ParaminOptions from './interface/ParaminOptions';
+import Equipment from '../class/Equipment';
+import Settings from '../interface/Settings';
+import LockedItems from '../interface/LockedItems';
+import LockedEnchants from '../interface/LockedEnchants';
+import ParaminOptions from '../interface/ParaminOptions';
 declare const _default: {
     stringToParamin: (str: string, opts?: ParaminOptions | undefined) => string;
     paraminToString: (paramin: string, opts?: ParaminOptions | undefined) => string;
@@ -10,6 +10,6 @@ declare const _default: {
     gearParamFromLocked: (lockedItems: LockedItems, lockedEnchants: LockedEnchants | null, opts?: ParaminOptions | undefined) => string;
     optionFromURL: (name: string) => any;
     publicURL: (equipment: Equipment) => string;
-    defaultClassicOptions: () => ClassicOptions;
+    defaultSettings: () => Settings;
 };
 export default _default;

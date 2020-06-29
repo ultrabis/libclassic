@@ -1,15 +1,15 @@
 import Equipment from './Equipment';
 import Faction from '../enum/Faction';
 import Buffs from '../enum/Buffs';
-import ClassicOptions from '../interface/ClassicOptions';
+import Settings from '../interface/Settings';
 /**
  * Stores character attributes, Talents, Gear, and Buffs
  */
 export default class Character {
-    options: ClassicOptions;
+    settings: Settings;
     equipment: Equipment;
     buffFlags: Buffs;
-    constructor(options: ClassicOptions, equipment: Equipment);
+    constructor(settings: Settings, equipment: Equipment);
     get level(): number;
     get faction(): Faction;
     get isHorde(): boolean;
@@ -25,10 +25,6 @@ export default class Character {
     get intellect(): number;
     get spirit(): number;
     get mp5(): number;
-    get manaPerTickNotCasting(): number;
-    get manaPerTickCasting(): number;
-    get manaPerTickInnervate(): number;
-    get manaPerInnervate(): number;
     get spellDamage(): number;
     get arcaneDamage(): number;
     get natureDamage(): number;

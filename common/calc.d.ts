@@ -1,0 +1,24 @@
+import CalcOpts from '../interface/CalcOpts';
+import Settings from '../interface/Settings';
+declare const _default: {
+    globalCooldown: number;
+    playerLevelCap: number;
+    baseSpellCrit: number;
+    baseSpellCritMultiplier: number;
+    spellHitCap: number;
+    spellCritCap: number;
+    calcOptsFromSettings: (s: Settings) => CalcOpts;
+    spellChanceToHit: (targetLevel: number, spellHit: number, opts?: CalcOpts | undefined) => number;
+    spellChanceToMiss: (targetLevel: number, spellHit: number, opts?: CalcOpts | undefined) => number;
+    spellChanceToCrit: (targetLevel: number, spellHit: number, spellCrit: number, opts?: CalcOpts | undefined) => number;
+    spellChanceToNormal: (targetLevel: number, spellHit: number, spellCrit: number, opts?: CalcOpts | undefined) => number;
+    spellPartialResistAvg: (targetLevel: number, targetBaseSpellResistance: number, characterLevel: number, characterSpellPenetration: number, binarySpell: boolean, opts?: CalcOpts | undefined) => number;
+    spellCritBonusMultiplier: (opts?: CalcOpts | undefined) => number;
+    spellCritMultiplier: (opts?: CalcOpts | undefined) => number;
+    spellBaseDmgMultiplier: (spellName: string, opts?: CalcOpts | undefined) => number;
+    spellBaseDmg: (spellName: string, dmg: number, opts?: CalcOpts | undefined) => number;
+    targetSpellResistanceFromLevel: (targetLevel: number, characterLevel: number, binarySpell: boolean, opts?: CalcOpts | undefined) => number;
+    targetSpellResistance: (targetLevel: number, targetBaseSpellResistance: number, characterLevel: number, characterSpellPenetration: number, binarySpell: boolean, opts?: CalcOpts | undefined) => number;
+    manaPerTick: (charLvl: number, charSpirit: number, charMp5: number, opts?: CalcOpts | undefined) => any;
+};
+export default _default;
