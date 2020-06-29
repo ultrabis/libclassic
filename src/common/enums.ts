@@ -1,5 +1,7 @@
-/* in game lists (e.g. list of raids, bosses, races, classes, etc ) are represented as enums.
- * helper functions for searching, iterating, etc these lists are included here */
+/*
+- in game lists (e.g. list of raids, bosses, races, classes, etc ) are represented as enums.
+- also included are helper functions to return enum value(s) from fuzzy text e.g. case / white space insensitive
+*/
 import utils from './utils'
 
 import Raid from '../enum/Raid'
@@ -50,6 +52,7 @@ const buffListToFlags = (buffList: string[]): Buffs => {
   return buffs
 }
 
+// console.log(libclassic.enums.gearSlotFromText('waist'))
 const gearSlotFromText = (text: string): GearSlot => {
   const _ = (text: string): typeof GearSlot[keyof typeof GearSlot] => {
     return Number(utils.getEnumValueFromFuzzyText(GearSlot, text))
@@ -57,6 +60,7 @@ const gearSlotFromText = (text: string): GearSlot => {
   return _(text)
 }
 
+// console.log(libclassic.enums.raidFromText('zulgurub'))
 const raidFromText = (text: string): Raid => {
   const _ = (text: string): typeof Raid[keyof typeof Raid] => {
     return Number(utils.getEnumValueFromFuzzyText(Raid, text))
@@ -64,6 +68,7 @@ const raidFromText = (text: string): Raid => {
   return _(text)
 }
 
+// console.log(libclassic.enums.raidsFromText('zulgurub'))
 const raidsFromText = (text: string): Raid[] => {
   const _ = (text: string): typeof Raid[keyof typeof Raid][] => {
     return utils.getEnumValuesFromFuzzyText(Raid, text)
@@ -71,6 +76,7 @@ const raidsFromText = (text: string): Raid[] => {
   return _(text)
 }
 
+// console.log(libclassic.enums.worldBossFromText('azuregos'))
 const worldBossFromText = (text: string): WorldBoss => {
   const _ = (text: string): typeof WorldBoss[keyof typeof WorldBoss] => {
     return Number(utils.getEnumValueFromFuzzyText(WorldBoss, text))
@@ -78,6 +84,7 @@ const worldBossFromText = (text: string): WorldBoss => {
   return _(text)
 }
 
+// console.log(libclassic.enums.worldBossesFromText('azuregos'))
 const worldBossesFromText = (text: string): WorldBoss[] => {
   const _ = (text: string): typeof WorldBoss[keyof typeof WorldBoss][] => {
     return utils.getEnumValuesFromFuzzyText(WorldBoss, text)
@@ -85,6 +92,7 @@ const worldBossesFromText = (text: string): WorldBoss[] => {
   return _(text)
 }
 
+// console.log(libclassic.enums.pvpRankFromText('scout'))
 const pvpRankFromText = (text: string): PvPRank => {
   const _ = (text: string): typeof PvPRank[keyof typeof PvPRank] => {
     return Number(utils.getEnumValueFromFuzzyText(PvPRank, text))
@@ -92,6 +100,7 @@ const pvpRankFromText = (text: string): PvPRank => {
   return _(text)
 }
 
+// console.log(libclassic.enums.playableRaceFromText('nightelf'))
 const playableRaceFromText = (text: string): PlayableRace => {
   const _ = (text: string): typeof PlayableRace[keyof typeof PlayableRace] => {
     return Number(utils.getEnumValueFromFuzzyText(PlayableRace, text))
@@ -99,6 +108,7 @@ const playableRaceFromText = (text: string): PlayableRace => {
   return _(text)
 }
 
+// console.log(libclassic.enums.playableClassFromText('rogue'))
 const playableClassFromText = (text: string): PlayableClass => {
   const _ = (text: string): typeof PlayableClass[keyof typeof PlayableClass] => {
     return Number(utils.getEnumValueFromFuzzyText(PlayableClass, text))
@@ -106,14 +116,14 @@ const playableClassFromText = (text: string): PlayableClass => {
   return _(text)
 }
 
-/* Returns array of classes from strings like: Classes: Priest, Shaman, Mage, Warlock, Druid */
+// console.log(libclassic.enums.playableClassesFromText('Classes: Priest, Shaman, Mage, Warlock, Druid'))
 const playableClassesFromText = (text: string): PlayableClass[] => {
   const _ = (text: string): typeof PlayableClass[keyof typeof PlayableClass][] => {
     return utils.getEnumValuesFromFuzzyText(PlayableClass, text)
   }
   return _(text)
 }
-
+// console.log(libclassic.enums.itemBonusTypeFromText('arcane spell damage'))
 const itemBonusTypeFromText = (text: string): ItemBonusType => {
   const _ = (text: string): typeof ItemBonusType[keyof typeof ItemBonusType] => {
     return Number(utils.getEnumValueFromFuzzyText(ItemBonusType, text))
@@ -121,6 +131,7 @@ const itemBonusTypeFromText = (text: string): ItemBonusType => {
   return _(text)
 }
 
+// console.log(libclassic.enums.itemSuffixTypeFromText('Classes: Priest, Shaman, Mage, Warlock, Druid'))
 const itemSuffixTypeFromText = (text: string): ItemSuffixType => {
   const _ = (text: string): typeof ItemSuffixType[keyof typeof ItemSuffixType] => {
     return Number(utils.getEnumValueFromFuzzyText(ItemSuffixType, text))
@@ -128,6 +139,7 @@ const itemSuffixTypeFromText = (text: string): ItemSuffixType => {
   return _(text)
 }
 
+// console.log(libclassic.enums.itemQualitypeFromText('Classes: Priest, Shaman, Mage, Warlock, Druid'))
 const itemQualityFromText = (text: string): ItemQuality => {
   const _ = (text: string): typeof ItemQuality[keyof typeof ItemQuality] => {
     return Number(utils.getEnumValueFromFuzzyText(ItemQuality, text))

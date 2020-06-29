@@ -8,8 +8,10 @@ import PlayableClass from '../enum/PlayableClass'
 import PlayableRace from '../enum/PlayableRace'
 import PlayableSpec from '../enum/PlayableSpec'
 import TargetType from '../enum/TargetType'
+import Game from '../enum/Game'
 
 const MoonkinDefaults: Settings = {
+  game: Game.Vanilla,
   debug: false,
   experimental: false,
   phase: 4,

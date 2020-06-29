@@ -1,7 +1,11 @@
 /* common */
 import common from './common'
+const calc = common.calc
+const enums = common.enums
+const settings = common.settings
+const utils = common.utils
 
-/* mt. FIXME: */
+/* mt. : */
 import mt from './mt'
 const gear = mt.gear
 const locked = mt.locked
@@ -43,7 +47,8 @@ const run = (settings?: Settings): EncounterResults => {
     spellHitWeight: encounter.spellCast.spellHitWeight,
     spellCritWeight: encounter.spellCast.spellCritWeight,
     intWeight: encounter.spellCast.intWeight,
-    gearTable: encounter.spellCast.character.equipment.itemsAsBlessedTable
+    gearTable: encounter.spellCast.character.equipment.itemsAsBlessedTable,
+    spell: new Spell(mySettings.spellName)
   }
   return encounterResults
 }
@@ -52,6 +57,10 @@ export default {
   sum,
   /* modules */
   common,
+  calc,
+  enums,
+  settings,
+  utils,
   mt,
   gear,
   locked,

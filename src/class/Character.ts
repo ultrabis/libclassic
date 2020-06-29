@@ -91,30 +91,6 @@ export default class Character {
     return this.equipment.mp5
   }
 
-  get manaPerTickNotCasting(): number {
-    const fromBase = (15 * this.level) / 60
-    const fromSpirit = this.spirit / 5
-    const fromMp5 = this.mp5 ? (this.mp5 / 5) * 2 : 0
-
-    return fromBase + fromSpirit + fromMp5
-  }
-
-  get manaPerTickCasting(): number {
-    const fromBase = ((15 * this.level) / 60) * this.reflectionBonus
-    const fromSpirit = (this.spirit / 5) * this.reflectionBonus
-    const fromMp5 = this.mp5 ? (this.mp5 / 5) * 2 : 0
-
-    return fromBase + fromSpirit + fromMp5
-  }
-
-  get manaPerTickInnervate(): number {
-    return this.manaPerTickNotCasting * 4
-  }
-
-  get manaPerInnervate(): number {
-    return this.manaPerTickInnervate * 10
-  }
-
   get spellDamage(): number {
     return this.equipment.spellDamage
   }

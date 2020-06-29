@@ -8,8 +8,10 @@ import PlayableClass from '../enum/PlayableClass'
 import PvPRank from '../enum/PvPRank'
 import MagicSchool from '../enum/MagicSchool'
 import TargetType from '../enum/TargetType'
+import Game from '../enum/Game'
 
 export default interface Setings {
+  game: Game
   phase: number
   spellName: string
   encounterLength: number
