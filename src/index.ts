@@ -48,7 +48,12 @@ const run = (settings?: Settings): EncounterResults => {
     spellCritWeight: encounter.spellCast.spellCritWeight,
     intWeight: encounter.spellCast.intWeight,
     gearTable: encounter.spellCast.character.equipment.itemsAsBlessedTable,
-    spell: new Spell(mySettings.spellName)
+    spell: new Spell(mySettings.spellName),
+    manaReturn: calc.manaPerTick(
+      encounter.spellCast.character.level,
+      encounter.spellCast.character.spirit,
+      encounter.spellCast.character.mp5
+    )
   }
   return encounterResults
 }
