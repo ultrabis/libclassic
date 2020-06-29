@@ -1,12 +1,13 @@
 /* common */
 import common from './common'
 
-/* mt */
-import query from './mt/query'
-import locked from './mt/locked'
-import optimal from './mt/optimal'
-import url from './mt/url'
-import gear from './mt/gear'
+/* mt. FIXME: */
+import mt from './mt'
+const gear = mt.gear
+const locked = mt.locked
+const optimal = mt.optimal
+const query = mt.query
+const url = mt.url
 
 /* class */
 import Character from './class/Character'
@@ -51,11 +52,12 @@ export default {
   sum,
   /* modules */
   common,
-  query,
+  mt,
+  gear,
   locked,
   optimal,
+  query,
   url,
-  gear,
   /* entry functions */
   run,
   getDefaultSettings,

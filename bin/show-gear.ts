@@ -1,9 +1,9 @@
-import libclassic from '..'
+import libclassic from '../src'
 import blessed from 'blessed'
 import contrib from 'blessed-contrib'
 
-const s = libclassic.common.defaultSettings
-const e = libclassic.optimal.equipment(s)
+const s = libclassic.getDefaultSettings()
+const r = libclassic.run(s)
 
 const screen = blessed.screen()
 const table = contrib.table({
@@ -22,7 +22,7 @@ const table = contrib.table({
 
 table.focus()
 screen.append(table)
-table.setData(e.itemsAsBlessedTable)
+table.setData(r.gearTable)
 screen.key(['escape', 'q', 'C-c'], function () {
   return process.exit(0)
 })

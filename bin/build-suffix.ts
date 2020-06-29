@@ -13,7 +13,7 @@ const start = async function () {
 
   for (const csvRecord of csvRecordArray) {
     itemSuffixJSONArray.push(
-      libclassic.gear.itemSuffixJSONFromText(
+      libclassic.gear.itemSuffixFromText(
         csvRecord.id,
         csvRecord.type,
         csvRecord.bonus,

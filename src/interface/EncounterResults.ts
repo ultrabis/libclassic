@@ -5,6 +5,6 @@ export default interface EncounterResults {
   intWeight: number
   gearTable: {
     headers: string[]
-    data: string[]
+    data: string[][]
   }
 }

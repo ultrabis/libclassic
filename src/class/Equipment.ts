@@ -1,6 +1,5 @@
 import common from '../common'
-import query from '../mt/query'
-import locked from '../mt/locked'
+import mt from '../mt'
 
 import Item from './Item'
 import Spell from './Spell'
@@ -246,7 +245,7 @@ export default class Equipment {
       return 0
     }
 
-    const lockedItem = locked.getItem(itemSearch.lockedItems, slot)
+    const lockedItem = mt.locked.getItem(itemSearch.lockedItems, slot)
     if (lockedItem) {
       const x: ItemJSON[] = []
       lockedItem.score = Item.scoreItem(
@@ -260,7 +259,7 @@ export default class Equipment {
       return x
     }
 
-    const result = query.items({
+    const result = mt.query.items({
       cloneResults: true,
       slot: slot,
       phase: itemSearch.phase,
@@ -289,7 +288,7 @@ export default class Equipment {
   }
 
   static getWeightedEnchantsBySlot(slot: ItemSlot, itemSearch: ItemSearch): EnchantJSON[] {
-    const lockedEnchant: EnchantJSON | undefined = locked.getEnchant(itemSearch.lockedEnchants, slot)
+    const lockedEnchant: EnchantJSON | undefined = mt.locked.getEnchant(itemSearch.lockedEnchants, slot)
     if (lockedEnchant) {
       const x: EnchantJSON[] = []
       lockedEnchant.score = Item.scoreEnchant(
@@ -302,7 +301,7 @@ export default class Equipment {
       return x
     }
 
-    const result = query.enchants({
+    const result = mt.query.enchants({
       cloneResults: true,
       slot: slot,
       phase: itemSearch.phase,
@@ -324,7 +323,7 @@ export default class Equipment {
 
   static getItemSet(name: string, itemSearch: ItemSearch): ItemSetJSON | undefined {
     /* Find the set and filter */
-    const itemSets = query.itemSets({
+    const itemSets = mt.query.itemSets({
       cloneResults: false,
       name: name,
       raids: itemSearch.raids,
@@ -341,7 +340,7 @@ export default class Equipment {
     const itemSetItems: ItemJSON[] = []
     let itemSetItemsScore = 0
     for (const itemName of itemSet.itemNames) {
-      const items = query.items({
+      const items = mt.query.items({
         phase: itemSearch.phase,
         raids: itemSearch.raids,
         cloneResults: false,
@@ -502,7 +501,7 @@ export default class Equipment {
     const offhandscore = offhand && offhand.score ? offhand.score : 0
     const twohandscore = twohand && twohand.score ? twohand.score : 0
 
-    const _offhand = locked.getItemId(itemSearch.lockedItems, ItemSlot.Offhand)
+    const _offhand = mt.locked.getItemId(itemSearch.lockedItems, ItemSlot.Offhand)
 
     if (!_offhand && twohandscore > onehandscore + offhandscore) {
       return {

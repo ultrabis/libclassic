@@ -1,5 +1,5 @@
-/* enums represent in-game lists */
-
+/* in game lists (e.g. list of raids, bosses, races, classes, etc ) are represented as enums.
+ * helper functions for searching, iterating, etc these lists are included here */
 import utils from './utils'
 
 import Raid from '../enum/Raid'

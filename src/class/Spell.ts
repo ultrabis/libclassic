@@ -1,5 +1,6 @@
 import common from '../common'
-import query from '../mt/query'
+import mt from '../mt'
+
 import SpellCoefficient from '../interface/SpellCoefficient'
 import SpellJSON from '../interface/SpellJSON'
 import MagicSchool from '../enum/MagicSchool'
@@ -13,7 +14,7 @@ export default class Spell {
 
   constructor(name: string) {
     this.name = name
-    this.spellJSON = query.spell({ name: name })
+    this.spellJSON = mt.query.spell({ name: name })
   }
 
   /**
