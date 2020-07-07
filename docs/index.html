@@ -71,25 +71,41 @@
 				<ul>
 					<li>used by: <a href="https://github.com/ultrabis/moonkin">https://github.com/ultrabis/moonkin</a></li>
 					<li>codepen: <a href="https://codepen.io/beef_broccoli/pen/eYJRovW">https://codepen.io/beef_broccoli/pen/eYJRovW</a></li>
-					<li>goal: port more spreadsheets</li>
 				</ul>
 				<p><img src="https://github.com/ultrabis/libclassic/workflows/build/badge.svg" alt="build"> <img src="https://github.com/ultrabis/libclassic/workflows/publish/badge.svg" alt="publish"></p>
+				<a href="#goal--purpose" id="goal--purpose" style="color: inherit; text-decoration: none;">
+					<h3>goal / purpose</h3>
+				</a>
+				<p>to port more spreadsheets into web apps while accumulating and generifying common functionality in this library.</p>
+				<p>this in part a redesign of moonkin-calc. some changes:</p>
+				<ul>
+					<li>better gear handling (locking, equipping, etc)</li>
+					<li>better handling of suffix items e.g. &quot;helm of arcane wrath&quot;</li>
+					<li>can run an encounter with simple JSON in/out interface (<code>run()</code>)<ul>
+							<li>includes cli for running on the command line</li>
+						</ul>
+					</li>
+				</ul>
+				<a href="#dates" id="dates" style="color: inherit; text-decoration: none;">
+					<h3>dates</h3>
+				</a>
+				<p>july 29th - finish refactoring and update moonkin app for next phase</p>
 				<a href="#faq" id="faq" style="color: inherit; text-decoration: none;">
 					<h3>faq</h3>
 				</a>
+				<p>q. is this pre-alpha software?</p>
+				<p>a. yes</p>
 				<p>q. why is the bundle so large?</p>
-				<p>a. it includes everything (databases, icons, etc). there are plans to create new release bundle types.</p>
-				<p>q. when will it support my class / spec?</p>
-				<p>a. mage is the next goal.</p>
-				<p>q. why does the code suck?</p>
-				<p>a. the plan is to rewrite most of <code>./src/class</code>  as plain old functions. </p>
+				<p>a. it&#39;s big and going to get bigger. all the items, spells, icons, etc are included. there might be additional bundle choices in the future.</p>
+				<p>q. is it a simulator?</p>
+				<p>a. kind of. it&#39;s not a monte carlo (sims that iterate thousands of times with random sampling and averaging the results). it uses calculations in order to display
+				results in &quot;real-time&quot;.  </p>
 				<a href="#credits" id="credits" style="color: inherit; text-decoration: none;">
 					<h3>credits</h3>
 				</a>
 				<ul>
 					<li>originally <a href="https://forum.classicwow.live/topic/726/by-the-great-winds-i-come-classic-balance-druid-theorycraft-spreadsheet-v1-5-1/16">keftenks balance druid spreadsheet</a></li>
-					<li>ported to <a href="https://gitlab.com/kmmiles/moonkin-calc">moonkin-calc</a> by beefbroccoli</li>
-					<li>with balors damage and weighting math (see contrib/whitepaper)</li>
+					<li>ported to <a href="https://gitlab.com/kmmiles/moonkin-calc">moonkin-calc</a> by beefbroccoli with balors damage and weighting math (see contrib/whitepaper)</li>
 				</ul>
 			</div>
 		</div>
