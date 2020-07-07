@@ -4,29 +4,44 @@ a library for wow classic web apps.
 
 - used by: https://github.com/ultrabis/moonkin
 - codepen: https://codepen.io/beef_broccoli/pen/eYJRovW
-- goal: port more spreadsheets
 
 ![build](https://github.com/ultrabis/libclassic/workflows/build/badge.svg) ![publish](https://github.com/ultrabis/libclassic/workflows/publish/badge.svg)
 
+### goal / purpose
+
+to port more spreadsheets into web apps while accumulating and generifying common functionality in this library.
+
+this in part a redesign of moonkin-calc. some changes:
+
+ - better gear handling (locking, equipping, etc)
+ - better handling of suffix items e.g. "helm of arcane wrath"
+ - can run an encounter with simple JSON in/out interface (`run()`)
+   - includes cli for running on the command line
+
+
+### dates
+
+july 29th - finish refactoring and update moonkin app for next phase
+
+
 ### faq
+
+q. is this pre-alpha software?
+
+a. yes
 
 q. why is the bundle so large?
 
-a. it includes everything (databases, icons, etc). there are plans to create new release bundle types.
+a. it's big and going to get bigger. all the items, spells, icons, etc are included. there might be additional bundle choices in the future.
 
-q. when will it support my class / spec?
+q. is it a simulator?
 
-a. mage is the next goal.
-
-q. why does the code suck?
-
-a. the plan is to rewrite most of `./src/class`  as plain old functions. 
+a. kind of. it's not a monte carlo (sims that iterate thousands of times with random sampling and averaging the results). it uses calculations in order to display
+results in "real-time".  
 
 
 ### credits
 
 - originally [keftenks balance druid spreadsheet](https://forum.classicwow.live/topic/726/by-the-great-winds-i-come-classic-balance-druid-theorycraft-spreadsheet-v1-5-1/16)
-- ported to [moonkin-calc](https://gitlab.com/kmmiles/moonkin-calc) by beefbroccoli
-- with balors damage and weighting math (see contrib/whitepaper)
-
+- ported to [moonkin-calc](https://gitlab.com/kmmiles/moonkin-calc) by beefbroccoli with balors damage and weighting math (see contrib/whitepaper)
 
