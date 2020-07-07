@@ -9,14 +9,13 @@ a library for wow classic web apps.
 
 ### goal / purpose
 
-to port more spreadsheets into web apps while accumulating and generifying common functionality in this library.
+to port more spreadsheets into web apps while building / generifying / documenting common functionality in this library. the end goal would be more class support, more games (tbc, wrath).
 
-this in part a redesign of moonkin-calc. some changes:
-
+changes from moonkin-calc:
+ 
+ - can run encounters with JSON input / output (includes cli)
  - better gear handling (locking, equipping, etc)
  - better handling of suffix items e.g. "helm of arcane wrath"
- - can run an encounter with simple JSON in/out interface (`run()`)
-   - includes cli for running on the command line
 
 
 ### dates
