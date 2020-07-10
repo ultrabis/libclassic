@@ -1,4 +1,4 @@
-import mt from '../mt'
+import mt from '../module'
 import Cast from './Cast'
 import Settings from '../interface/Settings'
 import ItemJSON from '../interface/ItemJSON'

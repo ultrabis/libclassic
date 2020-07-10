@@ -1,5 +1,5 @@
 import common from '../common'
-import mt from '../mt'
+import mt from '../module'
 
 import Item from './Item'
 import Spell from './Spell'

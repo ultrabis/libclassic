@@ -1,12 +1,11 @@
 import MagicSchool from '../enum/MagicSchool'
+import SpellType from '../enum/SpellType'
 /**
- * Object format of spells stored in db/spells.
- * Spells are stored as YAML, but converted to
- * JSON at build time.
+ * spells stored in JSON 'database'. the smaller this can get, the better.
  */
 export default interface SpellJSON {
   name: string // "{name} Rank {rank}"
-  type: string // direct, periodic or hybrid
+  type: SpellType // direct, periodic or hybrid
   reqLvl: number
   castTime: number // 0 = instant
   magicSchool: MagicSchool

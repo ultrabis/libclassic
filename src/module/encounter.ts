@@ -1,6 +1,6 @@
 import common from '../common'
-import gearItem from '../mt/gearItem'
-import gearEnchant from '../mt/gearEnchant'
+import gearItem from './gearItem'
+import gearEnchant from './gearEnchant'
 
 import EncounterFIXME from '../class/Encounter'
 

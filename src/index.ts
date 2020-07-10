@@ -6,7 +6,7 @@ const settings = common.settings
 const utils = common.utils
 
 /* mt. : */
-import mt from './mt'
+import mt from './module'
 const locked = mt.locked
 const optimal = mt.optimal
 const query = mt.query

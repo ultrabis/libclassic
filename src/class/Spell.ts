@@ -1,9 +1,10 @@
 import common from '../common'
-import mt from '../mt'
+import mt from '../module'
 
 import SpellCoefficient from '../interface/SpellCoefficient'
 import SpellJSON from '../interface/SpellJSON'
 import MagicSchool from '../enum/MagicSchool'
+import SpellType from '../enum/SpellType'
 
 /**
  * Spell details. These are base values that don't factor in talents, spellpower, buffs, debuffs, etc.
@@ -97,11 +98,11 @@ export default class Spell {
   /**
    * Return spell type (direct, periodic or hybrid)
    */
-  get type(): string {
+  get type(): SpellType {
     if (!this.spellJSON) {
-      return 'direct'
+      return SpellType.Direct
     }
-    return this.spellJSON.type.toUpperCase()
+    return this.spellJSON.type
   }
 
   /**
@@ -253,8 +254,7 @@ export default class Spell {
     const secondaryEffectPenalty = this.secondaryEffect ? 0.05 : 0
     const penaltyMultiplier = (1 - spellLevelPenalty) * (1 - secondaryEffectPenalty)
 
-    // (TODO: this is dumb and only applies to hurricane. i'm guessing the 3 here is the
-    // number of mobs, but don't know if that's accurate)
+    // (TODO: this is dumb and only applies to hurricane. maybe there's a generic way.
     if (this.baseName.toUpperCase() === 'HURRICANE') {
       return {
         direct: 0,
@@ -263,7 +263,7 @@ export default class Spell {
     }
 
     // direct damage spell
-    if (this.type.toUpperCase() === 'DIRECT') {
+    if (this.type === SpellType.Direct) {
       return {
         direct: baseDirectCoefficient * penaltyMultiplier,
         periodic: 0
@@ -272,7 +272,7 @@ export default class Spell {
 
     // periodic spell
     const basePeriodicCoefficient = this.duration ? this.duration / 15 : 0
-    if (this.type.toUpperCase() === 'PERIODIC') {
+    if (this.type === SpellType.Periodic) {
       return {
         direct: 0,
         periodic: basePeriodicCoefficient * penaltyMultiplier
