@@ -14,89 +14,30 @@ import Stats from '../interface/Stats'
 import Weights from '../interface/Weights'
 import Target from '../interface/Target'
 import Spell from '../interface/Spell'
-import CastDmgObject from '../interface/CastDmgObject'
 import CommonNumberResult from '../interface/CommonNumberResult'
 import CommonStringResult from '../interface/CommonStringResult'
-import ItemJSON from '../interface/ItemJSON'
-import EnchantJSON from '../interface/EnchantJSON'
-import GearItem from '../interface/GearItem'
-import GearEnchant from '../interface/GearEnchant'
 import SpellDamage from '../interface/SpellDamage'
 import SpellDamageSimple from '../interface/SpellDamageSimple'
 
 import PlayableSpec from '../enum/PlayableSpec'
+import spell from './spell'
 
 // FIXME: remove. just call the thing with settings.defaults.
 const defaultSettings = (spec?: PlayableSpec): Settings => {
-  return common.settings.defaults(spec ? { playerSpec: spec } : undefined)
-}
-
-const commonNumberDefault = (): CommonNumberResult => {
-  return {
-    base: 0,
-    actual: 0,
-    effective: 0
-  }
-}
-
-const commonStringDefault = (): CommonStringResult => {
-  return {
-    base: '',
-    actual: '',
-    effective: ''
-  }
-}
-
-// fixme
-const castDmgObjectDefault = (): CastDmgObject => {
-  return {
-    base: {
-      min: 0,
-      max: 0,
-      avg: 0,
-      tick: 0,
-      total: 0,
-      dps: 0,
-      text: '',
-      tickText: '',
-      totalText: ''
-    },
-    actual: {
-      min: 0,
-      max: 0,
-      avg: 0,
-      tick: 0,
-      total: 0,
-      dps: 0,
-      text: '',
-      tickText: '',
-      totalText: ''
-    },
-    effective: {
-      min: 0,
-      max: 0,
-      avg: 0,
-      tick: 0,
-      total: 0,
-      dps: 0,
-      text: '',
-      tickText: '',
-      totalText: ''
-    }
-  }
+  return common.settings.fromDefaults(spec ? { playerSpec: spec } : undefined)
 }
 
 const statsDefault = (): Stats => {
   return {
-    health: commonNumberDefault(),
-    mana: commonNumberDefault(),
-    stamina: commonNumberDefault(),
-    intellect: commonNumberDefault(),
-    spirit: commonNumberDefault(),
-    mp5: commonNumberDefault(),
-    spellHit: commonNumberDefault(),
-    spellCrit: commonNumberDefault(),
-    spellPenetration: commonNumberDefault(),
+    health: common.calc.commonNumberResultFromDefault(),
+    mana: common.calc.commonNumberResultFromDefault(),
+    stamina: common.calc.commonNumberResultFromDefault(),
+    intellect: common.calc.commonNumberResultFromDefault(),
+    spirit: common.calc.commonNumberResultFromDefault(),
+    mp5: common.calc.commonNumberResultFromDefault(),
+    spellHit: common.calc.commonNumberResultFromDefault(),
+    spellCrit: common.calc.commonNumberResultFromDefault(),
+    spellPenetration: common.calc.commonNumberResultFromDefault(),
     spellDamage: spellDamageDefault(),
     resistances: resistancesDefault()
   }
@@ -104,24 +45,24 @@ const statsDefault = (): Stats => {
 
 const resistancesDefault = (): Resistances => {
   return {
-    spellResistance: commonNumberDefault(),
-    arcaneResistance: commonNumberDefault(),
-    fireResistance: commonNumberDefault(),
-    frostResistance: commonNumberDefault(),
-    natureResistance: commonNumberDefault(),
-    shadowResistance: commonNumberDefault()
+    spellResistance: common.calc.commonNumberResultFromDefault(),
+    arcaneResistance: common.calc.commonNumberResultFromDefault(),
+    fireResistance: common.calc.commonNumberResultFromDefault(),
+    frostResistance: common.calc.commonNumberResultFromDefault(),
+    natureResistance: common.calc.commonNumberResultFromDefault(),
+    shadowResistance: common.calc.commonNumberResultFromDefault()
   }
 }
 
 const spellDamageDefault = (): SpellDamage => {
   return {
-    spellDamage: commonNumberDefault(),
-    arcaneDamage: commonNumberDefault(),
-    fireDamage: commonNumberDefault(),
-    frostDamage: commonNumberDefault(),
-    natureDamage: commonNumberDefault(),
-    shadowDamage: commonNumberDefault(),
-    holyDamage: commonNumberDefault()
+    spellDamage: common.calc.commonNumberResultFromDefault(),
+    arcaneDamage: common.calc.commonNumberResultFromDefault(),
+    fireDamage: common.calc.commonNumberResultFromDefault(),
+    frostDamage: common.calc.commonNumberResultFromDefault(),
+    natureDamage: common.calc.commonNumberResultFromDefault(),
+    shadowDamage: common.calc.commonNumberResultFromDefault(),
+    holyDamage: common.calc.commonNumberResultFromDefault()
   }
 }
 
@@ -160,41 +101,10 @@ const targetDefault = (): Target => {
 
 const dpsDefault = (): DPS => {
   return {
-    min: commonNumberDefault(),
-    max: commonNumberDefault(),
-    avg: commonNumberDefault(),
-    text: commonStringDefault()
-  }
-}
-
-const spellDefault = (): Spell => {
-  return {
-    name: '',
-    rank: 0,
-    type: '',
-    magicSchool: 0,
-    range: 0,
-    manaCost: 0,
-    reqLvl: 0,
-    coefficient: {
-      direct: 0,
-      periodic: 0
-    },
-    isBinary: false,
-    secondaryEffect: '',
-    canCrit: false,
-    canMiss: false,
-    canPartialResist: false,
-    castTime: {
-      base: 0,
-      actual: 0,
-      effective: 0
-    },
-    dmg: {
-      normal: castDmgObjectDefault(),
-      crit: castDmgObjectDefault(),
-      periodic: castDmgObjectDefault()
-    }
+    min: common.calc.commonNumberResultFromDefault(),
+    max: common.calc.commonNumberResultFromDefault(),
+    avg: common.calc.commonNumberResultFromDefault(),
+    text: common.calc.commonStringResultFromDefault()
   }
 }
 
@@ -211,61 +121,61 @@ const run = (settings: Settings): Encounter => {
   const _e: EncounterFIXME = new EncounterFIXME(settings)
   const _sc = _e.spellCast
   const _p = _sc.player
-  const target: Target = targetDefault()
-  const spell: Spell = spellDefault()
-  const weights: Weights = weightsDefault()
-  const gear: Gear = gearDefault()
-  const player: Player = playerDefault()
-  const dps: DPS = dpsDefault()
+  const targetObj: Target = targetDefault()
+  const spellObj: Spell = spell.fromDefault()
+  const weightsObj: Weights = weightsDefault()
+  const gearObj: Gear = gearDefault()
+  const playerObj: Player = playerDefault()
+  const dpsObj: DPS = dpsDefault()
 
   /* spell */
-  spell.name = _sc.spell.name
-  spell.rank = Number(_sc.spell.rank)
-  spell.type = _sc.spell.type
-  spell.magicSchool = _sc.spell.magicSchool
-  spell.range = _sc.spell.range
-  spell.manaCost = _sc.spell.manaCost
-  spell.reqLvl = _sc.spell.reqLvl
-  spell.coefficient = _sc.spell.coefficient
-  spell.isBinary = _sc.spell.isBinary
-  spell.secondaryEffect = _sc.spell.secondaryEffect ? _sc.spell.secondaryEffect : ''
-  spell.canCrit = _sc.spell.canCrit
-  spell.canMiss = _sc.spell.canMiss
-  spell.canPartialResist = _sc.spell.canPartialResist
-  spell.castTime = {
+  spellObj.name = _sc.spell.name
+  spellObj.rank = Number(_sc.spell.rank)
+  spellObj.type = _sc.spell.type
+  spellObj.magicSchool = _sc.spell.magicSchool
+  spellObj.range = _sc.spell.range
+  spellObj.manaCost = _sc.spell.manaCost
+  spellObj.reqLvl = _sc.spell.reqLvl
+  spellObj.coefficient = _sc.spell.coefficient
+  spellObj.isBinary = _sc.spell.isBinary
+  spellObj.secondaryEffect = _sc.spell.secondaryEffect ? _sc.spell.secondaryEffect : ''
+  spellObj.canCrit = _sc.spell.canCrit
+  spellObj.canMiss = _sc.spell.canMiss
+  spellObj.canPartialResist = _sc.spell.canPartialResist
+  spellObj.castTime = {
     base: _sc.spell.castTime,
     actual: _sc.castTime,
     effective: _sc.effectiveCastTime
   }
 
-  spell.dmg = {
+  spellObj.dmg = {
     normal: _sc.normalDmg,
     crit: _sc.critDmg,
     periodic: _sc.periodicDmg
   }
 
   /* DPS */
-  dps.min.base = _sc.dps.base.min
-  dps.min.actual = _sc.dps.actual.min
-  dps.min.effective = _sc.dps.effective.min
-  dps.max.base = _sc.dps.base.max
-  dps.max.actual = _sc.dps.actual.max
-  dps.max.effective = _sc.dps.effective.max
-  dps.avg.base = _sc.dps.base.avg
-  dps.avg.actual = _sc.dps.actual.avg
-  dps.avg.effective = _sc.dps.effective.avg
-  dps.text.base = `${_sc.dps.base.avg} (${_sc.dps.base.min} - ${_sc.dps.base.max})`
-  dps.text.actual = `${_sc.dps.actual.avg} (${_sc.dps.actual.min} - ${_sc.dps.actual.max})`
-  dps.text.effective = `${_sc.dps.effective.avg} (${_sc.dps.effective.min} - ${_sc.dps.effective.max})`
+  dpsObj.min.base = _sc.dps.base.min
+  dpsObj.min.actual = _sc.dps.actual.min
+  dpsObj.min.effective = _sc.dps.effective.min
+  dpsObj.max.base = _sc.dps.base.max
+  dpsObj.max.actual = _sc.dps.actual.max
+  dpsObj.max.effective = _sc.dps.effective.max
+  dpsObj.avg.base = _sc.dps.base.avg
+  dpsObj.avg.actual = _sc.dps.actual.avg
+  dpsObj.avg.effective = _sc.dps.effective.avg
+  dpsObj.text.base = `${_sc.dps.base.avg} (${_sc.dps.base.min} - ${_sc.dps.base.max})`
+  dpsObj.text.actual = `${_sc.dps.actual.avg} (${_sc.dps.actual.min} - ${_sc.dps.actual.max})`
+  dpsObj.text.effective = `${_sc.dps.effective.avg} (${_sc.dps.effective.min} - ${_sc.dps.effective.max})`
 
   /* Player */
-  player.stats.health.effective = _sc.player.health
-  player.stats.mana.effective = _sc.player.mana
-  player.stats.stamina.effective = _sc.player.stamina
-  player.stats.intellect.effective = _sc.player.intellect
-  player.stats.spirit.effective = _sc.player.spirit
-  player.stats.mp5.effective = _sc.player.mp5
-  player.stats.spellCrit = {
+  playerObj.stats.health.effective = _sc.player.health
+  playerObj.stats.mana.effective = _sc.player.mana
+  playerObj.stats.stamina.effective = _sc.player.stamina
+  playerObj.stats.intellect.effective = _sc.player.intellect
+  playerObj.stats.spirit.effective = _sc.player.spirit
+  playerObj.stats.mp5.effective = _sc.player.mp5
+  playerObj.stats.spellCrit = {
     base: common.calc.baseSpellCrit,
     actual: common.calc.baseSpellCrit + _sc.player.spellCritFromIntellect + _sc.player.spellCritFromEquipment,
     effective:
@@ -277,14 +187,14 @@ const run = (settings: Settings): Encounter => {
 
   // FIXME: add spellHitNoCap
   /* weights */
-  weights.spellHit = _sc.spellHitWeight
-  weights.spellCrit = _sc.spellCritWeight
-  weights.intellect = _sc.intWeight
+  weightsObj.spellHit = _sc.spellHitWeight
+  weightsObj.spellCrit = _sc.spellCritWeight
+  weightsObj.intellect = _sc.intWeight
 
   /* gear */
   // gear.equipped = [[0, 0]]
 
-  gear.equipped = [
+  gearObj.equipped = [
     [gearItem.fromItemJSON(_p.equipment.head.itemJSON), gearEnchant.fromEnchantJSON(_p.equipment.head.enchantJSON)],
     [gearItem.fromItemJSON(_p.equipment.hands.itemJSON), gearEnchant.fromEnchantJSON(_p.equipment.hands.enchantJSON)],
     [gearItem.fromItemJSON(_p.equipment.neck.itemJSON), gearEnchant.fromEnchantJSON(_p.equipment.neck.enchantJSON)],
@@ -324,16 +234,16 @@ const run = (settings: Settings): Encounter => {
     [gearItem.fromItemJSON(), gearEnchant.fromEnchantJSON()]
   ]
 
-  gear.items = gearItem.fromItemJSONArray(_e.items ? _e.items : [])
-  gear.enchants = gearEnchant.fromEnchantJSONArray(_e.enchants ? _e.enchants : [])
+  gearObj.items = gearItem.fromItemJSONArray(_e.items ? _e.items : [])
+  gearObj.enchants = gearEnchant.fromEnchantJSONArray(_e.enchants ? _e.enchants : [])
 
   const encounter: Encounter = {
-    dps: dps,
-    weights: weights,
-    gear: gear,
-    player: player,
-    spell: spell,
-    target: target
+    dps: dpsObj,
+    weights: weightsObj,
+    gear: gearObj,
+    player: playerObj,
+    spell: spellObj,
+    target: targetObj
   }
 
   return encounter

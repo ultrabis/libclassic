@@ -13,7 +13,7 @@ const query = mt.query
 const url = mt.url
 const encounter = mt.encounter
 const run = mt.encounter.run
-const defaultSettings = settings.defaults
+const defaultSettings = settings.fromDefaults
 
 /* class */
 import Character from './class/Character'

@@ -1,0 +1,130 @@
+{
+  "name": "",
+  "rank": 0,
+  "type": "",
+  "magicSchool": 0,
+  "range": 0,
+  "manaCost": 0,
+  "reqLvl": 0,
+  "coefficient": {
+    "direct": 0,
+    "periodic": 0
+  },
+  "isBinary": false,
+  "secondaryEffect": "",
+  "canCrit": false,
+  "canMiss": false,
+  "canPartialResist": false,
+  "castTime": {
+    "base": 0,
+    "actual": 0,
+    "effective": 0
+  },
+  "dmg": {
+    "normal": {
+      "base": {
+        "min": 0,
+        "max": 0,
+        "avg": 0,
+        "text": "",
+        "tick": 0,
+        "total": 0,
+        "dps": 0,
+        "tickText": "",
+        "totalText": ""
+      },
+      "actual": {
+        "min": 0,
+        "max": 0,
+        "avg": 0,
+        "text": "",
+        "tick": 0,
+        "total": 0,
+        "dps": 0,
+        "tickText": "",
+        "totalText": ""
+      },
+      "effective": {
+        "min": 0,
+        "max": 0,
+        "avg": 0,
+        "text": "",
+        "tick": 0,
+        "total": 0,
+        "dps": 0,
+        "tickText": "",
+        "totalText": ""
+      }
+    },
+    "crit": {
+      "base": {
+        "min": 0,
+        "max": 0,
+        "avg": 0,
+        "text": "",
+        "tick": 0,
+        "total": 0,
+        "dps": 0,
+        "tickText": "",
+        "totalText": ""
+      },
+      "actual": {
+        "min": 0,
+        "max": 0,
+        "avg": 0,
+        "text": "",
+        "tick": 0,
+        "total": 0,
+        "dps": 0,
+        "tickText": "",
+        "totalText": ""
+      },
+      "effective": {
+        "min": 0,
+        "max": 0,
+        "avg": 0,
+        "text": "",
+        "tick": 0,
+        "total": 0,
+        "dps": 0,
+        "tickText": "",
+        "totalText": ""
+      }
+    },
+    "periodic": {
+      "base": {
+        "min": 0,
+        "max": 0,
+        "avg": 0,
+        "text": "",
+        "tick": 0,
+        "total": 0,
+        "dps": 0,
+        "tickText": "0 every 0 sec",
+        "totalText": "0 over 0 sec"
+      },
+      "actual": {
+        "min": 0,
+        "max": 0,
+        "avg": 0,
+        "text": "",
+        "tick": 0,
+        "total": 0,
+        "dps": 0,
+        "tickText": "0 every 0 sec",
+        "totalText": "0 over 0 sec"
+      },
+      "effective": {
+        "min": 0,
+        "max": 0,
+        "avg": 0,
+        "text": "",
+        "tick": 0,
+        "total": 0,
+        "dps": 0,
+        "tickText": "0 every 0 sec",
+        "totalText": "0 over 0 sec"
+      }
+    }
+  }
+}

@@ -11,6 +11,9 @@ import CalcOpts from '../interface/CalcOpts'
 import Settings from '../interface/Settings'
 import ManaRegen from '../interface/ManaRegen'
 import CommonNumberResult from '../interface/CommonNumberResult'
+import CommonStringResult from '../interface/CommonStringResult'
+import CastDmgObject from '../interface/CastDmgObject'
+import CastDmgValues from '../interface/CastDmgValues'
 import SpellDamage from '../interface/SpellDamage'
 import Stats from '../interface/Stats'
 import Weights from '../interface/Weights'
@@ -460,6 +463,43 @@ const weightScore = (stats: Stats, Weights: Weights, playerClass: PlayableClass,
   
 }
   */
+const commonNumberResultFromDefault = (): CommonNumberResult => {
+  return {
+    base: 0,
+    actual: 0,
+    effective: 0
+  }
+}
+
+const commonStringResultFromDefault = (): CommonStringResult => {
+  return {
+    base: '',
+    actual: '',
+    effective: ''
+  }
+}
+
+const castDmgValuesFromDefault = (): CastDmgValues => {
+  return {
+    min: 0,
+    max: 0,
+    avg: 0,
+    text: '',
+    tick: 0,
+    total: 0,
+    dps: 0,
+    tickText: '',
+    totalText: ''
+  }
+}
+
+const castDmgObjectFromDefault = (): CastDmgObject => {
+  return {
+    base: castDmgValuesFromDefault(),
+    actual: castDmgValuesFromDefault(),
+    effective: castDmgValuesFromDefault()
+  }
+}
 
 export default {
   globalCooldown,
@@ -468,6 +508,10 @@ export default {
   baseSpellCritMultiplier,
   spellHitCap,
   spellCritCap,
+  commonNumberResultFromDefault,
+  commonStringResultFromDefault,
+  castDmgValuesFromDefault,
+  castDmgObjectFromDefault,
   calcOptsFromSettings,
   spellChanceToHit,
   spellChanceToMiss,
