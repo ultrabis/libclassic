@@ -1,8 +1,8 @@
-import ItemBonus from './ItemBonus'
-import ItemSuffixType from '../enum/ItemSuffixType'
+import GearItemBonus from './GearItemBonus'
+import GearItemSuffixType from '../enum/GearItemSuffixType'
 
-export default interface ItemSuffixJSON {
+export default interface GearItemSuffix {
   id: number
-  type: ItemSuffixType
-  bonus: ItemBonus[]
+  type: GearItemSuffixType
+  bonus: GearItemBonus[]
 }

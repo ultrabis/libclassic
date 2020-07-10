@@ -5,7 +5,7 @@ import libclassic from '../src'
 import GearItemSuffix from '../src/interface/GearItemSuffix'
 
 /* relative to project root */
-const gearItemSuffixInputFile = 'contrib/itemSuffix.csv'
+const gearItemSuffixInputFile = 'contrib/gearItemSuffix.csv'
 const gearItemSuffixOutputFile = 'src/db/gearItemSuffix.json'
 
 // const doGearItemSuffix = async function () {}
@@ -18,7 +18,7 @@ const start = async function () {
 
   for (const csvRecord of csvRecordArray) {
     gearItemSuffixArray.push(
-      libclassic.mt.itemSuffix.itemSuffixFromText(
+      libclassic.mt.gearItemSuffix.fromText(
         csvRecord.id,
         csvRecord.type,
         csvRecord.bonus,

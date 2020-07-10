@@ -7,7 +7,6 @@ const utils = common.utils
 
 /* mt. : */
 import mt from './mt'
-const gear = mt.gear
 const locked = mt.locked
 const optimal = mt.optimal
 const query = mt.query
@@ -45,7 +44,6 @@ export default {
   encounter,
   run,
   defaultSettings,
-  gear,
   locked,
   optimal,
   query,

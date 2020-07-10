@@ -1,7 +1,7 @@
-import ItemSuffixType from '../enum/ItemSuffixType'
+import GearItemSuffixType from '../enum/GearItemSuffixType'
 
 export default interface ItemSuffixQuery {
   id?: number
-  type?: ItemSuffixType
+  type?: GearItemSuffixType
   bonusValue?: number
 }

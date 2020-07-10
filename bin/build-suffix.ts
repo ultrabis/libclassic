@@ -1,7 +1,7 @@
 const csv = require('csvtojson')
 
 import libclassic from '../src'
-import ItemSuffixJSON from '../src/interface/ItemSuffixJSON'
+import GearItemSuffix from '../src/interface/GearItemSuffix'
 
 /* relative to project root */
 const csvFilePath = 'contrib/itemSuffix.csv'
@@ -9,10 +9,10 @@ const csvFilePath = 'contrib/itemSuffix.csv'
 const start = async function () {
   console.warn('Parsing CSV: ' + csvFilePath)
   const csvRecordArray = await csv().fromFile(csvFilePath)
-  const itemSuffixJSONArray: ItemSuffixJSON[] = []
+  const GearItemSuffixArray: GearItemSuffix[] = []
 
   for (const csvRecord of csvRecordArray) {
-    itemSuffixJSONArray.push(
+    GearItemSuffixArray.push(
       libclassic.gear.itemSuffixFromText(
         csvRecord.id,
         csvRecord.type,
@@ -24,7 +24,7 @@ const start = async function () {
   }
 
   // console.log(JSON.stringify(csvArray, null, 1))
-  console.log(JSON.stringify(itemSuffixJSONArray, null, 1))
+  console.log(JSON.stringify(GearItemSuffixArray, null, 1))
 }
 
 void start()

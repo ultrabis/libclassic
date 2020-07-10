@@ -10,7 +10,7 @@ import SpellJSON from '../interface/SpellJSON'
 import ItemJSON from '../interface/ItemJSON'
 import ItemSetJSON from '../interface/ItemSetJSON'
 import EnchantJSON from '../interface/EnchantJSON'
-import ItemSuffixJSON from '../interface/ItemSuffixJSON'
+import GearItemSuffix from '../interface/GearItemSuffix'
 import ItemQuery from '../interface/ItemQuery'
 import SpellQuery from '../interface/SpellQuery'
 
@@ -244,7 +244,7 @@ const spells = (opts: SpellQuery): SpellJSON[] => {
   return _result(result, opts.cloneResults ? opts.cloneResults : false)
 }
 
-const itemSuffixes = (opts: any): ItemSuffixJSON[] => {
+const itemSuffixes = (opts: any): GearItemSuffix[] => {
   const result = jsonQuery(`[* type = ${opts.type}]`, { data: itemSuffixDB }).value
   return result
 }

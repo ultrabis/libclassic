@@ -4,8 +4,6 @@
 */
 import utils from './utils'
 
-import ItemBonus from '../interface/ItemBonus'
-
 import Raid from '../enum/Raid'
 import WorldBoss from '../enum/WorldBoss'
 import ArmorSubclass from '../enum/ArmorSubclass'
@@ -28,8 +26,8 @@ import SpellCritFromIntellectDivisor from '../enum/SpellCritFromIntellectDivisor
 
 import TargetType from '../enum/TargetType'
 import WeaponSubclass from '../enum/WeaponSubclass'
-import ItemSuffixType from '../enum/ItemSuffixType'
-import ItemBonusType from '../enum/ItemBonusType'
+import GearItemSuffixType from '../enum/GearItemSuffixType'
+import GearItemBonusType from '../enum/GearItemBonusType'
 
 const factionFromRace = (race: PlayableRace): Faction => {
   switch (race) {
@@ -162,29 +160,29 @@ const playableClassesFromText = (text: string): PlayableClass[] => {
   return _(text)
 }
 // console.log(libclassic.enums.itemBonusTypeFromText('arcane spell damage'))
-const itemBonusTypeFromText = (text: string): ItemBonusType => {
-  const _ = (text: string): typeof ItemBonusType[keyof typeof ItemBonusType] => {
-    return Number(utils.getEnumValueFromFuzzyText(ItemBonusType, text))
+const itemBonusTypeFromText = (text: string): GearItemBonusType => {
+  const _ = (text: string): typeof GearItemBonusType[keyof typeof GearItemBonusType] => {
+    return Number(utils.getEnumValueFromFuzzyText(GearItemBonusType, text))
   }
   return _(text)
 }
 
-// console.log(libclassic.enums.itemSuffixTypeFromText('Classes: Priest, Shaman, Mage, Warlock, Druid'))
-const itemSuffixTypeFromText = (text: string): ItemSuffixType => {
-  const _ = (text: string): typeof ItemSuffixType[keyof typeof ItemSuffixType] => {
-    return Number(utils.getEnumValueFromFuzzyText(ItemSuffixType, text))
+// console.log(libclassic.enums.GearItemSuffixTypeFromText('Classes: Priest, Shaman, Mage, Warlock, Druid'))
+const GearItemSuffixTypeFromText = (text: string): GearItemSuffixType => {
+  const _ = (text: string): typeof GearItemSuffixType[keyof typeof GearItemSuffixType] => {
+    return Number(utils.getEnumValueFromFuzzyText(GearItemSuffixType, text))
   }
   return _(text)
 }
 
-const itemSuffixTypeFromItemName = (itemName: string): ItemSuffixType => {
+const GearItemSuffixTypeFromItemName = (itemName: string): GearItemSuffixType => {
   const of = itemName.toUpperCase().indexOf(' OF ')
   if (of === -1) {
-    return ItemSuffixType.Invalid
+    return GearItemSuffixType.Invalid
   }
 
   const right = itemName.slice(of + 4)
-  return itemSuffixTypeFromText(right)
+  return GearItemSuffixTypeFromText(right)
 }
 
 // console.log(libclassic.enums.itemQualitypeFromText('Classes: Priest, Shaman, Mage, Warlock, Druid'))
@@ -239,7 +237,7 @@ export default {
   SpellCritFromIntellectDivisor,
   TargetType,
   WeaponSubclass,
-  ItemSuffixType,
+  GearItemSuffixType,
   Raid,
   WorldBoss,
   /* functions */
@@ -255,8 +253,8 @@ export default {
   playableClassFromText,
   playableClassesFromText,
   itemBonusTypeFromText,
-  itemSuffixTypeFromItemName,
-  itemSuffixTypeFromText,
+  GearItemSuffixTypeFromItemName,
+  GearItemSuffixTypeFromText,
   itemQualityFromText,
   buffFromText,
   buffsFromText,

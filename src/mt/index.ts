@@ -1,17 +1,18 @@
 import query from './query'
 import locked from './locked'
 import optimal from './optimal'
-import gear from './gear'
 import url from './url'
 import encounter from './encounter'
-import itemSuffix from './itemSuffix'
+
+import gearItem from './gearItem'
+import gearItemSuffix from './gearItemSuffix'
 
 export default {
   query,
   locked,
   optimal,
-  gear,
   url,
   encounter,
-  itemSuffix
+  gearItem,
+  gearItemSuffix
 }

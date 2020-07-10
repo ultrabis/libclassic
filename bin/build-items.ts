@@ -4,7 +4,8 @@ const supplementalFilePath = 'contrib/supplemental-items.csv'
 const xmlOutputDir = 'contrib/xml'
 const iconOutputDir = 'contrib/icons'
 
-import itemSuffix from '../src/mt/itemSuffix'
+import gearItemSuffix from '../src/mt/gearItemSuffix'
+import GearItemSuffix from '../src/interface/GearItemSuffix'
 import settings from '../src/common/settings'
 import enums from '../src/common/enums'
 
@@ -20,7 +21,7 @@ import GearSlot from '../src/enum/GearSlot'
 import PvPRank from '../src/enum/PvPRank'
 import PlayableClass from '../src/enum/PlayableClass'
 import TargetType from '../src/enum/TargetType'
-import ItemSuffixJSON from '../src/interface/ItemSuffixJSON'
+import gearItem from '../src/mt/gearItem'
 
 const csv = require('csvtojson')
 const axios = require('axios').default
@@ -158,11 +159,11 @@ class ConvertItem {
     return this._wowHeadItem !== null ? parseInt(this._wowHeadItem['$'].id, 10) : 0
   }
 
-  /* this custom Id is a lazy way of handling the stupid suffixes of random enchant items.
-   * For random enchants it prefixes a single character to the ID indicating it's random
-   * enchant type */
   get itemSuffixId(): number {
-    const is = itemSuffix.itemSuffixFromItemNameAndBonusValue(this.itemName, this.itemArcaneDamage)
+    const is = gearItemSuffix.fromItemNameAndBonusValue(
+      this.itemName,
+      this.itemArcaneDamage ? this.itemArcaneDamage : 0
+    )
     return is ? is.id : 0
   }
 
@@ -261,21 +262,7 @@ class ConvertItem {
   }
 
   get itemRaid(): boolean {
-    if (!this.itemLocation) {
-      return false
-    }
-
-    switch (this.itemLocation.toUpperCase()) {
-      case `MOLTEN CORE`:
-      case `BLACKWING LAIR`:
-      case `ZUL'GURUB`:
-      case `TEMPLE OF AHN'QIRAJ`:
-      case `RUINS OF AHN'QIRAJ`:
-      case `NAXXRAMAS`:
-        return true
-      default:
-        return false
-    }
+    return gearItem.isFromRaid(this.itemLocation ? : '')
   }
 
   get itemStamina(): number | undefined {
@@ -336,6 +323,7 @@ class ConvertItem {
     return toNumber(this.itemOld.Score)
   }
 
+  /*
   get itemRank(): PvPRank {
     switch (this.itemLocation) {
       case 'Requires Blood Guard':
@@ -366,6 +354,7 @@ class ConvertItem {
         return PvPRank.Scout
     }
   }
+  */
 
   get itemFaction(): Faction {
     if (this.itemAlliance && this.itemHorde) {
@@ -386,6 +375,7 @@ class ConvertItem {
   }
 
   get itemQuality(): ItemQuality {
+    return 
     if (this._wowHeadItem === null) {
       return ItemQuality.Common
     }
@@ -578,19 +568,19 @@ const start = async function () {
     if (ogObj.Name === '') {
       continue
     }
-    const gearItem = new ConvertItem(ogObj)
-    if (gearItem.isEnchant) {
+    const convertItem = new ConvertItem(ogObj)
+    if (convertItem.isEnchant) {
       continue
     }
-    console.warn('Processing: ' + gearItem.itemName)
-    await downloadWowheadXML(gearItem.itemBaseName)
-    const wowHeadItem = await parseWowheadXML(gearItem.itemBaseName)
+    console.warn('Processing: ' + convertItem.itemName)
+    await downloadWowheadXML(convertItem.itemBaseName)
+    const wowHeadItem = await parseWowheadXML(convertItem.itemBaseName)
     if (wowHeadItem === null) {
       console.error('Item not found: ' + ogObj.Name)
     } else {
-      gearItem.wowHeadItem = wowHeadItem
-      await downloadWowheadIcon(gearItem.itemIconName)
-      myArray.push(gearItem.newItem)
+      convertItem.wowHeadItem = wowHeadItem
+      await downloadWowheadIcon(convertItem.itemIconName)
+      myArray.push(convertItem.newItem)
     }
   }
 

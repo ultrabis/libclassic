@@ -1,4 +1,4 @@
-enum ItemSuffixType {
+enum GearItemSuffixType {
   Invalid,
   Agility,
   ArcaneResistance,
@@ -46,4 +46,4 @@ enum ItemSuffixType {
   Twain
 }
 
-export default ItemSuffixType
+export default GearItemSuffixType
