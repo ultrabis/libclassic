@@ -1,4 +1,4 @@
-export enum Buffs {
+export enum Buff {
   None,
   MoonkinAura = 1 << 0,
   PowerInfusion = 1 << 1,
@@ -19,8 +19,7 @@ export enum Buffs {
   SpellVulnerability = 1 << 16,
   CurseOfShadow = 1 << 17,
   StormStrike = 1 << 18,
-  SpiritOfZandalar = 1 << 19,
-  All = ~(~0 << 18)
+  SpiritOfZandalar = 1 << 19
 }
 
-export default Buffs
+export default Buff

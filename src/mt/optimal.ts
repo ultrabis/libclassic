@@ -26,47 +26,46 @@ const sortByDPS = (a: EquipmentArray, b: EquipmentArray): number => {
 }
 
 const itemsForSlot = (settings: Settings): ItemJSON[] | undefined => {
-  /* itemSearchSlot is only set when a user clicks a slot to equip an item. If that's not
+  /* gearSearchSlot is only set when a user clicks a slot to equip an item. If that's not
    * the case then we don't need to do anything */
-  const slot = settings.equipment.itemSearchSlot
-  if (slot === ItemSlot.None) {
+  const itemSlot = settings.gear.itemSearchSlot
+  if (itemSlot === ItemSlot.None) {
     return undefined
   }
 
   /* We need the stat weights MINUS the slot we're getting items for. So make a private
    * copy of settings, unequip the slot, and run the equipment optimization function.
-   * Our stat weights will be contained in the itemSearch. */
+   * Our stat weights will be contained in the gearSearch. */
   const tmpSettings: Settings = common.utils.cloneObject(settings)
-  locked.unequipItem(tmpSettings.equipment.lockedItems, slot)
+  locked.unequipItem(tmpSettings.gear.lockedItems, itemSlot)
   const tmpEquipment: Equipment = equipment(tmpSettings)
   const tmpItemSearch: ItemSearch = tmpEquipment.itemSearch
 
   /* and finally retrieve the items for this slot, using the weights
    * we just got. Copy the original version of what we overwrote above
    * and unlock the slot so it doesn't return a user locked item */
-  tmpItemSearch.lockedItems = common.utils.cloneObject(settings.equipment.lockedItems)
-  locked.unlockItem(tmpItemSearch.lockedItems, tmpSettings.equipment.itemSearchSlot)
-  return Equipment.getWeightedItemsBySlot(slot, tmpItemSearch)
+  tmpItemSearch.lockedItems = common.utils.cloneObject(settings.gear.lockedItems)
+  locked.unlockItem(tmpItemSearch.lockedItems, tmpSettings.gear.itemSearchSlot)
+  return Equipment.getWeightedItemsBySlot(itemSlot, tmpItemSearch)
 }
 
 const enchantsForSlot = (settings: Settings): EnchantJSON[] | undefined => {
   /* Same process as above, but for enchants */
-  const slot = settings.equipment.enchantSearchSlot
-  if (slot === ItemSlot.None) {
+  const itemSlot = settings.gear.enchantSearchSlot
+  if (itemSlot === ItemSlot.None) {
     return undefined
   }
 
   const tmpSettings: Settings = common.utils.cloneObject(settings)
-  locked.unequipEnchant(tmpSettings.equipment.lockedEnchants, slot)
+  locked.unequipEnchant(tmpSettings.gear.lockedEnchants, itemSlot)
   const tmpEquipment: Equipment = equipment(tmpSettings)
   const tmpItemSearch: ItemSearch = tmpEquipment.itemSearch
 
-  tmpItemSearch.lockedEnchants = common.utils.cloneObject(settings.equipment.lockedEnchants)
-  locked.unlockEnchant(tmpItemSearch.lockedEnchants, tmpSettings.equipment.enchantSearchSlot)
-  return Equipment.getWeightedEnchantsBySlot(slot, tmpItemSearch)
+  tmpItemSearch.lockedEnchants = common.utils.cloneObject(settings.gear.lockedEnchants)
+  locked.unlockEnchant(tmpItemSearch.lockedEnchants, tmpSettings.gear.enchantSearchSlot)
+  return Equipment.getWeightedEnchantsBySlot(itemSlot, tmpItemSearch)
 }
 
-/* TODO: If itemSearchSlot isn't none, need to ignore that slot when weighting */
 const equipment = (settings: Settings): Equipment => {
   const mySettings = common.utils.cloneObject(settings)
   const maxTries = 5
@@ -91,7 +90,7 @@ const equipment = (settings: Settings): Equipment => {
 
     equipmentArray.push({
       dps: spellCast.dps.effective.avg,
-      equipment: spellCast.character.equipment
+      equipment: spellCast.player.equipment
     })
   }
 

@@ -1,92 +1,63 @@
-import common from '../common'
-import query from './query'
+// const gearItem = (id: number, suffixId?: number): GearItem => {}
 
-import ItemSuffixType from '../enum/ItemSuffixType'
-import ItemBonus from '../interface/ItemBonus'
-import ItemSuffixJSON from '../interface/ItemSuffixJSON'
+/*
 
-const itemSuffixFromText = (
-  id: string,
-  type: string,
-  bonus: string,
-  bonus2?: string,
-  bonus3?: string
-): ItemSuffixJSON => {
-  const _bonus: ItemBonus[] = []
-  _bonus.push(itemBonusFromText(bonus))
-  if (bonus2) {
-    _bonus.push(itemBonusFromText(bonus2))
-  }
-  if (bonus3) {
-    _bonus.push(itemBonusFromText(bonus3))
-  }
+// const itemResultsFromSettings
+// const enchantResultsFromSettings
+// const gearSlotDataFromSettings = (settings: Settings) 
+// const gearResultsFromSettings = (settings: Settings) => {
 
-  return {
-    id: Number(id),
-    type: common.enums.itemSuffixTypeFromText(type),
-    bonus: _bonus
-  }
+// gearSlotData
+
+const itemsFromWeights = (settings: Settings, gearSlot: GearSlot): GearItem[] => {
+  
 }
 
-// +11 Stamina
-const itemBonusFromText = (bonus: string): ItemBonus => {
-  let type: string
-  let value: string
+// base is total from gear, actual applies magic school, effective applies 
 
-  const plusIndex = bonus.indexOf('+')
-  const spaceIndex = bonus.indexOf(' ')
-  if (bonus.toUpperCase().includes('10% ON GET HIT')) {
-    const parenOpenIndex = bonus.indexOf('(')
-    const parenCloseIndex = bonus.indexOf(')')
-    type = '10% On Get Hit: Shadow Bolt'
-    value = bonus.slice(parenOpenIndex + 1, parenCloseIndex - 7)
-  } else if (bonus.charAt(0) === '+') {
-    type = bonus.slice(spaceIndex + 1).trim()
-    value = bonus.slice(plusIndex + 1, spaceIndex).trim()
-  } else {
-    type = bonus.slice(0, plusIndex - 1).trim()
-    value = bonus.slice(plusIndex + 1).trim()
+
+  
+  static scoreItem(
+    item: ItemJSON,
+    magicSchool: MagicSchool,
+    targetType: TargetType,
+    spellHitWeight: number,
+    spellCritWeight: number
+  ): number {
+    return this.score(
+      magicSchool,
+      this.calcTargetDamage(
+        targetType,
+        item.targetTypes ? item.targetTypes : TargetType.All,
+        item.spellDamage ? item.spellDamage : 0
+      ),
+      item.arcaneDamage ? item.arcaneDamage : 0,
+      item.natureDamage ? item.natureDamage : 0,
+      item.spellHit ? item.spellHit : 0,
+      item.spellCrit ? item.spellCrit : 0,
+      item.intellect ? item.intellect : 0,
+      spellHitWeight,
+      spellCritWeight
+    )
   }
 
-  return {
-    type: common.enums.itemBonusTypeFromText(type),
-    value: Number(value)
-  }
 }
 
-const itemSuffixTypeFromItemName = (itemName: string): ItemSuffixType => {
-  const of = itemName.toUpperCase().indexOf(' OF ')
-  if (of === -1) {
-    return ItemSuffixType.Invalid
-  }
+const gearEnchantScore = (gearEnchant: GearEnchant, magicSchool: MagicSchool, targetType: TargetType, weights: Weights) => {
 
-  const right = itemName.slice(of + 4)
-  return common.enums.itemSuffixTypeFromText(right)
 }
 
-const itemSuffixesFromItemName = (itemName: string): ItemSuffixJSON[] => {
-  const x = itemSuffixTypeFromItemName(itemName)
-  return query.itemSuffixes({ type: x })
+import Gear from '../interface/Gear'
+import GameSettings from '../interface/GearSettings'
+import GearSettings from '../interface/GearSettings'
+import PlayerSettings from '../interface/PlayerSettings'
+import Weights from '../interface/Weights'
+
+const gearFromSettings = (settings: Settings, weights: Weights): Gear => {
+  const gear: Gear = {} as Gear
+
+  return gear
 }
+*/
 
-const itemSuffixFromItemNameAndBonusValue = (itemName: string, bonusValue: number): ItemSuffixJSON | undefined => {
-  const itemSuffixes: ItemSuffixJSON[] = itemSuffixesFromItemName(itemName)
-
-  for (let i = 0; i < itemSuffixes.length; i++) {
-    for (let x = 0; x < itemSuffixes[i].bonus.length; x++) {
-      if (itemSuffixes[i].bonus[x].value === bonusValue) {
-        return itemSuffixes[i]
-      }
-    }
-  }
-
-  return undefined
-}
-
-export default {
-  itemBonusFromText,
-  itemSuffixTypeFromItemName,
-  itemSuffixFromText,
-  itemSuffixFromItemNameAndBonusValue,
-  itemSuffixesFromItemName
-}
+export default {}

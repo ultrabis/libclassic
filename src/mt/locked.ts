@@ -1,4 +1,5 @@
 import query from './query'
+import common from '../common'
 
 import LockedItems from '../interface/LockedItems'
 import LockedEnchants from '../interface/LockedEnchants'
@@ -6,14 +7,15 @@ import ItemJSON from '../interface/ItemJSON'
 import EnchantJSON from '../interface/EnchantJSON'
 
 import ItemSlot from '../enum/ItemSlot'
+import GearState from '../enum/GearState'
 import PvPRank from '../enum/PvPRank'
 
-const getItemId = (lockedItems: LockedItems | undefined, slot: ItemSlot): string => {
+const getItemId = (lockedItems: LockedItems | undefined, itemSlot: ItemSlot): number => {
   if (!lockedItems) {
-    return ''
+    return 0
   }
 
-  switch (slot) {
+  switch (itemSlot) {
     case ItemSlot.Head:
       return lockedItems.head
     case ItemSlot.Hands:
@@ -38,9 +40,7 @@ const getItemId = (lockedItems: LockedItems | undefined, slot: ItemSlot): string
       return lockedItems.finger
     case ItemSlot.Finger2:
       return lockedItems.finger2
-    case ItemSlot.Twohand:
     case ItemSlot.Mainhand:
-    case ItemSlot.Onehand:
       return lockedItems.mainhand
     case ItemSlot.Offhand:
       return lockedItems.offhand
@@ -51,16 +51,16 @@ const getItemId = (lockedItems: LockedItems | undefined, slot: ItemSlot): string
     case ItemSlot.Relic:
       return lockedItems.idol
     default:
-      return ''
+      return 0
   }
 }
 
-const getEnchantId = (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot): string => {
+const getEnchantId = (lockedEnchants: LockedEnchants | undefined, itemSlot: ItemSlot): number => {
   if (!lockedEnchants) {
-    return ''
+    return 0
   }
 
-  switch (slot) {
+  switch (itemSlot) {
     case ItemSlot.Head:
       return lockedEnchants.head
     case ItemSlot.Hands:
@@ -77,77 +77,70 @@ const getEnchantId = (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot
       return lockedEnchants.chest
     case ItemSlot.Wrist:
       return lockedEnchants.wrist
-    case ItemSlot.Twohand:
     case ItemSlot.Mainhand:
-    case ItemSlot.Onehand:
       return lockedEnchants.mainhand
     default:
-      return ''
+      return 0
   }
 }
 
-const getItem = (lockedItems: LockedItems | undefined, slot: ItemSlot): ItemJSON | undefined => {
-  const emptyItem = () => {
-    return {
-      id: 1,
-      customId: '1',
-      slot: slot,
-      raid: false,
-      worldBoss: false,
-      pvpRank: PvPRank.Scout
-    }
+const getItem = (lockedItems: LockedItems | undefined, itemSlot: ItemSlot): ItemJSON | undefined => {
+  const nakedItem = {
+    id: 1,
+    itemSlot: itemSlot,
+    gearSlot: common.enums.gearSlotFromItemSlot(itemSlot),
+    raid: false,
+    worldBoss: false,
+    pvpRank: PvPRank.Scout
   }
 
-  const id = getItemId(lockedItems, slot)
-  if (!id || id === '') {
+  const id = getItemId(lockedItems, itemSlot)
+  if (!id) {
     return undefined
-  } else if (id === '1') {
-    return emptyItem()
+  } else if (id === 1) {
+    return nakedItem
   }
 
-  const items = query.items({ customId: id, cloneResults: true })
+  const items = query.items({ id: id, cloneResults: true })
   return items && items[0] ? items[0] : undefined
 }
 
-const getEnchant = (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot): EnchantJSON | undefined => {
-  const emptyEnchant = () => {
-    return {
-      id: 1,
-      customId: '1',
-      slot: slot,
-      name: 'No enchant',
-      phase: 1,
-      icon: '',
-      score: 0,
-      text: 'No enchant',
-      spellDamage: 0,
-      arcaneDamage: 0,
-      natureDamage: 0,
-      spellHit: 0,
-      spellCrit: 0,
-      spellPenetration: 0,
-      stamina: 0,
-      intellect: 0,
-      spirit: 0,
-      mp5: 0
-    }
+const getEnchant = (lockedEnchants: LockedEnchants | undefined, itemSlot: ItemSlot): EnchantJSON | undefined => {
+  const nakedEnchant = {
+    id: 1,
+    itemSlot: itemSlot,
+    gearSlot: common.enums.gearSlotFromItemSlot(itemSlot),
+    name: 'No enchant',
+    phase: 1,
+    icon: '',
+    score: 0,
+    text: 'No enchant',
+    spellDamage: 0,
+    arcaneDamage: 0,
+    natureDamage: 0,
+    spellHit: 0,
+    spellCrit: 0,
+    spellPenetration: 0,
+    stamina: 0,
+    intellect: 0,
+    spirit: 0,
+    mp5: 0
   }
 
-  const id = getEnchantId(lockedEnchants, slot)
-
-  if (!id || id === '') {
+  const id = getEnchantId(lockedEnchants, itemSlot)
+  if (id === 0) {
     return undefined
-  } else if (id === '1') {
-    return emptyEnchant()
+  } else if (id === 1) {
+    return nakedEnchant
   }
 
-  const enchants = query.enchants({ customId: id, cloneResults: true })
+  const enchants = query.enchants({ id: id, cloneResults: true })
   return enchants && enchants[0] ? enchants[0] : undefined
 }
 
-const setItem = (lockedItems: LockedItems | undefined, slot: ItemSlot, value: string): number => {
+const setItem = (lockedItems: LockedItems | undefined, itemSlot: ItemSlot, value: number): number => {
   if (lockedItems) {
-    switch (slot) {
+    switch (itemSlot) {
       case ItemSlot.Head:
         lockedItems.head = value
         break
@@ -206,9 +199,9 @@ const setItem = (lockedItems: LockedItems | undefined, slot: ItemSlot, value: st
   return 0
 }
 
-const setEnchant = (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot, value: string): number => {
+const setEnchant = (lockedEnchants: LockedEnchants | undefined, itemSlot: ItemSlot, value: number): number => {
   if (lockedEnchants) {
-    switch (slot) {
+    switch (itemSlot) {
       case ItemSlot.Head:
         lockedEnchants.head = value
         break
@@ -243,136 +236,136 @@ const setEnchant = (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot, 
   return 0
 }
 
-const lockItem = (lockedItems: LockedItems | undefined, slot: ItemSlot, value: string): number => {
-  return setItem(lockedItems, slot, value)
+const lockItem = (lockedItems: LockedItems | undefined, itemSlot: ItemSlot, value: number): number => {
+  return setItem(lockedItems, itemSlot, value)
 }
 
-const lockEnchant = (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot, value: string): number => {
-  return setEnchant(lockedEnchants, slot, value)
+const lockEnchant = (lockedEnchants: LockedEnchants | undefined, itemSlot: ItemSlot, value: number): number => {
+  return setEnchant(lockedEnchants, itemSlot, value)
 }
 
-const unequipItem = (lockedItems: LockedItems | undefined, slot: ItemSlot): number => {
-  return setItem(lockedItems, slot, '1')
+const unequipItem = (lockedItems: LockedItems | undefined, itemSlot: ItemSlot): number => {
+  return setItem(lockedItems, itemSlot, GearState.Naked)
 }
 
-const unequipEnchant = (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot): number => {
-  return setEnchant(lockedEnchants, slot, '1')
+const unequipEnchant = (lockedEnchants: LockedEnchants | undefined, itemSlot: ItemSlot): number => {
+  return setEnchant(lockedEnchants, itemSlot, GearState.Naked)
 }
 
-const unlockItem = (lockedItems: LockedItems | undefined, slot: ItemSlot): number => {
-  return setItem(lockedItems, slot, '')
+const unlockItem = (lockedItems: LockedItems | undefined, itemSlot: ItemSlot): number => {
+  return setItem(lockedItems, itemSlot, GearState.BIS)
 }
 
-const unlockEnchant = (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot): number => {
-  return setEnchant(lockedEnchants, slot, '')
+const unlockEnchant = (lockedEnchants: LockedEnchants | undefined, itemSlot: ItemSlot): number => {
+  return setEnchant(lockedEnchants, itemSlot, GearState.BIS)
 }
 
 const unequipItems = (lockedItems: LockedItems | undefined): number => {
   if (lockedItems) {
-    lockedItems.head = '1'
-    lockedItems.hands = '1'
-    lockedItems.neck = '1'
-    lockedItems.waist = '1'
-    lockedItems.shoulder = '1'
-    lockedItems.legs = '1'
-    lockedItems.back = '1'
-    lockedItems.feet = '1'
-    lockedItems.chest = '1'
-    lockedItems.wrist = '1'
-    lockedItems.finger = '1'
-    lockedItems.finger2 = '1'
-    lockedItems.mainhand = '1'
-    lockedItems.offhand = '1'
-    lockedItems.trinket = '1'
-    lockedItems.trinket2 = '1'
-    lockedItems.idol = '1'
+    lockedItems.head = GearState.Naked
+    lockedItems.hands = GearState.Naked
+    lockedItems.neck = GearState.Naked
+    lockedItems.waist = GearState.Naked
+    lockedItems.shoulder = GearState.Naked
+    lockedItems.legs = GearState.Naked
+    lockedItems.back = GearState.Naked
+    lockedItems.feet = GearState.Naked
+    lockedItems.chest = GearState.Naked
+    lockedItems.wrist = GearState.Naked
+    lockedItems.finger = GearState.Naked
+    lockedItems.finger2 = GearState.Naked
+    lockedItems.mainhand = GearState.Naked
+    lockedItems.offhand = GearState.Naked
+    lockedItems.trinket = GearState.Naked
+    lockedItems.trinket2 = GearState.Naked
+    lockedItems.idol = GearState.Naked
   }
   return 0
 }
 
 const unequipEnchants = (lockedEnchants: LockedEnchants | undefined): number => {
   if (lockedEnchants) {
-    lockedEnchants.head = '1'
-    lockedEnchants.hands = '1'
-    lockedEnchants.shoulder = '1'
-    lockedEnchants.legs = '1'
-    lockedEnchants.back = '1'
-    lockedEnchants.feet = '1'
-    lockedEnchants.chest = '1'
-    lockedEnchants.wrist = '1'
-    lockedEnchants.mainhand = '1'
+    lockedEnchants.head = GearState.Naked
+    lockedEnchants.hands = GearState.Naked
+    lockedEnchants.shoulder = GearState.Naked
+    lockedEnchants.legs = GearState.Naked
+    lockedEnchants.back = GearState.Naked
+    lockedEnchants.feet = GearState.Naked
+    lockedEnchants.chest = GearState.Naked
+    lockedEnchants.wrist = GearState.Naked
+    lockedEnchants.mainhand = GearState.Naked
   }
   return 0
 }
 
 const unlockItems = (lockedItems: LockedItems | undefined): number => {
   if (lockedItems) {
-    lockedItems.head = ''
-    lockedItems.hands = ''
-    lockedItems.neck = ''
-    lockedItems.waist = ''
-    lockedItems.shoulder = ''
-    lockedItems.legs = ''
-    lockedItems.back = ''
-    lockedItems.feet = ''
-    lockedItems.chest = ''
-    lockedItems.wrist = ''
-    lockedItems.finger = ''
-    lockedItems.finger2 = ''
-    lockedItems.mainhand = ''
-    lockedItems.offhand = ''
-    lockedItems.trinket = ''
-    lockedItems.trinket2 = ''
-    lockedItems.idol = ''
+    lockedItems.head = GearState.BIS
+    lockedItems.hands = GearState.BIS
+    lockedItems.neck = GearState.BIS
+    lockedItems.waist = GearState.BIS
+    lockedItems.shoulder = GearState.BIS
+    lockedItems.legs = GearState.BIS
+    lockedItems.back = GearState.BIS
+    lockedItems.feet = GearState.BIS
+    lockedItems.chest = GearState.BIS
+    lockedItems.wrist = GearState.BIS
+    lockedItems.finger = GearState.BIS
+    lockedItems.finger2 = GearState.BIS
+    lockedItems.mainhand = GearState.BIS
+    lockedItems.offhand = GearState.BIS
+    lockedItems.trinket = GearState.BIS
+    lockedItems.trinket2 = GearState.BIS
+    lockedItems.idol = GearState.BIS
   }
   return 0
 }
 
 const unlockEnchants = (lockedEnchants: LockedEnchants): number => {
   if (lockedEnchants) {
-    lockedEnchants.head = ''
-    lockedEnchants.hands = ''
-    lockedEnchants.shoulder = ''
-    lockedEnchants.legs = ''
-    lockedEnchants.back = ''
-    lockedEnchants.feet = ''
-    lockedEnchants.chest = ''
-    lockedEnchants.wrist = ''
-    lockedEnchants.mainhand = ''
+    lockedEnchants.head = GearState.BIS
+    lockedEnchants.hands = GearState.BIS
+    lockedEnchants.shoulder = GearState.BIS
+    lockedEnchants.legs = GearState.BIS
+    lockedEnchants.back = GearState.BIS
+    lockedEnchants.feet = GearState.BIS
+    lockedEnchants.chest = GearState.BIS
+    lockedEnchants.wrist = GearState.BIS
+    lockedEnchants.mainhand = GearState.BIS
   }
   return 0
 }
 
-const itemLocked = (lockedItems: LockedItems | undefined, slot: ItemSlot): boolean => {
-  const id = getItemId(lockedItems, slot)
-  if (id === '') {
+const itemLocked = (lockedItems: LockedItems | undefined, itemSlot: ItemSlot): boolean => {
+  const id = getItemId(lockedItems, itemSlot)
+  if (id === GearState.BIS) {
     return false
   }
 
   return true
 }
 
-const enchantLocked = (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot): boolean => {
-  const id = getEnchantId(lockedEnchants, slot)
-  if (id === '') {
+const enchantLocked = (lockedEnchants: LockedEnchants | undefined, itemSlot: ItemSlot): boolean => {
+  const id = getEnchantId(lockedEnchants, itemSlot)
+  if (id === GearState.BIS) {
     return false
   }
 
   return true
 }
 
-const itemEquipped = (lockedItems: LockedItems | undefined, slot: ItemSlot): boolean => {
-  const id = getItemId(lockedItems, slot)
-  if (id !== '1') {
+const itemEquipped = (lockedItems: LockedItems | undefined, itemSlot: ItemSlot): boolean => {
+  const id = getItemId(lockedItems, itemSlot)
+  if (id !== 1) {
     return true
   }
 
   return false
 }
 
-const enchantEquipped = (lockedEnchants: LockedEnchants | undefined, slot: ItemSlot): boolean => {
-  const id = getEnchantId(lockedEnchants, slot)
-  if (id !== '1') {
+const enchantEquipped = (lockedEnchants: LockedEnchants | undefined, itemSlot: ItemSlot): boolean => {
+  const id = getEnchantId(lockedEnchants, itemSlot)
+  if (id !== GearState.Naked) {
     return true
   }
 

@@ -36,11 +36,6 @@ const isWebWorker: boolean =
 /* eslint-enable no-restricted-globals */
 const isNode = typeof process !== 'undefined' && process.versions != null && process.versions.node != null
 
-// FIXME:
-const sanitizeStringForEnum = (s: string): string => {
-  return fuzzyTextFromString(s)
-}
-
 /* strips chars for easier comparisons */
 const fuzzyTextFromString = (s: string): string => {
   return s
@@ -53,6 +48,15 @@ const fuzzyTextFromString = (s: string): string => {
     .replace(/\)/g, '')
     .replace(/%/g, '')
     .toUpperCase()
+}
+
+const fuzzyIncludes = (haystack: string, needle: string): boolean => {
+  return fuzzyTextFromString(haystack).includes(fuzzyTextFromString(needle))
+}
+
+// FIXME:
+const sanitizeStringForEnum = (s: string): string => {
+  return fuzzyTextFromString(s)
 }
 
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
@@ -109,6 +113,41 @@ const getEnumValuesFromFuzzyText = (myEnum: any, fuzzyText: string): any[] => {
   return values
 }
 
+/* returns a bitMask by OR'ing the enum value with each matching key */
+const getEnumBitmaskFromFuzzyText = (myEnum: any, fuzzyText: string): any => {
+  const sanText = sanitizeStringForEnum(fuzzyText)
+  let bitMask = 0
+
+  /* loop through all keys */
+  const keys = Object.keys(myEnum)
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i]
+    const value = myEnum[key]
+    const sanKey = sanitizeStringForEnum(key)
+
+    /* a match, somewhere in the text */
+    if (sanText.includes(sanKey)) {
+      bitMask |= value
+    }
+  }
+
+  return bitMask
+}
+
+const bitMaskFromArray = (array: number[]): number => {
+  let bitMask = 0
+
+  for (let i = 0; i <= array.length; i++) {
+    bitMask |= array[i]
+  }
+
+  return bitMask
+}
+
+const bitMaskIncludes = (bitMask: number, value: number): boolean => {
+  return (bitMask & value) === value ? true : false
+}
+
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 const cloneObject = (o: any): any => {
   // return JSON.parse(JSON.stringify(o, null, 1))
@@ -161,6 +200,7 @@ export default {
   getEnumKeyByEnumValue,
   getEnumValueFromFuzzyText,
   getEnumValuesFromFuzzyText,
+  getEnumBitmaskFromFuzzyText,
   sanitizeStringForEnum,
   // cumulativeChance,
   // consecutiveChance,
@@ -170,10 +210,13 @@ export default {
   isBrowser,
   isWebWorker,
   isMobile,
+  bitMaskFromArray,
+  bitMaskIncludes,
   cloneObject,
   isLetter,
   capitalize,
   fuzzyTextFromString,
+  fuzzyIncludes,
   encodeURI,
   decodeURI,
   paramFromURL

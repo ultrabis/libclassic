@@ -2,29 +2,29 @@ import common from '../common'
 import Equipment from './Equipment'
 import PlayableRace from '../enum/PlayableRace'
 import Faction from '../enum/Faction'
-import Buffs from '../enum/Buffs'
+import Buff from '../enum/Buff'
 import Settings from '../interface/Settings'
 
 /**
- * Stores character attributes, Talents, Gear, and Buffs
+ * Stores player attributes, Talents, Gear, and Buff
  */
-export default class Character {
+export default class player {
   settings: Settings
   equipment: Equipment
-  buffFlags: Buffs
+  buffMask: number
 
   constructor(settings: Settings, equipment: Equipment) {
     this.settings = settings
     this.equipment = equipment
-    this.buffFlags = common.enums.buffListToFlags(settings.character.buffs)
+    this.buffMask = common.enums.buffMaskFromText(settings.player.buffs.toString())
   }
 
   get level(): number {
-    return this.settings.character.level
+    return this.settings.player.level
   }
 
   get faction(): Faction {
-    return common.enums.factionFromRace(this.settings.character.race)
+    return common.enums.factionFromRace(this.settings.player.race)
   }
 
   get isHorde(): boolean {
@@ -36,11 +36,11 @@ export default class Character {
   }
 
   get isTauren(): boolean {
-    return this.settings.character.race === PlayableRace.Tauren
+    return this.settings.player.race === PlayableRace.Tauren
   }
 
   get isNightElf(): boolean {
-    return this.settings.character.race === PlayableRace.NightElf
+    return this.settings.player.race === PlayableRace.NightElf
   }
 
   /**
@@ -141,100 +141,100 @@ export default class Character {
   }
 
   get moonkinAuraBonus(): number {
-    return (this.buffFlags & Buffs.MoonkinAura) === Buffs.MoonkinAura ? 3 : 0
+    return (this.buffMask & Buff.MoonkinAura) === Buff.MoonkinAura ? 3 : 0
   }
 
   /* CONSUMABLE BUFFS */
 
   get flaskOfSupremePowerBonus(): number {
-    return (this.buffFlags & Buffs.FlaskOfSupremePower) === Buffs.FlaskOfSupremePower ? 150 : 0
+    return (this.buffMask & Buff.FlaskOfSupremePower) === Buff.FlaskOfSupremePower ? 150 : 0
   }
 
   get greaterArcaneElixirBonus(): number {
-    return (this.buffFlags & Buffs.GreaterArcaneElixir) === Buffs.GreaterArcaneElixir ? 35 : 0
+    return (this.buffMask & Buff.GreaterArcaneElixir) === Buff.GreaterArcaneElixir ? 35 : 0
   }
 
   get cerebralCortexCompoundBonus(): number {
-    return (this.buffFlags & Buffs.CerebralCortexCompound) === Buffs.CerebralCortexCompound ? 25 : 0
+    return (this.buffMask & Buff.CerebralCortexCompound) === Buff.CerebralCortexCompound ? 25 : 0
   }
 
   get runnTumTuberSurpriseBonus(): number {
-    return (this.buffFlags & Buffs.RunnTumTuberSurprise) === Buffs.RunnTumTuberSurprise ? 10 : 0
+    return (this.buffMask & Buff.RunnTumTuberSurprise) === Buff.RunnTumTuberSurprise ? 10 : 0
   }
 
   /* PROC BUFFS */
 
   get powerInfusionBonus(): number {
-    return (this.buffFlags & Buffs.PowerInfusion) === Buffs.PowerInfusion ? 1.2 : 1.0
+    return (this.buffMask & Buff.PowerInfusion) === Buff.PowerInfusion ? 1.2 : 1.0
   }
 
   get ephemeralPowerBonus(): number {
-    return (this.buffFlags & Buffs.EphemeralPower) === Buffs.EphemeralPower ? 175 : 0
+    return (this.buffMask & Buff.EphemeralPower) === Buff.EphemeralPower ? 175 : 0
   }
 
   /* WORLD BUFFS */
 
   get rallyingCryOfTheDragonSlayerSpellCritBonus(): number {
-    return (this.buffFlags & Buffs.RallyingCryOfTheDragonSlayer) === Buffs.RallyingCryOfTheDragonSlayer ? 10 : 0
+    return (this.buffMask & Buff.RallyingCryOfTheDragonSlayer) === Buff.RallyingCryOfTheDragonSlayer ? 10 : 0
   }
 
   get slipkiksSavvyBonus(): number {
-    return (this.buffFlags & Buffs.SlipkiksSavvy) === Buffs.SlipkiksSavvy ? 3 : 0
+    return (this.buffMask & Buff.SlipkiksSavvy) === Buff.SlipkiksSavvy ? 3 : 0
   }
 
   get songflowerSerenadeSpellCritBonus(): number {
-    return (this.buffFlags & Buffs.SongflowerSerenade) === Buffs.SongflowerSerenade ? 5 : 0
+    return (this.buffMask & Buff.SongflowerSerenade) === Buff.SongflowerSerenade ? 5 : 0
   }
 
   get songflowerSerenadeAttributeBonus(): number {
-    return (this.buffFlags & Buffs.SongflowerSerenade) === Buffs.SongflowerSerenade ? 15 : 0
+    return (this.buffMask & Buff.SongflowerSerenade) === Buff.SongflowerSerenade ? 15 : 0
   }
 
   get saygesDarkFortuneBonus(): number {
-    return (this.buffFlags & Buffs.SaygesDarkFortune) === Buffs.SaygesDarkFortune ? 1.1 : 1.0
+    return (this.buffMask & Buff.SaygesDarkFortune) === Buff.SaygesDarkFortune ? 1.1 : 1.0
   }
 
   get tracesOfSilithystBonus(): number {
-    return (this.buffFlags & Buffs.TracesOfSilithyst) === Buffs.TracesOfSilithyst ? 1.05 : 1.0
+    return (this.buffMask & Buff.TracesOfSilithyst) === Buff.TracesOfSilithyst ? 1.05 : 1.0
   }
 
   get spiritOfZandalarBonus(): number {
-    return (this.buffFlags & Buffs.SpiritOfZandalar) === Buffs.SpiritOfZandalar ? 1.15 : 1
+    return (this.buffMask & Buff.SpiritOfZandalar) === Buff.SpiritOfZandalar ? 1.15 : 1
   }
 
   /* RAID BUFFS */
 
   get arcaneBrillianceBonus(): number {
-    return (this.buffFlags & Buffs.ArcaneBrilliance) === Buffs.ArcaneBrilliance ? 31 : 0
+    return (this.buffMask & Buff.ArcaneBrilliance) === Buff.ArcaneBrilliance ? 31 : 0
   }
 
   get blessingOfKingsBonus(): number {
-    return (this.buffFlags & Buffs.BlessingOfKings) === Buffs.BlessingOfKings ? 1.1 : 1
+    return (this.buffMask & Buff.BlessingOfKings) === Buff.BlessingOfKings ? 1.1 : 1
   }
 
   get improvedGiftOfTheWildAttributeBonus(): number {
-    return (this.buffFlags & Buffs.ImprovedGiftOfTheWild) === Buffs.ImprovedGiftOfTheWild ? 16 : 0
+    return (this.buffMask & Buff.ImprovedGiftOfTheWild) === Buff.ImprovedGiftOfTheWild ? 16 : 0
   }
 
   get improvedGiftOfTheWildArmorBonus(): number {
-    return (this.buffFlags & Buffs.ImprovedGiftOfTheWild) === Buffs.ImprovedGiftOfTheWild ? 384 : 0
+    return (this.buffMask & Buff.ImprovedGiftOfTheWild) === Buff.ImprovedGiftOfTheWild ? 384 : 0
   }
 
   get improvedGiftOfTheWildResistancesBonus(): number {
-    return (this.buffFlags & Buffs.ImprovedGiftOfTheWild) === Buffs.ImprovedGiftOfTheWild ? 27 : 0
+    return (this.buffMask & Buff.ImprovedGiftOfTheWild) === Buff.ImprovedGiftOfTheWild ? 27 : 0
   }
 
   get burningAdrenalineDamageBonus(): number {
-    return (this.buffFlags & Buffs.BurningAdrenaline) === Buffs.BurningAdrenaline ? 2 : 1
+    return (this.buffMask & Buff.BurningAdrenaline) === Buff.BurningAdrenaline ? 2 : 1
   }
 
   get burningAdrenalineCastTimeBonus(): number {
-    return (this.buffFlags & Buffs.BurningAdrenaline) === Buffs.BurningAdrenaline ? 3.5 : 0
+    return (this.buffMask & Buff.BurningAdrenaline) === Buff.BurningAdrenaline ? 3.5 : 0
   }
 
   /* TALENTS */
   get improvedMoonfireBonus(): number {
-    switch (this.settings.character.talents.improvedMoonfireRank) {
+    switch (this.settings.player.talents.improvedMoonfireRank) {
       case 1:
         return 2 // rank 1: 2% bonus
       case 2:
@@ -254,7 +254,7 @@ export default class Character {
    * Increases the damage done by Starfire, Moonfire, and Wrath by 2/4/6/8/10%
    */
   get moonFuryBonus(): number {
-    switch (this.settings.character.talents.moonFuryRank) {
+    switch (this.settings.player.talents.moonFuryRank) {
       case 1:
         return 1.02 // rank 1: 2% bonus
       case 2:
@@ -274,7 +274,7 @@ export default class Character {
    * Reduces the cast of your Wrath spell by 0.1/0.2/0.3/0.4/0.5 sec
    */
   get improvedWrathBonus(): number {
-    switch (this.settings.character.talents.improvedWrathRank) {
+    switch (this.settings.player.talents.improvedWrathRank) {
       case 1:
         return 0.1 // Reduces the cast time of your Wrath spell by 0.1 sec.
       case 2:
@@ -294,7 +294,7 @@ export default class Character {
    * Reduces the cast of your Starfire spell by 0.1/0.2/0.3/0.4/0.5 sec
    */
   get improvedStarfireBonus(): number {
-    switch (this.settings.character.talents.improvedStarfireRank) {
+    switch (this.settings.player.talents.improvedStarfireRank) {
       case 1:
         return 0.1 // Reduces the cast time of your Starfire spell by 0.1 sec.
       case 2:
@@ -314,7 +314,7 @@ export default class Character {
    * Increases the critical strike damage bonus of your Starfire, Moonfire, and Wrath spells by x%.
    */
   get vengeanceBonus(): number {
-    switch (this.settings.character.talents.vengeanceRank) {
+    switch (this.settings.player.talents.vengeanceRank) {
       case 1:
         return 0.1 // rank 1: Increases the critical strike damage bonus by 20%
       case 2:
@@ -334,7 +334,7 @@ export default class Character {
    * Allows x% of your Mana regeneration to continue while casting.
    */
   get reflectionBonus(): number {
-    switch (this.settings.character.talents.reflectionRank) {
+    switch (this.settings.player.talents.reflectionRank) {
       case 1:
         return 0.05
       case 2:
@@ -350,7 +350,7 @@ export default class Character {
    * Returns natures grace reduction, if the talent is learned
    */
   get naturesGraceBonus(): number {
-    return this.settings.character.talents.naturesGraceRank === 1 ? 0.5 : 0
+    return this.settings.player.talents.naturesGraceRank === 1 ? 0.5 : 0
   }
 
   toJSON(): any {

@@ -98,7 +98,7 @@ const gearParamFromLocked = (
   lockedEnchants: LockedEnchants | null,
   opts?: ParaminOptions
 ): string => {
-  const lockedArr: string[] = []
+  const lockedArr: number[] = []
   lockedArr.push(lockedItems.head)
   lockedArr.push(lockedItems.hands)
   lockedArr.push(lockedItems.neck)
@@ -135,35 +135,35 @@ const gearParamFromLocked = (
 
 const publicURL = (equipment: Equipment): string => {
   const lockedItems: LockedItems = {
-    head: equipment.head.customId,
-    hands: equipment.hands.customId,
-    neck: equipment.neck.customId,
-    waist: equipment.waist.customId,
-    shoulder: equipment.shoulder.customId,
-    legs: equipment.legs.customId,
-    back: equipment.back.customId,
-    feet: equipment.feet.customId,
-    chest: equipment.chest.customId,
-    wrist: equipment.wrist.customId,
-    finger: equipment.finger.customId,
-    finger2: equipment.finger2.customId,
-    mainhand: equipment.mainhand.customId,
-    offhand: equipment.offhand.customId,
-    trinket: equipment.trinket.customId,
-    trinket2: equipment.trinket2.customId,
-    idol: equipment.idol.customId
+    head: equipment.head.id,
+    hands: equipment.hands.id,
+    neck: equipment.neck.id,
+    waist: equipment.waist.id,
+    shoulder: equipment.shoulder.id,
+    legs: equipment.legs.id,
+    back: equipment.back.id,
+    feet: equipment.feet.id,
+    chest: equipment.chest.id,
+    wrist: equipment.wrist.id,
+    finger: equipment.finger.id,
+    finger2: equipment.finger2.id,
+    mainhand: equipment.mainhand.id,
+    offhand: equipment.offhand.id,
+    trinket: equipment.trinket.id,
+    trinket2: equipment.trinket2.id,
+    idol: equipment.idol.id
   }
 
   const lockedEnchants: LockedEnchants = {
-    head: equipment.head.enchantCustomId,
-    hands: equipment.hands.enchantCustomId,
-    shoulder: equipment.shoulder.enchantCustomId,
-    legs: equipment.legs.enchantCustomId,
-    back: equipment.back.enchantCustomId,
-    feet: equipment.feet.enchantCustomId,
-    chest: equipment.chest.enchantCustomId,
-    wrist: equipment.wrist.enchantCustomId,
-    mainhand: equipment.mainhand.enchantCustomId
+    head: equipment.head.enchantId,
+    hands: equipment.hands.enchantId,
+    shoulder: equipment.shoulder.enchantId,
+    legs: equipment.legs.enchantId,
+    back: equipment.back.enchantId,
+    feet: equipment.feet.enchantId,
+    chest: equipment.chest.enchantId,
+    wrist: equipment.wrist.enchantId,
+    mainhand: equipment.mainhand.enchantId
   }
 
   return gearUrl(lockedItems, lockedEnchants, { version: 2 })
@@ -210,41 +210,41 @@ const defaultSettings = (): Settings => {
   const gearv2 = optionFromURL('gearv2')
 
   if (gearv2) {
-    o.equipment.lockedItems = gearv2.items
-    o.equipment.lockedEnchants = gearv2.enchants
+    o.gear.lockedItems = gearv2.items
+    o.gear.lockedEnchants = gearv2.enchants
   } else if (gearv1) {
-    o.equipment.lockedItems = gearv1.items
+    o.gear.lockedItems = gearv1.items
   }
 
   /* other options*/
   const phase = optionFromURL('phase')
   if (phase !== null && phase !== undefined) {
-    o.phase = phase
+    o.game.phase = phase
   }
 
   const raids = optionFromURL('raids')
   if (raids !== null && raids !== undefined) {
-    o.equipment.raids = raids
+    o.gear.raids = raids
   }
 
   const worldbosses = optionFromURL('worldbosses')
   if (worldbosses !== null && worldbosses !== undefined) {
-    o.equipment.worldBosses = worldbosses
+    o.gear.worldBosses = worldbosses
   }
 
   const randomenchants = optionFromURL('randomenchants')
   if (randomenchants !== null && randomenchants !== undefined) {
-    o.equipment.randomEnchants = randomenchants
+    o.gear.randomEnchants = randomenchants
   }
 
   const tailoring = optionFromURL('tailoring')
   if (tailoring !== null && tailoring !== undefined) {
-    o.equipment.tailoring = tailoring
+    o.gear.tailoring = tailoring
   }
 
   const pvprank = optionFromURL('pvprank')
   if (pvprank !== null && pvprank !== undefined) {
-    o.character.pvpRank = pvprank
+    o.player.pvpRank = pvprank
   }
 
   return o

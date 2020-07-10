@@ -23,6 +23,7 @@ enum ItemSlot {
   Twohand = 17,
   Tabard = 19,
   Mainhand = 21,
+  Quiver = 20,
   Offhand = 23,
   Projectile = 24,
   Finger2 = 25,

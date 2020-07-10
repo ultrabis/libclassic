@@ -1,8 +1,7 @@
-enum Game {
-  Invalid,
+enum GameType {
   Vanilla,
   TheBurningCrusade,
   WrathOfTheLichKing
 }
 
-export default Game
+export default GameType

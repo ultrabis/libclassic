@@ -11,7 +11,7 @@ import CastDmgValues from '../interface/CastDmgValues'
 import CastDmgObject from '../interface/CastDmgObject'
 
 import MagicSchool from '../enum/MagicSchool'
-import Buff from '../enum/Buffs'
+import Buff from '../enum/Buff'
 
 interface EquipmentOverride {
   equipment?: Equipment
@@ -28,7 +28,7 @@ export default class Cast {
   settings: Settings
   spell: Spell
   target: Target
-  character: Character
+  player: Character
   // equipmentOverride: EquipmentOverride | undefined
 
   constructor(settings: Settings, equipmentOverride?: EquipmentOverride) {
@@ -56,8 +56,8 @@ export default class Cast {
       )
     }
 
-    this.character = new Character(this.settings, equipment)
-    this.spell = new Spell(this.settings.spellName)
+    this.player = new Character(this.settings, equipment)
+    this.spell = new Spell(this.settings.player.rotation)
     this.target = new Target(this.settings)
 
     /* XXX: Kinda hacky, but update the itemSearch on the equipment to keep
@@ -222,12 +222,12 @@ export default class Cast {
   }
 
   get moonFuryBonus(): number {
-    return this.spell.isMoonfire || this.spell.isStarfire || this.spell.isWrath ? this.character.moonFuryBonus : 1.0
+    return this.spell.isMoonfire || this.spell.isStarfire || this.spell.isWrath ? this.player.moonFuryBonus : 1.0
   }
 
   get improvedMoonfireBonus(): number {
-    return this.spell.isMoonfire && this.character.improvedMoonfireBonus
-      ? 1 + this.character.improvedMoonfireBonus / 100
+    return this.spell.isMoonfire && this.player.improvedMoonfireBonus
+      ? 1 + this.player.improvedMoonfireBonus / 100
       : 1.0
   }
 
@@ -260,12 +260,12 @@ export default class Cast {
   }
 
   get spellDamageBonus(): number {
-    return this.character.flaskOfSupremePowerBonus + this.character.greaterArcaneElixirBonus
+    return this.player.flaskOfSupremePowerBonus + this.player.greaterArcaneElixirBonus
   }
 
   get onUseSpellDamageBonus(): number {
-    const trinket1: Item = this.character.equipment.trinket
-    const trinket2 = this.character.equipment.trinket2
+    const trinket1: Item = this.player.equipment.trinket
+    const trinket2 = this.player.equipment.trinket2
     let trinket: Item = trinket1
 
     if (trinket1 && Equipment.isOnUseEquip(trinket1.itemJSON)) {
@@ -278,10 +278,10 @@ export default class Cast {
 
     return Equipment.trinketEffectiveSpellDamage(
       trinket.itemJSON,
-      this.settings.encounterLength,
+      this.settings.game.encounterLength,
       this.effectiveCastTime,
       this.effectiveSpellCrit,
-      this.settings.character.talents.naturesGraceRank === 1 ? true : false
+      this.settings.player.talents.naturesGraceRank === 1 ? true : false
     )
   }
 
@@ -290,15 +290,15 @@ export default class Cast {
       case MagicSchool.Physical:
         return 0
       case MagicSchool.Arcane:
-        return this.character.arcaneDamage + this.character.spellDamage
+        return this.player.arcaneDamage + this.player.spellDamage
       case MagicSchool.Nature:
-        return this.character.natureDamage + this.character.spellDamage
+        return this.player.natureDamage + this.player.spellDamage
       case MagicSchool.Fire:
       case MagicSchool.Frost:
       case MagicSchool.Shadow:
       case MagicSchool.Holy:
       default:
-        return this.character.spellDamage
+        return this.player.spellDamage
     }
   }
 
@@ -307,11 +307,11 @@ export default class Cast {
   }
 
   get effectiveSpellCrit(): number {
-    return common.calc.baseSpellCrit + this.character.spellCrit + this.improvedMoonfireSpellCritBonus
+    return common.calc.baseSpellCrit + this.player.spellCrit + this.improvedMoonfireSpellCritBonus
   }
 
   get effectiveTargetResistance(): number {
-    const resistance = Math.min(this.target.spellResistance, 5 * this.character.level - this.targetResistanceFromLevel)
+    const resistance = Math.min(this.target.spellResistance, 5 * this.player.level - this.targetResistanceFromLevel)
     return resistance - Math.min(this.spellPenetration, resistance) + this.targetResistanceFromLevel
   }
 
@@ -322,14 +322,14 @@ export default class Cast {
       return 0
     }
     return (
-      (this.target.level > this.character.level ? this.target.level - this.character.level : 0) *
-      parseFloat((0.1333 * this.character.level).toFixed(2))
+      (this.target.level > this.player.level ? this.target.level - this.player.level : 0) *
+      parseFloat((0.1333 * this.player.level).toFixed(2))
     )
   }
 
   /* https://dwarfpriest.wordpress.com/2008/01/07/spell-hit-spell-penetration-and-resistances/#more-176 */
   get partialResistPenalty(): number {
-    return this.spell.canPartialResist ? (0.75 * this.effectiveTargetResistance) / (5 * this.character.level) : 0
+    return this.spell.canPartialResist ? (0.75 * this.effectiveTargetResistance) / (5 * this.player.level) : 0
   }
 
   get baseDmgMultiplier(): number {
@@ -338,13 +338,15 @@ export default class Cast {
 
   get effectiveDmgMultiplier(): number {
     return (
-      this.character.powerInfusionBonus *
-      this.character.saygesDarkFortuneBonus *
-      this.character.tracesOfSilithystBonus *
+      // FIXME: the current dmg calcs are dumb...they should build base, actual and effective on top of each other..
+      // this.baseDmgMultiplier *
+      this.player.powerInfusionBonus *
+      this.player.saygesDarkFortuneBonus *
+      this.player.tracesOfSilithystBonus *
       this.target.spellVulnBonus *
       this.curseOfShadowDamageBonus *
       this.stormStrikeBonus *
-      this.character.burningAdrenalineDamageBonus *
+      this.player.burningAdrenalineDamageBonus *
       this.shimmerBonus *
       (1 - this.partialResistPenalty)
     )
@@ -357,9 +359,9 @@ export default class Cast {
     switch (this.spell.magicSchool) {
       case MagicSchool.Arcane:
       case MagicSchool.Shadow:
-        return this.character.equipment.spellPenetration + this.target.curseOfShadowResistBonus
+        return this.player.equipment.spellPenetration + this.target.curseOfShadowResistBonus
       case MagicSchool.Nature:
-        return this.character.equipment.spellPenetration + this.target.thunderfuryResistBonus
+        return this.player.equipment.spellPenetration + this.target.thunderfuryResistBonus
       default:
         return 0
     }
@@ -372,9 +374,9 @@ export default class Cast {
   get castTime(): number {
     switch (this.spell.baseName.toUpperCase()) {
       case 'WRATH':
-        return this.spell.castTime - this.character.improvedWrathBonus
+        return this.spell.castTime - this.player.improvedWrathBonus
       case 'STARFIRE':
-        return this.spell.castTime - this.character.improvedStarfireBonus
+        return this.spell.castTime - this.player.improvedStarfireBonus
       default:
         return this.spell.castTime <= common.calc.globalCooldown ? common.calc.globalCooldown : this.spell.castTime
     }
@@ -384,28 +386,29 @@ export default class Cast {
    * The amount of cast time reduced when a crit procs a bonus to it i.e. natures grace
    */
   get castTimeReductionOnCrit(): number {
-    if (this.character.naturesGraceBonus === 0) return 0
+    if (this.player.naturesGraceBonus === 0) return 0
 
     /* if natures grace would reduce the cast time below the global cooldown then
      * only reduce it by the difference of the cast time and global cooldown */
-    if (this.castTime - this.character.naturesGraceBonus < common.calc.globalCooldown) {
+    if (this.castTime - this.player.naturesGraceBonus < common.calc.globalCooldown) {
       return this.castTime - common.calc.globalCooldown
     }
 
-    return this.character.naturesGraceBonus
+    return this.player.naturesGraceBonus
   }
 
   /**
    * Factors in cast speed, procs like natures grace, hit, crit and "human factor" (which might actually be latency?)
    */
   get effectiveCastTime(): number {
-    if ((this.character.buffFlags & Buff.BurningAdrenaline) === Buff.BurningAdrenaline) {
-      return common.calc.globalCooldown + this.settings.castTimePenalty
+    /* burning adrenline makes all spells instant cast */
+    if (common.enums.buffMaskIncludes(this.player.buffMask, Buff.BurningAdrenaline)) {
+      return common.calc.globalCooldown + this.settings.game.castTimePenalty
     }
 
     return (
       Math.max(common.calc.globalCooldown, this.castTime - this.castTimeReductionOnCrit * (this.chanceToCrit / 100)) +
-      this.settings.castTimePenalty
+      this.settings.game.castTimePenalty
     )
   }
 
@@ -414,7 +417,7 @@ export default class Cast {
    *
    */
   get chanceToHit(): number {
-    return Math.min(99, this.target.hitChance + this.character.effectiveSpellHit)
+    return Math.min(99, this.target.hitChance + this.player.effectiveSpellHit)
   }
 
   /**
@@ -446,7 +449,7 @@ export default class Cast {
       case 'WRATH':
       case 'STARFIRE':
       case 'MOONFIRE':
-        return common.calc.baseSpellCritMultiplier + this.character.vengeanceBonus
+        return common.calc.baseSpellCritMultiplier + this.player.vengeanceBonus
       default:
         return common.calc.baseSpellCritMultiplier
     }

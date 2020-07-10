@@ -3,30 +3,41 @@
    see param definitions in function comments 
  */
 
+import utils from './utils'
+
+import MagicSchool from '../enum/MagicSchool'
+
 import CalcOpts from '../interface/CalcOpts'
 import Settings from '../interface/Settings'
+import ManaRegen from '../interface/ManaRegen'
+import CommonNumberResult from '../interface/CommonNumberResult'
+import SpellDamage from '../interface/SpellDamage'
+import Stats from '../interface/Stats'
+import Weights from '../interface/Weights'
+import PlayableClass from '../enum/PlayableClass'
+import TargetType from '../enum/TargetType'
 
 const calcOptsFromSettings = (s: Settings): CalcOpts => {
   const o: CalcOpts = {}
 
-  if (s.game) {
-    o.game = s.game
+  if (s.game.type) {
+    o.gameType = s.game.type
   }
 
-  if (s.character.talents.vengeanceRank) {
-    o.vengeanceRank = s.character.talents.vengeanceRank
+  if (s.player.talents.vengeanceRank) {
+    o.vengeanceRank = s.player.talents.vengeanceRank
   }
 
-  if (s.character.talents.moonFuryRank) {
-    o.moonFuryRank = s.character.talents.moonFuryRank
+  if (s.player.talents.moonFuryRank) {
+    o.moonFuryRank = s.player.talents.moonFuryRank
   }
 
-  if (s.character.talents.improvedMoonfireRank) {
-    o.improvedMoonfireRank = s.character.talents.moonFuryRank
+  if (s.player.talents.improvedMoonfireRank) {
+    o.improvedMoonfireRank = s.player.talents.improvedMoonfireRank
   }
 
-  if (s.character.talents.reflectionRank) {
-    o.reflectionRank = s.character.talents.reflectionRank
+  if (s.player.talents.reflectionRank) {
+    o.reflectionRank = s.player.talents.reflectionRank
   }
 
   return o
@@ -57,7 +68,7 @@ const baseSpellCritMultiplier = 1.5
  * Returns the chance of a spell hitting a target, not accounting for the players spellHit stat.
  *
  * @remarks
- * TODO: Assumes level 60 character level
+ * TODO: Assumes level 60 player level
  *
  * @param targetLevel
  * @param opts
@@ -86,11 +97,11 @@ const spellBaseChanceToHit = (targetLevel: number, opts?: CalcOpts) => {
  * Returns chance of hitting a target with a spell.
  *
  * @remarks
- * TODO: Assumes level 60 character level
+ * TODO: Assumes level 60 player level
  * Example: console.log(libclassic.calc.spellChanceToHit(63, 5))
  *
  * @param targetLevel target level
- * @param spellHit character spell hit (total effective)
+ * @param spellHit player spell hit (total effective)
  * @param opts
  * @returns A number between '0' and '99'.
  */
@@ -103,7 +114,7 @@ const spellChanceToHit = (targetLevel: number, spellHit: number, opts?: CalcOpts
  * Returns chance of missing a target with a spell.
  *
  * @remarks
- * TODO: Assumes level 60 character level
+ * TODO: Assumes level 60 player level
  *
  * @param targetLevel
  * @param spellHit
@@ -119,7 +130,7 @@ const spellChanceToMiss = (targetLevel: number, spellHit: number, opts?: CalcOpt
  * Returns chance of critical striking a target with a spell.
  *
  * @remarks
- * TODO: Assumes level 60 character level
+ * TODO: Assumes level 60 player level
  *
  * @param targetLevel
  * @param spellHit
@@ -135,7 +146,7 @@ const spellChanceToCrit = (targetLevel: number, spellHit: number, spellCrit: num
  * Returns chance of normal striking a target with a spell.
  *
  * @remarks
- * TODO: Assumes level 60 character level
+ * TODO: Assumes level 60 player level
  *
  * @param targetLevel
  * @param spellHit
@@ -188,66 +199,70 @@ const spellCritMultiplier = (opts?: CalcOpts): number => {
 }
 
 /**
- *
- * The base damage multiplier of a spell. Some talents provide a bonus.
+ * The dmg multiplier applied to spell
  *
  * @param spellName
+ * @param additional
  * @param opts.moonFuryRank
  * @param opts.improvedMoonfireRank
  */
-const spellBaseDmgMultiplier = (spellName: string, opts?: CalcOpts): number => {
-  if (!opts) {
-    return 1.0
+const spellDmgMultiplier = (spellName: string, additionalMultipliers: number, opts?: CalcOpts): CommonNumberResult => {
+  const r = {} as CommonNumberResult
+  r.base = 1.0
+
+  if (opts && utils.fuzzyIncludes(spellName, 'moonfire, starfire, wrath')) {
+    switch (opts.moonFuryRank) {
+      case 1:
+        r.base *= 1.02 // rank 1: 2% bonus
+        break
+      case 2:
+        r.base *= 1.04 // rank 2: 4% bonus
+        break
+      case 3:
+        r.base *= 1.06 // rank 3: 6% bonus
+        break
+      case 4:
+        r.base *= 1.08 // rank 4: 8% bonus
+        break
+      case 5:
+        r.base *= 1.1 // rank 5: 10% bonus
+        break
+    }
   }
 
-  let moonFuryBonus = 1.0
-  switch (opts.moonFuryRank) {
-    case 1:
-      moonFuryBonus = 1.02 // rank 1: 2% bonus
-      break
-    case 2:
-      moonFuryBonus = 1.04 // rank 2: 4% bonus
-      break
-    case 3:
-      moonFuryBonus = 1.06 // rank 3: 6% bonus
-      break
-    case 4:
-      moonFuryBonus = 1.08 // rank 4: 8% bonus
-      break
-    case 5:
-      moonFuryBonus = 1.1 // rank 5: 10% bonus
-      break
+  if (opts && utils.fuzzyIncludes(spellName, 'moonfire')) {
+    switch (opts.improvedMoonfireRank) {
+      case 1:
+        r.base *= 1.02 // rank 1: 2% bonus
+        break
+      case 2:
+        r.base *= 1.04 // rank 2: 4% bonus
+        break
+      case 3:
+        r.base *= 1.06 // rank 3: 6% bonus
+        break
+      case 4:
+        r.base *= 1.08 // rank 4: 8% bonus
+        break
+      case 5:
+        r.base *= 1.1 // rank 5: 10% bonus
+        break
+    }
   }
 
-  let improvedMoonfireBonus = 1.0
-  switch (opts.improvedMoonfireRank) {
-    case 1:
-      improvedMoonfireBonus = 1.02 // rank 1: 2% bonus
-      break
-    case 2:
-      improvedMoonfireBonus = 1.04 // rank 2: 4% bonus
-      break
-    case 3:
-      improvedMoonfireBonus = 1.06 // rank 3: 6% bonus
-      break
-    case 4:
-      improvedMoonfireBonus = 1.08 // rank 4: 8% bonus
-      break
-    case 5:
-      improvedMoonfireBonus = 1.1 // rank 5: 10% bonus
-      break
-  }
-
-  if (spellName.toUpperCase().includes('MOONFIRE')) {
-    return moonFuryBonus * improvedMoonfireBonus
-  } else if (spellName.toUpperCase().includes('STARFIRE')) {
-    return moonFuryBonus
-  } else if (spellName.toUpperCase().includes('WRATH')) {
-    return moonFuryBonus
-  }
-
-  return 1.0
+  r.effective = r.base * Math.min(additionalMultipliers, 1.0)
+  return r
 }
+
+/*
+const spellDmg = (spellName: string, dmg: number, additionalMultipliers: number, opts?: CalcOpts) => {
+  const r: CommonNumberResult = {} as CommonNumberResult
+  const m: CommonNumberResult = spellDmgMultiplier(spellName, additionalMultipliers, opts)
+
+  r.base = dmg * (m.base ? m.base : 1.0)
+  r.effective = dmg * (m.effective ? m.effective : 1.0)
+}
+*/
 
 /**
  *
@@ -258,31 +273,25 @@ const spellBaseDmgMultiplier = (spellName: string, opts?: CalcOpts): number => {
  * @param opts.moonFuryRank
  * @param opts.improvedMoonfireRank
  */
-const spellBaseDmg = (spellName: string, dmg: number, opts?: CalcOpts): number => {
-  return dmg * spellBaseDmgMultiplier(spellName, opts)
+const spellDmgBase = (spellName: string, dmg: number, opts?: CalcOpts): number => {
+  const m: CommonNumberResult = spellDmgMultiplier(spellName, 0, opts)
+  return dmg * (m.base ? m.base : 1.0)
 }
 
 /**
  * For non-binary spells only: Each difference in level gives a 2% resistance chance that cannot
  * be negated (by spell penetration or otherwise).
  *
+ * @param playerLevel
  * @param targetLevel
- * @param characterLevel
  * @returns Unmitigatable target resistance
  */
-const targetSpellResistanceFromLevel = (
-  targetLevel: number,
-  characterLevel: number,
-  binarySpell: boolean,
-  opts?: CalcOpts
-): number => {
+const targetSpellResistanceFromLevel = (playerLevel: number, targetLevel: number, binarySpell: boolean): number => {
   if (binarySpell) {
     return 0
   }
 
-  return (
-    (targetLevel > characterLevel ? targetLevel - characterLevel : 0) * parseFloat((0.1333 * characterLevel).toFixed(2))
-  )
+  return (targetLevel > playerLevel ? targetLevel - playerLevel : 0) * parseFloat((0.1333 * playerLevel).toFixed(2))
 }
 
 /**
@@ -290,24 +299,22 @@ const targetSpellResistanceFromLevel = (
  * Total spell resistance of target. Factors in binary vs non-binary spell and
  * the targets unmitigatable resistance based on level.
  *
+ * @param playerLevel
+ * @param playerSpellPenetration
  * @param targetLevel
  * @param targetBaseSpellResistance
- * @param characterLevel
- * @param characterSpellPenetration
- * @param opts.binarySpell
  *
  */
 const targetSpellResistance = (
+  playerLevel: number,
+  playerSpellPenetration: number,
   targetLevel: number,
   targetBaseSpellResistance: number,
-  characterLevel: number,
-  characterSpellPenetration: number,
-  binarySpell: boolean,
-  opts?: CalcOpts
+  binarySpell: boolean
 ): number => {
-  const base = targetSpellResistanceFromLevel(targetLevel, characterLevel, binarySpell, opts)
-  const sr = Math.min(targetBaseSpellResistance, 5 * characterLevel - base)
-  return sr - Math.min(characterSpellPenetration, sr) + base
+  const fromLevel = targetSpellResistanceFromLevel(playerLevel, targetLevel, binarySpell)
+  const sr = Math.min(targetBaseSpellResistance, 5 * playerLevel - fromLevel)
+  return sr - Math.min(playerSpellPenetration, sr) + fromLevel
 }
 
 /**
@@ -316,34 +323,43 @@ const targetSpellResistance = (
  *
  * https://dwarfpriest.wordpress.com/2008/01/07/spell-hit-spell-penetration-and-resistances/#more-176
  *
+ * @param playerLevel
+ * @param playerSpellPenetration
  * @param targetLevel
  * @param targetBaseSpellResistance
- * @param characterLevel
- * @param characterSpellPenetration
- * @param opts.binarySpell
+ * @param binarySpell
  *
  * @returns Multiplier to be applied over the spells total damage
  */
 const spellPartialResistAvg = (
+  playerLevel: number,
+  playerSpellPenetration: number,
   targetLevel: number,
   targetBaseSpellResistance: number,
-  characterLevel: number,
-  characterSpellPenetration: number,
-  binarySpell: boolean,
-  opts?: CalcOpts
+  binarySpell: boolean
 ): number => {
   const sr = targetSpellResistance(
+    playerLevel,
+    playerSpellPenetration,
     targetLevel,
     targetBaseSpellResistance,
-    characterLevel,
-    characterSpellPenetration,
-    binarySpell,
-    opts
+    binarySpell
   )
-  return (0.75 * sr) / (5 * characterLevel)
+  return (0.75 * sr) / (5 * playerLevel)
 }
 
-const manaPerTick = (charLvl: number, charSpirit: number, charMp5: number, opts?: CalcOpts): any => {
+/**
+ *
+ * Mana restored each tick
+ *
+ * @param playerLevel
+ * @param playerSpirit
+ * @param playerMp5
+ * @param opts.reflectionRank
+ */
+const playerManaRegen = (playerLevel: number, playerSpirit: number, playerMp5: number, opts?: CalcOpts): ManaRegen => {
+  const manaRegen: ManaRegen = {} as ManaRegen
+
   let reflectionBonus = 0
   if (opts) {
     switch (opts.reflectionRank) {
@@ -359,36 +375,91 @@ const manaPerTick = (charLvl: number, charSpirit: number, charMp5: number, opts?
     }
   }
 
-  const fromBaseNotCasting = (15 * charLvl) / 60
-  const fromSpiritNotCasting = charSpirit / 5
-  const fromMp5NotCasting = charMp5 ? (charMp5 / 5) * 2 : 0
-  const totalNotCasting = fromBaseNotCasting + fromSpiritNotCasting + fromMp5NotCasting
+  /* not casting */
+  manaRegen.notCasting.base = (15 * playerLevel) / 60
+  manaRegen.notCasting.fromSpirit = playerSpirit / 5
+  manaRegen.notCasting.fromMp5 = playerMp5 ? (playerMp5 / 5) * 2 : 0
+  manaRegen.notCasting.effective =
+    manaRegen.notCasting.base + manaRegen.notCasting.fromSpirit + manaRegen.notCasting.fromMp5
 
-  const fromBaseCasting = fromBaseNotCasting * reflectionBonus
-  const fromSpiritCasting = fromSpiritNotCasting * reflectionBonus
-  const fromMp5Casting = fromMp5NotCasting
-  const totalCasting = fromBaseCasting + fromSpiritCasting + fromMp5Casting
+  /* casting */
+  manaRegen.casting.base = manaRegen.notCasting.base * reflectionBonus
+  manaRegen.casting.fromSpirit = manaRegen.notCasting.fromSpirit * reflectionBonus
+  manaRegen.casting.fromMp5 = manaRegen.notCasting.fromMp5
+  manaRegen.casting.effective = manaRegen.casting.base + manaRegen.casting.fromSpirit + manaRegen.casting.fromMp5
 
-  const innervate = totalNotCasting * 4
-  const innervateFullDuration = innervate * 10
+  /* other */
+  manaRegen.innervate = manaRegen.notCasting.effective * 4
+  manaRegen.innervateFullDuration = manaRegen.innervate * 10
 
-  return {
-    casting: {
-      total: totalCasting,
-      fromBase: fromBaseCasting,
-      fromSpirit: fromSpiritCasting,
-      fromMp5: fromMp5Casting
-    },
-    notCasting: {
-      total: totalNotCasting,
-      fromBase: fromBaseNotCasting,
-      fromSpirit: fromSpiritNotCasting,
-      fromMp5: fromMp5NotCasting
-    },
-    innervate: innervate,
-    innervateFullDuration: innervateFullDuration
-  }
+  return manaRegen
 }
+
+// base is total from gear, actual applies magic school, effective applies bonus (flasks and elixir)
+// FIXME: add missing schools
+const spellDamage = (baseSpellDamage: SpellDamage, magicSchool: MagicSchool, effectiveBonus: number): SpellDamage => {
+  const mySpellDamage: SpellDamage = utils.cloneObject(baseSpellDamage)
+
+  switch (magicSchool) {
+    case MagicSchool.Arcane:
+      mySpellDamage.arcaneDamage.actual =
+        (mySpellDamage.spellDamage.base ? mySpellDamage.spellDamage.base : 0) +
+        (mySpellDamage.arcaneDamage.base ? mySpellDamage.arcaneDamage.base : 0)
+      mySpellDamage.arcaneDamage.effective = mySpellDamage.arcaneDamage.actual + effectiveBonus
+      mySpellDamage.spellDamage.actual = mySpellDamage.arcaneDamage.actual
+      mySpellDamage.spellDamage.effective = mySpellDamage.arcaneDamage.effective
+      break
+    case MagicSchool.Nature:
+      mySpellDamage.natureDamage.actual =
+        (mySpellDamage.spellDamage.base ? mySpellDamage.spellDamage.base : 0) +
+        (mySpellDamage.natureDamage.base ? mySpellDamage.natureDamage.base : 0)
+      mySpellDamage.natureDamage.effective = mySpellDamage.natureDamage.actual + effectiveBonus
+      mySpellDamage.spellDamage.actual = mySpellDamage.natureDamage.actual
+      mySpellDamage.spellDamage.effective = mySpellDamage.natureDamage.effective
+      break
+    case MagicSchool.Fire:
+    case MagicSchool.Frost:
+    case MagicSchool.Shadow:
+    case MagicSchool.Holy:
+      break
+  }
+
+  return mySpellDamage
+}
+
+// const playerStats = () => {}
+
+/*
+const weightScore = (stats: Stats, Weights: Weights, playerClass: PlayableClass, targetType: TargetType, magicSchool: MagicSchool) => {
+
+  const total = stats.spellDamage.spellDamage.effective
+
+  static score(
+    magicSchool: MagicSchool,
+    spellDamage: number,
+    arcaneDamage: number,
+    natureDamage: number,
+    spellHit: number,
+    spellCrit: number,
+    intellect: number,
+    spellHitWeight: number,
+    spellCritWeight: number
+  ): number {
+    const totalScore =
+      spellDamage +
+      (magicSchool && magicSchool === MagicSchool.Arcane ? arcaneDamage : 0) +
+      (magicSchool && magicSchool === MagicSchool.Nature ? natureDamage : 0) +
+      spellHit * spellHitWeight +
+      spellCrit * spellCritWeight +
+      (intellect / SpellCritFromIntellectDivisor.Druid) * spellCritWeight
+
+    return parseFloat(totalScore.toFixed(3))
+  }
+
+
+  
+}
+  */
 
 export default {
   globalCooldown,
@@ -405,9 +476,11 @@ export default {
   spellPartialResistAvg,
   spellCritBonusMultiplier,
   spellCritMultiplier,
-  spellBaseDmgMultiplier,
-  spellBaseDmg,
+  spellDmgMultiplier,
+  spellDmgBase,
+  spellBaseChanceToHit,
+  spellDamage,
+  playerManaRegen,
   targetSpellResistanceFromLevel,
-  targetSpellResistance,
-  manaPerTick
+  targetSpellResistance
 }

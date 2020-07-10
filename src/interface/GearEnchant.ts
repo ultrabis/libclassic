@@ -1,16 +1,17 @@
 import ItemSlot from '../enum/ItemSlot'
+import GearSlot from '../enum/gearSlot'
 
-export default interface EnchantJSON {
+export default interface GearEnchant {
   id: number
   name: string
+  gearSlot: GearSlot
   itemSlot: ItemSlot
   phase: number
   icon: string
-  score: number
   text: string
-  exploit?: boolean
-  spellHealing?: number
-  armor?: number
+  exploit: boolean
+  spellHealing: number
+  armor: number
   spellDamage: number
   arcaneDamage: number
   natureDamage: number
@@ -21,4 +22,5 @@ export default interface EnchantJSON {
   intellect: number
   spirit: number
   mp5: number
+  score: number
 }

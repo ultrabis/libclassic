@@ -4,9 +4,9 @@ import PvPRank from '../enum/PvPRank'
 
 export default interface ItemQuery {
   id?: number
-  customId?: string
+  suffixId?: number
   name?: string
-  slot?: ItemSlot
+  itemSlot?: ItemSlot
   phase?: number
   faction?: Faction
   pvpRank?: PvPRank

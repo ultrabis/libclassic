@@ -1,7 +1,7 @@
-/* library internal. Use `ItemSlot` for in-game values. */
+/* these represent the indexes of the gear array in settings and encounter results.
+ * note: ItemSlot cooresponds to item slot numbers according to wowhead */
 enum GearSlot {
-  Invalid = -1,
-  Head = 0,
+  Head,
   Hands,
   Neck,
   Waist,

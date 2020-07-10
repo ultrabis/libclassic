@@ -1,6 +1,6 @@
 import common from '../common'
 import Settings from '../interface/Settings'
-import Buffs from '../enum/Buffs'
+import Buffs from '../enum/Buff'
 import MagicSchool from '../enum/MagicSchool'
 
 /* XXX: I originally wanted to allow user to select a target from a list. The lack of
@@ -25,10 +25,10 @@ interface TargetJSON {
 
 export default class Target {
   settings: Settings
-  debuffFlags: Buffs
+  debuffMask: Buffs
   constructor(settings: Settings) {
     this.settings = settings
-    this.debuffFlags = common.enums.buffListToFlags(settings.target.debuffs)
+    this.debuffMask = common.enums.buffMaskFromText(settings.target.debuffs.toString())
   }
 
   get level(): number {
@@ -64,14 +64,14 @@ export default class Target {
   }
 
   get spellVulnBonus(): number {
-    return (this.debuffFlags & Buffs.SpellVulnerability) === Buffs.SpellVulnerability ? 1.15 : 1.0
+    return (this.debuffMask & Buffs.SpellVulnerability) === Buffs.SpellVulnerability ? 1.15 : 1.0
   }
 
   /**
    * ...reducing Shadow and Arcane resistances by 75...
    */
   get curseOfShadowResistBonus(): number {
-    return (this.debuffFlags & Buffs.CurseOfShadow) === Buffs.CurseOfShadow ? 75 : 0
+    return (this.debuffMask & Buffs.CurseOfShadow) === Buffs.CurseOfShadow ? 75 : 0
   }
 
   /**
@@ -85,14 +85,14 @@ export default class Target {
    * ...and increasing Shadow and Arcane damage taken by 10%...
    */
   get curseOfShadowDamageBonus(): number {
-    return (this.debuffFlags & Buffs.CurseOfShadow) === Buffs.CurseOfShadow ? 1.1 : 1.0
+    return (this.debuffMask & Buffs.CurseOfShadow) === Buffs.CurseOfShadow ? 1.1 : 1.0
   }
 
   /**
    * ..the next 2 sources of Nature damage dealt to the target are increased by 20%
    */
   get stormStrikeBonus(): number {
-    return (this.debuffFlags & Buffs.StormStrike) === Buffs.StormStrike ? 1.2 : 1.0
+    return (this.debuffMask & Buffs.StormStrike) === Buffs.StormStrike ? 1.2 : 1.0
   }
 
   get arcaneSpellResistance(): number {

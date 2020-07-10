@@ -1,4 +1,5 @@
 import ItemSlot from '../enum/ItemSlot'
+import GearSlot from '../enum/GearSlot'
 import ItemQuality from '../enum/ItemQuality'
 import ItemClass from '../enum/ItemClass'
 import ArmorSubclass from '../enum/ArmorSubclass'
@@ -10,12 +11,13 @@ import TargetType from '../enum/TargetType'
 import ItemOnUseJSON from './ItemOnUseJSON'
 
 export default interface ItemJSON {
-  id?: number
-  customId?: string
+  id: number
+  suffixId?: number
+  itemSlot: ItemSlot
+  gearSlot: GearSlot
   name?: string
   class?: ItemClass
   subclass?: ArmorSubclass | WeaponSubclass
-  slot: ItemSlot
   quality?: ItemQuality
   level?: number
   reqLevel?: number
@@ -24,12 +26,12 @@ export default interface ItemJSON {
   allowableClasses?: PlayableClass[]
   targetTypes?: TargetType
   phase?: number
-  pvpRank: PvPRank
+  pvpRank?: PvPRank
   icon?: string
   location?: string
   boss?: string
-  raid: boolean
-  worldBoss: boolean
+  raid?: boolean
+  worldBoss?: boolean
   faction?: Faction
   score?: number
   spellDamage?: number

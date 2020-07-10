@@ -42,25 +42,21 @@ const item = (opts: ItemQuery): ItemJSON | undefined => {
 
 const items = (opts: ItemQuery): ItemJSON[] => {
   const noRandomEnchants = (itemJSON: ItemJSON) => {
-    if (!itemJSON || !itemJSON.customId) {
+    if (!itemJSON || !itemJSON.suffixId) {
       return true
     }
 
-    return common.utils.isLetter(itemJSON.customId.charAt(0)) ? false : true
+    return false
   }
 
-  const slot2query = (slot: ItemSlot) => {
-    switch (slot) {
+  const itemSlot2query = (itemSlot: ItemSlot) => {
+    switch (itemSlot) {
       case ItemSlot.Finger2:
-        return `[* slot=${ItemSlot.Finger}]`
+        return `[* itemSlot=${ItemSlot.Finger}]`
       case ItemSlot.Trinket2:
-        return `[* slot=${ItemSlot.Trinket}]`
-      case ItemSlot.Mainhand:
-        return `[* slot=${ItemSlot.Mainhand} | slot=${ItemSlot.Onehand} | slot=${ItemSlot.Twohand}]`
-      case ItemSlot.Onehand:
-        return `[* slot=${ItemSlot.Mainhand} | slot=${ItemSlot.Onehand}]`
+        return `[* itemSlot=${ItemSlot.Trinket}]`
       default:
-        return `[* slot=${slot}]`
+        return `[* itemSlot=${itemSlot}]`
     }
   }
 
@@ -74,24 +70,26 @@ const items = (opts: ItemQuery): ItemJSON[] => {
     return _result(result, opts.cloneResults ? opts.cloneResults : false)
   }
 
-  /* id, customId and name are unique. if one is passed just lookup and return */
-  if (opts.id) {
+  if (opts.id && opts.suffixId) {
+    // random enchant item
+    return singleItemQuery(`[id=${opts.id}, suffixId=${opts.suffixId}]`)
+  } else if (opts.id) {
+    // item by id
     return singleItemQuery(`[id=${opts.id}]`)
-  } else if (opts.customId) {
-    return singleItemQuery(`[customId=${opts.customId}]`)
   } else if (opts.name) {
+    // item by name
     return singleItemQuery(`[name=${opts.name}]`)
   }
 
   let result: ItemJSON[] = []
 
-  /* at this point if we don't have slot just return an empty set. we don't really
-   * have a use-case for returning array of items from different slots */
-  if (opts.slot === undefined) {
+  /* at this point if we don't have itemSlot just return an empty set. we don't really
+   * have a use-case for returning array of items from different itemSlots */
+  if (opts.itemSlot === undefined) {
     return result
   }
 
-  result = jsonQuery(slot2query(opts.slot), { data: itemsDB }).value
+  result = jsonQuery(itemSlot2query(opts.itemSlot), { data: itemsDB }).value
 
   if (opts.faction !== undefined) {
     result = jsonQuery(`[* faction = ${opts.faction} | faction = ${Faction.Horde | Faction.Alliance}]`, {
@@ -188,19 +186,17 @@ const enchants = (opts: ItemQuery): EnchantJSON[] => {
   /* id and name are unique. if one is passed just lookup and return */
   if (opts.id) {
     return singleEnchantQuery(`[id=${opts.id}]`)
-  } else if (opts.customId) {
-    return singleEnchantQuery(`[customId=${opts.customId}]`)
   } else if (opts.name) {
     return singleEnchantQuery(`[name=${opts.name}]`)
   }
 
   let result: EnchantJSON[] = []
 
-  if (opts.slot === undefined) {
+  if (opts.itemSlot === undefined) {
     return result
   }
 
-  result = jsonQuery(`[* slot = ${opts.slot} | slot = -2 ]`, { data: enchantsDB }).value
+  result = jsonQuery(`[* itemSlot = ${opts.itemSlot} | itemSlot = -2 ]`, { data: enchantsDB }).value
 
   if (opts.phase !== undefined) {
     result = jsonQuery(`[* phase <= ${opts.phase}]`, { data: result }).value

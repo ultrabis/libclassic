@@ -4,7 +4,7 @@ import EnchantJSON from '../interface/EnchantJSON'
 
 import MagicSchool from '../enum/MagicSchool'
 import ItemQuality from '../enum/ItemQuality'
-import ItemSlot from '../enum/ItemSlot'
+import GearSlot from '../enum/GearSlot'
 import ItemClass from '../enum/ItemClass'
 import SpellCritFromIntellectDivisor from '../enum/SpellCritFromIntellectDivisor'
 import ArmorSubclass from '../enum/ArmorSubclass'
@@ -13,14 +13,20 @@ import PlayableClass from '../enum/PlayableClass'
 import PvPRank from '../enum/PvPRank'
 import Faction from '../enum/Faction'
 import TargetType from '../enum/TargetType'
+import GearState from '../enum/GearState'
+import ItemSlot from '../enum/ItemSlot'
+
+import common from '../common'
 
 export default class Item {
-  _slot: ItemSlot
+  itemSlot: ItemSlot
+  gearSlot: GearSlot
   itemJSON: ItemJSON | undefined
   enchantJSON: EnchantJSON | undefined
 
   constructor(slot: ItemSlot, itemJSON?: ItemJSON, enchantJSON?: EnchantJSON) {
-    this._slot = slot
+    this.itemSlot = slot
+    this.gearSlot = common.enums.gearSlotFromItemSlot(slot)
     this.itemJSON = itemJSON ? itemJSON : undefined
     this.enchantJSON = enchantJSON ? enchantJSON : undefined
   }
@@ -138,16 +144,12 @@ export default class Item {
     return this.itemJSON && this.itemJSON.id ? this.itemJSON.id : 0
   }
 
-  get customId(): string {
-    return this.itemJSON && this.itemJSON.customId ? this.itemJSON.customId : ``
+  get suffixId(): number {
+    return this.itemJSON && this.itemJSON.suffixId ? this.itemJSON.suffixId : 0
   }
 
   get enchantId(): number {
     return this.enchantJSON && this.enchantJSON.id ? this.enchantJSON.id : 0
-  }
-
-  get enchantCustomId(): string {
-    return this.enchantJSON && this.enchantJSON.customId ? this.enchantJSON.customId : ``
   }
 
   get name(): string {
@@ -159,10 +161,8 @@ export default class Item {
       return this.itemJSON.class
     }
 
-    switch (this.slot) {
-      case ItemSlot.Twohand:
-      case ItemSlot.Mainhand:
-      case ItemSlot.Onehand:
+    switch (this.gearSlot) {
+      case GearSlot.Mainhand:
         return ItemClass.Weapon
       default:
         return ItemClass.Armor
@@ -205,78 +205,64 @@ export default class Item {
     }
   }
 
-  get slot(): ItemSlot {
-    return this.itemJSON ? this.itemJSON.slot : this._slot
-  }
-
   get slotName(): string {
-    switch (this.slot) {
-      case ItemSlot.Trinket2:
-        return ItemSlot[ItemSlot.Trinket]
-      case ItemSlot.Finger2:
-        return ItemSlot[ItemSlot.Finger]
-      case ItemSlot.Mainhand:
+    switch (this.gearSlot) {
+      case GearSlot.Trinket2:
+        return GearSlot[GearSlot.Trinket]
+      case GearSlot.Finger2:
+        return GearSlot[GearSlot.Finger]
+      case GearSlot.Mainhand:
         return 'Main Hand'
-      case ItemSlot.Ammo:
-      case ItemSlot.Head:
-      case ItemSlot.Neck:
-      case ItemSlot.Shoulder:
-      case ItemSlot.Shirt:
-      case ItemSlot.Chest:
-      case ItemSlot.Waist:
-      case ItemSlot.Legs:
-      case ItemSlot.Feet:
-      case ItemSlot.Wrist:
-      case ItemSlot.Hands:
-      case ItemSlot.Finger:
-      case ItemSlot.Trinket:
-      case ItemSlot.Onehand:
-      case ItemSlot.Ranged:
-      case ItemSlot.Back:
-      case ItemSlot.Twohand:
-      case ItemSlot.Tabard:
-      case ItemSlot.Offhand:
-      case ItemSlot.Projectile:
-      case ItemSlot.Relic:
+      case GearSlot.Head:
+      case GearSlot.Neck:
+      case GearSlot.Shoulder:
+      case GearSlot.Chest:
+      case GearSlot.Waist:
+      case GearSlot.Legs:
+      case GearSlot.Feet:
+      case GearSlot.Wrist:
+      case GearSlot.Hands:
+      case GearSlot.Finger:
+      case GearSlot.Trinket:
+      case GearSlot.Ranged:
+      case GearSlot.Back:
+      case GearSlot.Offhand:
+      case GearSlot.Ranged:
+      case GearSlot.Relic:
+      case GearSlot.Quiver:
       default:
-        return ItemSlot[this.slot]
+        return GearSlot[this.gearSlot]
     }
   }
 
   get slotDisplayName(): string {
-    switch (this.slot) {
-      case ItemSlot.Onehand:
-      case ItemSlot.Twohand:
-      case ItemSlot.Mainhand:
+    switch (this.gearSlot) {
+      case GearSlot.Mainhand:
         return 'Main Hand'
-      case ItemSlot.Finger:
+      case GearSlot.Finger:
         return 'Finger 1'
-      case ItemSlot.Finger2:
+      case GearSlot.Finger2:
         return 'Finger 2'
-      case ItemSlot.Offhand:
+      case GearSlot.Offhand:
         return 'Off Hand'
-      case ItemSlot.Trinket:
+      case GearSlot.Trinket:
         return 'Trinket 1'
-      case ItemSlot.Trinket2:
+      case GearSlot.Trinket2:
         return 'Trinket 2'
-      case ItemSlot.Ammo:
-      case ItemSlot.Head:
-      case ItemSlot.Neck:
-      case ItemSlot.Shoulder:
-      case ItemSlot.Shirt:
-      case ItemSlot.Chest:
-      case ItemSlot.Waist:
-      case ItemSlot.Legs:
-      case ItemSlot.Feet:
-      case ItemSlot.Wrist:
-      case ItemSlot.Hands:
-      case ItemSlot.Ranged:
-      case ItemSlot.Back:
-      case ItemSlot.Tabard:
-      case ItemSlot.Projectile:
-      case ItemSlot.Relic:
+      case GearSlot.Head:
+      case GearSlot.Neck:
+      case GearSlot.Shoulder:
+      case GearSlot.Chest:
+      case GearSlot.Waist:
+      case GearSlot.Legs:
+      case GearSlot.Feet:
+      case GearSlot.Wrist:
+      case GearSlot.Hands:
+      case GearSlot.Ranged:
+      case GearSlot.Back:
+      case GearSlot.Relic:
       default:
-        return ItemSlot[this.slot]
+        return GearSlot[this.gearSlot]
     }
   }
 
@@ -285,7 +271,7 @@ export default class Item {
       return true
     }
 
-    if (this.itemJSON.customId === '1') {
+    if (this.itemJSON.id === GearState.Naked) {
       return true
     }
 
@@ -529,21 +515,19 @@ export default class Item {
   }
 
   get enchantText(): string {
-    const slot = this.itemJSON ? this.itemJSON.slot : ItemSlot.Any
+    const slot = this.itemJSON ? this.gearSlot : ItemSlot.None
     const text = this.enchantJSON ? this.enchantJSON.text : 'No Enchant'
 
     switch (slot) {
-      case ItemSlot.Head:
-      case ItemSlot.Hands:
-      case ItemSlot.Shoulder:
-      case ItemSlot.Legs:
-      case ItemSlot.Back:
-      case ItemSlot.Feet:
-      case ItemSlot.Chest:
-      case ItemSlot.Wrist:
-      case ItemSlot.Twohand:
-      case ItemSlot.Onehand:
-      case ItemSlot.Mainhand:
+      case GearSlot.Head:
+      case GearSlot.Hands:
+      case GearSlot.Shoulder:
+      case GearSlot.Legs:
+      case GearSlot.Back:
+      case GearSlot.Feet:
+      case GearSlot.Chest:
+      case GearSlot.Wrist:
+      case GearSlot.Mainhand:
         return text
       default:
         return ``
@@ -551,24 +535,23 @@ export default class Item {
   }
 
   get enchantClass(): string {
-    const slot = this.enchantJSON ? this.enchantJSON.slot : ItemSlot.Any
+    const slot = this.enchantJSON ? this.gearSlot : ItemSlot.None
 
     if (this.enchantJSON && this.enchantJSON.id === 1) {
       return `poor`
     }
 
     switch (slot) {
-      case ItemSlot.Head:
-      case ItemSlot.Hands:
-      case ItemSlot.Shoulder:
-      case ItemSlot.Legs:
-      case ItemSlot.Back:
-      case ItemSlot.Feet:
-      case ItemSlot.Chest:
-      case ItemSlot.Wrist:
-      case ItemSlot.Mainhand:
+      case GearSlot.Head:
+      case GearSlot.Hands:
+      case GearSlot.Shoulder:
+      case GearSlot.Legs:
+      case GearSlot.Back:
+      case GearSlot.Feet:
+      case GearSlot.Chest:
+      case GearSlot.Wrist:
+      case GearSlot.Mainhand:
         return `uncommon`
-      case ItemSlot.Any:
       default:
         return `poor`
     }

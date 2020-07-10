@@ -99,7 +99,7 @@ export default class Equipment {
     spellCrit?: number
   ): ItemSearch {
     const mySettings: Settings = common.utils.cloneObject(settings)
-    const spell = new Spell(mySettings.spellName)
+    const spell = new Spell(mySettings.player.rotation)
 
     const mySpellHitWeight = spellHitWeight !== undefined ? spellHitWeight : 15
     const mySpellCritWeight = spellCritWeight !== undefined ? spellCritWeight : 10
@@ -107,26 +107,27 @@ export default class Equipment {
     const mySpellCrit = spellCrit !== undefined ? spellCrit : 30
 
     return {
-      phase: mySettings.phase,
-      faction: common.enums.factionFromRace(mySettings.character.race),
-      pvpRank: mySettings.character.pvpRank,
-      raids: mySettings.equipment.raids,
-      worldBosses: mySettings.equipment.worldBosses,
-      randomEnchants: mySettings.equipment.randomEnchants,
-      tailoring: mySettings.equipment.tailoring,
-      enchantExploit: mySettings.equipment.enchantExploit,
-      encounterLength: mySettings.encounterLength,
-      onUseItems: mySettings.equipment.onUseItems,
+      phase: mySettings.game.phase,
+      faction: common.enums.factionFromRace(mySettings.player.race),
+      pvpRank: mySettings.player.pvpRank,
+      raids: mySettings.gear.raids,
+      worldBosses: mySettings.gear.worldBosses,
+      randomEnchants: mySettings.gear.randomEnchants,
+      tailoring: mySettings.gear.tailoring,
+      enchantExploit: mySettings.gear.enchantExploit,
+      encounterLength: mySettings.game.encounterLength,
+      onUseItems: mySettings.gear.onUseItems,
       magicSchool: spell.magicSchool,
       targetType: mySettings.target.type,
       spellHitWeight: mySpellHitWeight,
       spellCritWeight: mySpellCritWeight,
       spellCastTime: mySpellCastTime,
       spellCrit: mySpellCrit,
-      naturesGrace: mySettings.character.talents.naturesGraceRank === 1 ? true : false,
-      lockedItems: mySettings.equipment.lockedItems,
-      lockedEnchants: mySettings.equipment.lockedEnchants,
-      slot: mySettings.equipment.itemSearchSlot,
+      naturesGrace: mySettings.player.talents.naturesGraceRank === 1 ? true : false,
+      lockedItems: mySettings.gear.lockedItems,
+      lockedEnchants: mySettings.gear.lockedEnchants,
+      gearSlot: common.enums.gearSlotFromItemSlot(mySettings.gear.itemSearchSlot),
+      itemSlot: mySettings.gear.itemSearchSlot,
       sortOrder: SortOrder.Descending
     }
   }
@@ -146,8 +147,10 @@ export default class Equipment {
   /*************************** TODO **********************************/
   /*************************** UGLY **********************************/
   /*************************** STUFF **********************************/
-  static isUniqueEquip(itemJSON: ItemJSON): boolean {
-    return itemJSON.unique || (itemJSON.boss && itemJSON.boss.includes('Quest:')) ? true : false
+  static isUniqueEquip(itemJSON: ItemJSON | undefined): boolean {
+    return (itemJSON && itemJSON.unique) || (itemJSON && itemJSON.boss && itemJSON.boss.includes('Quest:'))
+      ? true
+      : false
   }
 
   static isOnUseEquip(itemJSON: ItemJSON | undefined): boolean {
@@ -230,10 +233,14 @@ export default class Equipment {
     return effectiveSpellDamage
   }
 
-  static getWeightedItemsBySlot(slot: ItemSlot, itemSearch: ItemSearch): ItemJSON[] {
+  static getWeightedItemsBySlot(itemSlot: ItemSlot, itemSearch: ItemSearch): ItemJSON[] {
     const _scoreOnUseTrinket = (itemJSON: ItemJSON): number => {
       /* Add additional score from onUse effect */
-      if (itemSearch.onUseItems && (slot === ItemSlot.Trinket || slot === ItemSlot.Trinket2) && itemJSON.onUse) {
+      if (
+        itemSearch.onUseItems &&
+        (itemSlot === ItemSlot.Trinket || itemSlot === ItemSlot.Trinket2) &&
+        itemJSON.onUse
+      ) {
         return this.trinketEffectiveSpellDamage(
           itemJSON,
           itemSearch.encounterLength,
@@ -245,7 +252,7 @@ export default class Equipment {
       return 0
     }
 
-    const lockedItem = mt.locked.getItem(itemSearch.lockedItems, slot)
+    const lockedItem = mt.locked.getItem(itemSearch.lockedItems, itemSlot)
     if (lockedItem) {
       const x: ItemJSON[] = []
       lockedItem.score = Item.scoreItem(
@@ -261,7 +268,7 @@ export default class Equipment {
 
     const result = mt.query.items({
       cloneResults: true,
-      slot: slot,
+      itemSlot: itemSlot,
       phase: itemSearch.phase,
       faction: itemSearch.faction,
       pvpRank: itemSearch.pvpRank,
@@ -287,8 +294,8 @@ export default class Equipment {
     return result
   }
 
-  static getWeightedEnchantsBySlot(slot: ItemSlot, itemSearch: ItemSearch): EnchantJSON[] {
-    const lockedEnchant: EnchantJSON | undefined = mt.locked.getEnchant(itemSearch.lockedEnchants, slot)
+  static getWeightedEnchantsBySlot(itemSlot: ItemSlot, itemSearch: ItemSearch): EnchantJSON[] {
+    const lockedEnchant: EnchantJSON | undefined = mt.locked.getEnchant(itemSearch.lockedEnchants, itemSlot)
     if (lockedEnchant) {
       const x: EnchantJSON[] = []
       lockedEnchant.score = Item.scoreEnchant(
@@ -303,7 +310,7 @@ export default class Equipment {
 
     const result = mt.query.enchants({
       cloneResults: true,
-      slot: slot,
+      itemSlot: itemSlot,
       phase: itemSearch.phase,
       enchantExploit: itemSearch.enchantExploit
     })
@@ -409,18 +416,12 @@ export default class Equipment {
     const customChest =
       itemSearch &&
       itemSearch.lockedItems &&
-      itemSearch.lockedItems.chest !== '' &&
-      itemSearch.lockedItems.chest !== '19682'
+      itemSearch.lockedItems.chest !== 0 &&
+      itemSearch.lockedItems.chest !== 19682
     const customLegs =
-      itemSearch &&
-      itemSearch.lockedItems &&
-      itemSearch.lockedItems.legs !== '' &&
-      itemSearch.lockedItems.legs !== '19683'
+      itemSearch && itemSearch.lockedItems && itemSearch.lockedItems.legs !== 0 && itemSearch.lockedItems.legs !== 19683
     const customFeet =
-      itemSearch &&
-      itemSearch.lockedItems &&
-      itemSearch.lockedItems.feet !== '' &&
-      itemSearch.lockedItems.feet !== '19684'
+      itemSearch && itemSearch.lockedItems && itemSearch.lockedItems.feet !== 0 && itemSearch.lockedItems.feet !== 19684
 
     if (!customChest && !customLegs && !customFeet && bloodvine && bloodvineScore > normScore) {
       chest = bloodvine.items ? bloodvine.items[0] : undefined
@@ -514,7 +515,7 @@ export default class Equipment {
 
     return {
       mainHand: mainhand,
-      offHand: mainhand.slot === ItemSlot.Twohand ? undefined : offhand,
+      offHand: mainhand && mainhand.itemSlot === ItemSlot.Twohand ? undefined : offhand,
       enchant: enchant
     }
   }

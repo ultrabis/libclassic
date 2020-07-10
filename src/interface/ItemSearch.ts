@@ -4,6 +4,7 @@ import PvPRank from '../enum/PvPRank'
 import MagicSchool from '../enum/MagicSchool'
 import SortOrder from '../enum/SortOrder'
 import ItemSlot from '../enum/ItemSlot'
+import GearSlot from '../enum/GearSlot'
 
 import LockedItems from './LockedItems'
 import LockedEnchants from './LockedEnchants'
@@ -28,6 +29,7 @@ export default interface ItemSearch {
   spellCastTime: number
   spellCrit: number
   naturesGrace: boolean
-  slot: ItemSlot
+  itemSlot: ItemSlot
+  gearSlot: GearSlot
   sortOrder?: SortOrder
 }

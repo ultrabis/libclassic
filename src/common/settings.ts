@@ -1,122 +1,66 @@
 import utils from './utils'
 
 import Settings from '../interface/Settings'
-
-import ItemSlot from '../enum/ItemSlot'
-import Gender from '../enum/Gender'
-import PlayableClass from '../enum/PlayableClass'
-import PlayableRace from '../enum/PlayableRace'
+import MoonkinDefaults from '../db/moonkinSettings.json'
 import PlayableSpec from '../enum/PlayableSpec'
-import TargetType from '../enum/TargetType'
-import Game from '../enum/Game'
+import GearSlot from '../enum/GearSlot'
+import GearState from '../enum/GearState'
 
-const MoonkinDefaults: Settings = {
-  game: Game.Vanilla,
-  debug: false,
-  experimental: false,
-  phase: 4,
-  encounterLength: 100,
-  spellName: 'Starfire Rank 6',
-  castTimePenalty: 0.05, // This is an artifact from Ayz's spell damage calculator. No one knows what it is. Human factor? Latency factor?
-  equipment: {
-    raids: true,
-    tailoring: true,
-    worldBosses: false,
-    randomEnchants: true,
-    enchantExploit: false,
-    onUseItems: true,
-    itemSearchSlot: ItemSlot.None,
-    enchantSearchSlot: ItemSlot.None,
-    lockedItems: {
-      head: '',
-      hands: '',
-      neck: '',
-      waist: '',
-      shoulder: '',
-      legs: '',
-      back: '',
-      feet: '',
-      chest: '',
-      wrist: '',
-      finger: '',
-      finger2: '',
-      mainhand: '',
-      offhand: '',
-      trinket: '',
-      trinket2: '',
-      idol: ''
-    },
-    lockedEnchants: {
-      head: '',
-      hands: '',
-      shoulder: '',
-      legs: '',
-      back: '',
-      feet: '',
-      chest: '',
-      wrist: '',
-      mainhand: ''
-    },
-    gear: [
-      [0, 0, 0],
-      [0, 0, 0],
-      [0, 0, 0],
-      [0, 0, 0],
-      [0, 0, 0],
-      [0, 0, 0],
-      [0, 0, 0],
-      [0, 0, 0],
-      [0, 0, 0],
-      [0, 0, 0],
-      [0, 0, 0],
-      [0, 0, 0],
-      [0, 0, 0],
-      [0, 0, 0],
-      [0, 0, 0],
-      [0, 0, 0],
-      [0, 0, 0],
-      [0, 0, 0],
-      [0, 0, 0]
-    ]
-  },
-  character: {
-    level: 60,
-    gender: Gender.Male,
-    race: PlayableRace.Tauren,
-    class: PlayableClass.Druid,
-    pvpRank: 1,
-    talents: {
-      naturesGraceRank: 1,
-      moonFuryRank: 5,
-      vengeanceRank: 5,
-      improvedWrathRank: 5,
-      improvedStarfireRank: 5,
-      improvedMoonfireRank: 5,
-      reflectionRank: 3
-    },
-    buffs: [
-      'MoonkinAura',
-      'FlaskOfSupremePower',
-      'GreaterArcaneElixir',
-      'CerebralCortexCompound',
-      'RunnTumTuberSurprise',
-      'RallyingCryOfTheDragonSlayer',
-      'SlipkiksSavvy',
-      'ArcaneBrilliance',
-      'SongflowerSerenade',
-      'BlessingOfKings',
-      'ImprovedGiftOfTheWild',
-      'SpiritOfZandalar'
-    ]
-  },
-  target: {
-    level: 63,
-    type: TargetType.Elemental,
-    spellResistance: 75,
-    shimmer: 0,
-    thunderfury: 0,
-    debuffs: ['CurseOfShadow']
+/**
+ *
+ * Set a value in gear array
+ *
+ * @param settings will be modified
+ * @param index (0 = itemId, 1 = itemSuffixId, 2 = enchantId)
+ * @param value itemId, suffixId, enchantId, GearState.BIS (0) or GearState.BIS (1)
+ * @param gearSlot apply to one slot, or if undefined, all slots
+ */
+const setGearValue = (settings: Settings, index: number, value: GearState | number, gearSlot?: GearSlot): number => {
+  if (!gearSlot) {
+    const keys = Object.keys(GearSlot)
+    for (let i = 0; i < keys.length; i++) {
+      settings.gear.equipped[i][index] = value
+    }
+    return 0
   }
+
+  settings.gear.equipped[gearSlot][index] = value
+  return 0
+}
+
+const setGearItemId = (settings: Settings, itemId: number, gearSlot?: GearSlot): number => {
+  return setGearValue(settings, 0, itemId, gearSlot)
+}
+
+const setGearSuffixId = (settings: Settings, itemSuffixId: number, gearSlot?: GearSlot): number => {
+  return setGearValue(settings, 1, itemSuffixId, gearSlot)
+}
+
+const setGearEnchantId = (settings: Settings, enchantId: number, gearSlot?: GearSlot): number => {
+  return setGearValue(settings, 2, enchantId, gearSlot)
+}
+
+/**
+ * Get a value in gear array
+ *
+ * @param settings
+ * @param index
+ * @param gearSlot
+ */
+const getGearValue = (settings: Settings, index: number, gearSlot: GearSlot): number => {
+  return settings.gear.equipped[gearSlot][index]
+}
+
+const getGearItemId = (settings: Settings, gearSlot: GearSlot): number => {
+  return getGearValue(settings, 0, gearSlot)
+}
+
+const getGearSuffixId = (settings: Settings, gearSlot: GearSlot): number => {
+  return getGearValue(settings, 1, gearSlot)
+}
+
+const getGearEnchantId = (settings: Settings, gearSlot: GearSlot): number => {
+  return getGearValue(settings, 2, gearSlot)
 }
 
 const defaults = (opts?: { playerSpec: PlayableSpec }): Settings => {
@@ -132,5 +76,13 @@ const defaults = (opts?: { playerSpec: PlayableSpec }): Settings => {
 }
 
 export default {
-  defaults
+  defaults,
+  setGearValue,
+  setGearItemId,
+  setGearSuffixId,
+  setGearEnchantId,
+  getGearValue,
+  getGearItemId,
+  getGearSuffixId,
+  getGearEnchantId
 }

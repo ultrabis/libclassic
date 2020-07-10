@@ -1,7 +1,7 @@
-import Game from '../enum/Game'
+import GameType from '../enum/GameType'
 
 export default interface CalcOpts {
-  game?: Game
+  gameType?: GameType
   binarySpell?: boolean
   vengeanceRank?: number
   moonFuryRank?: number

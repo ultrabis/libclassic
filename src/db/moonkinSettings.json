@@ -1,0 +1,188 @@
+{
+    "game": {
+        "type": 1,
+        "phase": 4,
+        "castTimePenalty": 0.05,
+        "encounterLength": 100
+    },
+    "player": {
+     "rotation": "Starfire Rank 6",
+     "level": 60,
+     "gender": 0,
+     "race": 6,
+     "class": 11,
+     "pvpRank": 1,
+     "buffs": [
+      "MoonkinAura",
+      "FlaskOfSupremePower",
+      "GreaterArcaneElixir",
+      "CerebralCortexCompound",
+      "RunnTumTuberSurprise",
+      "RallyingCryOfTheDragonSlayer",
+      "SlipkiksSavvy",
+      "ArcaneBrilliance",
+      "SongflowerSerenade",
+      "BlessingOfKings",
+      "ImprovedGiftOfTheWild",
+      "SpiritOfZandalar"
+     ],
+     "talents": {
+      "naturesGraceRank": 1,
+      "moonFuryRank": 5,
+      "vengeanceRank": 5,
+      "improvedWrathRank": 5,
+      "improvedStarfireRank": 5,
+      "improvedMoonfireRank": 5,
+      "reflectionRank": 3
+     }
+    },
+    "target": {
+     "level": 63,
+     "type": 8,
+     "spellResistance": 75,
+     "shimmer": 0,
+     "thunderfury": 0,
+     "debuffs": [
+      "CurseOfShadow"
+     ]
+    },
+    "gear": {
+     "equipped": [
+      [
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0
+      ]
+     ],
+     "lockedItems": {
+      "head": 0,
+      "hands": 0,
+      "neck": 0,
+      "waist": 0,
+      "shoulder": 0,
+      "legs": 0,
+      "back": 0,
+      "feet": 0,
+      "chest": 0,
+      "wrist": 0,
+      "finger": 0,
+      "finger2": 0,
+      "mainhand": 0,
+      "offhand": 0,
+      "trinket": 0,
+      "trinket2": 0,
+      "idol": 0
+     },
+     "lockedEnchants": {
+      "head": 0,
+      "hands": 0, 
+      "shoulder": 0,
+      "legs": 0,
+      "back": 0,
+      "feet": 0,
+      "chest": 0,
+      "wrist": 0,
+      "mainhand": 0
+     },
+     "itemSearchSlot": -1,
+     "enchantSearchSlot": -1,
+     "raids": true,
+     "tailoring": true,
+     "worldBosses": false,
+     "randomEnchants": true,
+     "enchantExploit": false,
+     "onUseItems": true
+    },
+    "debug": false,
+    "experimental": false
+   }

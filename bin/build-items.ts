@@ -4,6 +4,10 @@ const supplementalFilePath = 'contrib/supplemental-items.csv'
 const xmlOutputDir = 'contrib/xml'
 const iconOutputDir = 'contrib/icons'
 
+import itemSuffix from '../src/mt/itemSuffix'
+import settings from '../src/common/settings'
+import enums from '../src/common/enums'
+
 import ItemJSON from '../src/interface/ItemJSON'
 import ItemOnUseJSON from '../src/interface/ItemOnUseJSON'
 import Faction from '../src/enum/Faction'
@@ -12,9 +16,11 @@ import ItemClass from '../src/enum/ItemClass'
 import ArmorSubclass from '../src/enum/ArmorSubclass'
 import WeaponSubclass from '../src/enum/WeaponSubclass'
 import ItemSlot from '../src/enum/ItemSlot'
+import GearSlot from '../src/enum/GearSlot'
 import PvPRank from '../src/enum/PvPRank'
 import PlayableClass from '../src/enum/PlayableClass'
 import TargetType from '../src/enum/TargetType'
+import ItemSuffixJSON from '../src/interface/ItemSuffixJSON'
 
 const csv = require('csvtojson')
 const axios = require('axios').default
@@ -155,27 +161,9 @@ class ConvertItem {
   /* this custom Id is a lazy way of handling the stupid suffixes of random enchant items.
    * For random enchants it prefixes a single character to the ID indicating it's random
    * enchant type */
-  get itemCustomId(): string {
-    let randomEnchantType = ''
-    const of = this.itemName.indexOf(' of ')
-    if (of >= 0) {
-      const right = this.itemName.slice(of + 4)
-      switch (right) {
-        case `Arcane Wrath`:
-          randomEnchantType = 'A'
-          break
-        case `Nature's Wrath`:
-          randomEnchantType = 'N'
-          break
-        case `Sorcery`:
-          randomEnchantType = 'S'
-          break
-        case `Restoration`:
-          randomEnchantType = 'R'
-          break
-      }
-    }
-    return `${randomEnchantType}${this.itemId}`
+  get itemSuffixId(): number {
+    const is = itemSuffix.itemSuffixFromItemNameAndBonusValue(this.itemName, this.itemArcaneDamage)
+    return is ? is.id : 0
   }
 
   get itemName(): string {
@@ -221,6 +209,10 @@ class ConvertItem {
 
   get itemSlot(): ItemSlot {
     return parseInt(this._wowHeadItem['inventorySlot'][0].$.id, 10)
+  }
+
+  get itemGearSlot(): GearSlot {
+    return enums.gearSlotFromItemSlot(this.itemSlot)
   }
 
   get itemClass(): ItemClass {
@@ -532,11 +524,12 @@ class ConvertItem {
 
     return {
       id: this.itemId,
-      customId: this.itemCustomId,
+      suffixId: this.itemSuffixId,
       name: this.itemName,
       class: this.itemClass,
       subclass: this.itemSubclass,
-      slot: this.itemSlot,
+      itemSlot: this.itemSlot,
+      gearSlot: this.itemGearSlot,
       quality: this.itemQuality,
       level: this.itemLevel,
       reqLevel: this.itemReqLevel,

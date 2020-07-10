@@ -4,15 +4,18 @@
 */
 import utils from './utils'
 
+import ItemBonus from '../interface/ItemBonus'
+
 import Raid from '../enum/Raid'
 import WorldBoss from '../enum/WorldBoss'
 import ArmorSubclass from '../enum/ArmorSubclass'
-import Buffs from '../enum/Buffs'
+import Buff from '../enum/Buff'
 import Faction from '../enum/Faction'
 import Gender from '../enum/Gender'
 import ItemClass from '../enum/ItemClass'
 import ItemQuality from '../enum/ItemQuality'
 import ItemSlot from '../enum/ItemSlot'
+import GearSlot from '../enum/GearSlot'
 import MagicSchool from '../enum/MagicSchool'
 import PlayableClass from '../enum/PlayableClass'
 import PlayableRace from '../enum/PlayableRace'
@@ -27,7 +30,6 @@ import TargetType from '../enum/TargetType'
 import WeaponSubclass from '../enum/WeaponSubclass'
 import ItemSuffixType from '../enum/ItemSuffixType'
 import ItemBonusType from '../enum/ItemBonusType'
-import GearSlot from '../enum/GearSlot'
 
 const factionFromRace = (race: PlayableRace): Faction => {
   switch (race) {
@@ -41,23 +43,59 @@ const factionFromRace = (race: PlayableRace): Faction => {
   }
 }
 
-declare type BuffFlagType = keyof typeof Buffs
-
-const buffListToFlags = (buffList: string[]): Buffs => {
-  let buffs: Buffs = Buffs.None
-
-  for (const buffName of buffList) {
-    buffs |= Buffs[buffName as BuffFlagType]
-  }
-  return buffs
-}
-
 // console.log(libclassic.enums.gearSlotFromText('waist'))
 const gearSlotFromText = (text: string): GearSlot => {
   const _ = (text: string): typeof GearSlot[keyof typeof GearSlot] => {
     return Number(utils.getEnumValueFromFuzzyText(GearSlot, text))
   }
   return _(text)
+}
+
+const gearSlotFromItemSlot = (itemSlot: ItemSlot): GearSlot => {
+  switch (itemSlot) {
+    case ItemSlot.Onehand:
+    case ItemSlot.Twohand:
+    case ItemSlot.Mainhand:
+      return GearSlot.Mainhand
+    case ItemSlot.Head:
+      return GearSlot.Head
+    case ItemSlot.Neck:
+      return GearSlot.Neck
+    case ItemSlot.Shoulder:
+      return GearSlot.Shoulder
+    case ItemSlot.Chest:
+      return GearSlot.Chest
+    case ItemSlot.Waist:
+      return GearSlot.Waist
+    case ItemSlot.Legs:
+      return GearSlot.Legs
+    case ItemSlot.Feet:
+      return GearSlot.Feet
+    case ItemSlot.Wrist:
+      return GearSlot.Wrist
+    case ItemSlot.Hands:
+      return GearSlot.Hands
+    case ItemSlot.Finger:
+      return GearSlot.Finger
+    case ItemSlot.Finger2:
+      return GearSlot.Finger2
+    case ItemSlot.Trinket:
+      return GearSlot.Trinket
+    case ItemSlot.Trinket2:
+      return GearSlot.Trinket
+    case ItemSlot.Ranged:
+      return GearSlot.Ranged
+    case ItemSlot.Offhand:
+      return GearSlot.Offhand
+    case ItemSlot.Ranged:
+      return GearSlot.Ranged
+    case ItemSlot.Relic:
+      return GearSlot.Relic
+    case ItemSlot.Quiver:
+      return GearSlot.Quiver
+    default:
+      return 0
+  }
 }
 
 // console.log(libclassic.enums.raidFromText('zulgurub'))
@@ -139,6 +177,16 @@ const itemSuffixTypeFromText = (text: string): ItemSuffixType => {
   return _(text)
 }
 
+const itemSuffixTypeFromItemName = (itemName: string): ItemSuffixType => {
+  const of = itemName.toUpperCase().indexOf(' OF ')
+  if (of === -1) {
+    return ItemSuffixType.Invalid
+  }
+
+  const right = itemName.slice(of + 4)
+  return itemSuffixTypeFromText(right)
+}
+
 // console.log(libclassic.enums.itemQualitypeFromText('Classes: Priest, Shaman, Mage, Warlock, Druid'))
 const itemQualityFromText = (text: string): ItemQuality => {
   const _ = (text: string): typeof ItemQuality[keyof typeof ItemQuality] => {
@@ -147,10 +195,36 @@ const itemQualityFromText = (text: string): ItemQuality => {
   return _(text)
 }
 
+// console.log(libclassic.enums.buffFromText('moonkin aura'))
+const buffFromText = (text: string): Buff => {
+  const _ = (text: string): typeof Buff[keyof typeof Buff] => {
+    return Number(utils.getEnumValueFromFuzzyText(Buff, text))
+  }
+  return _(text)
+}
+
+// console.log(libclassic.enums.buffsFromText('moonkin aura, power infusion'))
+const buffsFromText = (text: string): Buff[] => {
+  const _ = (text: string): typeof Buff[keyof typeof Buff][] => {
+    return utils.getEnumValuesFromFuzzyText(Buff, text)
+  }
+  return _(text)
+}
+
+// console.log(libclassic.enums.buffMaskFromText('moonkin aura, power infusion'))
+const buffMaskFromText = (text: string): number => {
+  return utils.getEnumBitmaskFromFuzzyText(Buff, text)
+}
+
+// console.log(libclassic.enums.buffMaskIncludes(buffMask, Buff.MoonkinAura))
+const buffMaskIncludes = (buffMask: number, buff: Buff): boolean => {
+  return utils.bitMaskIncludes(buffMask, buff)
+}
+
 export default {
   /* enums */
   ArmorSubclass,
-  Buffs,
+  Buff,
   Faction,
   Gender,
   ItemClass,
@@ -170,8 +244,8 @@ export default {
   WorldBoss,
   /* functions */
   factionFromRace,
-  buffListToFlags,
   gearSlotFromText,
+  gearSlotFromItemSlot,
   raidFromText,
   raidsFromText,
   worldBossFromText,
@@ -181,6 +255,11 @@ export default {
   playableClassFromText,
   playableClassesFromText,
   itemBonusTypeFromText,
+  itemSuffixTypeFromItemName,
   itemSuffixTypeFromText,
-  itemQualityFromText
+  itemQualityFromText,
+  buffFromText,
+  buffsFromText,
+  buffMaskFromText,
+  buffMaskIncludes
 }
