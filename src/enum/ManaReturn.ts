@@ -7,7 +7,7 @@ enum ManaReturn {
   ManaGem
 }
 
-enum MageManaReturn {
+enum ManaReturnMage {
   Evocation,
   MajorManaPot,
   DemonicRune,
@@ -16,5 +16,5 @@ enum MageManaReturn {
 
 export default {
   ManaReturn,
-  MageManaReturn
+  ManaReturnMage
 }

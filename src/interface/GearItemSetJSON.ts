@@ -1,4 +1,4 @@
-import ItemJSON from '../interface/ItemJSON'
+import GearItemJSON from './GearItemJSON'
 
 export default interface ItemSetJSON {
   name: string
@@ -9,6 +9,6 @@ export default interface ItemSetJSON {
   spellCrit?: number
   spellDamage?: number
   itemNames: string[]
-  items?: ItemJSON[]
+  items?: GearItemJSON[]
   score?: number
 }

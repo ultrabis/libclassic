@@ -1,4 +1,6 @@
-import common from '../common'
+import calc from './calc'
+import settings from './settings'
+
 import gearItem from './gearItem'
 import gearEnchant from './gearEnchant'
 
@@ -14,8 +16,6 @@ import Stats from '../interface/Stats'
 import Weights from '../interface/Weights'
 import Target from '../interface/Target'
 import Spell from '../interface/Spell'
-import CommonNumberResult from '../interface/CommonNumberResult'
-import CommonStringResult from '../interface/CommonStringResult'
 import SpellDamage from '../interface/SpellDamage'
 import SpellDamageSimple from '../interface/SpellDamageSimple'
 
@@ -24,20 +24,20 @@ import spell from './spell'
 
 // FIXME: remove. just call the thing with settings.defaults.
 const defaultSettings = (spec?: PlayableSpec): Settings => {
-  return common.settings.fromDefaults(spec ? { playerSpec: spec } : undefined)
+  return settings.fromDefaults(spec ? { playerSpec: spec } : undefined)
 }
 
 const statsDefault = (): Stats => {
   return {
-    health: common.calc.commonNumberResultFromDefault(),
-    mana: common.calc.commonNumberResultFromDefault(),
-    stamina: common.calc.commonNumberResultFromDefault(),
-    intellect: common.calc.commonNumberResultFromDefault(),
-    spirit: common.calc.commonNumberResultFromDefault(),
-    mp5: common.calc.commonNumberResultFromDefault(),
-    spellHit: common.calc.commonNumberResultFromDefault(),
-    spellCrit: common.calc.commonNumberResultFromDefault(),
-    spellPenetration: common.calc.commonNumberResultFromDefault(),
+    health: calc.commonNumberResultFromDefault(),
+    mana: calc.commonNumberResultFromDefault(),
+    stamina: calc.commonNumberResultFromDefault(),
+    intellect: calc.commonNumberResultFromDefault(),
+    spirit: calc.commonNumberResultFromDefault(),
+    mp5: calc.commonNumberResultFromDefault(),
+    spellHit: calc.commonNumberResultFromDefault(),
+    spellCrit: calc.commonNumberResultFromDefault(),
+    spellPenetration: calc.commonNumberResultFromDefault(),
     spellDamage: spellDamageDefault(),
     resistances: resistancesDefault()
   }
@@ -45,24 +45,24 @@ const statsDefault = (): Stats => {
 
 const resistancesDefault = (): Resistances => {
   return {
-    spellResistance: common.calc.commonNumberResultFromDefault(),
-    arcaneResistance: common.calc.commonNumberResultFromDefault(),
-    fireResistance: common.calc.commonNumberResultFromDefault(),
-    frostResistance: common.calc.commonNumberResultFromDefault(),
-    natureResistance: common.calc.commonNumberResultFromDefault(),
-    shadowResistance: common.calc.commonNumberResultFromDefault()
+    spellResistance: calc.commonNumberResultFromDefault(),
+    arcaneResistance: calc.commonNumberResultFromDefault(),
+    fireResistance: calc.commonNumberResultFromDefault(),
+    frostResistance: calc.commonNumberResultFromDefault(),
+    natureResistance: calc.commonNumberResultFromDefault(),
+    shadowResistance: calc.commonNumberResultFromDefault()
   }
 }
 
 const spellDamageDefault = (): SpellDamage => {
   return {
-    spellDamage: common.calc.commonNumberResultFromDefault(),
-    arcaneDamage: common.calc.commonNumberResultFromDefault(),
-    fireDamage: common.calc.commonNumberResultFromDefault(),
-    frostDamage: common.calc.commonNumberResultFromDefault(),
-    natureDamage: common.calc.commonNumberResultFromDefault(),
-    shadowDamage: common.calc.commonNumberResultFromDefault(),
-    holyDamage: common.calc.commonNumberResultFromDefault()
+    spellDamage: calc.commonNumberResultFromDefault(),
+    arcaneDamage: calc.commonNumberResultFromDefault(),
+    fireDamage: calc.commonNumberResultFromDefault(),
+    frostDamage: calc.commonNumberResultFromDefault(),
+    natureDamage: calc.commonNumberResultFromDefault(),
+    shadowDamage: calc.commonNumberResultFromDefault(),
+    holyDamage: calc.commonNumberResultFromDefault()
   }
 }
 
@@ -101,10 +101,10 @@ const targetDefault = (): Target => {
 
 const dpsDefault = (): DPS => {
   return {
-    min: common.calc.commonNumberResultFromDefault(),
-    max: common.calc.commonNumberResultFromDefault(),
-    avg: common.calc.commonNumberResultFromDefault(),
-    text: common.calc.commonStringResultFromDefault()
+    min: calc.commonNumberResultFromDefault(),
+    max: calc.commonNumberResultFromDefault(),
+    avg: calc.commonNumberResultFromDefault(),
+    text: calc.commonStringResultFromDefault()
   }
 }
 
@@ -176,10 +176,10 @@ const run = (settings: Settings): Encounter => {
   playerObj.stats.spirit.effective = _sc.player.spirit
   playerObj.stats.mp5.effective = _sc.player.mp5
   playerObj.stats.spellCrit = {
-    base: common.calc.baseSpellCrit,
-    actual: common.calc.baseSpellCrit + _sc.player.spellCritFromIntellect + _sc.player.spellCritFromEquipment,
+    base: calc.baseSpellCrit,
+    actual: calc.baseSpellCrit + _sc.player.spellCritFromIntellect + _sc.player.spellCritFromEquipment,
     effective:
-      common.calc.baseSpellCrit +
+      calc.baseSpellCrit +
       _sc.player.spellCritFromIntellect +
       _sc.player.spellCritFromEquipment +
       _sc.improvedMoonfireSpellCritBonus
@@ -195,47 +195,29 @@ const run = (settings: Settings): Encounter => {
   // gear.equipped = [[0, 0]]
 
   gearObj.equipped = [
-    [gearItem.fromItemJSON(_p.equipment.head.itemJSON), gearEnchant.fromEnchantJSON(_p.equipment.head.enchantJSON)],
-    [gearItem.fromItemJSON(_p.equipment.hands.itemJSON), gearEnchant.fromEnchantJSON(_p.equipment.hands.enchantJSON)],
-    [gearItem.fromItemJSON(_p.equipment.neck.itemJSON), gearEnchant.fromEnchantJSON(_p.equipment.neck.enchantJSON)],
-    [gearItem.fromItemJSON(_p.equipment.waist.itemJSON), gearEnchant.fromEnchantJSON(_p.equipment.waist.enchantJSON)],
-    [
-      gearItem.fromItemJSON(_p.equipment.shoulder.itemJSON),
-      gearEnchant.fromEnchantJSON(_p.equipment.shoulder.enchantJSON)
-    ],
-    [gearItem.fromItemJSON(_p.equipment.legs.itemJSON), gearEnchant.fromEnchantJSON(_p.equipment.legs.enchantJSON)],
-    [gearItem.fromItemJSON(_p.equipment.back.itemJSON), gearEnchant.fromEnchantJSON(_p.equipment.back.enchantJSON)],
-    [gearItem.fromItemJSON(_p.equipment.feet.itemJSON), gearEnchant.fromEnchantJSON(_p.equipment.feet.enchantJSON)],
-    [gearItem.fromItemJSON(_p.equipment.chest.itemJSON), gearEnchant.fromEnchantJSON(_p.equipment.chest.enchantJSON)],
-    [gearItem.fromItemJSON(_p.equipment.wrist.itemJSON), gearEnchant.fromEnchantJSON(_p.equipment.wrist.enchantJSON)],
-    [gearItem.fromItemJSON(_p.equipment.finger.itemJSON), gearEnchant.fromEnchantJSON(_p.equipment.finger.enchantJSON)],
-    [
-      gearItem.fromItemJSON(_p.equipment.finger2.itemJSON),
-      gearEnchant.fromEnchantJSON(_p.equipment.finger2.enchantJSON)
-    ],
-    [
-      gearItem.fromItemJSON(_p.equipment.mainhand.itemJSON),
-      gearEnchant.fromEnchantJSON(_p.equipment.mainhand.enchantJSON)
-    ],
-    [
-      gearItem.fromItemJSON(_p.equipment.offhand.itemJSON),
-      gearEnchant.fromEnchantJSON(_p.equipment.offhand.enchantJSON)
-    ],
-    [
-      gearItem.fromItemJSON(_p.equipment.trinket.itemJSON),
-      gearEnchant.fromEnchantJSON(_p.equipment.trinket.enchantJSON)
-    ],
-    [
-      gearItem.fromItemJSON(_p.equipment.trinket2.itemJSON),
-      gearEnchant.fromEnchantJSON(_p.equipment.trinket2.enchantJSON)
-    ],
-    [gearItem.fromItemJSON(_p.equipment.idol.itemJSON), gearEnchant.fromEnchantJSON(_p.equipment.idol.enchantJSON)],
-    [gearItem.fromItemJSON(), gearEnchant.fromEnchantJSON()],
-    [gearItem.fromItemJSON(), gearEnchant.fromEnchantJSON()]
+    [gearItem.fromJSON(_p.equipment.head.itemJSON), gearEnchant.fromJSON(_p.equipment.head.enchantJSON)],
+    [gearItem.fromJSON(_p.equipment.hands.itemJSON), gearEnchant.fromJSON(_p.equipment.hands.enchantJSON)],
+    [gearItem.fromJSON(_p.equipment.neck.itemJSON), gearEnchant.fromJSON(_p.equipment.neck.enchantJSON)],
+    [gearItem.fromJSON(_p.equipment.waist.itemJSON), gearEnchant.fromJSON(_p.equipment.waist.enchantJSON)],
+    [gearItem.fromJSON(_p.equipment.shoulder.itemJSON), gearEnchant.fromJSON(_p.equipment.shoulder.enchantJSON)],
+    [gearItem.fromJSON(_p.equipment.legs.itemJSON), gearEnchant.fromJSON(_p.equipment.legs.enchantJSON)],
+    [gearItem.fromJSON(_p.equipment.back.itemJSON), gearEnchant.fromJSON(_p.equipment.back.enchantJSON)],
+    [gearItem.fromJSON(_p.equipment.feet.itemJSON), gearEnchant.fromJSON(_p.equipment.feet.enchantJSON)],
+    [gearItem.fromJSON(_p.equipment.chest.itemJSON), gearEnchant.fromJSON(_p.equipment.chest.enchantJSON)],
+    [gearItem.fromJSON(_p.equipment.wrist.itemJSON), gearEnchant.fromJSON(_p.equipment.wrist.enchantJSON)],
+    [gearItem.fromJSON(_p.equipment.finger.itemJSON), gearEnchant.fromJSON(_p.equipment.finger.enchantJSON)],
+    [gearItem.fromJSON(_p.equipment.finger2.itemJSON), gearEnchant.fromJSON(_p.equipment.finger2.enchantJSON)],
+    [gearItem.fromJSON(_p.equipment.mainhand.itemJSON), gearEnchant.fromJSON(_p.equipment.mainhand.enchantJSON)],
+    [gearItem.fromJSON(_p.equipment.offhand.itemJSON), gearEnchant.fromJSON(_p.equipment.offhand.enchantJSON)],
+    [gearItem.fromJSON(_p.equipment.trinket.itemJSON), gearEnchant.fromJSON(_p.equipment.trinket.enchantJSON)],
+    [gearItem.fromJSON(_p.equipment.trinket2.itemJSON), gearEnchant.fromJSON(_p.equipment.trinket2.enchantJSON)],
+    [gearItem.fromJSON(_p.equipment.idol.itemJSON), gearEnchant.fromJSON(_p.equipment.idol.enchantJSON)],
+    [gearItem.fromJSON(), gearEnchant.fromJSON()],
+    [gearItem.fromJSON(), gearEnchant.fromJSON()]
   ]
 
-  gearObj.items = gearItem.fromItemJSONArray(_e.items ? _e.items : [])
-  gearObj.enchants = gearEnchant.fromEnchantJSONArray(_e.enchants ? _e.enchants : [])
+  gearObj.items = gearItem.fromJSONArray(_e.items ? _e.items : [])
+  gearObj.enchants = gearEnchant.fromJSONArray(_e.enchants ? _e.enchants : [])
 
   const encounter: Encounter = {
     dps: dpsObj,

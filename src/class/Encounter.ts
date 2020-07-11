@@ -1,8 +1,8 @@
 import mt from '../module'
 import Cast from './Cast'
 import Settings from '../interface/Settings'
-import ItemJSON from '../interface/ItemJSON'
-import EnchantJSON from '../interface/EnchantJSON'
+import GearItemJSON from '../interface/GearItemJSON'
+import GearEnchantJSON from '../interface/GearEnchantJSON'
 
 /* Encounter is the big top level object for all wow calculations. We want it run exactly once
    whenever a value in Settings is changed.
@@ -14,8 +14,8 @@ import EnchantJSON from '../interface/EnchantJSON'
 
 export default class Encounter {
   spellCast: Cast
-  items: ItemJSON[] | undefined
-  enchants: EnchantJSON[] | undefined
+  items: GearItemJSON[] | undefined
+  enchants: GearEnchantJSON[] | undefined
 
   constructor(settings: Settings) {
     this.items = mt.optimal.itemsForSlot(settings)

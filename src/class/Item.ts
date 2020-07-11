@@ -1,11 +1,13 @@
-import ItemJSON from '../interface/ItemJSON'
-import ItemSetJSON from '../interface/ItemSetJSON'
-import EnchantJSON from '../interface/EnchantJSON'
+import enums from '../module/enums'
+
+import GearItemJSON from '../interface/GearItemJSON'
+import GearItemSetJSON from '../interface/GearItemSetJSON'
+import GearEnchantJSON from '../interface/GearEnchantJSON'
 
 import MagicSchool from '../enum/MagicSchool'
-import ItemQuality from '../enum/ItemQuality'
+import ItemQuality from '../enum/GearItemQuality'
 import GearSlot from '../enum/GearSlot'
-import ItemClass from '../enum/ItemClass'
+import GearItemClass from '../enum/GearItemClass'
 import SpellCritFromIntellectDivisor from '../enum/SpellCritFromIntellectDivisor'
 import ArmorSubclass from '../enum/ArmorSubclass'
 import WeaponSubclass from '../enum/WeaponSubclass'
@@ -16,26 +18,24 @@ import TargetType from '../enum/TargetType'
 import GearState from '../enum/GearState'
 import ItemSlot from '../enum/ItemSlot'
 
-import common from '../common'
-
 export default class Item {
   itemSlot: ItemSlot
   gearSlot: GearSlot
-  itemJSON: ItemJSON | undefined
-  enchantJSON: EnchantJSON | undefined
+  itemJSON: GearItemJSON | undefined
+  enchantJSON: GearEnchantJSON | undefined
 
-  constructor(slot: ItemSlot, itemJSON?: ItemJSON, enchantJSON?: EnchantJSON) {
+  constructor(slot: ItemSlot, itemJSON?: GearItemJSON, enchantJSON?: GearEnchantJSON) {
     this.itemSlot = slot
-    this.gearSlot = common.enums.gearSlotFromItemSlot(slot)
+    this.gearSlot = enums.gearSlotFromItemSlot(slot)
     this.itemJSON = itemJSON ? itemJSON : undefined
     this.enchantJSON = enchantJSON ? enchantJSON : undefined
   }
 
-  static sortScoreAsc(a: ItemJSON | EnchantJSON, b: ItemJSON | EnchantJSON): number {
+  static sortScoreAsc(a: GearItemJSON | GearEnchantJSON, b: GearItemJSON | GearEnchantJSON): number {
     return (a.score ? a.score : 0) - (b.score ? b.score : 0)
   }
 
-  static sortScoreDes(a: ItemJSON | EnchantJSON, b: ItemJSON | EnchantJSON): number {
+  static sortScoreDes(a: GearItemJSON | GearEnchantJSON, b: GearItemJSON | GearEnchantJSON): number {
     return (b.score ? b.score : 0) - (a.score ? a.score : 0)
   }
 
@@ -56,7 +56,7 @@ export default class Item {
   }
 
   static scoreItem(
-    item: ItemJSON,
+    item: GearItemJSON,
     magicSchool: MagicSchool,
     targetType: TargetType,
     spellHitWeight: number,
@@ -80,7 +80,7 @@ export default class Item {
   }
 
   static scoreItemSetBonus(
-    itemSet: ItemSetJSON,
+    itemSet: GearItemSetJSON,
     magicSchool: MagicSchool,
     targetType: TargetType,
     spellHitWeight: number,
@@ -100,7 +100,7 @@ export default class Item {
   }
 
   static scoreEnchant(
-    enchant: EnchantJSON,
+    enchant: GearEnchantJSON,
     magicSchool: MagicSchool,
     spellHitWeight: number,
     spellCritWeight: number
@@ -156,25 +156,25 @@ export default class Item {
     return this.itemJSON && this.itemJSON.name ? this.itemJSON.name : this.slotDisplayName
   }
 
-  get class(): ItemClass {
+  get class(): GearItemClass {
     if (this.itemJSON && this.itemJSON.class) {
       return this.itemJSON.class
     }
 
     switch (this.gearSlot) {
       case GearSlot.Mainhand:
-        return ItemClass.Weapon
+        return GearItemClass.Weapon
       default:
-        return ItemClass.Armor
+        return GearItemClass.Armor
     }
   }
 
   get isWeapon(): boolean {
-    return this.class === ItemClass.Weapon
+    return this.class === GearItemClass.Weapon
   }
 
   get isArmor(): boolean {
-    return this.class === ItemClass.Armor
+    return this.class === GearItemClass.Armor
   }
 
   get subclass(): WeaponSubclass | ArmorSubclass {
@@ -182,7 +182,7 @@ export default class Item {
       return this.itemJSON.subclass
     }
 
-    if (this.class === ItemClass.Weapon) {
+    if (this.class === GearItemClass.Weapon) {
       return WeaponSubclass.Empty
     }
 
@@ -190,7 +190,7 @@ export default class Item {
   }
 
   get subclassName(): string {
-    if (this.class === ItemClass.Armor) {
+    if (this.class === GearItemClass.Armor) {
       switch (this.subclass) {
         default:
           return ArmorSubclass[this.subclass]

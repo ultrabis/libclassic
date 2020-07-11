@@ -1,3 +1,6 @@
+/**
+ * These are all types of 'random enchant' items e.g. some cloak of arcane wrath
+ */
 enum GearItemSuffixType {
   Invalid,
   Agility,

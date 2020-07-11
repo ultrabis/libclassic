@@ -1,5 +1,4 @@
-/* these represent the indexes of the gear array in settings and encounter results.
- * note: ItemSlot cooresponds to item slot numbers according to wowhead */
+/* these represent the indexes of the gear array in settings and encounter results */
 enum GearSlot {
   Head,
   Hands,

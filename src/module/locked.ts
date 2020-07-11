@@ -1,10 +1,10 @@
+import enums from './enums'
 import query from './query'
-import common from '../common'
 
 import LockedItems from '../interface/LockedItems'
 import LockedEnchants from '../interface/LockedEnchants'
-import ItemJSON from '../interface/ItemJSON'
-import EnchantJSON from '../interface/EnchantJSON'
+import GearItemJSON from '../interface/GearItemJSON'
+import GearEnchantJSON from '../interface/GearEnchantJSON'
 
 import ItemSlot from '../enum/ItemSlot'
 import GearState from '../enum/GearState'
@@ -84,11 +84,11 @@ const getEnchantId = (lockedEnchants: LockedEnchants | undefined, itemSlot: Item
   }
 }
 
-const getItem = (lockedItems: LockedItems | undefined, itemSlot: ItemSlot): ItemJSON | undefined => {
+const getItem = (lockedItems: LockedItems | undefined, itemSlot: ItemSlot): GearItemJSON | undefined => {
   const nakedItem = {
     id: 1,
     itemSlot: itemSlot,
-    gearSlot: common.enums.gearSlotFromItemSlot(itemSlot),
+    gearSlot: enums.gearSlotFromItemSlot(itemSlot),
     raid: false,
     worldBoss: false,
     pvpRank: PvPRank.Scout
@@ -105,11 +105,11 @@ const getItem = (lockedItems: LockedItems | undefined, itemSlot: ItemSlot): Item
   return items && items[0] ? items[0] : undefined
 }
 
-const getEnchant = (lockedEnchants: LockedEnchants | undefined, itemSlot: ItemSlot): EnchantJSON | undefined => {
+const getEnchant = (lockedEnchants: LockedEnchants | undefined, itemSlot: ItemSlot): GearEnchantJSON | undefined => {
   const nakedEnchant = {
     id: 1,
     itemSlot: itemSlot,
-    gearSlot: common.enums.gearSlotFromItemSlot(itemSlot),
+    gearSlot: enums.gearSlotFromItemSlot(itemSlot),
     name: 'No enchant',
     phase: 1,
     icon: '',

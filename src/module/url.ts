@@ -2,7 +2,8 @@
 import pako from 'pako'
 import { Base64 } from 'js-base64'
 
-import common from '../common'
+import utils from './utils'
+import settings from './settings'
 import Equipment from '../class/Equipment'
 import Settings from '../interface/Settings'
 import LockedItems from '../interface/LockedItems'
@@ -22,7 +23,7 @@ const stringToParamin = (str: string, opts?: ParaminOptions): string => {
   const base64string = btoa(binaryString)
 
   /* encode base64 string for URL */
-  const encoded = common.utils.encodeURI(base64string)
+  const encoded = utils.encodeURI(base64string)
 
   return encoded
 }
@@ -31,7 +32,7 @@ const paraminToString = (paramin: string, opts?: ParaminOptions): string => {
   let asciiString
 
   /* param -> URI decoded param */
-  const decodedParam = common.utils.decodeURI(paramin)
+  const decodedParam = utils.decodeURI(paramin)
 
   /* decoded param -> binary string */
   const binaryString = Base64.atob(decodedParam)
@@ -203,7 +204,7 @@ const optionFromURL = (name: string): any => {
 }
 
 const defaultSettings = (): Settings => {
-  const o: Settings = common.utils.cloneObject(common.settings)
+  const o: Settings = utils.cloneObject(settings.fromDefaults)
 
   /* gear */
   const gearv1 = optionFromURL('gear')

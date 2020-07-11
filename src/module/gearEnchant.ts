@@ -1,27 +1,28 @@
-import common from '../common'
-import gearEnchantDefault from '../db/gearEnchantDefault.json'
-import EnchantJSON from '../interface/EnchantJSON'
+import enums from './enums'
+
+import GearEnchantJSON from '../interface/GearEnchantJSON'
 import GearEnchant from '../interface/GearEnchant'
+import gearEnchantDefault from '../obj/gearEnchant.json'
 
 const fromDefault = (): GearEnchant => {
   return gearEnchantDefault
 }
 
-const fromEnchantJSONArray = (enchantJSONArray: EnchantJSON[]): GearEnchant[] => {
+const fromJSONArray = (gearEnchantJSONArray: GearEnchantJSON[]): GearEnchant[] => {
   const newObj: GearEnchant[] = []
 
-  for (let x = 0; x <= enchantJSONArray.length; x++) {
-    newObj.push(fromEnchantJSON(enchantJSONArray[x]))
+  for (let x = 0; x <= gearEnchantJSONArray.length; x++) {
+    newObj.push(fromJSON(gearEnchantJSONArray[x]))
   }
 
   return newObj
 }
 
-const fromEnchantJSON = (enchantJSON?: EnchantJSON): GearEnchant => {
+const fromJSON = (enchantJSON?: GearEnchantJSON): GearEnchant => {
   return {
     id: enchantJSON ? enchantJSON.id : 0,
     name: enchantJSON ? enchantJSON.name : '',
-    gearSlot: enchantJSON ? common.enums.gearSlotFromItemSlot(enchantJSON.itemSlot) : 0,
+    gearSlot: enchantJSON ? enums.gearSlotFromItemSlot(enchantJSON.itemSlot) : 0,
     itemSlot: enchantJSON ? enchantJSON.itemSlot : 0,
     phase: enchantJSON ? enchantJSON.phase : 0,
     icon: enchantJSON ? enchantJSON.icon : '',
@@ -45,6 +46,6 @@ const fromEnchantJSON = (enchantJSON?: EnchantJSON): GearEnchant => {
 
 export default {
   fromDefault,
-  fromEnchantJSON,
-  fromEnchantJSONArray
+  fromJSON,
+  fromJSONArray
 }

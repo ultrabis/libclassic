@@ -4,35 +4,35 @@
 
 import jsonQuery from 'json-query'
 
-import common from '../common'
+import utils from './utils'
 
 import SpellJSON from '../interface/SpellJSON'
-import ItemJSON from '../interface/ItemJSON'
-import ItemSetJSON from '../interface/ItemSetJSON'
-import EnchantJSON from '../interface/EnchantJSON'
+import GearItemJSON from '../interface/GearItemJSON'
+import GearItemSetJSON from '../interface/GearItemSetJSON'
+import GearEnchantJSON from '../interface/GearEnchantJSON'
 import GearItemSuffix from '../interface/GearItemSuffix'
-import ItemQuery from '../interface/ItemQuery'
+import GearItemQuery from '../interface/GearItemQuery'
 import SpellQuery from '../interface/SpellQuery'
 
 import ItemSlot from '../enum/ItemSlot'
 import Faction from '../enum/Faction'
 
-import spellsDB from '../db/spells.json'
-import itemsDB from '../db/items.json'
-import enchantsDB from '../db/enchants.json'
-import itemSetsDB from '../db/itemSets.json'
-import itemSuffixDB from '../db/itemSuffix.json'
+import spellsDB from '../db/spell.json'
+import itemsDB from '../db/gearItem.json'
+import enchantsDB from '../db/gearEnchant.json'
+import itemSetsDB from '../db/gearItemSet.json'
+import itemSuffixDB from '../db/gearItemSuffix.json'
 
 /* return input, deep clone it if cloneResults is true */
 const _result = (o: any, cloneResults: boolean) => {
   if (cloneResults) {
-    return common.utils.cloneObject(o ? o : {})
+    return utils.cloneObject(o ? o : {})
   }
 
   return o ? o : {}
 }
 
-const item = (opts: ItemQuery): ItemJSON | undefined => {
+const item = (opts: GearItemQuery): GearItemJSON | undefined => {
   const _items = items(opts)
   if (_items && _items[0]) {
     return _items[0]
@@ -40,8 +40,8 @@ const item = (opts: ItemQuery): ItemJSON | undefined => {
   return undefined
 }
 
-const items = (opts: ItemQuery): ItemJSON[] => {
-  const noRandomEnchants = (itemJSON: ItemJSON) => {
+const items = (opts: GearItemQuery): GearItemJSON[] => {
+  const noRandomEnchants = (itemJSON: GearItemJSON) => {
     if (!itemJSON || !itemJSON.suffixId) {
       return true
     }
@@ -60,8 +60,8 @@ const items = (opts: ItemQuery): ItemJSON[] => {
     }
   }
 
-  const singleItemQuery = (query: string): ItemJSON[] => {
-    const result: ItemJSON[] = []
+  const singleItemQuery = (query: string): GearItemJSON[] => {
+    const result: GearItemJSON[] = []
     const x = jsonQuery(query, { data: itemsDB }).value
     if (x) {
       result.push(x)
@@ -81,7 +81,7 @@ const items = (opts: ItemQuery): ItemJSON[] => {
     return singleItemQuery(`[name=${opts.name}]`)
   }
 
-  let result: ItemJSON[] = []
+  let result: GearItemJSON[] = []
 
   /* at this point if we don't have itemSlot just return an empty set. we don't really
    * have a use-case for returning array of items from different itemSlots */
@@ -120,7 +120,7 @@ const items = (opts: ItemQuery): ItemJSON[] => {
   return _result(result, opts.cloneResults ? opts.cloneResults : false)
 }
 
-const itemSet = (opts: ItemQuery): ItemSetJSON | undefined => {
+const itemSet = (opts: GearItemQuery): GearItemSetJSON | undefined => {
   const _itemSets = itemSets(opts)
   if (_itemSets && _itemSets[0]) {
     return _itemSets[0]
@@ -128,9 +128,9 @@ const itemSet = (opts: ItemQuery): ItemSetJSON | undefined => {
   return undefined
 }
 
-const itemSets = (opts: ItemQuery): ItemSetJSON[] => {
-  const singleItemSetQuery = (query: string): ItemSetJSON[] => {
-    const result: ItemSetJSON[] = []
+const itemSets = (opts: GearItemQuery): GearItemSetJSON[] => {
+  const singleItemSetQuery = (query: string): GearItemSetJSON[] => {
+    const result: GearItemSetJSON[] = []
     const x = jsonQuery(query, { data: itemSetsDB }).value
     if (x) {
       result.push(x)
@@ -138,7 +138,7 @@ const itemSets = (opts: ItemQuery): ItemSetJSON[] => {
     return _result(result, opts.cloneResults ? opts.cloneResults : false)
   }
 
-  let result: ItemSetJSON[] = []
+  let result: GearItemSetJSON[] = []
 
   if (opts.name) {
     result = singleItemSetQuery(`[name=${opts.name}]`)
@@ -157,7 +157,7 @@ const itemSets = (opts: ItemQuery): ItemSetJSON[] => {
   return _result(result, opts.cloneResults ? opts.cloneResults : false)
 }
 
-const enchant = (opts: ItemQuery): EnchantJSON | undefined => {
+const enchant = (opts: GearItemQuery): GearEnchantJSON | undefined => {
   const _enchants = enchants(opts)
   if (_enchants && _enchants[0]) {
     return _enchants[0]
@@ -165,9 +165,9 @@ const enchant = (opts: ItemQuery): EnchantJSON | undefined => {
   return undefined
 }
 
-const enchants = (opts: ItemQuery): EnchantJSON[] => {
-  const singleEnchantQuery = (query: string): EnchantJSON[] => {
-    const result: EnchantJSON[] = []
+const enchants = (opts: GearItemQuery): GearEnchantJSON[] => {
+  const singleEnchantQuery = (query: string): GearEnchantJSON[] => {
+    const result: GearEnchantJSON[] = []
     const x = jsonQuery(query, { data: enchantsDB }).value
     if (x) {
       result.push(x)
@@ -175,7 +175,7 @@ const enchants = (opts: ItemQuery): EnchantJSON[] => {
     return _result(result, opts.cloneResults ? opts.cloneResults : false)
   }
 
-  const noExploit = (enchantJSON: EnchantJSON) => {
+  const noExploit = (enchantJSON: GearEnchantJSON) => {
     if (!enchantJSON || !enchantJSON.exploit) {
       return true
     }
@@ -190,7 +190,7 @@ const enchants = (opts: ItemQuery): EnchantJSON[] => {
     return singleEnchantQuery(`[name=${opts.name}]`)
   }
 
-  let result: EnchantJSON[] = []
+  let result: GearEnchantJSON[] = []
 
   if (opts.itemSlot === undefined) {
     return result

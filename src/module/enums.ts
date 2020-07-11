@@ -10,8 +10,8 @@ import ArmorSubclass from '../enum/ArmorSubclass'
 import Buff from '../enum/Buff'
 import Faction from '../enum/Faction'
 import Gender from '../enum/Gender'
-import ItemClass from '../enum/ItemClass'
-import ItemQuality from '../enum/ItemQuality'
+import GearItemClass from '../enum/GearItemClass'
+import GearItemQuality from '../enum/GearItemQuality'
 import ItemSlot from '../enum/ItemSlot'
 import GearSlot from '../enum/GearSlot'
 import MagicSchool from '../enum/MagicSchool'
@@ -186,9 +186,9 @@ const GearItemSuffixTypeFromItemName = (itemName: string): GearItemSuffixType =>
 }
 
 // console.log(libclassic.enums.itemQualitypeFromText('Classes: Priest, Shaman, Mage, Warlock, Druid'))
-const itemQualityFromText = (text: string): ItemQuality => {
-  const _ = (text: string): typeof ItemQuality[keyof typeof ItemQuality] => {
-    return Number(utils.getEnumValueFromFuzzyText(ItemQuality, text))
+const itemQualityFromText = (text: string): GearItemQuality => {
+  const _ = (text: string): typeof GearItemQuality[keyof typeof GearItemQuality] => {
+    return Number(utils.getEnumValueFromFuzzyText(GearItemQuality, text))
   }
   return _(text)
 }
@@ -225,8 +225,8 @@ export default {
   Buff,
   Faction,
   Gender,
-  ItemClass,
-  ItemQuality,
+  GearItemClass,
+  GearItemQuality,
   ItemSlot,
   MagicSchool,
   PlayableClass,

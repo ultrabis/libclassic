@@ -1,31 +1,23 @@
-import common from '../common'
 import locked from './locked'
+import utils from './utils'
 
 // FIXME:
 import Equipment from '../class/Equipment'
 import Cast from '../class/Cast'
 
 import Settings from '../interface/Settings'
-import ItemSearch from '../interface/ItemSearch'
+import GearSearch from '../interface/GearSearch'
 import EquipmentArray from '../interface/EquipmentArray'
-import ItemJSON from '../interface/ItemJSON'
-import EnchantJSON from '../interface/EnchantJSON'
+import GearItemJSON from '../interface/GearItemJSON'
+import GearEnchantJSON from '../interface/GearEnchantJSON'
 
 import ItemSlot from '../enum/ItemSlot'
-
-/*
-interface OptimalEquipment {
-  equipment: Equipment
-  items: ItemJSON[]
-  enchants: EnchantJSON[]
-}
-*/
 
 const sortByDPS = (a: EquipmentArray, b: EquipmentArray): number => {
   return (b.dps ? b.dps : 0) - (a.dps ? a.dps : 0)
 }
 
-const itemsForSlot = (settings: Settings): ItemJSON[] | undefined => {
+const itemsForSlot = (settings: Settings): GearItemJSON[] | undefined => {
   /* gearSearchSlot is only set when a user clicks a slot to equip an item. If that's not
    * the case then we don't need to do anything */
   const itemSlot = settings.gear.itemSearchSlot
@@ -36,38 +28,38 @@ const itemsForSlot = (settings: Settings): ItemJSON[] | undefined => {
   /* We need the stat weights MINUS the slot we're getting items for. So make a private
    * copy of settings, unequip the slot, and run the equipment optimization function.
    * Our stat weights will be contained in the gearSearch. */
-  const tmpSettings: Settings = common.utils.cloneObject(settings)
+  const tmpSettings: Settings = utils.cloneObject(settings)
   locked.unequipItem(tmpSettings.gear.lockedItems, itemSlot)
   const tmpEquipment: Equipment = equipment(tmpSettings)
-  const tmpItemSearch: ItemSearch = tmpEquipment.itemSearch
+  const tmpItemSearch: GearSearch = tmpEquipment.itemSearch
 
   /* and finally retrieve the items for this slot, using the weights
    * we just got. Copy the original version of what we overwrote above
    * and unlock the slot so it doesn't return a user locked item */
-  tmpItemSearch.lockedItems = common.utils.cloneObject(settings.gear.lockedItems)
+  tmpItemSearch.lockedItems = utils.cloneObject(settings.gear.lockedItems)
   locked.unlockItem(tmpItemSearch.lockedItems, tmpSettings.gear.itemSearchSlot)
   return Equipment.getWeightedItemsBySlot(itemSlot, tmpItemSearch)
 }
 
-const enchantsForSlot = (settings: Settings): EnchantJSON[] | undefined => {
+const enchantsForSlot = (settings: Settings): GearEnchantJSON[] | undefined => {
   /* Same process as above, but for enchants */
   const itemSlot = settings.gear.enchantSearchSlot
   if (itemSlot === ItemSlot.None) {
     return undefined
   }
 
-  const tmpSettings: Settings = common.utils.cloneObject(settings)
+  const tmpSettings: Settings = utils.cloneObject(settings)
   locked.unequipEnchant(tmpSettings.gear.lockedEnchants, itemSlot)
   const tmpEquipment: Equipment = equipment(tmpSettings)
-  const tmpItemSearch: ItemSearch = tmpEquipment.itemSearch
+  const tmpItemSearch: GearSearch = tmpEquipment.itemSearch
 
-  tmpItemSearch.lockedEnchants = common.utils.cloneObject(settings.gear.lockedEnchants)
+  tmpItemSearch.lockedEnchants = utils.cloneObject(settings.gear.lockedEnchants)
   locked.unlockEnchant(tmpItemSearch.lockedEnchants, tmpSettings.gear.enchantSearchSlot)
   return Equipment.getWeightedEnchantsBySlot(itemSlot, tmpItemSearch)
 }
 
 const equipment = (settings: Settings): Equipment => {
-  const mySettings = common.utils.cloneObject(settings)
+  const mySettings = utils.cloneObject(settings)
   const maxTries = 5
   let spellCast: Cast | undefined = undefined
   const equipmentArray = new Array<EquipmentArray>()

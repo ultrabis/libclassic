@@ -1,4 +1,5 @@
-import common from '../common'
+import enums from '../module/enums'
+
 import Settings from '../interface/Settings'
 import Buffs from '../enum/Buff'
 import MagicSchool from '../enum/MagicSchool'
@@ -28,7 +29,7 @@ export default class Target {
   debuffMask: Buffs
   constructor(settings: Settings) {
     this.settings = settings
-    this.debuffMask = common.enums.buffMaskFromText(settings.target.debuffs.toString())
+    this.debuffMask = enums.buffMaskFromText(settings.target.debuffs.toString())
   }
 
   get level(): number {

@@ -1,5 +1,5 @@
-/* These slot id's are based on wowheads XML. They don't necessarily match
- * the in-game slot id */
+/* These slot id's are based on wowheads XML. it's used in the backend more and i'd like to replace
+ * with gearSlot */
 
 enum ItemSlot {
   Any = -2,

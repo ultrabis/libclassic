@@ -1,9 +1,8 @@
-import common from '../common'
-import spellDefault from '../db/spellDefault.json'
 import Spell from '../interface/Spell'
+import defaultObj from '../obj/spell.json'
 
 const fromDefault = (): Spell => {
-  return spellDefault
+  return defaultObj
 }
 
 export default {

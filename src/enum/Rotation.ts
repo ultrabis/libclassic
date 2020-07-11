@@ -1,6 +1,5 @@
 enum Rotation {
-  Invalid,
-  StarfireSpam
+  SpellSpam
 }
 
 export default Rotation

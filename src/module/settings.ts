@@ -1,7 +1,7 @@
 import utils from './utils'
 
 import Settings from '../interface/Settings'
-import MoonkinDefaults from '../db/moonkinSettings.json'
+import MoonkinDefaults from '../obj/moonkin-settings.json'
 import PlayableSpec from '../enum/PlayableSpec'
 
 const fromDefaults = (opts?: { playerSpec: PlayableSpec }): Settings => {

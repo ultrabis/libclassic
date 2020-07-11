@@ -1,5 +1,5 @@
-import common from '../common'
-import mt from '../module'
+import calc from '../module/calc'
+import query from '../module/query'
 
 import SpellCoefficient from '../interface/SpellCoefficient'
 import SpellJSON from '../interface/SpellJSON'
@@ -15,7 +15,7 @@ export default class Spell {
 
   constructor(name: string) {
     this.name = name
-    this.spellJSON = mt.query.spell({ name: name })
+    this.spellJSON = query.spell({ name: name })
   }
 
   /**
@@ -120,9 +120,9 @@ export default class Spell {
    */
   get castTime(): number {
     if (!this.spellJSON) {
-      return common.calc.globalCooldown
+      return calc.globalCooldown
     }
-    return Math.max(common.calc.globalCooldown, this.spellJSON.castTime)
+    return Math.max(calc.globalCooldown, this.spellJSON.castTime)
   }
 
   /**

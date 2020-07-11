@@ -1,5 +1,3 @@
-import common from '../common'
-
 import GearSettings from '../interface/GearSettings'
 import GearSlot from '../enum/GearSlot'
 import GearState from '../enum/GearState'
