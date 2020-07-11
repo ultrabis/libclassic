@@ -1,4 +1,4 @@
-import enums from './enums'
+import common from './common'
 
 import GearEnchantJSON from '../interface/GearEnchantJSON'
 import GearEnchant from '../interface/GearEnchant'
@@ -22,7 +22,7 @@ const fromJSON = (enchantJSON?: GearEnchantJSON): GearEnchant => {
   return {
     id: enchantJSON ? enchantJSON.id : 0,
     name: enchantJSON ? enchantJSON.name : '',
-    gearSlot: enchantJSON ? enums.gearSlotFromItemSlot(enchantJSON.itemSlot) : 0,
+    gearSlot: enchantJSON ? common.gearSlotFromItemSlot(enchantJSON.itemSlot) : 0,
     itemSlot: enchantJSON ? enchantJSON.itemSlot : 0,
     phase: enchantJSON ? enchantJSON.phase : 0,
     icon: enchantJSON ? enchantJSON.icon : '',

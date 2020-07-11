@@ -1,5 +1,4 @@
-import enums from '../module/enums'
-import calc from '../module/calc'
+import common from '../module/common'
 
 import Equipment from './Equipment'
 import PlayableRace from '../enum/PlayableRace'
@@ -18,7 +17,7 @@ export default class player {
   constructor(settings: Settings, equipment: Equipment) {
     this.settings = settings
     this.equipment = equipment
-    this.buffMask = enums.buffMaskFromText(settings.player.buffs.toString())
+    this.buffMask = common.buffMaskFromText(settings.player.buffs.toString())
   }
 
   get level(): number {
@@ -26,7 +25,7 @@ export default class player {
   }
 
   get faction(): Faction {
-    return enums.factionFromRace(this.settings.player.race)
+    return common.factionFromRace(this.settings.player.race)
   }
 
   get isHorde(): boolean {
@@ -122,7 +121,7 @@ export default class player {
    */
   get spellCrit(): number {
     return Math.min(
-      calc.spellCritCap,
+      common.spellCritCap,
       this.spellCritUnbuffed +
         this.rallyingCryOfTheDragonSlayerSpellCritBonus +
         this.moonkinAuraBonus +
@@ -135,7 +134,7 @@ export default class player {
    * TODO: Return total spell hit rating (equipment + talents + buffs)
    */
   get effectiveSpellHit(): number {
-    return Math.min(this.spellHit, calc.spellHitCap)
+    return Math.min(this.spellHit, common.spellHitCap)
   }
 
   get spellHit(): number {

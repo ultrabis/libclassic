@@ -1,4 +1,4 @@
-import enums from './enums'
+import common from './common'
 import query from './query'
 
 import LockedItems from '../interface/LockedItems'
@@ -88,7 +88,7 @@ const getItem = (lockedItems: LockedItems | undefined, itemSlot: ItemSlot): Gear
   const nakedItem = {
     id: 1,
     itemSlot: itemSlot,
-    gearSlot: enums.gearSlotFromItemSlot(itemSlot),
+    gearSlot: common.gearSlotFromItemSlot(itemSlot),
     raid: false,
     worldBoss: false,
     pvpRank: PvPRank.Scout
@@ -109,7 +109,7 @@ const getEnchant = (lockedEnchants: LockedEnchants | undefined, itemSlot: ItemSl
   const nakedEnchant = {
     id: 1,
     itemSlot: itemSlot,
-    gearSlot: enums.gearSlotFromItemSlot(itemSlot),
+    gearSlot: common.gearSlotFromItemSlot(itemSlot),
     name: 'No enchant',
     phase: 1,
     icon: '',

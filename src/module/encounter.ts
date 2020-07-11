@@ -1,5 +1,4 @@
-import calc from './calc'
-import settings from './settings'
+import common from './common'
 
 import gearItem from './gearItem'
 import gearEnchant from './gearEnchant'
@@ -24,20 +23,20 @@ import spell from './spell'
 
 // FIXME: remove. just call the thing with settings.defaults.
 const defaultSettings = (spec?: PlayableSpec): Settings => {
-  return settings.fromDefaults(spec ? { playerSpec: spec } : undefined)
+  return common.defaultSettings(spec ? { playerSpec: spec } : undefined)
 }
 
 const statsDefault = (): Stats => {
   return {
-    health: calc.commonNumberResultFromDefault(),
-    mana: calc.commonNumberResultFromDefault(),
-    stamina: calc.commonNumberResultFromDefault(),
-    intellect: calc.commonNumberResultFromDefault(),
-    spirit: calc.commonNumberResultFromDefault(),
-    mp5: calc.commonNumberResultFromDefault(),
-    spellHit: calc.commonNumberResultFromDefault(),
-    spellCrit: calc.commonNumberResultFromDefault(),
-    spellPenetration: calc.commonNumberResultFromDefault(),
+    health: common.commonNumberResultFromDefault(),
+    mana: common.commonNumberResultFromDefault(),
+    stamina: common.commonNumberResultFromDefault(),
+    intellect: common.commonNumberResultFromDefault(),
+    spirit: common.commonNumberResultFromDefault(),
+    mp5: common.commonNumberResultFromDefault(),
+    spellHit: common.commonNumberResultFromDefault(),
+    spellCrit: common.commonNumberResultFromDefault(),
+    spellPenetration: common.commonNumberResultFromDefault(),
     spellDamage: spellDamageDefault(),
     resistances: resistancesDefault()
   }
@@ -45,24 +44,24 @@ const statsDefault = (): Stats => {
 
 const resistancesDefault = (): Resistances => {
   return {
-    spellResistance: calc.commonNumberResultFromDefault(),
-    arcaneResistance: calc.commonNumberResultFromDefault(),
-    fireResistance: calc.commonNumberResultFromDefault(),
-    frostResistance: calc.commonNumberResultFromDefault(),
-    natureResistance: calc.commonNumberResultFromDefault(),
-    shadowResistance: calc.commonNumberResultFromDefault()
+    spellResistance: common.commonNumberResultFromDefault(),
+    arcaneResistance: common.commonNumberResultFromDefault(),
+    fireResistance: common.commonNumberResultFromDefault(),
+    frostResistance: common.commonNumberResultFromDefault(),
+    natureResistance: common.commonNumberResultFromDefault(),
+    shadowResistance: common.commonNumberResultFromDefault()
   }
 }
 
 const spellDamageDefault = (): SpellDamage => {
   return {
-    spellDamage: calc.commonNumberResultFromDefault(),
-    arcaneDamage: calc.commonNumberResultFromDefault(),
-    fireDamage: calc.commonNumberResultFromDefault(),
-    frostDamage: calc.commonNumberResultFromDefault(),
-    natureDamage: calc.commonNumberResultFromDefault(),
-    shadowDamage: calc.commonNumberResultFromDefault(),
-    holyDamage: calc.commonNumberResultFromDefault()
+    spellDamage: common.commonNumberResultFromDefault(),
+    arcaneDamage: common.commonNumberResultFromDefault(),
+    fireDamage: common.commonNumberResultFromDefault(),
+    frostDamage: common.commonNumberResultFromDefault(),
+    natureDamage: common.commonNumberResultFromDefault(),
+    shadowDamage: common.commonNumberResultFromDefault(),
+    holyDamage: common.commonNumberResultFromDefault()
   }
 }
 
@@ -101,10 +100,10 @@ const targetDefault = (): Target => {
 
 const dpsDefault = (): DPS => {
   return {
-    min: calc.commonNumberResultFromDefault(),
-    max: calc.commonNumberResultFromDefault(),
-    avg: calc.commonNumberResultFromDefault(),
-    text: calc.commonStringResultFromDefault()
+    min: common.commonNumberResultFromDefault(),
+    max: common.commonNumberResultFromDefault(),
+    avg: common.commonNumberResultFromDefault(),
+    text: common.commonStringResultFromDefault()
   }
 }
 
@@ -176,10 +175,10 @@ const run = (settings: Settings): Encounter => {
   playerObj.stats.spirit.effective = _sc.player.spirit
   playerObj.stats.mp5.effective = _sc.player.mp5
   playerObj.stats.spellCrit = {
-    base: calc.baseSpellCrit,
-    actual: calc.baseSpellCrit + _sc.player.spellCritFromIntellect + _sc.player.spellCritFromEquipment,
+    base: common.baseSpellCrit,
+    actual: common.baseSpellCrit + _sc.player.spellCritFromIntellect + _sc.player.spellCritFromEquipment,
     effective:
-      calc.baseSpellCrit +
+      common.baseSpellCrit +
       _sc.player.spellCritFromIntellect +
       _sc.player.spellCritFromEquipment +
       _sc.improvedMoonfireSpellCritBonus

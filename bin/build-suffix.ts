@@ -4,7 +4,7 @@ import libclassic from '../src'
 import GearItemSuffix from '../src/interface/GearItemSuffix'
 
 /* relative to project root */
-const csvFilePath = 'contrib/itemSuffix.csv'
+const csvFilePath = 'contrib/gearItemSuffix.csv'
 
 const start = async function () {
   console.warn('Parsing CSV: ' + csvFilePath)
@@ -13,7 +13,7 @@ const start = async function () {
 
   for (const csvRecord of csvRecordArray) {
     GearItemSuffixArray.push(
-      libclassic.gear.itemSuffixFromText(
+      libclassic.gearItemSuffix.fromText(
         csvRecord.id,
         csvRecord.type,
         csvRecord.bonus,

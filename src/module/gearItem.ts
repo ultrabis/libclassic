@@ -1,4 +1,4 @@
-import enums from './enums'
+import common from './common'
 
 import gearItemDefault from '../obj/gearItem.json'
 
@@ -15,19 +15,19 @@ const fromDefault = (): GearItem => {
 }
 
 const slotFromItemSlot = (itemSlot: ItemSlot): GearSlot => {
-  return enums.gearSlotFromItemSlot(itemSlot)
+  return common.gearSlotFromItemSlot(itemSlot)
 }
 
 const qualityFromText = (text: string): GearItemQuality => {
-  return enums.itemQualityFromText(text)
+  return common.itemQualityFromText(text)
 }
 
 const pvpRankFromText = (text: string): PvPRank => {
-  return enums.pvpRankFromText(text)
+  return common.pvpRankFromText(text)
 }
 
 const isFromRaid = (location: string): boolean => {
-  const raids = enums.raidsFromText(location)
+  const raids = common.raidsFromText(location)
   return raids.length > 0 ? true : false
 }
 
@@ -52,7 +52,7 @@ const bonusFromText = (bonus: string): GearItemBonus => {
   }
 
   return {
-    type: enums.itemBonusTypeFromText(type),
+    type: common.itemBonusTypeFromText(type),
     value: Number(value)
   }
 }

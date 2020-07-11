@@ -1,4 +1,4 @@
-import enums from '../module/enums'
+import common from '../module/common'
 
 import Settings from '../interface/Settings'
 import Buffs from '../enum/Buff'
@@ -29,7 +29,7 @@ export default class Target {
   debuffMask: Buffs
   constructor(settings: Settings) {
     this.settings = settings
-    this.debuffMask = enums.buffMaskFromText(settings.target.debuffs.toString())
+    this.debuffMask = common.buffMaskFromText(settings.target.debuffs.toString())
   }
 
   get level(): number {

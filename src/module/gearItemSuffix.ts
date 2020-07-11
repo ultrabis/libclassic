@@ -1,10 +1,8 @@
 import jsonQuery from 'json-query'
 import gearItemSuffixDB from '../db/gearItemSuffix.json'
 
-// import common from '../common'
-import enums from './enums'
+import common from './common'
 import gearItem from './gearItem'
-
 import GearItemBonus from '../interface/GearItemBonus'
 import GearItemSuffix from '../interface/GearItemSuffix'
 
@@ -23,7 +21,7 @@ const fromItemNameAndBonusValue = (itemName: string, bonusValue: number): GearIt
 }
 
 const fromItemName = (itemName: string): GearItemSuffix[] => {
-  const suffixType = enums.GearItemSuffixTypeFromItemName(itemName)
+  const suffixType = common.GearItemSuffixTypeFromItemName(itemName)
   const result: GearItemSuffix[] = jsonQuery(`[* type = ${suffixType}]`, { data: gearItemSuffixDB }).value
   return result
 }
@@ -40,7 +38,7 @@ const fromText = (id: string, type: string, bonus: string, bonus2?: string, bonu
 
   return {
     id: Number(id),
-    type: enums.GearItemSuffixTypeFromText(type),
+    type: common.GearItemSuffixTypeFromText(type),
     bonus: _bonus
   }
 }

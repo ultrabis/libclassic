@@ -1,19 +1,20 @@
 import utils from '../module/utils'
-import enums from '../module/enums'
+import common from '../module/common'
 import query from '../module/query'
 import locked from '../module/locked'
 
 import Item from './Item'
 import Spell from './Spell'
 
-import ItemSlot from '../enum/ItemSlot'
-import SortOrder from '../enum/SortOrder'
-
 import Settings from '../interface/Settings'
 import GearSearch from '../interface/GearSearch'
 import GearItemJSON from '../interface/GearItemJSON'
 import GearItemSetJSON from '../interface/GearItemSetJSON'
 import GearEnchantJSON from '../interface/GearEnchantJSON'
+
+import ItemSlot from '../enum/ItemSlot'
+import SortOrder from '../enum/SortOrder'
+
 // import LockedItems from '../interface/LockedItems'
 
 /* Object containing:
@@ -110,7 +111,7 @@ export default class Equipment {
 
     return {
       phase: mySettings.game.phase,
-      faction: enums.factionFromRace(mySettings.player.race),
+      faction: common.factionFromRace(mySettings.player.race),
       pvpRank: mySettings.player.pvpRank,
       raids: mySettings.gear.raids,
       worldBosses: mySettings.gear.worldBosses,
@@ -128,7 +129,7 @@ export default class Equipment {
       naturesGrace: mySettings.player.talents.naturesGraceRank === 1 ? true : false,
       lockedItems: mySettings.gear.lockedItems,
       lockedEnchants: mySettings.gear.lockedEnchants,
-      gearSlot: enums.gearSlotFromItemSlot(mySettings.gear.itemSearchSlot),
+      gearSlot: common.gearSlotFromItemSlot(mySettings.gear.itemSearchSlot),
       itemSlot: mySettings.gear.itemSearchSlot,
       sortOrder: SortOrder.Descending
     }

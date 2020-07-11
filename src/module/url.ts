@@ -3,7 +3,7 @@ import pako from 'pako'
 import { Base64 } from 'js-base64'
 
 import utils from './utils'
-import settings from './settings'
+import common from './common'
 import Equipment from '../class/Equipment'
 import Settings from '../interface/Settings'
 import LockedItems from '../interface/LockedItems'
@@ -204,7 +204,7 @@ const optionFromURL = (name: string): any => {
 }
 
 const defaultSettings = (): Settings => {
-  const o: Settings = utils.cloneObject(settings.fromDefaults)
+  const o: Settings = utils.cloneObject(common.defaultSettings)
 
   /* gear */
   const gearv1 = optionFromURL('gear')

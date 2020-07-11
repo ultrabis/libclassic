@@ -1,4 +1,4 @@
-import enums from '../module/enums'
+import common from '../module/common'
 
 import GearItemJSON from '../interface/GearItemJSON'
 import GearItemSetJSON from '../interface/GearItemSetJSON'
@@ -26,7 +26,7 @@ export default class Item {
 
   constructor(slot: ItemSlot, itemJSON?: GearItemJSON, enchantJSON?: GearEnchantJSON) {
     this.itemSlot = slot
-    this.gearSlot = enums.gearSlotFromItemSlot(slot)
+    this.gearSlot = common.gearSlotFromItemSlot(slot)
     this.itemJSON = itemJSON ? itemJSON : undefined
     this.enchantJSON = enchantJSON ? enchantJSON : undefined
   }

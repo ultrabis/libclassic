@@ -1,4 +1,5 @@
-import mt from '../module'
+import optimal from '../module/optimal'
+
 import Cast from './Cast'
 import Settings from '../interface/Settings'
 import GearItemJSON from '../interface/GearItemJSON'
@@ -18,10 +19,10 @@ export default class Encounter {
   enchants: GearEnchantJSON[] | undefined
 
   constructor(settings: Settings) {
-    this.items = mt.optimal.itemsForSlot(settings)
-    this.enchants = mt.optimal.enchantsForSlot(settings)
+    this.items = optimal.itemsForSlot(settings)
+    this.enchants = optimal.enchantsForSlot(settings)
 
-    const equipment = mt.optimal.equipment(settings)
+    const equipment = optimal.equipment(settings)
     this.spellCast = new Cast(settings, { equipment: equipment })
   }
 }

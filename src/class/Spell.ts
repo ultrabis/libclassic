@@ -1,4 +1,4 @@
-import calc from '../module/calc'
+import common from '../module/common'
 import query from '../module/query'
 
 import SpellCoefficient from '../interface/SpellCoefficient'
@@ -120,9 +120,9 @@ export default class Spell {
    */
   get castTime(): number {
     if (!this.spellJSON) {
-      return calc.globalCooldown
+      return common.globalCooldown
     }
-    return Math.max(calc.globalCooldown, this.spellJSON.castTime)
+    return Math.max(common.globalCooldown, this.spellJSON.castTime)
   }
 
   /**
