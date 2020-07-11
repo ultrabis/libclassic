@@ -33,7 +33,7 @@ const setItemId = (gearSettingsObj: GearSettings, itemId: number, gearSlot?: Gea
   return setValue(gearSettingsObj, 0, itemId, gearSlot)
 }
 
-const setItemSuffixId = (gearSettingsObj: GearSettings, itemSuffixId: number, gearSlot?: GearSlot): number => {
+const setSuffixId = (gearSettingsObj: GearSettings, itemSuffixId: number, gearSlot?: GearSlot): number => {
   return setValue(gearSettingsObj, 1, itemSuffixId, gearSlot)
 }
 
@@ -64,4 +64,11 @@ const enchantId = (gearSettingsObj: GearSettings, gearSlot: GearSlot): number =>
   return getValue(gearSettingsObj, 2, gearSlot)
 }
 
-export default {}
+export default {
+  itemId,
+  setItemId,
+  suffixId,
+  setSuffixId,
+  enchantId,
+  setEnchantId
+}

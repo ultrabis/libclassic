@@ -677,7 +677,7 @@ const playableClassesFromText = (text: string): PlayableClass[] => {
   return _(text)
 }
 // console.log(libclassic.enums.itemBonusTypeFromText('arcane spell damage'))
-const itemBonusTypeFromText = (text: string): GearItemBonusType => {
+const gearItemBonusTypeFromText = (text: string): GearItemBonusType => {
   const _ = (text: string): typeof GearItemBonusType[keyof typeof GearItemBonusType] => {
     return Number(utils.getEnumValueFromFuzzyText(GearItemBonusType, text))
   }
@@ -685,25 +685,25 @@ const itemBonusTypeFromText = (text: string): GearItemBonusType => {
 }
 
 // console.log(libclassic.enums.GearItemSuffixTypeFromText('Classes: Priest, Shaman, Mage, Warlock, Druid'))
-const GearItemSuffixTypeFromText = (text: string): GearItemSuffixType => {
+const gearItemSuffixTypeFromText = (text: string): GearItemSuffixType => {
   const _ = (text: string): typeof GearItemSuffixType[keyof typeof GearItemSuffixType] => {
     return Number(utils.getEnumValueFromFuzzyText(GearItemSuffixType, text))
   }
   return _(text)
 }
 
-const GearItemSuffixTypeFromItemName = (itemName: string): GearItemSuffixType => {
+const gearItemSuffixTypeFromItemName = (itemName: string): GearItemSuffixType => {
   const of = itemName.toUpperCase().indexOf(' OF ')
   if (of === -1) {
     return GearItemSuffixType.Invalid
   }
 
   const right = itemName.slice(of + 4)
-  return GearItemSuffixTypeFromText(right)
+  return gearItemSuffixTypeFromText(right)
 }
 
 // console.log(libclassic.enums.itemQualitypeFromText('Classes: Priest, Shaman, Mage, Warlock, Druid'))
-const itemQualityFromText = (text: string): GearItemQuality => {
+const gearItemQualityFromText = (text: string): GearItemQuality => {
   const _ = (text: string): typeof GearItemQuality[keyof typeof GearItemQuality] => {
     return Number(utils.getEnumValueFromFuzzyText(GearItemQuality, text))
   }
@@ -769,10 +769,10 @@ export default {
   playableRaceFromText,
   playableClassFromText,
   playableClassesFromText,
-  itemBonusTypeFromText,
-  GearItemSuffixTypeFromItemName,
-  GearItemSuffixTypeFromText,
-  itemQualityFromText,
+  gearItemBonusTypeFromText,
+  gearItemSuffixTypeFromItemName,
+  gearItemSuffixTypeFromText,
+  gearItemQualityFromText,
   buffFromText,
   buffsFromText,
   buffMaskFromText,

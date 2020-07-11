@@ -19,7 +19,7 @@ const slotFromItemSlot = (itemSlot: ItemSlot): GearSlot => {
 }
 
 const qualityFromText = (text: string): GearItemQuality => {
-  return common.itemQualityFromText(text)
+  return common.gearItemQualityFromText(text)
 }
 
 const pvpRankFromText = (text: string): PvPRank => {
@@ -52,7 +52,7 @@ const bonusFromText = (bonus: string): GearItemBonus => {
   }
 
   return {
-    type: common.itemBonusTypeFromText(type),
+    type: common.gearItemBonusTypeFromText(type),
     value: Number(value)
   }
 }
