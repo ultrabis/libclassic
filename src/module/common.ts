@@ -14,6 +14,8 @@ import CommonStringResult from '../interface/CommonStringResult'
 import CastDmgObject from '../interface/CastDmgObject'
 import CastDmgValues from '../interface/CastDmgValues'
 import SpellDamage from '../interface/SpellDamage'
+import Stats from '../interface/Stats'
+import Weights from '../interface/Weights'
 
 /* enums. we want common ways to work with these */
 import GearSlot from '../enum/GearSlot'
@@ -69,6 +71,10 @@ const commonNumberResultFromDefault = (): CommonNumberResult => {
     actual: 0,
     effective: 0
   }
+}
+
+const isCommonNumberResult = (result: CommonNumberResult | number): result is CommonNumberResult => {
+  return (result as CommonNumberResult).base !== undefined
 }
 
 const commonStringResultFromDefault = (): CommonStringResult => {
@@ -482,10 +488,15 @@ const playerManaRegen = (playerLevel: number, playerSpirit: number, playerMp5: n
   return manaRegen
 }
 
+/*
 // base is total from gear, actual applies magic school, effective applies bonus (flasks and elixir)
 // FIXME: add missing schools
 const spellDamage = (baseSpellDamage: SpellDamage, magicSchool: MagicSchool, effectiveBonus: number): SpellDamage => {
   const mySpellDamage: SpellDamage = utils.cloneObject(baseSpellDamage)
+
+  if (isCommonNumberResult(baseSpellDamage.spellDamage)) {
+    return mySpellDamage
+  }
 
   switch (magicSchool) {
     case MagicSchool.Arcane:
@@ -513,8 +524,14 @@ const spellDamage = (baseSpellDamage: SpellDamage, magicSchool: MagicSchool, eff
 
   return mySpellDamage
 }
+*/
 
-// const playerStats = () => {}
+/*
+const weightScore = (stats: Stats, weights: Weights) {
+
+
+}
+*/
 
 /*
 const weightScore = (stats: Stats, Weights: Weights, playerClass: PlayableClass, targetType: TargetType, magicSchool: MagicSchool) => {
@@ -800,7 +817,7 @@ export default {
   spellDmgMultiplier,
   spellDmgBase,
   spellBaseChanceToHit,
-  spellDamage,
+  // spellDamage,
   playerManaRegen,
   targetSpellResistanceFromLevel,
   targetSpellResistance

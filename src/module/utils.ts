@@ -59,6 +59,9 @@ const sanitizeStringForEnum = (s: string): string => {
   return fuzzyTextFromString(s)
 }
 
+const getAllEnumKeys = (enumType: object): string[] => Object.keys(enumType).filter((key) => isNaN(Number(key)))
+const getAllEnumValues = (enumType: object): number[] => exports.getAllEnumKeys(enumType).map((key) => enumType[key])
+
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 const getEnumKeyByEnumValue = (myEnum: any, enumValue: number | string): string => {
   const keys = Object.keys(myEnum).filter((x) => myEnum[x] === enumValue)
@@ -148,6 +151,14 @@ const bitMaskIncludes = (bitMask: number, value: number): boolean => {
   return (bitMask & value) === value ? true : false
 }
 
+const newZeroedArray = (len: number): any[] => {
+  return new Array(len).fill(0)
+}
+
+const isEmpty = (obj: object) => {
+  return Object.keys(obj).length == 0
+}
+
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 const cloneObject = (o: any): any => {
   // return JSON.parse(JSON.stringify(o, null, 1))
@@ -197,27 +208,31 @@ const consecutiveChance = (trials: number, chance: number, x: number): number =>
 */
 
 export default {
-  getEnumKeyByEnumValue,
-  getEnumValueFromFuzzyText,
-  getEnumValuesFromFuzzyText,
-  getEnumBitmaskFromFuzzyText,
-  sanitizeStringForEnum,
-  // cumulativeChance,
-  // consecutiveChance,
-  triangularNumber,
-  roundedString,
   isNode,
   isBrowser,
   isWebWorker,
   isMobile,
+  isEmpty,
+  isLetter,
+  cloneObject,
+  newZeroedArray,
   bitMaskFromArray,
   bitMaskIncludes,
-  cloneObject,
-  isLetter,
+  // cumulativeChance,
+  // consecutiveChance,
+  triangularNumber,
+  roundedString,
   capitalize,
   fuzzyTextFromString,
   fuzzyIncludes,
   encodeURI,
   decodeURI,
-  paramFromURL
+  paramFromURL,
+  sanitizeStringForEnum,
+  getAllEnumKeys,
+  getAllEnumValues,
+  getEnumKeyByEnumValue,
+  getEnumValueFromFuzzyText,
+  getEnumValuesFromFuzzyText,
+  getEnumBitmaskFromFuzzyText
 }

@@ -2,7 +2,7 @@ import ItemSlot from '../enum/ItemSlot'
 import Faction from '../enum/Faction'
 import PvPRank from '../enum/PvPRank'
 
-export default interface ItemQuery {
+export default interface GearItemQuery {
   id?: number
   suffixId?: number
   name?: string

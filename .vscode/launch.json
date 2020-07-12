@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "bin debug",
+        "type": "node",
+        "request": "launch",
+        "runtimeExecutable": "node",
+        "runtimeArgs": ["--nolazy", "-r", "ts-node/register/transpile-only"],
+        "args": ["bin/run-encounter.ts", "./src/obj/moonkin-settings.json"],
+        "cwd": "${workspaceRoot}",
+        "env": {
+            "TS_NODE_PROJECT": "bin/tsconfig.json"
+        },
+        "internalConsoleOptions": "openOnSessionStart",
+        "skipFiles": ["<node_internals>/**", "node_modules/**"]
+      }
+    ]
+  }

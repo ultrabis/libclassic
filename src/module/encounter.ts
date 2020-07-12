@@ -16,7 +16,6 @@ import Weights from '../interface/Weights'
 import Target from '../interface/Target'
 import Spell from '../interface/Spell'
 import SpellDamage from '../interface/SpellDamage'
-import SpellDamageSimple from '../interface/SpellDamageSimple'
 
 import PlayableSpec from '../enum/PlayableSpec'
 import spell from './spell'
@@ -37,6 +36,7 @@ const statsDefault = (): Stats => {
     spellHit: common.commonNumberResultFromDefault(),
     spellCrit: common.commonNumberResultFromDefault(),
     spellPenetration: common.commonNumberResultFromDefault(),
+    spellHealing: common.commonNumberResultFromDefault(),
     spellDamage: spellDamageDefault(),
     resistances: resistancesDefault()
   }
@@ -65,18 +65,6 @@ const spellDamageDefault = (): SpellDamage => {
   }
 }
 
-const spellDamageSimpleDefault = (): SpellDamageSimple => {
-  return {
-    spellDamage: 0,
-    arcaneDamage: 0,
-    fireDamage: 0,
-    frostDamage: 0,
-    natureDamage: 0,
-    shadowDamage: 0,
-    holyDamage: 0
-  }
-}
-
 const weightsDefault = (): Weights => {
   return {
     spellDamage: 1,
@@ -88,7 +76,8 @@ const weightsDefault = (): Weights => {
 
 const playerDefault = (): Player => {
   return {
-    stats: statsDefault()
+    stats: statsDefault(),
+    talents: {}
   }
 }
 
@@ -192,7 +181,6 @@ const run = (settings: Settings): Encounter => {
 
   /* gear */
   // gear.equipped = [[0, 0]]
-
   gearObj.equipped = [
     [gearItem.fromJSON(_p.equipment.head.itemJSON), gearEnchant.fromJSON(_p.equipment.head.enchantJSON)],
     [gearItem.fromJSON(_p.equipment.hands.itemJSON), gearEnchant.fromJSON(_p.equipment.hands.enchantJSON)],
@@ -230,7 +218,20 @@ const run = (settings: Settings): Encounter => {
   return encounter
 }
 
+/* go through all current steps of moonkin-calc, and re-write them straight into this single function.
+ * after that we can see the best way to modularize. */
+const run2 = (settings: Settings): Encounter => {
+  const encounter = {} as Encounter
+
+  if (settings.debug) {
+    console.log(`hey it's debug`)
+  }
+
+  return encounter
+}
+
 export default {
   defaultSettings: defaultSettings,
-  run: run
+  run: run,
+  run2: run2
 }

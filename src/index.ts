@@ -21,6 +21,7 @@ import Cast from './class/Cast'
 import Encounter from './class/Encounter'
 
 const run = encounter.run
+const run2 = encounter.run2
 const defaultSettings = encounter.defaultSettings()
 
 /* TODO: Remove this after adding some tests */
@@ -48,6 +49,7 @@ export default {
   encounter,
   /* entry functions. will replace classes. */
   run,
+  run2,
   defaultSettings,
 
   // Stupid csim. XML format so goofy it lags rollup trying to generate it

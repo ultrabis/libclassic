@@ -12,6 +12,7 @@ export default interface Stats {
   spellHit: CommonNumberResult
   spellCrit: CommonNumberResult
   spellPenetration: CommonNumberResult
+  spellHealing: CommonNumberResult
   spellDamage: SpellDamage
   resistances: Resistances
 }

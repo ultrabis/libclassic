@@ -9,7 +9,7 @@ import Settings from '../interface/Settings'
 /**
  * Stores player attributes, Talents, Gear, and Buff
  */
-export default class player {
+export default class Character {
   settings: Settings
   equipment: Equipment
   buffMask: number

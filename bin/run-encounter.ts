@@ -19,7 +19,7 @@ try {
   exit(1)
 }
 
-const r = libclassic.run(settings)
+const r = libclassic.run2(settings)
 console.log(JSON.stringify(r, null, 2))
 console.warn(JSON.stringify(settings, null, 2))
 exit(0)
