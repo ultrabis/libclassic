@@ -1,5 +1,5 @@
 import ItemSlot from '../enum/ItemSlot'
-import GearSlot from '../enum/gearSlot'
+import GearSlot from '../enum/GearSlot'
 
 export default interface GearEnchant {
   id: number
