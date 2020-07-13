@@ -7,17 +7,6 @@ a library for wow classic web apps.
 
 ![build](https://github.com/ultrabis/libclassic/workflows/build/badge.svg) ![publish](https://github.com/ultrabis/libclassic/workflows/publish/badge.svg)
 
-### goal / purpose
-
-to port more spreadsheets into web apps while building / generifying / documenting common functionality in this library. the end goal would be more class support, more games (tbc, wrath).
-
-changes from moonkin-calc:
- 
- - can run encounters with JSON input / output (includes cli)
- - better gear handling (locking, equipping, etc)
- - better handling of suffix items e.g. "helm of arcane wrath"
-
-
 ### dates
 
 july 29th - finish refactoring and update moonkin app for next phase
