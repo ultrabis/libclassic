@@ -1,14 +1,13 @@
 import Equipment from './Equipment';
 import Faction from '../enum/Faction';
-import Buffs from '../enum/Buffs';
 import Settings from '../interface/Settings';
 /**
- * Stores character attributes, Talents, Gear, and Buffs
+ * Stores player attributes, Talents, Gear, and Buff
  */
 export default class Character {
     settings: Settings;
     equipment: Equipment;
-    buffFlags: Buffs;
+    buffMask: number;
     constructor(settings: Settings, equipment: Equipment);
     get level(): number;
     get faction(): Faction;

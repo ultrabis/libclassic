@@ -1,0 +1,28 @@
+declare const _default: {
+    isNode: boolean;
+    isBrowser: boolean;
+    isWebWorker: boolean;
+    isMobile: () => boolean;
+    isEmpty: (obj: object) => boolean;
+    isLetter: (char: string) => boolean;
+    cloneObject: (o: any) => any;
+    newZeroedArray: (len: number) => any[];
+    bitMaskFromArray: (array: number[]) => number;
+    bitMaskIncludes: (bitMask: number, value: number) => boolean;
+    triangularNumber: (n: number) => number;
+    roundedString: (num: number, decimals: number) => string;
+    capitalize: (s: string) => string;
+    fuzzyTextFromString: (s: string) => string;
+    fuzzyIncludes: (haystack: string, needle: string) => boolean;
+    encodeURI: (str: string) => string;
+    decodeURI: (str: string) => string;
+    paramFromURL: (paramName: string, URL?: string | undefined) => string | null;
+    sanitizeStringForEnum: (s: string) => string;
+    getAllEnumKeys: (enumType: object) => string[];
+    getAllEnumValues: (enumType: object) => number[];
+    getEnumKeyByEnumValue: (myEnum: any, enumValue: string | number) => string;
+    getEnumValueFromFuzzyText: (myEnum: any, fuzzyText: string, exact?: boolean | undefined) => string | number;
+    getEnumValuesFromFuzzyText: (myEnum: any, fuzzyText: string) => any[];
+    getEnumBitmaskFromFuzzyText: (myEnum: any, fuzzyText: string) => any;
+};
+export default _default;

@@ -6,7 +6,7 @@ declare enum ManaReturn {
     DemonicRune = 4,
     ManaGem = 5
 }
-declare enum MageManaReturn {
+declare enum ManaReturnMage {
     Evocation = 0,
     MajorManaPot = 1,
     DemonicRune = 2,
@@ -14,6 +14,6 @@ declare enum MageManaReturn {
 }
 declare const _default: {
     ManaReturn: typeof ManaReturn;
-    MageManaReturn: typeof MageManaReturn;
+    ManaReturnMage: typeof ManaReturnMage;
 };
 export default _default;

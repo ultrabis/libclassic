@@ -18,7 +18,7 @@ export default class Cast {
     settings: Settings;
     spell: Spell;
     target: Target;
-    character: Character;
+    player: Character;
     constructor(settings: Settings, equipmentOverride?: EquipmentOverride);
     get normalDmg(): CastDmgObject;
     get critDmg(): CastDmgObject;

@@ -1,5 +1,4 @@
 declare enum GearSlot {
-    Invalid = -1,
     Head = 0,
     Hands = 1,
     Neck = 2,

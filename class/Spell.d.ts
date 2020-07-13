@@ -1,6 +1,7 @@
 import SpellCoefficient from '../interface/SpellCoefficient';
 import SpellJSON from '../interface/SpellJSON';
 import MagicSchool from '../enum/MagicSchool';
+import SpellType from '../enum/SpellType';
 /**
  * Spell details. These are base values that don't factor in talents, spellpower, buffs, debuffs, etc.
  */
@@ -43,7 +44,7 @@ export default class Spell {
     /**
      * Return spell type (direct, periodic or hybrid)
      */
-    get type(): string;
+    get type(): SpellType;
     /**
      * Return spell reqLvl, unmodified.
      */

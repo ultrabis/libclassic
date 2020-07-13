@@ -1,9 +1,9 @@
 import Settings from '../interface/Settings';
-import Buffs from '../enum/Buffs';
+import Buffs from '../enum/Buff';
 import MagicSchool from '../enum/MagicSchool';
 export default class Target {
     settings: Settings;
-    debuffFlags: Buffs;
+    debuffMask: Buffs;
     constructor(settings: Settings);
     get level(): number;
     get hitChance(): number;
