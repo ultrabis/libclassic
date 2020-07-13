@@ -18,7 +18,7 @@ const start = async function () {
 
   for (const csvRecord of csvRecordArray) {
     gearItemSuffixArray.push(
-      libclassic.mt.gearItemSuffix.fromText(
+      libclassic.gearItemSuffix.fromText(
         csvRecord.id,
         csvRecord.type,
         csvRecord.bonus,

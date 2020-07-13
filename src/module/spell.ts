@@ -1,7 +1,7 @@
-import Spell from '../interface/Spell'
-import defaultObj from '../obj/spell.json'
+import SpellTrio from '../interface/SpellTrio'
+import defaultObj from '../obj/spellTrio.json'
 
-const fromDefault = (): Spell => {
+const fromDefault = (): SpellTrio => {
   return defaultObj
 }
 

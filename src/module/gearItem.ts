@@ -7,6 +7,7 @@ import gearItemDefault from '../obj/gearItem.json'
 import GearItem from '../interface/GearItem'
 import GearItemBonus from '../interface/GearItemBonus'
 import GearItemJSON from '../interface/GearItemJSON'
+import GearItemJSONNew from '../interface/GearItemJSONNew'
 import GearItemQuery from '../interface/GearItemQuery'
 
 import GearSlot from '../enum/GearSlot'

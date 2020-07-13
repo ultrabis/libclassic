@@ -1,11 +1,9 @@
-import CommonNumberResult from './CommonNumberResult'
-
 export default interface SpellDamage {
-  spellDamage: CommonNumberResult
-  arcaneDamage: CommonNumberResult
-  fireDamage: CommonNumberResult
-  frostDamage: CommonNumberResult
-  natureDamage: CommonNumberResult
-  shadowDamage: CommonNumberResult
-  holyDamage: CommonNumberResult
+  spellDamage?: number
+  arcaneDamage?: number
+  fireDamage?: number
+  frostDamage?: number
+  natureDamage?: number
+  shadowDamage?: number
+  holyDamage?: number
 }

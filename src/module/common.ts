@@ -13,9 +13,11 @@ import CommonNumberResult from '../interface/CommonNumberResult'
 import CommonStringResult from '../interface/CommonStringResult'
 import CastDmgObject from '../interface/CastDmgObject'
 import CastDmgValues from '../interface/CastDmgValues'
-import SpellDamage from '../interface/SpellDamage'
-import Stats from '../interface/Stats'
+/*
+import SpellDamageTrio from '../interface/SpellDamageTrio'
+import StatsTrio from '../interface/StatsTrio'
 import Weights from '../interface/Weights'
+*/
 
 /* enums. we want common ways to work with these */
 import GearSlot from '../enum/GearSlot'
@@ -701,22 +703,39 @@ const gearItemBonusTypeFromText = (text: string): GearItemBonusType => {
   return _(text)
 }
 
-// console.log(libclassic.enums.GearItemSuffixTypeFromText('Classes: Priest, Shaman, Mage, Warlock, Druid'))
+// console.log(libclassic.common.gearItemSuffixTypeFromText('cape of arcane wrath'))
+// console.log(libclassic.common.gearItemSuffixTypeFromText('Talisman of Ephemeral Power'))
+
 const gearItemSuffixTypeFromText = (text: string): GearItemSuffixType => {
-  const _ = (text: string): typeof GearItemSuffixType[keyof typeof GearItemSuffixType] => {
+  const of = text.toUpperCase().indexOf(' OF ')
+  // console.log(`of = ${of}, r = ${r}, t = ${t}`)
+
+  if (of === -1) {
+    // text is not an item name with a suffix e.g. "High Warlord's Destroyer"
+    // in that case we do a loose search for any matching key, which will return Invalid
     return Number(utils.getEnumValueFromFuzzyText(GearItemSuffixType, text))
   }
-  return _(text)
+
+  // text is an item name with a suffix e.g. "Talisman of Ephemeral Power"
+  // in that case it will strict search for "Ephemeral Power", which will return Invalid
+  return Number(utils.getEnumValueFromFuzzyText(GearItemSuffixType, text.slice(of + 4), true))
 }
 
-const gearItemSuffixTypeFromItemName = (itemName: string): GearItemSuffixType => {
-  const of = itemName.toUpperCase().indexOf(' OF ')
-  if (of === -1) {
-    return GearItemSuffixType.Invalid
+/**
+ *
+ * Convert names like "Master's Hat of Arcane Wrath" to "Master's Hat"
+ * Names without a real suffix will keep their original
+ *
+ * @param itemName
+ */
+const gearItemBaseName = (itemName: string): string => {
+  const gearItemSuffixType = gearItemSuffixTypeFromText(itemName)
+  if (gearItemSuffixType === GearItemSuffixType.Invalid) {
+    return itemName
   }
 
-  const right = itemName.slice(of + 4)
-  return gearItemSuffixTypeFromText(right)
+  const of = itemName.toUpperCase().indexOf(' OF ')
+  return itemName.slice(0, of)
 }
 
 // console.log(libclassic.enums.itemQualitypeFromText('Classes: Priest, Shaman, Mage, Warlock, Druid'))
@@ -786,8 +805,8 @@ export default {
   playableRaceFromText,
   playableClassFromText,
   playableClassesFromText,
+  gearItemBaseName,
   gearItemBonusTypeFromText,
-  gearItemSuffixTypeFromItemName,
   gearItemSuffixTypeFromText,
   gearItemQualityFromText,
   buffFromText,

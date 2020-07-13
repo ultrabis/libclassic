@@ -1,7 +1,7 @@
-import Stats from './Stats'
+import StatsTrio from './StatsTrio'
 import TalentSettings from './TalentSettings'
 
 export default interface Player {
-  stats: Stats
+  stats: StatsTrio
   talents: TalentSettings
 }

@@ -375,7 +375,6 @@ class ConvertItem {
   }
 
   get itemQuality(): ItemQuality {
-    return 
     if (this._wowHeadItem === null) {
       return ItemQuality.Common
     }

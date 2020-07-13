@@ -8,14 +8,14 @@ import EncounterFIXME from '../class/Encounter'
 import Encounter from '../interface/Encounter'
 import Settings from '../interface/Settings'
 import DPS from '../interface/DPS'
-import Player from '../interface/Player'
+import PlayerTrio from '../interface/PlayerTrio'
+import TargetTrio from '../interface/TargetTrio'
+import ResistancesTrio from '../interface/ResistancesTrio'
+import StatsTrio from '../interface/StatsTrio'
+import SpellDamageTrio from '../interface/SpellDamageTrio'
 import Gear from '../interface/Gear'
-import Resistances from '../interface/Resistances'
-import Stats from '../interface/Stats'
 import Weights from '../interface/Weights'
-import Target from '../interface/Target'
-import Spell from '../interface/Spell'
-import SpellDamage from '../interface/SpellDamage'
+import Spell from '../interface/SpellTrio'
 
 import PlayableSpec from '../enum/PlayableSpec'
 import spell from './spell'
@@ -25,7 +25,7 @@ const defaultSettings = (spec?: PlayableSpec): Settings => {
   return common.defaultSettings(spec ? { playerSpec: spec } : undefined)
 }
 
-const statsDefault = (): Stats => {
+const statsDefault = (): StatsTrio => {
   return {
     health: common.commonNumberResultFromDefault(),
     mana: common.commonNumberResultFromDefault(),
@@ -42,7 +42,7 @@ const statsDefault = (): Stats => {
   }
 }
 
-const resistancesDefault = (): Resistances => {
+const resistancesDefault = (): ResistancesTrio => {
   return {
     spellResistance: common.commonNumberResultFromDefault(),
     arcaneResistance: common.commonNumberResultFromDefault(),
@@ -53,7 +53,7 @@ const resistancesDefault = (): Resistances => {
   }
 }
 
-const spellDamageDefault = (): SpellDamage => {
+const spellDamageDefault = (): SpellDamageTrio => {
   return {
     spellDamage: common.commonNumberResultFromDefault(),
     arcaneDamage: common.commonNumberResultFromDefault(),
@@ -74,14 +74,14 @@ const weightsDefault = (): Weights => {
   }
 }
 
-const playerDefault = (): Player => {
+const playerDefault = (): PlayerTrio => {
   return {
     stats: statsDefault(),
     talents: {}
   }
 }
 
-const targetDefault = (): Target => {
+const targetDefault = (): TargetTrio => {
   return {
     stats: statsDefault()
   }
@@ -109,11 +109,11 @@ const run = (settings: Settings): Encounter => {
   const _e: EncounterFIXME = new EncounterFIXME(settings)
   const _sc = _e.spellCast
   const _p = _sc.player
-  const targetObj: Target = targetDefault()
+  const targetObj: TargetTrio = targetDefault()
   const spellObj: Spell = spell.fromDefault()
   const weightsObj: Weights = weightsDefault()
   const gearObj: Gear = gearDefault()
-  const playerObj: Player = playerDefault()
+  const playerObj: PlayerTrio = playerDefault()
   const dpsObj: DPS = dpsDefault()
 
   /* spell */

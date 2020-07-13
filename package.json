@@ -1,6 +1,6 @@
 {
   "name": "libclassic",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "author": "kmmiles",
@@ -31,6 +31,7 @@
     "lint:eslint": "eslint src",
     "lint:tsc": "tsc --noEmit",
     "test": "echo TODO",
+    "test:conversion": "ts-node -sT bin/test-conversion.ts",
     "clean": "rm -rf ./dist && rm -rf ./logs"
   },
   "dependencies": {

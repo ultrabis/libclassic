@@ -21,7 +21,7 @@ const fromItemNameAndBonusValue = (itemName: string, bonusValue: number): GearIt
 }
 
 const fromItemName = (itemName: string): GearItemSuffix[] => {
-  const suffixType = common.gearItemSuffixTypeFromItemName(itemName)
+  const suffixType = common.gearItemSuffixTypeFromText(itemName)
   const result: GearItemSuffix[] = jsonQuery(`[* type = ${suffixType}]`, { data: gearItemSuffixDB }).value
   return result
 }
