@@ -1,3 +1,5 @@
+/** database */
+
 import GearItemBonus from './GearItemBonus'
 import GearItemSuffixType from '../enum/GearItemSuffixType'
 

@@ -1,6 +1,6 @@
 import GearItemJSON from './GearItemJSON'
 
-export default interface ItemSetJSON {
+export default interface GearItemSetJSON {
   name: string
   phase: number
   raid: boolean
