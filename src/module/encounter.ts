@@ -98,7 +98,7 @@ const dpsDefault = (): DPS => {
 
 const gearDefault = () => {
   return {
-    equipped: [],
+    custom: [],
     items: [],
     enchants: []
   }
@@ -181,7 +181,7 @@ const run = (settings: Settings): Encounter => {
 
   /* gear */
   // gear.equipped = [[0, 0]]
-  gearObj.equipped = [
+  gearObj.custom = [
     [item.fromJSON(_p.equipment.head.itemJSON), enchant.fromJSON(_p.equipment.head.enchantJSON)],
     [item.fromJSON(_p.equipment.hands.itemJSON), enchant.fromJSON(_p.equipment.hands.enchantJSON)],
     [item.fromJSON(_p.equipment.neck.itemJSON), enchant.fromJSON(_p.equipment.neck.enchantJSON)],
