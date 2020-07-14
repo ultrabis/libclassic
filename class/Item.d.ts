@@ -3,7 +3,6 @@ import ItemSetJSON from '../interface/ItemSetJSON';
 import EnchantJSON from '../interface/EnchantJSON';
 import MagicSchool from '../enum/MagicSchool';
 import ItemQuality from '../enum/ItemQuality';
-import GearSlot from '../enum/GearSlot';
 import ItemClass from '../enum/ItemClass';
 import ArmorSubclass from '../enum/ArmorSubclass';
 import WeaponSubclass from '../enum/WeaponSubclass';
@@ -14,7 +13,6 @@ import TargetType from '../enum/TargetType';
 import ItemSlot from '../enum/ItemSlot';
 export default class Item {
     itemSlot: ItemSlot;
-    gearSlot: GearSlot;
     itemJSON: ItemJSON | undefined;
     enchantJSON: EnchantJSON | undefined;
     constructor(slot: ItemSlot, itemJSON?: ItemJSON, enchantJSON?: EnchantJSON);

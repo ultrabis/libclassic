@@ -2,7 +2,7 @@ import ItemSlot from '../enum/ItemSlot';
 import LockedItems from './LockedItems';
 import LockedEnchants from './LockedEnchants';
 export default interface GearSettings {
-    equipped: number[][];
+    custom: number[][];
     lockedItems: LockedItems;
     lockedEnchants: LockedEnchants;
     itemSearchSlot: ItemSlot;

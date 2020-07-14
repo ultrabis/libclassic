@@ -25,7 +25,6 @@ import PlayableSpec from '../enum/PlayableSpec';
 import PowerType from '../enum/PowerType';
 import PvPRank from '../enum/PvPRank';
 import SortOrder from '../enum/SortOrder';
-import SpellCritFromIntellectDivisor from '../enum/SpellCritFromIntellectDivisor';
 import TargetType from '../enum/TargetType';
 declare const _default: {
     ArmorSubclass: typeof ArmorSubclass;
@@ -41,7 +40,6 @@ declare const _default: {
     PowerType: typeof PowerType;
     PvPRank: typeof PvPRank;
     SortOrder: typeof SortOrder;
-    SpellCritFromIntellectDivisor: typeof SpellCritFromIntellectDivisor;
     TargetType: typeof TargetType;
     WeaponSubclass: typeof WeaponSubclass;
     ItemSuffixType: typeof ItemSuffixType;
@@ -80,16 +78,17 @@ declare const _default: {
     commonStringResultFromDefault: () => CommonStringResult;
     castDmgValuesFromDefault: () => CastDmgValues;
     castDmgObjectFromDefault: () => CastDmgObject;
-    spellChanceToHit: (targetLevel: number, spellHit: number, opts?: CalcOpts | undefined) => number;
-    spellChanceToMiss: (targetLevel: number, spellHit: number, opts?: CalcOpts | undefined) => number;
-    spellChanceToCrit: (targetLevel: number, spellHit: number, spellCrit: number, opts?: CalcOpts | undefined) => number;
-    spellChanceToNormal: (targetLevel: number, spellHit: number, spellCrit: number, opts?: CalcOpts | undefined) => number;
+    spellChanceToHit: (playerLevel: number, targetLevel: number, spellHit: number) => number;
+    spellChanceToMiss: (playerLevel: number, targetLevel: number, spellHit: number) => number;
+    spellChanceToCrit: (playerLevel: number, targetLevel: number, spellHit: number, spellCrit: number) => number;
+    spellChanceToNormal: (playerLevel: number, targetLevel: number, spellHit: number, spellCrit: number) => number;
     spellPartialResistAvg: (playerLevel: number, playerSpellPenetration: number, targetLevel: number, targetBaseSpellResistance: number, binarySpell: boolean) => number;
     spellCritBonusMultiplier: (opts?: CalcOpts | undefined) => number;
     spellCritMultiplier: (opts?: CalcOpts | undefined) => number;
+    spellCritFromIntellectDivisor: (playerClass: PlayableClass) => number;
     spellDmgMultiplier: (spellName: string, additionalMultipliers: number, opts?: CalcOpts | undefined) => CommonNumberResult;
     spellDmgBase: (spellName: string, dmg: number, opts?: CalcOpts | undefined) => number;
-    spellBaseChanceToHit: (targetLevel: number, opts?: CalcOpts | undefined) => 83 | 94 | 95 | 96 | 97 | 98 | 99;
+    spellBaseChanceToHit: (playerLevel: number, targetLevel: number) => number;
     playerManaRegen: (playerLevel: number, playerSpirit: number, playerMp5: number, opts?: CalcOpts | undefined) => ManaRegen;
     targetSpellResistanceFromLevel: (playerLevel: number, targetLevel: number, binarySpell: boolean) => number;
     targetSpellResistance: (playerLevel: number, playerSpellPenetration: number, targetLevel: number, targetBaseSpellResistance: number, binarySpell: boolean) => number;

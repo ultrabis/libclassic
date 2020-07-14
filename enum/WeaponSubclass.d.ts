@@ -1,5 +1,4 @@
 declare enum WeaponSubclass {
-    Empty = -100,
     OneHandedAxe = 0,
     TwoHandedAxe = 1,
     Bow = 2,
