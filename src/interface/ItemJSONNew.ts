@@ -1,26 +1,29 @@
 import ItemSlot from '../enum/ItemSlot'
-import GearItemQuality from '../enum/GearItemQuality'
-import GearItemClass from '../enum/GearItemClass'
+import ItemQuality from '../enum/ItemQuality'
+import ItemClass from '../enum/ItemClass'
 import ArmorSubclass from '../enum/ArmorSubclass'
 import WeaponSubclass from '../enum/WeaponSubclass'
 import PlayableClass from '../enum/PlayableClass'
 import Faction from '../enum/Faction'
 import PvPRank from '../enum/PvPRank'
 import TargetType from '../enum/TargetType'
-import ItemOnUseJSON from './GearItemOnUseJSON'
+import ItemOnUseJSON from './ItemOnUseJSON'
+import Stats from './Stats'
 
-export default interface GearItemJSON {
+export default interface ItemJSONNew {
   id: number
+  name: string
+  slot: ItemSlot
   suffixId?: number
-  itemSlot: ItemSlot
-  name?: string
-  class?: GearItemClass
+  class?: ItemClass
   subclass?: ArmorSubclass | WeaponSubclass
-  quality?: GearItemQuality
   level?: number
   reqLevel?: number
   bop?: boolean
   unique?: boolean
+  stats?: Stats
+  durability?: number
+  quality?: ItemQuality
   allowableClasses?: PlayableClass[]
   targetTypes?: TargetType
   phase?: number
@@ -28,23 +31,7 @@ export default interface GearItemJSON {
   icon?: string
   location?: string
   boss?: string
-  raid?: boolean
-  worldBoss?: boolean
   faction?: Faction
-  score?: number
-  spellDamage?: number
-  arcaneDamage?: number
-  natureDamage?: number
-  spellHealing?: number
-  spellHit?: number
-  spellCrit?: number
-  spellPenetration?: number
-  stamina?: number
-  intellect?: number
-  spirit?: number
-  mp5?: number
-  armor?: number
-  durability?: number
   minDmg?: number
   maxDmg?: number
   speed?: number

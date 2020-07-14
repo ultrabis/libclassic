@@ -4,7 +4,7 @@ import LockedItems from './LockedItems'
 import LockedEnchants from './LockedEnchants'
 
 export default interface GearSettings {
-  equipped: number[][] // [GearSlot][itemId, suffixId, enchantId]. itemId and enchantId can also be (0 = BIS, 1 = Naked).
+  custom: number[][] // [GearSlot][itemId, suffixId, enchantId]. itemId and enchantId can also be (0 = BIS, 1 = Naked).
   lockedItems: LockedItems // FIXME: replace
   lockedEnchants: LockedEnchants // FIXME: replace
   itemSearchSlot: ItemSlot // if slot valid will fill settings.gear.items[] in BiS order

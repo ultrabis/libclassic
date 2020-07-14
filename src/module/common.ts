@@ -21,10 +21,10 @@ import Weights from '../interface/Weights'
 
 /* enums. we want common ways to work with these */
 import GearSlot from '../enum/GearSlot'
-import GearItemClass from '../enum/GearItemClass'
-import GearItemQuality from '../enum/GearItemQuality'
-import GearItemSuffixType from '../enum/GearItemSuffixType'
-import GearItemBonusType from '../enum/GearItemBonusType'
+import ItemClass from '../enum/ItemClass'
+import ItemQuality from '../enum/ItemQuality'
+import ItemSuffixType from '../enum/ItemSuffixType'
+import ItemBonusType from '../enum/ItemBonusType'
 import ArmorSubclass from '../enum/ArmorSubclass'
 import WeaponSubclass from '../enum/WeaponSubclass'
 import ItemSlot from '../enum/ItemSlot'
@@ -40,7 +40,6 @@ import PlayableSpec from '../enum/PlayableSpec'
 import PowerType from '../enum/PowerType'
 import PvPRank from '../enum/PvPRank'
 import SortOrder from '../enum/SortOrder'
-import SpellCritFromIntellectDivisor from '../enum/SpellCritFromIntellectDivisor'
 import TargetType from '../enum/TargetType'
 
 /**
@@ -160,29 +159,60 @@ const calcOptsFromSettings = (s: Settings): CalcOpts => {
 
 /**
  *
+ *
+ * @param playerClass e.g. `PlayableClass.Druid`
+ */
+const spellCritFromIntellectDivisor = (playerClass: PlayableClass): number => {
+  switch (playerClass) {
+    case PlayableClass.Druid:
+      return 60
+    case PlayableClass.Warlock:
+      return 60.6
+    case PlayableClass.Shaman:
+      return 59.5
+    case PlayableClass.Mage:
+      return 59.5
+    case PlayableClass.Priest:
+      return 59.2
+    case PlayableClass.Paladin:
+      return 54
+    default:
+      return -1
+  }
+}
+
+/**
+ *
  * Returns the chance of a spell hitting a target, not accounting for the players spellHit stat.
  *
  * @remarks
- * TODO: Assumes level 60 player level
  *
+ * @param playerLevel
  * @param targetLevel
- * @param opts
  */
-const spellBaseChanceToHit = (targetLevel: number, opts?: CalcOpts) => {
-  switch (targetLevel) {
-    case 63:
-      return 83
-    case 62:
-      return 94
-    case 61:
-      return 95
-    case 60:
-      return 96
-    case 59:
-      return 97
-    case 58:
+const spellBaseChanceToHit = (playerLevel: number, targetLevel: number): number => {
+  const x = targetLevel - playerLevel
+
+  switch (x) {
+    case -3:
+      return 99
+    case -2:
       return 98
+    case -1:
+      return 97
+    case 0:
+      return 96
+    case 1:
+      return 95
+    case 2:
+      return 94
+    case 3:
+      return 83
     default:
+      if (x > 3) {
+        return 83
+      }
+
       return 99
   }
 }
@@ -193,15 +223,15 @@ const spellBaseChanceToHit = (targetLevel: number, opts?: CalcOpts) => {
  *
  * @remarks
  * TODO: Assumes level 60 player level
- * Example: console.log(libclassic.calc.spellChanceToHit(63, 5))
+ * Example: console.log(libclassic.common.spellChanceToHit(60, 63, 12))
  *
+ * @param playerLevel player level
  * @param targetLevel target level
  * @param spellHit player spell hit (total effective)
- * @param opts
  * @returns A number between '0' and '99'.
  */
-const spellChanceToHit = (targetLevel: number, spellHit: number, opts?: CalcOpts): number => {
-  return Math.min(99, spellBaseChanceToHit(targetLevel, opts) + spellHit)
+const spellChanceToHit = (playerLevel: number, targetLevel: number, spellHit: number): number => {
+  return Math.min(99, spellBaseChanceToHit(playerLevel, targetLevel) + spellHit)
 }
 
 /**
@@ -209,47 +239,46 @@ const spellChanceToHit = (targetLevel: number, spellHit: number, opts?: CalcOpts
  * Returns chance of missing a target with a spell.
  *
  * @remarks
- * TODO: Assumes level 60 player level
  *
+ * @param playerLevel
  * @param targetLevel
  * @param spellHit
- * @param opts
  * @returns A number between '1' and '100'.
  */
-const spellChanceToMiss = (targetLevel: number, spellHit: number, opts?: CalcOpts): number => {
-  return Math.max(1, 100 - spellChanceToHit(targetLevel, spellHit, opts))
+const spellChanceToMiss = (playerLevel: number, targetLevel: number, spellHit: number): number => {
+  return Math.max(1, 100 - spellChanceToHit(playerLevel, targetLevel, spellHit))
 }
 
 /**
  *
  * Returns chance of critical striking a target with a spell.
  *
- * @remarks
- * TODO: Assumes level 60 player level
- *
+ * @param playerLevel
  * @param targetLevel
  * @param spellHit
  * @param spellCrit
  * @returns spellCrit multiplied by the chance of hitting.
  */
-const spellChanceToCrit = (targetLevel: number, spellHit: number, spellCrit: number, opts?: CalcOpts): number => {
-  return spellCrit * (spellChanceToHit(targetLevel, spellHit, opts) / 100)
+const spellChanceToCrit = (playerLevel: number, targetLevel: number, spellHit: number, spellCrit: number): number => {
+  return spellCrit * (spellChanceToHit(playerLevel, targetLevel, spellHit) / 100)
 }
 
 /**
  *
  * Returns chance of normal striking a target with a spell.
  *
- * @remarks
- * TODO: Assumes level 60 player level
  *
+ * @param playerLevel
  * @param targetLevel
  * @param spellHit
  * @param spellCrit
  * @returns Chance of hitting minus chance of critting.
  */
-const spellChanceToNormal = (targetLevel: number, spellHit: number, spellCrit: number, opts?: CalcOpts): number => {
-  return spellChanceToHit(targetLevel, spellHit, opts) - spellChanceToCrit(targetLevel, spellHit, spellCrit, opts)
+const spellChanceToNormal = (playerLevel: number, targetLevel: number, spellHit: number, spellCrit: number): number => {
+  return (
+    spellChanceToHit(playerLevel, targetLevel, spellHit) -
+    spellChanceToCrit(playerLevel, targetLevel, spellHit, spellCrit)
+  )
 }
 
 /**
@@ -696,29 +725,29 @@ const playableClassesFromText = (text: string): PlayableClass[] => {
   return _(text)
 }
 // console.log(libclassic.enums.itemBonusTypeFromText('arcane spell damage'))
-const gearItemBonusTypeFromText = (text: string): GearItemBonusType => {
-  const _ = (text: string): typeof GearItemBonusType[keyof typeof GearItemBonusType] => {
-    return Number(utils.getEnumValueFromFuzzyText(GearItemBonusType, text))
+const itemBonusTypeFromText = (text: string): ItemBonusType => {
+  const _ = (text: string): typeof ItemBonusType[keyof typeof ItemBonusType] => {
+    return Number(utils.getEnumValueFromFuzzyText(ItemBonusType, text))
   }
   return _(text)
 }
 
-// console.log(libclassic.common.gearItemSuffixTypeFromText('cape of arcane wrath'))
-// console.log(libclassic.common.gearItemSuffixTypeFromText('Talisman of Ephemeral Power'))
+// console.log(libclassic.common.itemSuffixTypeFromText('cape of arcane wrath'))
+// console.log(libclassic.common.itemSuffixTypeFromText('Talisman of Ephemeral Power'))
 
-const gearItemSuffixTypeFromText = (text: string): GearItemSuffixType => {
+const itemSuffixTypeFromText = (text: string): ItemSuffixType => {
   const of = text.toUpperCase().indexOf(' OF ')
   // console.log(`of = ${of}, r = ${r}, t = ${t}`)
 
   if (of === -1) {
     // text is not an item name with a suffix e.g. "High Warlord's Destroyer"
     // in that case we do a loose search for any matching key, which will return Invalid
-    return Number(utils.getEnumValueFromFuzzyText(GearItemSuffixType, text))
+    return Number(utils.getEnumValueFromFuzzyText(ItemSuffixType, text))
   }
 
   // text is an item name with a suffix e.g. "Talisman of Ephemeral Power"
   // in that case it will strict search for "Ephemeral Power", which will return Invalid
-  return Number(utils.getEnumValueFromFuzzyText(GearItemSuffixType, text.slice(of + 4), true))
+  return Number(utils.getEnumValueFromFuzzyText(ItemSuffixType, text.slice(of + 4), true))
 }
 
 /**
@@ -728,9 +757,9 @@ const gearItemSuffixTypeFromText = (text: string): GearItemSuffixType => {
  *
  * @param itemName
  */
-const gearItemBaseName = (itemName: string): string => {
-  const gearItemSuffixType = gearItemSuffixTypeFromText(itemName)
-  if (gearItemSuffixType === GearItemSuffixType.Invalid) {
+const itemBaseName = (itemName: string): string => {
+  const itemSuffixType = itemSuffixTypeFromText(itemName)
+  if (itemSuffixType === ItemSuffixType.Invalid) {
     return itemName
   }
 
@@ -739,9 +768,9 @@ const gearItemBaseName = (itemName: string): string => {
 }
 
 // console.log(libclassic.enums.itemQualitypeFromText('Classes: Priest, Shaman, Mage, Warlock, Druid'))
-const gearItemQualityFromText = (text: string): GearItemQuality => {
-  const _ = (text: string): typeof GearItemQuality[keyof typeof GearItemQuality] => {
-    return Number(utils.getEnumValueFromFuzzyText(GearItemQuality, text))
+const itemQualityFromText = (text: string): ItemQuality => {
+  const _ = (text: string): typeof ItemQuality[keyof typeof ItemQuality] => {
+    return Number(utils.getEnumValueFromFuzzyText(ItemQuality, text))
   }
   return _(text)
 }
@@ -778,8 +807,8 @@ export default {
   Buff,
   Faction,
   Gender,
-  GearItemClass,
-  GearItemQuality,
+  ItemClass,
+  ItemQuality,
   ItemSlot,
   MagicSchool,
   PlayableClass,
@@ -787,10 +816,9 @@ export default {
   PowerType,
   PvPRank,
   SortOrder,
-  SpellCritFromIntellectDivisor,
   TargetType,
   WeaponSubclass,
-  GearItemSuffixType,
+  ItemSuffixType,
   Raid,
   WorldBoss,
   /* from old 'enums' module */
@@ -805,10 +833,10 @@ export default {
   playableRaceFromText,
   playableClassFromText,
   playableClassesFromText,
-  gearItemBaseName,
-  gearItemBonusTypeFromText,
-  gearItemSuffixTypeFromText,
-  gearItemQualityFromText,
+  itemBaseName,
+  itemBonusTypeFromText,
+  itemSuffixTypeFromText,
+  itemQualityFromText,
   buffFromText,
   buffsFromText,
   buffMaskFromText,
@@ -833,6 +861,7 @@ export default {
   spellPartialResistAvg,
   spellCritBonusMultiplier,
   spellCritMultiplier,
+  spellCritFromIntellectDivisor,
   spellDmgMultiplier,
   spellDmgBase,
   spellBaseChanceToHit,

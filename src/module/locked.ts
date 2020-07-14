@@ -3,8 +3,8 @@ import query from './query'
 
 import LockedItems from '../interface/LockedItems'
 import LockedEnchants from '../interface/LockedEnchants'
-import GearItemJSON from '../interface/GearItemJSON'
-import GearEnchantJSON from '../interface/GearEnchantJSON'
+import ItemJSON from '../interface/ItemJSON'
+import EnchantJSON from '../interface/EnchantJSON'
 
 import ItemSlot from '../enum/ItemSlot'
 import GearState from '../enum/GearState'
@@ -84,7 +84,7 @@ const getEnchantId = (lockedEnchants: LockedEnchants | undefined, itemSlot: Item
   }
 }
 
-const getItem = (lockedItems: LockedItems | undefined, itemSlot: ItemSlot): GearItemJSON | undefined => {
+const getItem = (lockedItems: LockedItems | undefined, itemSlot: ItemSlot): ItemJSON | undefined => {
   const nakedItem = {
     id: 1,
     itemSlot: itemSlot,
@@ -105,7 +105,7 @@ const getItem = (lockedItems: LockedItems | undefined, itemSlot: ItemSlot): Gear
   return items && items[0] ? items[0] : undefined
 }
 
-const getEnchant = (lockedEnchants: LockedEnchants | undefined, itemSlot: ItemSlot): GearEnchantJSON | undefined => {
+const getEnchant = (lockedEnchants: LockedEnchants | undefined, itemSlot: ItemSlot): EnchantJSON | undefined => {
   const nakedEnchant = {
     id: 1,
     itemSlot: itemSlot,

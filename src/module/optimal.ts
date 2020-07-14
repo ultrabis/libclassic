@@ -8,8 +8,8 @@ import Cast from '../class/Cast'
 import Settings from '../interface/Settings'
 import GearSearch from '../interface/GearSearch'
 import EquipmentArray from '../interface/EquipmentArray'
-import GearItemJSON from '../interface/GearItemJSON'
-import GearEnchantJSON from '../interface/GearEnchantJSON'
+import ItemJSON from '../interface/ItemJSON'
+import EnchantJSON from '../interface/EnchantJSON'
 
 import ItemSlot from '../enum/ItemSlot'
 
@@ -17,7 +17,7 @@ const sortByDPS = (a: EquipmentArray, b: EquipmentArray): number => {
   return (b.dps ? b.dps : 0) - (a.dps ? a.dps : 0)
 }
 
-const itemsForSlot = (settings: Settings): GearItemJSON[] | undefined => {
+const itemsForSlot = (settings: Settings): ItemJSON[] | undefined => {
   /* gearSearchSlot is only set when a user clicks a slot to equip an item. If that's not
    * the case then we don't need to do anything */
   const itemSlot = settings.gear.itemSearchSlot
@@ -41,7 +41,7 @@ const itemsForSlot = (settings: Settings): GearItemJSON[] | undefined => {
   return Equipment.getWeightedItemsBySlot(itemSlot, tmpItemSearch)
 }
 
-const enchantsForSlot = (settings: Settings): GearEnchantJSON[] | undefined => {
+const enchantsForSlot = (settings: Settings): EnchantJSON[] | undefined => {
   /* Same process as above, but for enchants */
   const itemSlot = settings.gear.enchantSearchSlot
   if (itemSlot === ItemSlot.None) {

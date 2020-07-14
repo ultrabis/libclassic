@@ -20,12 +20,12 @@ const setValue = (
   if (!gearSlot) {
     const keys = Object.keys(GearSlot)
     for (let i = 0; i < keys.length; i++) {
-      gearSettingsObj.equipped[i][index] = value
+      gearSettingsObj.custom[i][index] = value
     }
     return 0
   }
 
-  gearSettingsObj.equipped[gearSlot][index] = value
+  gearSettingsObj.custom[gearSlot][index] = value
   return 0
 }
 
@@ -49,7 +49,7 @@ const setEnchantId = (gearSettingsObj: GearSettings, enchantId: number, gearSlot
  * @param gearSlot
  */
 const getValue = (gearSettingsObj: GearSettings, index: number, gearSlot: GearSlot): number => {
-  return gearSettingsObj.equipped[gearSlot][index]
+  return gearSettingsObj.custom[gearSlot][index]
 }
 
 const itemId = (gearSettingsObj: GearSettings, gearSlot: GearSlot): number => {

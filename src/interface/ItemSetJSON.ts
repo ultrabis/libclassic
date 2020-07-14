@@ -1,6 +1,6 @@
-import GearItemJSON from './GearItemJSON'
+import ItemJSON from './ItemJSON'
 
-export default interface GearItemSetJSON {
+export default interface ItemSetJSON {
   name: string
   phase: number
   raid: boolean
@@ -9,6 +9,6 @@ export default interface GearItemSetJSON {
   spellCrit?: number
   spellDamage?: number
   itemNames: string[]
-  items?: GearItemJSON[]
+  items?: ItemJSON[]
   score?: number
 }

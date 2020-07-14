@@ -1,7 +1,7 @@
 import common from './common'
 
-import gearItem from './gearItem'
-import gearEnchant from './gearEnchant'
+import item from './item'
+import enchant from './enchant'
 
 import EncounterFIXME from '../class/Encounter'
 
@@ -98,7 +98,7 @@ const dpsDefault = (): DPS => {
 
 const gearDefault = () => {
   return {
-    equipped: [],
+    custom: [],
     items: [],
     enchants: []
   }
@@ -181,30 +181,30 @@ const run = (settings: Settings): Encounter => {
 
   /* gear */
   // gear.equipped = [[0, 0]]
-  gearObj.equipped = [
-    [gearItem.fromJSON(_p.equipment.head.itemJSON), gearEnchant.fromJSON(_p.equipment.head.enchantJSON)],
-    [gearItem.fromJSON(_p.equipment.hands.itemJSON), gearEnchant.fromJSON(_p.equipment.hands.enchantJSON)],
-    [gearItem.fromJSON(_p.equipment.neck.itemJSON), gearEnchant.fromJSON(_p.equipment.neck.enchantJSON)],
-    [gearItem.fromJSON(_p.equipment.waist.itemJSON), gearEnchant.fromJSON(_p.equipment.waist.enchantJSON)],
-    [gearItem.fromJSON(_p.equipment.shoulder.itemJSON), gearEnchant.fromJSON(_p.equipment.shoulder.enchantJSON)],
-    [gearItem.fromJSON(_p.equipment.legs.itemJSON), gearEnchant.fromJSON(_p.equipment.legs.enchantJSON)],
-    [gearItem.fromJSON(_p.equipment.back.itemJSON), gearEnchant.fromJSON(_p.equipment.back.enchantJSON)],
-    [gearItem.fromJSON(_p.equipment.feet.itemJSON), gearEnchant.fromJSON(_p.equipment.feet.enchantJSON)],
-    [gearItem.fromJSON(_p.equipment.chest.itemJSON), gearEnchant.fromJSON(_p.equipment.chest.enchantJSON)],
-    [gearItem.fromJSON(_p.equipment.wrist.itemJSON), gearEnchant.fromJSON(_p.equipment.wrist.enchantJSON)],
-    [gearItem.fromJSON(_p.equipment.finger.itemJSON), gearEnchant.fromJSON(_p.equipment.finger.enchantJSON)],
-    [gearItem.fromJSON(_p.equipment.finger2.itemJSON), gearEnchant.fromJSON(_p.equipment.finger2.enchantJSON)],
-    [gearItem.fromJSON(_p.equipment.mainhand.itemJSON), gearEnchant.fromJSON(_p.equipment.mainhand.enchantJSON)],
-    [gearItem.fromJSON(_p.equipment.offhand.itemJSON), gearEnchant.fromJSON(_p.equipment.offhand.enchantJSON)],
-    [gearItem.fromJSON(_p.equipment.trinket.itemJSON), gearEnchant.fromJSON(_p.equipment.trinket.enchantJSON)],
-    [gearItem.fromJSON(_p.equipment.trinket2.itemJSON), gearEnchant.fromJSON(_p.equipment.trinket2.enchantJSON)],
-    [gearItem.fromJSON(_p.equipment.idol.itemJSON), gearEnchant.fromJSON(_p.equipment.idol.enchantJSON)],
-    [gearItem.fromJSON(), gearEnchant.fromJSON()],
-    [gearItem.fromJSON(), gearEnchant.fromJSON()]
+  gearObj.custom = [
+    [item.fromJSON(_p.equipment.head.itemJSON), enchant.fromJSON(_p.equipment.head.enchantJSON)],
+    [item.fromJSON(_p.equipment.hands.itemJSON), enchant.fromJSON(_p.equipment.hands.enchantJSON)],
+    [item.fromJSON(_p.equipment.neck.itemJSON), enchant.fromJSON(_p.equipment.neck.enchantJSON)],
+    [item.fromJSON(_p.equipment.waist.itemJSON), enchant.fromJSON(_p.equipment.waist.enchantJSON)],
+    [item.fromJSON(_p.equipment.shoulder.itemJSON), enchant.fromJSON(_p.equipment.shoulder.enchantJSON)],
+    [item.fromJSON(_p.equipment.legs.itemJSON), enchant.fromJSON(_p.equipment.legs.enchantJSON)],
+    [item.fromJSON(_p.equipment.back.itemJSON), enchant.fromJSON(_p.equipment.back.enchantJSON)],
+    [item.fromJSON(_p.equipment.feet.itemJSON), enchant.fromJSON(_p.equipment.feet.enchantJSON)],
+    [item.fromJSON(_p.equipment.chest.itemJSON), enchant.fromJSON(_p.equipment.chest.enchantJSON)],
+    [item.fromJSON(_p.equipment.wrist.itemJSON), enchant.fromJSON(_p.equipment.wrist.enchantJSON)],
+    [item.fromJSON(_p.equipment.finger.itemJSON), enchant.fromJSON(_p.equipment.finger.enchantJSON)],
+    [item.fromJSON(_p.equipment.finger2.itemJSON), enchant.fromJSON(_p.equipment.finger2.enchantJSON)],
+    [item.fromJSON(_p.equipment.mainhand.itemJSON), enchant.fromJSON(_p.equipment.mainhand.enchantJSON)],
+    [item.fromJSON(_p.equipment.offhand.itemJSON), enchant.fromJSON(_p.equipment.offhand.enchantJSON)],
+    [item.fromJSON(_p.equipment.trinket.itemJSON), enchant.fromJSON(_p.equipment.trinket.enchantJSON)],
+    [item.fromJSON(_p.equipment.trinket2.itemJSON), enchant.fromJSON(_p.equipment.trinket2.enchantJSON)],
+    [item.fromJSON(_p.equipment.idol.itemJSON), enchant.fromJSON(_p.equipment.idol.enchantJSON)],
+    [item.fromJSON(), enchant.fromJSON()],
+    [item.fromJSON(), enchant.fromJSON()]
   ]
 
-  gearObj.items = gearItem.fromJSONArray(_e.items ? _e.items : [])
-  gearObj.enchants = gearEnchant.fromJSONArray(_e.enchants ? _e.enchants : [])
+  gearObj.items = item.fromJSONArray(_e.items ? _e.items : [])
+  gearObj.enchants = enchant.fromJSONArray(_e.enchants ? _e.enchants : [])
 
   const encounter: Encounter = {
     dps: dpsObj,

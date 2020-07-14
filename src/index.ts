@@ -1,9 +1,9 @@
 import utils from './module/utils'
 import common from './module/common'
 import encounter from './module/encounter'
-import gearEnchant from './module/gearEnchant'
-import gearItem from './module/gearItem'
-import gearItemSuffix from './module/gearItemSuffix'
+import enchant from './module/enchant'
+import item from './module/item'
+import itemSuffix from './module/itemSuffix'
 import gearSettings from './module/gearSettings'
 import locked from './module/locked'
 import optimal from './module/optimal'
@@ -37,9 +37,9 @@ export default {
   /* modules */
   common, // common doesn't query items or spells
   utils,
-  gearEnchant,
-  gearItem,
-  gearItemSuffix,
+  enchant,
+  item,
+  itemSuffix,
   gearSettings,
   spell: spell,
   locked,

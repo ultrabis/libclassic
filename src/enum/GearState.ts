@@ -1,4 +1,4 @@
-/* these can be used gearItem.id or gearEnchant.id */
+/* these can be used item.id or enchant.id */
 enum GearState {
   BIS,
   Naked

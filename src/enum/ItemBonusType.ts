@@ -1,4 +1,4 @@
-enum GearItemBonusType {
+enum ItemBonusType {
   Invalid,
   Agility,
   ArcaneResistence,
@@ -41,4 +41,4 @@ enum GearItemBonusType {
   OnGetHitShadowBolt
 }
 
-export default GearItemBonusType
+export default ItemBonusType

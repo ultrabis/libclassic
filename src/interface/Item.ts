@@ -1,24 +1,24 @@
 import ItemSlot from '../enum/ItemSlot'
 import GearSlot from '../enum/GearSlot'
-import GearItemQuality from '../enum/GearItemQuality'
-import GearItemClass from '../enum/GearItemClass'
+import ItemQuality from '../enum/ItemQuality'
+import ItemClass from '../enum/ItemClass'
 import ArmorSubclass from '../enum/ArmorSubclass'
 import WeaponSubclass from '../enum/WeaponSubclass'
 import PlayableClass from '../enum/PlayableClass'
 import Faction from '../enum/Faction'
 import PvPRank from '../enum/PvPRank'
 import TargetType from '../enum/TargetType'
-import ItemOnUseJSON from './GearItemOnUseJSON'
+import ItemOnUseJSON from './ItemOnUseJSON'
 
-export default interface GearItem {
+export default interface Item {
   id: number
   suffixId: number
   name: string
-  class: GearItemClass
+  class: ItemClass
   subclass: ArmorSubclass | WeaponSubclass
   gearSlot: GearSlot
   itemSlot: ItemSlot
-  quality: GearItemQuality
+  quality: ItemQuality
   level: number
   reqLevel: number
   bop: boolean
