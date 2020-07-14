@@ -163,26 +163,33 @@ const calcOptsFromSettings = (s: Settings): CalcOpts => {
  * Returns the chance of a spell hitting a target, not accounting for the players spellHit stat.
  *
  * @remarks
- * TODO: Assumes level 60 player level
  *
+ * @param playerLevel
  * @param targetLevel
- * @param opts
  */
-const spellBaseChanceToHit = (targetLevel: number, opts?: CalcOpts) => {
-  switch (targetLevel) {
-    case 63:
-      return 83
-    case 62:
-      return 94
-    case 61:
-      return 95
-    case 60:
-      return 96
-    case 59:
-      return 97
-    case 58:
+const spellBaseChanceToHit = (playerLevel: number, targetLevel: number): number => {
+  const x = targetLevel - playerLevel
+
+  switch (x) {
+    case -3:
+      return 99
+    case -2:
       return 98
+    case -1:
+      return 97
+    case 0:
+      return 96
+    case 1:
+      return 95
+    case 2:
+      return 94
+    case 3:
+      return 83
     default:
+      if (x > 3) {
+        return 83
+      }
+
       return 99
   }
 }
@@ -193,15 +200,15 @@ const spellBaseChanceToHit = (targetLevel: number, opts?: CalcOpts) => {
  *
  * @remarks
  * TODO: Assumes level 60 player level
- * Example: console.log(libclassic.calc.spellChanceToHit(63, 5))
+ * Example: console.log(libclassic.common.spellChanceToHit(60, 63, 12))
  *
+ * @param playerLevel player level
  * @param targetLevel target level
  * @param spellHit player spell hit (total effective)
- * @param opts
  * @returns A number between '0' and '99'.
  */
-const spellChanceToHit = (targetLevel: number, spellHit: number, opts?: CalcOpts): number => {
-  return Math.min(99, spellBaseChanceToHit(targetLevel, opts) + spellHit)
+const spellChanceToHit = (playerLevel: number, targetLevel: number, spellHit: number): number => {
+  return Math.min(99, spellBaseChanceToHit(playerLevel, targetLevel) + spellHit)
 }
 
 /**
@@ -209,47 +216,46 @@ const spellChanceToHit = (targetLevel: number, spellHit: number, opts?: CalcOpts
  * Returns chance of missing a target with a spell.
  *
  * @remarks
- * TODO: Assumes level 60 player level
  *
+ * @param playerLevel
  * @param targetLevel
  * @param spellHit
- * @param opts
  * @returns A number between '1' and '100'.
  */
-const spellChanceToMiss = (targetLevel: number, spellHit: number, opts?: CalcOpts): number => {
-  return Math.max(1, 100 - spellChanceToHit(targetLevel, spellHit, opts))
+const spellChanceToMiss = (playerLevel: number, targetLevel: number, spellHit: number): number => {
+  return Math.max(1, 100 - spellChanceToHit(playerLevel, targetLevel, spellHit))
 }
 
 /**
  *
  * Returns chance of critical striking a target with a spell.
  *
- * @remarks
- * TODO: Assumes level 60 player level
- *
+ * @param playerLevel
  * @param targetLevel
  * @param spellHit
  * @param spellCrit
  * @returns spellCrit multiplied by the chance of hitting.
  */
-const spellChanceToCrit = (targetLevel: number, spellHit: number, spellCrit: number, opts?: CalcOpts): number => {
-  return spellCrit * (spellChanceToHit(targetLevel, spellHit, opts) / 100)
+const spellChanceToCrit = (playerLevel: number, targetLevel: number, spellHit: number, spellCrit: number): number => {
+  return spellCrit * (spellChanceToHit(playerLevel, targetLevel, spellHit) / 100)
 }
 
 /**
  *
  * Returns chance of normal striking a target with a spell.
  *
- * @remarks
- * TODO: Assumes level 60 player level
  *
+ * @param playerLevel
  * @param targetLevel
  * @param spellHit
  * @param spellCrit
  * @returns Chance of hitting minus chance of critting.
  */
-const spellChanceToNormal = (targetLevel: number, spellHit: number, spellCrit: number, opts?: CalcOpts): number => {
-  return spellChanceToHit(targetLevel, spellHit, opts) - spellChanceToCrit(targetLevel, spellHit, spellCrit, opts)
+const spellChanceToNormal = (playerLevel: number, targetLevel: number, spellHit: number, spellCrit: number): number => {
+  return (
+    spellChanceToHit(playerLevel, targetLevel, spellHit) -
+    spellChanceToCrit(playerLevel, targetLevel, spellHit, spellCrit)
+  )
 }
 
 /**
