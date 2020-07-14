@@ -1,13 +1,13 @@
 import LockedItems from '../interface/LockedItems';
 import LockedEnchants from '../interface/LockedEnchants';
-import GearItemJSON from '../interface/GearItemJSON';
-import GearEnchantJSON from '../interface/GearEnchantJSON';
+import ItemJSON from '../interface/ItemJSON';
+import EnchantJSON from '../interface/EnchantJSON';
 import ItemSlot from '../enum/ItemSlot';
 declare const _default: {
     getItemId: (lockedItems: LockedItems | undefined, itemSlot: ItemSlot) => number;
     getEnchantId: (lockedEnchants: LockedEnchants | undefined, itemSlot: ItemSlot) => number;
-    getItem: (lockedItems: LockedItems | undefined, itemSlot: ItemSlot) => GearItemJSON | undefined;
-    getEnchant: (lockedEnchants: LockedEnchants | undefined, itemSlot: ItemSlot) => GearEnchantJSON | undefined;
+    getItem: (lockedItems: LockedItems | undefined, itemSlot: ItemSlot) => ItemJSON | undefined;
+    getEnchant: (lockedEnchants: LockedEnchants | undefined, itemSlot: ItemSlot) => EnchantJSON | undefined;
     setItem: (lockedItems: LockedItems | undefined, itemSlot: ItemSlot, value: number) => number;
     setEnchant: (lockedEnchants: LockedEnchants | undefined, itemSlot: ItemSlot, value: number) => number;
     lockItem: (lockedItems: LockedItems | undefined, itemSlot: ItemSlot, value: number) => number;

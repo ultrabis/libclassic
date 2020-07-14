@@ -2,20 +2,20 @@
  * interface for JSON files in db/
  */
 import SpellJSON from '../interface/SpellJSON';
-import GearItemJSON from '../interface/GearItemJSON';
-import GearItemSetJSON from '../interface/GearItemSetJSON';
-import GearEnchantJSON from '../interface/GearEnchantJSON';
-import GearItemSuffix from '../interface/GearItemSuffix';
-import GearItemQuery from '../interface/GearItemQuery';
+import ItemJSON from '../interface/ItemJSON';
+import ItemSetJSON from '../interface/ItemSetJSON';
+import EnchantJSON from '../interface/EnchantJSON';
+import ItemSuffix from '../interface/ItemSuffix';
+import ItemQuery from '../interface/ItemQuery';
 import SpellQuery from '../interface/SpellQuery';
 declare const _default: {
-    item: (opts: GearItemQuery) => GearItemJSON | undefined;
-    items: (opts: GearItemQuery) => GearItemJSON[];
-    itemSet: (opts: GearItemQuery) => GearItemSetJSON | undefined;
-    itemSets: (opts: GearItemQuery) => GearItemSetJSON[];
-    itemSuffixes: (opts: any) => GearItemSuffix[];
-    enchant: (opts: GearItemQuery) => GearEnchantJSON | undefined;
-    enchants: (opts: GearItemQuery) => GearEnchantJSON[];
+    item: (opts: ItemQuery) => ItemJSON | undefined;
+    items: (opts: ItemQuery) => ItemJSON[];
+    itemSet: (opts: ItemQuery) => ItemSetJSON | undefined;
+    itemSets: (opts: ItemQuery) => ItemSetJSON[];
+    itemSuffixes: (opts: any) => ItemSuffix[];
+    enchant: (opts: ItemQuery) => EnchantJSON | undefined;
+    enchants: (opts: ItemQuery) => EnchantJSON[];
     spell: (opts: SpellQuery) => SpellJSON | undefined;
     spells: (opts: SpellQuery) => SpellJSON[];
 };

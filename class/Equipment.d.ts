@@ -1,9 +1,9 @@
 import Item from './Item';
 import Settings from '../interface/Settings';
 import GearSearch from '../interface/GearSearch';
-import GearItemJSON from '../interface/GearItemJSON';
-import GearItemSetJSON from '../interface/GearItemSetJSON';
-import GearEnchantJSON from '../interface/GearEnchantJSON';
+import ItemJSON from '../interface/ItemJSON';
+import ItemSetJSON from '../interface/ItemSetJSON';
+import EnchantJSON from '../interface/EnchantJSON';
 import ItemSlot from '../enum/ItemSlot';
 export default class Equipment {
     settings: Settings;
@@ -31,15 +31,15 @@ export default class Equipment {
     /*************************** TODO **********************************/
     /*************************** UGLY **********************************/
     /*************************** STUFF **********************************/
-    static isUniqueEquip(itemJSON: GearItemJSON | undefined): boolean;
-    static isOnUseEquip(itemJSON: GearItemJSON | undefined): boolean;
-    static trinketEffectiveSpellDamage(itemJSON: GearItemJSON | undefined, encounterLength: number, castTime: number, spellCrit: number, naturesGrace: boolean): number;
+    static isUniqueEquip(itemJSON: ItemJSON | undefined): boolean;
+    static isOnUseEquip(itemJSON: ItemJSON | undefined): boolean;
+    static trinketEffectiveSpellDamage(itemJSON: ItemJSON | undefined, encounterLength: number, castTime: number, spellCrit: number, naturesGrace: boolean): number;
     static _trinketEffectiveSpellDamage(trinketBonus: number, trinketDuration: number, trinketCooldown: number, trinketReductionPerCast: number, encounterLength: number, castTime: number, spellCrit: number, naturesGrace: boolean): number;
-    static getWeightedItemsBySlot(itemSlot: ItemSlot, itemSearch: GearSearch): GearItemJSON[];
-    static getWeightedEnchantsBySlot(itemSlot: ItemSlot, itemSearch: GearSearch): GearEnchantJSON[];
-    static getItemSet(name: string, itemSearch: GearSearch): GearItemSetJSON | undefined;
-    static getBestInSlotItem(slot: ItemSlot, itemSearch: GearSearch): GearItemJSON;
-    static getBestInSlotEnchant(slot: ItemSlot, itemSearch: GearSearch): GearEnchantJSON;
+    static getWeightedItemsBySlot(itemSlot: ItemSlot, itemSearch: GearSearch): ItemJSON[];
+    static getWeightedEnchantsBySlot(itemSlot: ItemSlot, itemSearch: GearSearch): EnchantJSON[];
+    static getItemSet(name: string, itemSearch: GearSearch): ItemSetJSON | undefined;
+    static getBestInSlotItem(slot: ItemSlot, itemSearch: GearSearch): ItemJSON;
+    static getBestInSlotEnchant(slot: ItemSlot, itemSearch: GearSearch): EnchantJSON;
     static getBestInSlotItemWithEnchant(slot: ItemSlot, itemSearch: GearSearch): Item;
     static getBestInSlotChestLegsFeet(itemSearch: GearSearch): any;
     static getBestInSlotTrinkets(itemSearch: GearSearch): any;

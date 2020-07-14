@@ -12,8 +12,8 @@ declare const _default: {
         Buff: typeof import("./enum/Buff").Buff;
         Faction: typeof import("./enum/Faction").default;
         Gender: typeof import("./enum/Gender").default;
-        GearItemClass: typeof import("./enum/GearItemClass").default;
-        GearItemQuality: typeof import("./enum/GearItemQuality").default;
+        ItemClass: typeof import("./enum/ItemClass").default;
+        ItemQuality: typeof import("./enum/ItemQuality").default;
         ItemSlot: typeof import("./enum/ItemSlot").default;
         MagicSchool: typeof import("./enum/MagicSchool").default;
         PlayableClass: typeof import("./enum/PlayableClass").default;
@@ -24,7 +24,7 @@ declare const _default: {
         SpellCritFromIntellectDivisor: typeof import("./enum/SpellCritFromIntellectDivisor").default;
         TargetType: typeof import("./enum/TargetType").default;
         WeaponSubclass: typeof import("./enum/WeaponSubclass").default;
-        GearItemSuffixType: typeof import("./enum/GearItemSuffixType").default;
+        ItemSuffixType: typeof import("./enum/ItemSuffixType").default;
         Raid: typeof import("./enum/Raid").default;
         WorldBoss: typeof import("./enum/WorldBoss").default;
         factionFromRace: (race: import("./enum/PlayableRace").default) => import("./enum/Faction").default;
@@ -38,10 +38,10 @@ declare const _default: {
         playableRaceFromText: (text: string) => import("./enum/PlayableRace").default;
         playableClassFromText: (text: string) => import("./enum/PlayableClass").default;
         playableClassesFromText: (text: string) => import("./enum/PlayableClass").default[];
-        gearItemBaseName: (itemName: string) => string;
-        gearItemBonusTypeFromText: (text: string) => import("./enum/GearItemBonusType").default;
-        gearItemSuffixTypeFromText: (text: string) => import("./enum/GearItemSuffixType").default;
-        gearItemQualityFromText: (text: string) => import("./enum/GearItemQuality").default;
+        itemBaseName: (itemName: string) => string;
+        itemBonusTypeFromText: (text: string) => import("./enum/ItemBonusType").default;
+        itemSuffixTypeFromText: (text: string) => import("./enum/ItemSuffixType").default;
+        itemQualityFromText: (text: string) => import("./enum/ItemQuality").default;
         buffFromText: (text: string) => import("./enum/Buff").Buff;
         buffsFromText: (text: string) => import("./enum/Buff").Buff[];
         buffMaskFromText: (text: string) => number;
@@ -101,26 +101,26 @@ declare const _default: {
         getEnumValuesFromFuzzyText: (myEnum: any, fuzzyText: string) => any[];
         getEnumBitmaskFromFuzzyText: (myEnum: any, fuzzyText: string) => any;
     };
-    gearEnchant: {
-        fromDefault: () => import("./interface/GearEnchant").default;
-        fromJSON: (enchantJSON?: import("./interface/GearEnchantJSON").default | undefined) => import("./interface/GearEnchant").default;
-        fromJSONArray: (gearEnchantJSONArray: import("./interface/GearEnchantJSON").default[]) => import("./interface/GearEnchant").default[];
+    enchant: {
+        fromDefault: () => import("./interface/Enchant").default;
+        fromJSON: (enchantJSON?: import("./interface/EnchantJSON").default | undefined) => import("./interface/Enchant").default;
+        fromJSONArray: (enchantJSONArray: import("./interface/EnchantJSON").default[]) => import("./interface/Enchant").default[];
     };
-    gearItem: {
-        fromDefault: () => import("./interface/GearItem").default;
-        fromJSON: (gearItemJSON?: import("./interface/GearItemJSON").default | undefined) => import("./interface/GearItem").default;
-        fromJSONArray: (gearItemJSONArray: import("./interface/GearItemJSON").default[]) => import("./interface/GearItem").default[];
-        fromQuery: (opts: import("./interface/GearItemQuery").default) => import("./interface/GearItem").default[];
+    item: {
+        fromDefault: () => import("./interface/Item").default;
+        fromJSON: (itemJSON?: import("./interface/ItemJSON").default | undefined) => import("./interface/Item").default;
+        fromJSONArray: (itemJSONArray: import("./interface/ItemJSON").default[]) => import("./interface/Item").default[];
+        fromQuery: (opts: import("./interface/ItemQuery").default) => import("./interface/Item").default[];
         isFromRaid: (location: string) => boolean;
         pvpRankFromText: (text: string) => import("./enum/PvPRank").default;
-        bonusFromText: (bonus: string) => import("./interface/GearItemBonus").default;
+        bonusFromText: (bonus: string) => import("./interface/ItemBonus").default;
         slotFromItemSlot: (itemSlot: import("./enum/ItemSlot").default) => import("./enum/GearSlot").default;
-        qualityFromText: (text: string) => import("./enum/GearItemQuality").default;
+        qualityFromText: (text: string) => import("./enum/ItemQuality").default;
     };
-    gearItemSuffix: {
-        fromText: (id: string, type: string, bonus: string, bonus2?: string | undefined, bonus3?: string | undefined) => import("./interface/GearItemSuffix").default;
-        fromItemNameAndBonusValue: (itemName: string, bonusValue: number) => import("./interface/GearItemSuffix").default | undefined;
-        fromItemName: (itemName: string) => import("./interface/GearItemSuffix").default[];
+    itemSuffix: {
+        fromText: (id: string, type: string, bonus: string, bonus2?: string | undefined, bonus3?: string | undefined) => import("./interface/ItemSuffix").default;
+        fromItemNameAndBonusValue: (itemName: string, bonusValue: number) => import("./interface/ItemSuffix").default | undefined;
+        fromItemName: (itemName: string) => import("./interface/ItemSuffix").default[];
     };
     gearSettings: {
         itemId: (gearSettingsObj: import("./interface/GearSettings").default, gearSlot: import("./enum/GearSlot").default) => number;
@@ -136,8 +136,8 @@ declare const _default: {
     locked: {
         getItemId: (lockedItems: import("./interface/LockedItems").default | undefined, itemSlot: import("./enum/ItemSlot").default) => number;
         getEnchantId: (lockedEnchants: import("./interface/LockedEnchants").default | undefined, itemSlot: import("./enum/ItemSlot").default) => number;
-        getItem: (lockedItems: import("./interface/LockedItems").default | undefined, itemSlot: import("./enum/ItemSlot").default) => import("./interface/GearItemJSON").default | undefined;
-        getEnchant: (lockedEnchants: import("./interface/LockedEnchants").default | undefined, itemSlot: import("./enum/ItemSlot").default) => import("./interface/GearEnchantJSON").default | undefined;
+        getItem: (lockedItems: import("./interface/LockedItems").default | undefined, itemSlot: import("./enum/ItemSlot").default) => import("./interface/ItemJSON").default | undefined;
+        getEnchant: (lockedEnchants: import("./interface/LockedEnchants").default | undefined, itemSlot: import("./enum/ItemSlot").default) => import("./interface/EnchantJSON").default | undefined;
         setItem: (lockedItems: import("./interface/LockedItems").default | undefined, itemSlot: import("./enum/ItemSlot").default, value: number) => number;
         setEnchant: (lockedEnchants: import("./interface/LockedEnchants").default | undefined, itemSlot: import("./enum/ItemSlot").default, value: number) => number;
         lockItem: (lockedItems: import("./interface/LockedItems").default | undefined, itemSlot: import("./enum/ItemSlot").default, value: number) => number;
@@ -157,18 +157,18 @@ declare const _default: {
     };
     optimal: {
         sortByDPS: (a: import("./interface/EquipmentArray").default, b: import("./interface/EquipmentArray").default) => number;
-        itemsForSlot: (settings: import("./interface/Settings").default) => import("./interface/GearItemJSON").default[] | undefined;
-        enchantsForSlot: (settings: import("./interface/Settings").default) => import("./interface/GearEnchantJSON").default[] | undefined;
+        itemsForSlot: (settings: import("./interface/Settings").default) => import("./interface/ItemJSON").default[] | undefined;
+        enchantsForSlot: (settings: import("./interface/Settings").default) => import("./interface/EnchantJSON").default[] | undefined;
         equipment: (settings: import("./interface/Settings").default) => Equipment;
     };
     query: {
-        item: (opts: import("./interface/GearItemQuery").default) => import("./interface/GearItemJSON").default | undefined;
-        items: (opts: import("./interface/GearItemQuery").default) => import("./interface/GearItemJSON").default[];
-        itemSet: (opts: import("./interface/GearItemQuery").default) => import("./interface/GearItemSetJSON").default | undefined;
-        itemSets: (opts: import("./interface/GearItemQuery").default) => import("./interface/GearItemSetJSON").default[];
-        itemSuffixes: (opts: any) => import("./interface/GearItemSuffix").default[];
-        enchant: (opts: import("./interface/GearItemQuery").default) => import("./interface/GearEnchantJSON").default | undefined;
-        enchants: (opts: import("./interface/GearItemQuery").default) => import("./interface/GearEnchantJSON").default[];
+        item: (opts: import("./interface/ItemQuery").default) => import("./interface/ItemJSON").default | undefined;
+        items: (opts: import("./interface/ItemQuery").default) => import("./interface/ItemJSON").default[];
+        itemSet: (opts: import("./interface/ItemQuery").default) => import("./interface/ItemSetJSON").default | undefined;
+        itemSets: (opts: import("./interface/ItemQuery").default) => import("./interface/ItemSetJSON").default[];
+        itemSuffixes: (opts: any) => import("./interface/ItemSuffix").default[];
+        enchant: (opts: import("./interface/ItemQuery").default) => import("./interface/EnchantJSON").default | undefined;
+        enchants: (opts: import("./interface/ItemQuery").default) => import("./interface/EnchantJSON").default[];
         spell: (opts: import("./interface/SpellQuery").default) => import("./interface/SpellJSON").default | undefined;
         spells: (opts: import("./interface/SpellQuery").default) => import("./interface/SpellJSON").default[];
     };
