@@ -178,11 +178,11 @@ export default class Item {
       return this.itemJSON.subclass
     }
 
-    if (this.class === ItemClass.Weapon) {
-      return WeaponSubclass.Empty
+    if (this.isArmor) {
+      return ArmorSubclass.Miscellaneous
     }
 
-    return ArmorSubclass.Empty
+    return WeaponSubclass.Miscellaneous
   }
 
   get subclassName(): string {
