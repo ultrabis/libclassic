@@ -7,7 +7,6 @@ import EnchantJSON from '../interface/EnchantJSON'
 import MagicSchool from '../enum/MagicSchool'
 import ItemQuality from '../enum/ItemQuality'
 import ItemClass from '../enum/ItemClass'
-import SpellCritFromIntellectDivisor from '../enum/SpellCritFromIntellectDivisor'
 import ArmorSubclass from '../enum/ArmorSubclass'
 import WeaponSubclass from '../enum/WeaponSubclass'
 import PlayableClass from '../enum/PlayableClass'
@@ -132,7 +131,7 @@ export default class Item {
       (magicSchool && magicSchool === MagicSchool.Nature ? natureDamage : 0) +
       spellHit * spellHitWeight +
       spellCrit * spellCritWeight +
-      (intellect / SpellCritFromIntellectDivisor.Druid) * spellCritWeight
+      (intellect / common.spellCritFromIntellectDivisor(PlayableClass.Druid)) * spellCritWeight
 
     return parseFloat(totalScore.toFixed(3))
   }

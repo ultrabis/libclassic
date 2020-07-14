@@ -40,7 +40,6 @@ import PlayableSpec from '../enum/PlayableSpec'
 import PowerType from '../enum/PowerType'
 import PvPRank from '../enum/PvPRank'
 import SortOrder from '../enum/SortOrder'
-import SpellCritFromIntellectDivisor from '../enum/SpellCritFromIntellectDivisor'
 import TargetType from '../enum/TargetType'
 
 /**
@@ -156,6 +155,30 @@ const calcOptsFromSettings = (s: Settings): CalcOpts => {
   }
 
   return o
+}
+
+/**
+ *
+ *
+ * @param playerClass e.g. `PlayableClass.Druid`
+ */
+const spellCritFromIntellectDivisor = (playerClass: PlayableClass): number => {
+  switch (playerClass) {
+    case PlayableClass.Druid:
+      return 60
+    case PlayableClass.Warlock:
+      return 60.6
+    case PlayableClass.Shaman:
+      return 59.5
+    case PlayableClass.Mage:
+      return 59.5
+    case PlayableClass.Priest:
+      return 59.2
+    case PlayableClass.Paladin:
+      return 54
+    default:
+      return -1
+  }
 }
 
 /**
@@ -793,7 +816,6 @@ export default {
   PowerType,
   PvPRank,
   SortOrder,
-  SpellCritFromIntellectDivisor,
   TargetType,
   WeaponSubclass,
   ItemSuffixType,
@@ -839,6 +861,7 @@ export default {
   spellPartialResistAvg,
   spellCritBonusMultiplier,
   spellCritMultiplier,
+  spellCritFromIntellectDivisor,
   spellDmgMultiplier,
   spellDmgBase,
   spellBaseChanceToHit,
