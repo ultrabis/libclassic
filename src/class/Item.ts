@@ -1,13 +1,13 @@
 import common from '../module/common'
 
-import GearItemJSON from '../interface/GearItemJSON'
-import GearItemSetJSON from '../interface/GearItemSetJSON'
-import GearEnchantJSON from '../interface/GearEnchantJSON'
+import ItemJSON from '../interface/ItemJSON'
+import ItemSetJSON from '../interface/ItemSetJSON'
+import EnchantJSON from '../interface/EnchantJSON'
 
 import MagicSchool from '../enum/MagicSchool'
-import ItemQuality from '../enum/GearItemQuality'
+import ItemQuality from '../enum/ItemQuality'
 import GearSlot from '../enum/GearSlot'
-import GearItemClass from '../enum/GearItemClass'
+import ItemClass from '../enum/ItemClass'
 import SpellCritFromIntellectDivisor from '../enum/SpellCritFromIntellectDivisor'
 import ArmorSubclass from '../enum/ArmorSubclass'
 import WeaponSubclass from '../enum/WeaponSubclass'
@@ -21,21 +21,21 @@ import ItemSlot from '../enum/ItemSlot'
 export default class Item {
   itemSlot: ItemSlot
   gearSlot: GearSlot
-  itemJSON: GearItemJSON | undefined
-  enchantJSON: GearEnchantJSON | undefined
+  itemJSON: ItemJSON | undefined
+  enchantJSON: EnchantJSON | undefined
 
-  constructor(slot: ItemSlot, itemJSON?: GearItemJSON, enchantJSON?: GearEnchantJSON) {
+  constructor(slot: ItemSlot, itemJSON?: ItemJSON, enchantJSON?: EnchantJSON) {
     this.itemSlot = slot
     this.gearSlot = common.gearSlotFromItemSlot(slot)
     this.itemJSON = itemJSON ? itemJSON : undefined
     this.enchantJSON = enchantJSON ? enchantJSON : undefined
   }
 
-  static sortScoreAsc(a: GearItemJSON | GearEnchantJSON, b: GearItemJSON | GearEnchantJSON): number {
+  static sortScoreAsc(a: ItemJSON | EnchantJSON, b: ItemJSON | EnchantJSON): number {
     return (a.score ? a.score : 0) - (b.score ? b.score : 0)
   }
 
-  static sortScoreDes(a: GearItemJSON | GearEnchantJSON, b: GearItemJSON | GearEnchantJSON): number {
+  static sortScoreDes(a: ItemJSON | EnchantJSON, b: ItemJSON | EnchantJSON): number {
     return (b.score ? b.score : 0) - (a.score ? a.score : 0)
   }
 
@@ -56,7 +56,7 @@ export default class Item {
   }
 
   static scoreItem(
-    item: GearItemJSON,
+    item: ItemJSON,
     magicSchool: MagicSchool,
     targetType: TargetType,
     spellHitWeight: number,
@@ -80,7 +80,7 @@ export default class Item {
   }
 
   static scoreItemSetBonus(
-    itemSet: GearItemSetJSON,
+    itemSet: ItemSetJSON,
     magicSchool: MagicSchool,
     targetType: TargetType,
     spellHitWeight: number,
@@ -100,7 +100,7 @@ export default class Item {
   }
 
   static scoreEnchant(
-    enchant: GearEnchantJSON,
+    enchant: EnchantJSON,
     magicSchool: MagicSchool,
     spellHitWeight: number,
     spellCritWeight: number
@@ -156,25 +156,25 @@ export default class Item {
     return this.itemJSON && this.itemJSON.name ? this.itemJSON.name : this.slotDisplayName
   }
 
-  get class(): GearItemClass {
+  get class(): ItemClass {
     if (this.itemJSON && this.itemJSON.class) {
       return this.itemJSON.class
     }
 
     switch (this.gearSlot) {
       case GearSlot.Mainhand:
-        return GearItemClass.Weapon
+        return ItemClass.Weapon
       default:
-        return GearItemClass.Armor
+        return ItemClass.Armor
     }
   }
 
   get isWeapon(): boolean {
-    return this.class === GearItemClass.Weapon
+    return this.class === ItemClass.Weapon
   }
 
   get isArmor(): boolean {
-    return this.class === GearItemClass.Armor
+    return this.class === ItemClass.Armor
   }
 
   get subclass(): WeaponSubclass | ArmorSubclass {
@@ -182,7 +182,7 @@ export default class Item {
       return this.itemJSON.subclass
     }
 
-    if (this.class === GearItemClass.Weapon) {
+    if (this.class === ItemClass.Weapon) {
       return WeaponSubclass.Empty
     }
 
@@ -190,7 +190,7 @@ export default class Item {
   }
 
   get subclassName(): string {
-    if (this.class === GearItemClass.Armor) {
+    if (this.class === ItemClass.Armor) {
       switch (this.subclass) {
         default:
           return ArmorSubclass[this.subclass]

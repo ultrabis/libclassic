@@ -8,9 +8,9 @@ import Spell from './Spell'
 
 import Settings from '../interface/Settings'
 import GearSearch from '../interface/GearSearch'
-import GearItemJSON from '../interface/GearItemJSON'
-import GearItemSetJSON from '../interface/GearItemSetJSON'
-import GearEnchantJSON from '../interface/GearEnchantJSON'
+import ItemJSON from '../interface/ItemJSON'
+import ItemSetJSON from '../interface/ItemSetJSON'
+import EnchantJSON from '../interface/EnchantJSON'
 
 import ItemSlot from '../enum/ItemSlot'
 import SortOrder from '../enum/SortOrder'
@@ -150,18 +150,18 @@ export default class Equipment {
   /*************************** TODO **********************************/
   /*************************** UGLY **********************************/
   /*************************** STUFF **********************************/
-  static isUniqueEquip(itemJSON: GearItemJSON | undefined): boolean {
+  static isUniqueEquip(itemJSON: ItemJSON | undefined): boolean {
     return (itemJSON && itemJSON.unique) || (itemJSON && itemJSON.boss && itemJSON.boss.includes('Quest:'))
       ? true
       : false
   }
 
-  static isOnUseEquip(itemJSON: GearItemJSON | undefined): boolean {
+  static isOnUseEquip(itemJSON: ItemJSON | undefined): boolean {
     return itemJSON && itemJSON.onUse ? true : false
   }
 
   static trinketEffectiveSpellDamage(
-    itemJSON: GearItemJSON | undefined,
+    itemJSON: ItemJSON | undefined,
     encounterLength: number,
     castTime: number,
     spellCrit: number,
@@ -236,8 +236,8 @@ export default class Equipment {
     return effectiveSpellDamage
   }
 
-  static getWeightedItemsBySlot(itemSlot: ItemSlot, itemSearch: GearSearch): GearItemJSON[] {
-    const _scoreOnUseTrinket = (itemJSON: GearItemJSON): number => {
+  static getWeightedItemsBySlot(itemSlot: ItemSlot, itemSearch: GearSearch): ItemJSON[] {
+    const _scoreOnUseTrinket = (itemJSON: ItemJSON): number => {
       /* Add additional score from onUse effect */
       if (
         itemSearch.onUseItems &&
@@ -257,7 +257,7 @@ export default class Equipment {
 
     const lockedItem = locked.getItem(itemSearch.lockedItems, itemSlot)
     if (lockedItem) {
-      const x: GearItemJSON[] = []
+      const x: ItemJSON[] = []
       lockedItem.score = Item.scoreItem(
         lockedItem,
         itemSearch.magicSchool,
@@ -297,10 +297,10 @@ export default class Equipment {
     return result
   }
 
-  static getWeightedEnchantsBySlot(itemSlot: ItemSlot, itemSearch: GearSearch): GearEnchantJSON[] {
-    const lockedEnchant: GearEnchantJSON | undefined = locked.getEnchant(itemSearch.lockedEnchants, itemSlot)
+  static getWeightedEnchantsBySlot(itemSlot: ItemSlot, itemSearch: GearSearch): EnchantJSON[] {
+    const lockedEnchant: EnchantJSON | undefined = locked.getEnchant(itemSearch.lockedEnchants, itemSlot)
     if (lockedEnchant) {
-      const x: GearEnchantJSON[] = []
+      const x: EnchantJSON[] = []
       lockedEnchant.score = Item.scoreEnchant(
         lockedEnchant,
         itemSearch.magicSchool,
@@ -331,7 +331,7 @@ export default class Equipment {
     return result
   }
 
-  static getItemSet(name: string, itemSearch: GearSearch): GearItemSetJSON | undefined {
+  static getItemSet(name: string, itemSearch: GearSearch): ItemSetJSON | undefined {
     /* Find the set and filter */
     const itemSets = query.itemSets({
       cloneResults: false,
@@ -347,7 +347,7 @@ export default class Equipment {
     /* TODO: Should be aborting here custom selections are disallowing the set */
 
     /* Find each item in set, score them and add to array */
-    const itemSetItems: GearItemJSON[] = []
+    const itemSetItems: ItemJSON[] = []
     let itemSetItemsScore = 0
     for (const itemName of itemSet.itemNames) {
       const items = query.items({
@@ -357,7 +357,7 @@ export default class Equipment {
         name: itemName
       })
       // let item = this.itemByName(itemName)
-      const item: GearItemJSON = items[0]
+      const item: ItemJSON = items[0]
       item.score = Item.scoreItem(
         item,
         itemSearch.magicSchool,
@@ -387,12 +387,12 @@ export default class Equipment {
     return itemSet
   }
 
-  static getBestInSlotItem(slot: ItemSlot, itemSearch: GearSearch): GearItemJSON {
+  static getBestInSlotItem(slot: ItemSlot, itemSearch: GearSearch): ItemJSON {
     const result = this.getWeightedItemsBySlot(slot, itemSearch)
     return result[0]
   }
 
-  static getBestInSlotEnchant(slot: ItemSlot, itemSearch: GearSearch): GearEnchantJSON {
+  static getBestInSlotEnchant(slot: ItemSlot, itemSearch: GearSearch): EnchantJSON {
     const result = this.getWeightedEnchantsBySlot(slot, itemSearch)
     return result[0]
   }
@@ -405,9 +405,9 @@ export default class Equipment {
   }
 
   static getBestInSlotChestLegsFeet(itemSearch: GearSearch): any {
-    let chest: GearItemJSON | undefined = this.getBestInSlotItem(ItemSlot.Chest, itemSearch)
-    let legs: GearItemJSON | undefined = this.getBestInSlotItem(ItemSlot.Legs, itemSearch)
-    let feet: GearItemJSON | undefined = this.getBestInSlotItem(ItemSlot.Feet, itemSearch)
+    let chest: ItemJSON | undefined = this.getBestInSlotItem(ItemSlot.Chest, itemSearch)
+    let legs: ItemJSON | undefined = this.getBestInSlotItem(ItemSlot.Legs, itemSearch)
+    let feet: ItemJSON | undefined = this.getBestInSlotItem(ItemSlot.Feet, itemSearch)
     const bloodvine = this.getItemSet(`Bloodvine Garb`, itemSearch)
     const bloodvineScore = bloodvine && bloodvine.score ? bloodvine.score : 0
 
@@ -467,12 +467,12 @@ export default class Equipment {
   }
 
   static getBestInSlotRings(itemSearch: GearSearch): any {
-    let zanzils: GearItemSetJSON | undefined = undefined
+    let zanzils: ItemSetJSON | undefined = undefined
     const result = this.getWeightedItemsBySlot(ItemSlot.Finger, itemSearch)
     const result2 = this.getWeightedItemsBySlot(ItemSlot.Finger2, itemSearch)
 
-    let ring1: GearItemJSON | undefined = result[0]
-    let ring2: GearItemJSON | undefined = result2[0]
+    let ring1: ItemJSON | undefined = result[0]
+    let ring2: ItemJSON | undefined = result2[0]
     if (this.isUniqueEquip(result[0]) && result[0].name === result2[0].name) {
       ring2 = result2[1]
     }

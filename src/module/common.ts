@@ -21,10 +21,10 @@ import Weights from '../interface/Weights'
 
 /* enums. we want common ways to work with these */
 import GearSlot from '../enum/GearSlot'
-import GearItemClass from '../enum/GearItemClass'
-import GearItemQuality from '../enum/GearItemQuality'
-import GearItemSuffixType from '../enum/GearItemSuffixType'
-import GearItemBonusType from '../enum/GearItemBonusType'
+import ItemClass from '../enum/ItemClass'
+import ItemQuality from '../enum/ItemQuality'
+import ItemSuffixType from '../enum/ItemSuffixType'
+import ItemBonusType from '../enum/ItemBonusType'
 import ArmorSubclass from '../enum/ArmorSubclass'
 import WeaponSubclass from '../enum/WeaponSubclass'
 import ItemSlot from '../enum/ItemSlot'
@@ -696,29 +696,29 @@ const playableClassesFromText = (text: string): PlayableClass[] => {
   return _(text)
 }
 // console.log(libclassic.enums.itemBonusTypeFromText('arcane spell damage'))
-const gearItemBonusTypeFromText = (text: string): GearItemBonusType => {
-  const _ = (text: string): typeof GearItemBonusType[keyof typeof GearItemBonusType] => {
-    return Number(utils.getEnumValueFromFuzzyText(GearItemBonusType, text))
+const itemBonusTypeFromText = (text: string): ItemBonusType => {
+  const _ = (text: string): typeof ItemBonusType[keyof typeof ItemBonusType] => {
+    return Number(utils.getEnumValueFromFuzzyText(ItemBonusType, text))
   }
   return _(text)
 }
 
-// console.log(libclassic.common.gearItemSuffixTypeFromText('cape of arcane wrath'))
-// console.log(libclassic.common.gearItemSuffixTypeFromText('Talisman of Ephemeral Power'))
+// console.log(libclassic.common.itemSuffixTypeFromText('cape of arcane wrath'))
+// console.log(libclassic.common.itemSuffixTypeFromText('Talisman of Ephemeral Power'))
 
-const gearItemSuffixTypeFromText = (text: string): GearItemSuffixType => {
+const itemSuffixTypeFromText = (text: string): ItemSuffixType => {
   const of = text.toUpperCase().indexOf(' OF ')
   // console.log(`of = ${of}, r = ${r}, t = ${t}`)
 
   if (of === -1) {
     // text is not an item name with a suffix e.g. "High Warlord's Destroyer"
     // in that case we do a loose search for any matching key, which will return Invalid
-    return Number(utils.getEnumValueFromFuzzyText(GearItemSuffixType, text))
+    return Number(utils.getEnumValueFromFuzzyText(ItemSuffixType, text))
   }
 
   // text is an item name with a suffix e.g. "Talisman of Ephemeral Power"
   // in that case it will strict search for "Ephemeral Power", which will return Invalid
-  return Number(utils.getEnumValueFromFuzzyText(GearItemSuffixType, text.slice(of + 4), true))
+  return Number(utils.getEnumValueFromFuzzyText(ItemSuffixType, text.slice(of + 4), true))
 }
 
 /**
@@ -728,9 +728,9 @@ const gearItemSuffixTypeFromText = (text: string): GearItemSuffixType => {
  *
  * @param itemName
  */
-const gearItemBaseName = (itemName: string): string => {
-  const gearItemSuffixType = gearItemSuffixTypeFromText(itemName)
-  if (gearItemSuffixType === GearItemSuffixType.Invalid) {
+const itemBaseName = (itemName: string): string => {
+  const itemSuffixType = itemSuffixTypeFromText(itemName)
+  if (itemSuffixType === ItemSuffixType.Invalid) {
     return itemName
   }
 
@@ -739,9 +739,9 @@ const gearItemBaseName = (itemName: string): string => {
 }
 
 // console.log(libclassic.enums.itemQualitypeFromText('Classes: Priest, Shaman, Mage, Warlock, Druid'))
-const gearItemQualityFromText = (text: string): GearItemQuality => {
-  const _ = (text: string): typeof GearItemQuality[keyof typeof GearItemQuality] => {
-    return Number(utils.getEnumValueFromFuzzyText(GearItemQuality, text))
+const itemQualityFromText = (text: string): ItemQuality => {
+  const _ = (text: string): typeof ItemQuality[keyof typeof ItemQuality] => {
+    return Number(utils.getEnumValueFromFuzzyText(ItemQuality, text))
   }
   return _(text)
 }
@@ -778,8 +778,8 @@ export default {
   Buff,
   Faction,
   Gender,
-  GearItemClass,
-  GearItemQuality,
+  ItemClass,
+  ItemQuality,
   ItemSlot,
   MagicSchool,
   PlayableClass,
@@ -790,7 +790,7 @@ export default {
   SpellCritFromIntellectDivisor,
   TargetType,
   WeaponSubclass,
-  GearItemSuffixType,
+  ItemSuffixType,
   Raid,
   WorldBoss,
   /* from old 'enums' module */
@@ -805,10 +805,10 @@ export default {
   playableRaceFromText,
   playableClassFromText,
   playableClassesFromText,
-  gearItemBaseName,
-  gearItemBonusTypeFromText,
-  gearItemSuffixTypeFromText,
-  gearItemQualityFromText,
+  itemBaseName,
+  itemBonusTypeFromText,
+  itemSuffixTypeFromText,
+  itemQualityFromText,
   buffFromText,
   buffsFromText,
   buffMaskFromText,

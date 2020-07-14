@@ -1,4 +1,4 @@
-export default interface GearItemOnUseJSON {
+export default interface ItemOnUseJSON {
   effect?: string
   cooldown?: string
   spellDamage?: number

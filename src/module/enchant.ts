@@ -1,24 +1,24 @@
 import common from './common'
 
-import GearEnchantJSON from '../interface/GearEnchantJSON'
-import GearEnchant from '../interface/GearEnchant'
-import gearEnchantDefault from '../obj/gearEnchant.json'
+import EnchantJSON from '../interface/EnchantJSON'
+import Enchant from '../interface/Enchant'
+import enchantDefault from '../obj/enchant.json'
 
-const fromDefault = (): GearEnchant => {
-  return gearEnchantDefault
+const fromDefault = (): Enchant => {
+  return enchantDefault
 }
 
-const fromJSONArray = (gearEnchantJSONArray: GearEnchantJSON[]): GearEnchant[] => {
-  const newObj: GearEnchant[] = []
+const fromJSONArray = (enchantJSONArray: EnchantJSON[]): Enchant[] => {
+  const newObj: Enchant[] = []
 
-  for (let x = 0; x <= gearEnchantJSONArray.length; x++) {
-    newObj.push(fromJSON(gearEnchantJSONArray[x]))
+  for (let x = 0; x <= enchantJSONArray.length; x++) {
+    newObj.push(fromJSON(enchantJSONArray[x]))
   }
 
   return newObj
 }
 
-const fromJSON = (enchantJSON?: GearEnchantJSON): GearEnchant => {
+const fromJSON = (enchantJSON?: EnchantJSON): Enchant => {
   return {
     id: enchantJSON ? enchantJSON.id : 0,
     name: enchantJSON ? enchantJSON.name : '',

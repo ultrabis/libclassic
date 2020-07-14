@@ -1,7 +1,7 @@
 /**
  * These are all types of 'random enchant' items e.g. some cloak of arcane wrath
  */
-enum GearItemSuffixType {
+enum ItemSuffixType {
   Invalid,
   Agility,
   ArcaneResistance,
@@ -49,4 +49,4 @@ enum GearItemSuffixType {
   Twain
 }
 
-export default GearItemSuffixType
+export default ItemSuffixType

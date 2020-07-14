@@ -1,8 +1,8 @@
-import GearItem from './GearItem'
-import GearEnchant from './GearEnchant'
+import Item from './Item'
+import Enchant from './Enchant'
 
 export default interface Gear {
-  equipped: [GearItem, GearEnchant][]
-  items: GearItem[]
-  enchants: GearEnchant[]
+  equipped: [Item, Enchant][]
+  items: Item[]
+  enchants: Enchant[]
 }
