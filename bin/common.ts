@@ -12,9 +12,9 @@ const xml2js = require('xml2js')
 
 import lc from '../src'
 import Stats from '../src/interface/Stats'
-import GearItemJSON from '../src/interface/GearItemJSONNew'
-import GearItemSuffixType from '../src/enum/GearItemSuffixType'
-import GearItemClass from '../src/enum/GearItemClass'
+import ItemJSON from '../src/interface/ItemJSONNew'
+import ItemSuffixType from '../src/enum/ItemSuffixType'
+import ItemClass from '../src/enum/ItemClass'
 import ArmorSubclass from '../src/enum/ArmorSubclass'
 import WeaponSubclass from '../src/enum/WeaponSubclass'
 
@@ -22,7 +22,7 @@ const xmlOutputDir = 'contrib/xml'
 const iconOutputDir = 'contrib/icons'
 
 /* parsed item object from keftenk balance druid spreadsheet */
-interface GearItemKeftenk {
+interface ItemKeftenk {
   'Equipment Type': string
   Slot: string
   Name: string
@@ -54,7 +54,7 @@ const wowheadDownloadIcon = async (iconName: string) => {
 }
 
 const wowheadDownloadXML = async (itemName: string) => {
-  const itemBaseName = lc.common.gearItemBaseName(itemName)
+  const itemBaseName = lc.common.itemBaseName(itemName)
   const filePath = `${xmlOutputDir}/${itemBaseName}.xml`
   const encodedName = encodeURIComponent(itemBaseName)
   const url = `https://classic.wowhead.com/item=${encodedName}&xml`
@@ -63,7 +63,7 @@ const wowheadDownloadXML = async (itemName: string) => {
 }
 
 const wowheadParseXML = async (itemName: string) => {
-  const itemBaseName = lc.common.gearItemBaseName(itemName)
+  const itemBaseName = lc.common.itemBaseName(itemName)
   const filePath = `${xmlOutputDir}/${itemBaseName}.xml`
   const xmlString = await readFileAsString(filePath)
   const result = await xml2js.parseStringPromise(xmlString)
@@ -95,14 +95,14 @@ const downloadFile = async (url: string, outputPath: string) => {
   }
 }
 
-const gearItemJSONFromKeftenk = (csvItem: object, wowheadItemXML?: object): GearItemJSON => {
-  const gearItemJSON: GearItemJSON = {
+const itemJSONFromKeftenk = (csvItem: object, wowheadItemXML?: object): ItemJSON => {
+  const itemJSON: ItemJSON = {
     id: 0,
     name: '',
     slot: 0
   }
 
-  return gearItemJSON
+  return itemJSON
 }
 
 const isEnchant = (keftenkEquipmentType: string) => {
@@ -122,44 +122,35 @@ const isEnchant = (keftenkEquipmentType: string) => {
   }
 }
 
-const handleSuffix = (gearItemJSON: GearItemJSON, gearItemKeftenk: GearItemKeftenk): Stats | undefined => {
-  const gearItemSuffixType = lc.common.gearItemSuffixTypeFromText(gearItemKeftenk.Name)
+const handleSuffix = (itemJSON: ItemJSON, itemKeftenk: ItemKeftenk): Stats | undefined => {
+  const itemSuffixType = lc.common.itemSuffixTypeFromText(itemKeftenk.Name)
 
-  if (gearItemSuffixType === GearItemSuffixType.ArcaneWrath) {
+  if (itemSuffixType === ItemSuffixType.ArcaneWrath) {
     // e.g. Master's Hat of Arcane Wrath (+40 arcane damage)
-    const gearItemSuffix = lc.gearItemSuffix.fromItemNameAndBonusValue(
-      gearItemKeftenk.Name,
-      Number(gearItemKeftenk['Spell Damage'])
-    )
-    gearItemJSON.name = lc.common.gearItemBaseName(gearItemKeftenk.Name)
-    gearItemJSON.suffixId = gearItemSuffix ? gearItemSuffix.id : 0
+    const itemSuffix = lc.itemSuffix.fromItemNameAndBonusValue(itemKeftenk.Name, Number(itemKeftenk['Spell Damage']))
+    itemJSON.name = lc.common.itemBaseName(itemKeftenk.Name)
+    itemJSON.suffixId = itemSuffix ? itemSuffix.id : 0
     return {
       spellDamage: {
         arcaneDamage: 0
       }
     }
-    // gearItemJSON.arcaneDamage = gearItemSuffix ? gearItemSuffix.bonus[0].value : 0
-  } else if (gearItemSuffixType === GearItemSuffixType.NaturesWrath) {
-    const gearItemSuffix = lc.gearItemSuffix.fromItemNameAndBonusValue(
-      gearItemKeftenk.Name,
-      Number(gearItemKeftenk['Spell Damage'])
-    )
-    gearItemJSON.name = lc.common.gearItemBaseName(gearItemKeftenk.Name)
-    gearItemJSON.suffixId = gearItemSuffix ? gearItemSuffix.id : 0
+    // itemJSON.arcaneDamage = itemSuffix ? itemSuffix.bonus[0].value : 0
+  } else if (itemSuffixType === ItemSuffixType.NaturesWrath) {
+    const itemSuffix = lc.itemSuffix.fromItemNameAndBonusValue(itemKeftenk.Name, Number(itemKeftenk['Spell Damage']))
+    itemJSON.name = lc.common.itemBaseName(itemKeftenk.Name)
+    itemJSON.suffixId = itemSuffix ? itemSuffix.id : 0
     return {
       spellDamage: {
         natureDamage: 0
       }
     }
-    // gearItemJSON.natureDamage = gearItemSuffix ? gearItemSuffix.bonus[0].value : 0
-  } else if (gearItemSuffixType === GearItemSuffixType.Sorcery) {
+    // itemJSON.natureDamage = itemSuffix ? itemSuffix.bonus[0].value : 0
+  } else if (itemSuffixType === ItemSuffixType.Sorcery) {
     // e.g. Abyssal Cloth Pants of Sorcery (+15 Stamina , +15 Intellect , +18 Damage and Healing Spells)
-    const gearItemSuffix = lc.gearItemSuffix.fromItemNameAndBonusValue(
-      gearItemKeftenk.Name,
-      Number(gearItemKeftenk['Spell Damage'])
-    )
-    gearItemJSON.name = lc.common.gearItemBaseName(gearItemKeftenk.Name)
-    gearItemJSON.suffixId = gearItemSuffix ? gearItemSuffix.id : 0
+    const itemSuffix = lc.itemSuffix.fromItemNameAndBonusValue(itemKeftenk.Name, Number(itemKeftenk['Spell Damage']))
+    itemJSON.name = lc.common.itemBaseName(itemKeftenk.Name)
+    itemJSON.suffixId = itemSuffix ? itemSuffix.id : 0
 
     return {
       stamina: 0,
@@ -168,35 +159,32 @@ const handleSuffix = (gearItemJSON: GearItemJSON, gearItemKeftenk: GearItemKefte
         spellDamage: 0
       }
     }
-    // gearItemJSON.stamina = gearItemSuffix ? gearItemSuffix.bonus[0].value : 0
-    // gearItemJSON.intellect = gearItemSuffix ? gearItemSuffix.bonus[1].value : 0
-    // gearItemJSON.spellDamage = gearItemSuffix ? gearItemSuffix.bonus[2].value : 0
-  } else if (gearItemSuffixType === GearItemSuffixType.Restoration) {
+    // itemJSON.stamina = itemSuffix ? itemSuffix.bonus[0].value : 0
+    // itemJSON.intellect = itemSuffix ? itemSuffix.bonus[1].value : 0
+    // itemJSON.spellDamage = itemSuffix ? itemSuffix.bonus[2].value : 0
+  } else if (itemSuffixType === ItemSuffixType.Restoration) {
     // e.g. Abyssal Cloth Pants of Restoration (+15 Stamina , +33 Healing Spells , +6 mana every 5 sec.)
-    const gearItemSuffix = lc.gearItemSuffix.fromItemNameAndBonusValue(
-      gearItemKeftenk.Name,
-      Number(gearItemKeftenk.MP5)
-    )
-    gearItemJSON.name = lc.common.gearItemBaseName(gearItemKeftenk.Name)
-    gearItemJSON.suffixId = gearItemSuffix ? gearItemSuffix.id : 0
+    const itemSuffix = lc.itemSuffix.fromItemNameAndBonusValue(itemKeftenk.Name, Number(itemKeftenk.MP5))
+    itemJSON.name = lc.common.itemBaseName(itemKeftenk.Name)
+    itemJSON.suffixId = itemSuffix ? itemSuffix.id : 0
 
     return {
       stamina: 0,
       spellHealing: 0,
       mp5: 0
     }
-    // gearItemJSON.stamina = gearItemSuffix ? gearItemSuffix.bonus[0].value : 0
-    // gearItemJSON.spellHealing = gearItemSuffix ? gearItemSuffix.bonus[1].value : 0
-    // gearItemJSON.mp5 = gearItemSuffix ? gearItemSuffix.bonus[2].value : 0
+    // itemJSON.stamina = itemSuffix ? itemSuffix.bonus[0].value : 0
+    // itemJSON.spellHealing = itemSuffix ? itemSuffix.bonus[1].value : 0
+    // itemJSON.mp5 = itemSuffix ? itemSuffix.bonus[2].value : 0
   } else {
     // this isn't a random enchant
-    gearItemJSON.name = gearItemKeftenk.Name
+    itemJSON.name = itemKeftenk.Name
     return undefined
   }
 }
 
-const gearItemJSONArrayFromKeftenk = async (csvFilePath: string) => {
-  const gearItemJSONArray: GearItemJSON[] = []
+const itemJSONArrayFromKeftenk = async (csvFilePath: string) => {
+  const itemJSONArray: ItemJSON[] = []
 
   // parse the csv
   console.warn('Parsing CSV: ' + csvFilePath)
@@ -204,7 +192,7 @@ const gearItemJSONArrayFromKeftenk = async (csvFilePath: string) => {
 
   // iterate all items in csv
   for (const csvItem of csvJSON) {
-    const gearItemJSON = {} as GearItemJSON
+    const itemJSON = {} as ItemJSON
 
     // skip empty names
     if (csvItem.Name === '') {
@@ -220,41 +208,36 @@ const gearItemJSONArrayFromKeftenk = async (csvFilePath: string) => {
     }
 
     // download and parse the wowhead xml (downloads are cached in contrib/)
-    const gearItemBaseName = lc.common.gearItemBaseName(csvItem.Name)
-    await wowheadDownloadXML(gearItemBaseName)
-    const gearItemWowhead = await wowheadParseXML(gearItemBaseName)
-    if (gearItemWowhead === null) {
+    const itemBaseName = lc.common.itemBaseName(csvItem.Name)
+    await wowheadDownloadXML(itemBaseName)
+    const itemWowhead = await wowheadParseXML(itemBaseName)
+    if (itemWowhead === null) {
       console.error(`-- error parsing wowhead xml`)
       continue
     }
 
     // set the item id
-    gearItemJSON.id = parseInt(gearItemWowhead['$'].id, 10)
-    if (!gearItemJSON.id) {
+    itemJSON.id = parseInt(itemWowhead['$'].id, 10)
+    if (!itemJSON.id) {
       console.error(`-- error item id can't be 0`)
       continue
     }
 
     // set icon and download if necessary
-    gearItemJSON.icon = gearItemWowhead.icon[0]._.toLowerCase()
-    await wowheadDownloadIcon(gearItemJSON.icon ? gearItemJSON.icon : 'classic_temp')
-
-    // handle random enchant items (add name and suffixId)
-    // item bonuses will be added when/if converted to a GearItem
-    // so we're trusting our suffix database bonus values over the sheet
-    const suffixStats = handleSuffix(gearItemJSON, csvItem)
+    itemJSON.icon = itemWowhead.icon[0]._.toLowerCase()
+    await wowheadDownloadIcon(itemJSON.icon ? itemJSON.icon : 'classic_temp')
 
     // fill in the static stuff
-    gearItemJSON.class = parseInt(gearItemWowhead['class'][0].$.id, 10)
-    gearItemJSON.subclass = parseInt(gearItemWowhead['subclass'][0].$.id, 10)
-    gearItemJSON.phase = parseInt(csvItem.Phase, 10)
-    gearItemJSON.location = csvItem.Location
+    itemJSON.class = parseInt(itemWowhead['class'][0].$.id, 10)
+    itemJSON.subclass = parseInt(itemWowhead['subclass'][0].$.id, 10)
+    itemJSON.phase = parseInt(csvItem.Phase, 10)
+    itemJSON.location = csvItem.Location
     if (csvItem.Boss !== '') {
-      gearItemJSON.boss = csvItem.Boss
+      itemJSON.boss = csvItem.Boss
     }
 
     // handle stats
-    gearItemJSON.stats = {}
+    itemJSON.stats = {}
     const stamina = Number(csvItem.Stamina)
     const intellect = Number(csvItem.Intellect)
     const spirit = Number(csvItem.Spirit)
@@ -264,51 +247,55 @@ const gearItemJSONArrayFromKeftenk = async (csvFilePath: string) => {
     const spellHealing = 0 // todo
     const spellDamage = Number(csvItem['Spell Damage'])
 
+    // handle random enchant items (add name and suffixId)
+    // item bonuses will be added when/if converted to a Item
+    // so we're trusting our suffix database bonus values over the sheet
+    const suffixStats = handleSuffix(itemJSON, csvItem)
     if (suffixStats !== undefined) {
       // for random enchant items we'll ignore overlapping sheet values
       // we can lookup suffix data at run-time so we don't want it in the db
-      gearItemJSON.stats.stamina = suffixStats.stamina !== 0 ? stamina : undefined
-      gearItemJSON.stats.intellect = suffixStats.intellect !== 0 ? intellect : undefined
-      gearItemJSON.stats.spirit = suffixStats.spirit !== 0 ? spirit : undefined
-      gearItemJSON.stats.spellHit = suffixStats.spellHit !== 0 ? spellHit : undefined
-      gearItemJSON.stats.spellCrit = suffixStats.spellCrit !== 0 ? spellCrit : undefined
-      gearItemJSON.stats.spellPenetration = suffixStats.spellPenetration !== 0 ? spellPenetration : undefined
-      gearItemJSON.stats.spellHealing = suffixStats.spellHealing !== 0 ? spellHealing : undefined
+      itemJSON.stats.stamina = suffixStats.stamina !== 0 ? stamina : undefined
+      itemJSON.stats.intellect = suffixStats.intellect !== 0 ? intellect : undefined
+      itemJSON.stats.spirit = suffixStats.spirit !== 0 ? spirit : undefined
+      itemJSON.stats.spellHit = suffixStats.spellHit !== 0 ? spellHit : undefined
+      itemJSON.stats.spellCrit = suffixStats.spellCrit !== 0 ? spellCrit : undefined
+      itemJSON.stats.spellPenetration = suffixStats.spellPenetration !== 0 ? spellPenetration : undefined
+      itemJSON.stats.spellHealing = suffixStats.spellHealing !== 0 ? spellHealing : undefined
 
-      gearItemJSON.stats.spellDamage = {}
+      itemJSON.stats.spellDamage = {}
       if (suffixStats.spellDamage !== undefined) {
         if (suffixStats.spellDamage.spellDamage !== 0) {
-          gearItemJSON.stats.spellDamage.spellDamage = spellDamage
+          itemJSON.stats.spellDamage.spellDamage = spellDamage
         }
       }
     } else {
       // for normal items use sheet values
-      gearItemJSON.stats.stamina = stamina > 0 ? stamina : undefined
-      gearItemJSON.stats.intellect = intellect > 0 ? intellect : undefined
-      gearItemJSON.stats.spirit = spirit > 0 ? spirit : undefined
-      gearItemJSON.stats.spellHit = spellHit > 0 ? spellHit : undefined
-      gearItemJSON.stats.spellCrit = spellCrit > 0 ? spellCrit : undefined
-      gearItemJSON.stats.spellPenetration = spellPenetration > 0 ? spellPenetration : undefined
-      gearItemJSON.stats.spellHealing = spellHealing > 0 ? spellHealing : undefined
+      itemJSON.stats.stamina = stamina > 0 ? stamina : undefined
+      itemJSON.stats.intellect = intellect > 0 ? intellect : undefined
+      itemJSON.stats.spirit = spirit > 0 ? spirit : undefined
+      itemJSON.stats.spellHit = spellHit > 0 ? spellHit : undefined
+      itemJSON.stats.spellCrit = spellCrit > 0 ? spellCrit : undefined
+      itemJSON.stats.spellPenetration = spellPenetration > 0 ? spellPenetration : undefined
+      itemJSON.stats.spellHealing = spellHealing > 0 ? spellHealing : undefined
       if (spellDamage > 0) {
-        gearItemJSON.stats.spellDamage = {
+        itemJSON.stats.spellDamage = {
           spellDamage: spellDamage
         }
       }
     }
 
-    if (lc.utils.isEmpty(gearItemJSON.stats)) {
-      gearItemJSON.stats = undefined
+    if (lc.utils.isEmpty(itemJSON.stats)) {
+      itemJSON.stats = undefined
     }
 
     // we made it. add item to array
-    gearItemJSONArray.push(gearItemJSON)
+    itemJSONArray.push(itemJSON)
   }
 
-  return gearItemJSONArray
+  return itemJSONArray
 }
 
 export default {
-  gearItemJSONFromKeftenk,
-  gearItemJSONArrayFromKeftenk
+  itemJSONFromKeftenk,
+  itemJSONArrayFromKeftenk
 }

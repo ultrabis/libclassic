@@ -17,12 +17,12 @@ import GearState from '../enum/GearState'
 import ItemSlot from '../enum/ItemSlot'
 
 export default class Item {
-  itemSlot: ItemSlot
+  slot: ItemSlot
   itemJSON: ItemJSON | undefined
   enchantJSON: EnchantJSON | undefined
 
   constructor(slot: ItemSlot, itemJSON?: ItemJSON, enchantJSON?: EnchantJSON) {
-    this.itemSlot = slot
+    this.slot = slot
     this.itemJSON = itemJSON ? itemJSON : undefined
     this.enchantJSON = enchantJSON ? enchantJSON : undefined
   }
@@ -157,7 +157,7 @@ export default class Item {
       return this.itemJSON.class
     }
 
-    switch (this.itemSlot) {
+    switch (this.slot) {
       case ItemSlot.Mainhand:
         return ItemClass.Weapon
       default:
@@ -202,7 +202,7 @@ export default class Item {
   }
 
   get slotName(): string {
-    switch (this.itemSlot) {
+    switch (this.slot) {
       case ItemSlot.Trinket2:
         return ItemSlot[ItemSlot.Trinket]
       case ItemSlot.Finger2:
@@ -227,12 +227,12 @@ export default class Item {
       case ItemSlot.Relic:
       case ItemSlot.Quiver:
       default:
-        return ItemSlot[this.itemSlot]
+        return ItemSlot[this.slot]
     }
   }
 
   get slotDisplayName(): string {
-    switch (this.itemSlot) {
+    switch (this.slot) {
       case ItemSlot.Mainhand:
         return 'Main Hand'
       case ItemSlot.Finger:
@@ -258,7 +258,7 @@ export default class Item {
       case ItemSlot.Back:
       case ItemSlot.Relic:
       default:
-        return ItemSlot[this.itemSlot]
+        return ItemSlot[this.slot]
     }
   }
 
@@ -511,7 +511,7 @@ export default class Item {
   }
 
   get enchantText(): string {
-    const slot = this.itemJSON ? this.itemSlot : ItemSlot.None
+    const slot = this.itemJSON ? this.slot : ItemSlot.None
     const text = this.enchantJSON ? this.enchantJSON.text : 'No Enchant'
 
     switch (slot) {
@@ -531,7 +531,7 @@ export default class Item {
   }
 
   get enchantClass(): string {
-    const slot = this.enchantJSON ? this.itemSlot : ItemSlot.None
+    const slot = this.enchantJSON ? this.slot : ItemSlot.None
 
     if (this.enchantJSON && this.enchantJSON.id === 1) {
       return `poor`

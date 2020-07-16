@@ -34,8 +34,8 @@ const fromJSON = (itemJSON?: ItemJSON): Item => {
   newItem.name = itemJSON.name ? itemJSON.name : ''
   newItem.class = itemJSON.class ? itemJSON.class : 0
   newItem.subclass = itemJSON.subclass ? itemJSON.subclass : 0
-  newItem.itemSlot = itemJSON.itemSlot
-  newItem.gearSlot = slotFromItemSlot(itemJSON.itemSlot)
+  newItem.slot = itemJSON.slot
+  newItem.gearSlot = slotFromItemSlot(itemJSON.slot)
   newItem.quality = itemJSON.quality ? itemJSON.quality : 0
   newItem.level = itemJSON.level ? itemJSON.level : 0
   newItem.reqLevel = itemJSON.reqLevel ? itemJSON.reqLevel : 0
@@ -100,14 +100,14 @@ const fromQuery = (opts: ItemQuery): Item[] => {
     return false
   }
 
-  const itemSlot2query = (itemSlot: ItemSlot) => {
-    switch (itemSlot) {
+  const slot2query = (slot: ItemSlot) => {
+    switch (slot) {
       case ItemSlot.Finger2:
-        return `[* itemSlot=${ItemSlot.Finger}]`
+        return `[* slot=${ItemSlot.Finger}]`
       case ItemSlot.Trinket2:
-        return `[* itemSlot=${ItemSlot.Trinket}]`
+        return `[* slot=${ItemSlot.Trinket}]`
       default:
-        return `[* itemSlot=${itemSlot}]`
+        return `[* slot=${slot}]`
     }
   }
 
@@ -134,13 +134,13 @@ const fromQuery = (opts: ItemQuery): Item[] => {
 
   let result: ItemJSON[] = []
 
-  /* at this point if we don't have itemSlot just return an empty set. we don't really
-   * have a use-case for returning array of items from different itemSlots */
-  if (opts.itemSlot === undefined) {
+  /* at this point if we don't have slot just return an empty set. we don't really
+   * have a use-case for returning array of items from different slots */
+  if (opts.slot === undefined) {
     return fromJSONArray(result)
   }
 
-  result = jsonQuery(itemSlot2query(opts.itemSlot), { data: itemDB }).value
+  result = jsonQuery(slot2query(opts.slot), { data: itemDB }).value
 
   if (opts.faction !== undefined) {
     result = jsonQuery(`[* faction = ${opts.faction} | faction = ${Faction.Horde | Faction.Alliance}]`, {
@@ -171,8 +171,8 @@ const fromQuery = (opts: ItemQuery): Item[] => {
   return fromJSONArray(result)
 }
 
-const slotFromItemSlot = (itemSlot: ItemSlot): GearSlot => {
-  return common.gearSlotFromItemSlot(itemSlot)
+const slotFromItemSlot = (slot: ItemSlot): GearSlot => {
+  return common.gearSlotFromItemSlot(slot)
 }
 
 const qualityFromText = (text: string): ItemQuality => {

@@ -209,11 +209,7 @@ const spellBaseChanceToHit = (playerLevel: number, targetLevel: number): number 
     case 3:
       return 83
     default:
-      if (x > 3) {
-        return 83
-      }
-
-      return 99
+      return x > 3 ? 83 : 99
   }
 }
 
@@ -222,7 +218,6 @@ const spellBaseChanceToHit = (playerLevel: number, targetLevel: number): number 
  * Returns chance of hitting a target with a spell.
  *
  * @remarks
- * TODO: Assumes level 60 player level
  * Example: console.log(libclassic.common.spellChanceToHit(60, 63, 12))
  *
  * @param playerLevel player level
@@ -256,7 +251,7 @@ const spellChanceToMiss = (playerLevel: number, targetLevel: number, spellHit: n
  * @param playerLevel
  * @param targetLevel
  * @param spellHit
- * @param spellCrit
+ * @param spellCrit can be base, actual or effective
  * @returns spellCrit multiplied by the chance of hitting.
  */
 const spellChanceToCrit = (playerLevel: number, targetLevel: number, spellHit: number, spellCrit: number): number => {

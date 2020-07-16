@@ -9,7 +9,7 @@ import GearSlot from '../enum/GearSlot'
 import LockedItems from './LockedItems'
 import LockedEnchants from './LockedEnchants'
 
-export default interface ItemSearch {
+export default interface GearSearch {
   phase: number
   faction: Faction
   pvpRank: PvPRank
@@ -29,7 +29,7 @@ export default interface ItemSearch {
   spellCastTime: number
   spellCrit: number
   naturesGrace: boolean
-  itemSlot: ItemSlot
+  slot: ItemSlot
   gearSlot: GearSlot
   sortOrder?: SortOrder
 }
