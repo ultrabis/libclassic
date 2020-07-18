@@ -39,7 +39,7 @@ declare const _default: {
         playableClassesFromText: (text: string) => import("./enum/PlayableClass").default[];
         itemBaseName: (itemName: string) => string;
         itemBonusTypeFromText: (text: string) => import("./enum/ItemBonusType").default;
-        itemSuffixTypeFromText: (text: string) => import("./enum/ItemSuffixType").default;
+        itemSuffixTypeFromText: (itemName: string) => import("./enum/ItemSuffixType").default;
         itemQualityFromText: (text: string) => import("./enum/ItemQuality").default;
         buffFromText: (text: string) => import("./enum/Buff").Buff;
         buffsFromText: (text: string) => import("./enum/Buff").Buff[];
@@ -114,7 +114,7 @@ declare const _default: {
         isFromRaid: (location: string) => boolean;
         pvpRankFromText: (text: string) => import("./enum/PvPRank").default;
         bonusFromText: (bonus: string) => import("./interface/ItemBonus").default;
-        slotFromItemSlot: (itemSlot: import("./enum/ItemSlot").default) => import("./enum/GearSlot").default;
+        slotFromItemSlot: (slot: import("./enum/ItemSlot").default) => import("./enum/GearSlot").default;
         qualityFromText: (text: string) => import("./enum/ItemQuality").default;
     };
     itemSuffix: {

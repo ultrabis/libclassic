@@ -1,10 +1,8 @@
 import ItemSlot from '../enum/ItemSlot';
-import GearSlot from '../enum/GearSlot';
 export default interface Enchant {
     id: number;
     name: string;
-    gearSlot: GearSlot;
-    itemSlot: ItemSlot;
+    slot: ItemSlot;
     phase: number;
     icon: string;
     text: string;

@@ -58,7 +58,7 @@ declare const _default: {
     playableClassesFromText: (text: string) => PlayableClass[];
     itemBaseName: (itemName: string) => string;
     itemBonusTypeFromText: (text: string) => ItemBonusType;
-    itemSuffixTypeFromText: (text: string) => ItemSuffixType;
+    itemSuffixTypeFromText: (itemName: string) => ItemSuffixType;
     itemQualityFromText: (text: string) => ItemQuality;
     buffFromText: (text: string) => Buff;
     buffsFromText: (text: string) => Buff[];

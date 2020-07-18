@@ -11,7 +11,7 @@ import ItemOnUseJSON from './ItemOnUseJSON';
 export default interface ItemJSON {
     id: number;
     suffixId?: number;
-    itemSlot: ItemSlot;
+    slot: ItemSlot;
     name?: string;
     class?: ItemClass;
     subclass?: ArmorSubclass | WeaponSubclass;

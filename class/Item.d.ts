@@ -12,7 +12,7 @@ import Faction from '../enum/Faction';
 import TargetType from '../enum/TargetType';
 import ItemSlot from '../enum/ItemSlot';
 export default class Item {
-    itemSlot: ItemSlot;
+    slot: ItemSlot;
     itemJSON: ItemJSON | undefined;
     enchantJSON: EnchantJSON | undefined;
     constructor(slot: ItemSlot, itemJSON?: ItemJSON, enchantJSON?: EnchantJSON);

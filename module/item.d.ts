@@ -14,7 +14,7 @@ declare const _default: {
     isFromRaid: (location: string) => boolean;
     pvpRankFromText: (text: string) => PvPRank;
     bonusFromText: (bonus: string) => ItemBonus;
-    slotFromItemSlot: (itemSlot: ItemSlot) => GearSlot;
+    slotFromItemSlot: (slot: ItemSlot) => GearSlot;
     qualityFromText: (text: string) => ItemQuality;
 };
 export default _default;

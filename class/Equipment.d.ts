@@ -35,8 +35,8 @@ export default class Equipment {
     static isOnUseEquip(itemJSON: ItemJSON | undefined): boolean;
     static trinketEffectiveSpellDamage(itemJSON: ItemJSON | undefined, encounterLength: number, castTime: number, spellCrit: number, naturesGrace: boolean): number;
     static _trinketEffectiveSpellDamage(trinketBonus: number, trinketDuration: number, trinketCooldown: number, trinketReductionPerCast: number, encounterLength: number, castTime: number, spellCrit: number, naturesGrace: boolean): number;
-    static getWeightedItemsBySlot(itemSlot: ItemSlot, itemSearch: GearSearch): ItemJSON[];
-    static getWeightedEnchantsBySlot(itemSlot: ItemSlot, itemSearch: GearSearch): EnchantJSON[];
+    static getWeightedItemsBySlot(slot: ItemSlot, itemSearch: GearSearch): ItemJSON[];
+    static getWeightedEnchantsBySlot(slot: ItemSlot, itemSearch: GearSearch): EnchantJSON[];
     static getItemSet(name: string, itemSearch: GearSearch): ItemSetJSON | undefined;
     static getBestInSlotItem(slot: ItemSlot, itemSearch: GearSearch): ItemJSON;
     static getBestInSlotEnchant(slot: ItemSlot, itemSearch: GearSearch): EnchantJSON;
