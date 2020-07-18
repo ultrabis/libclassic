@@ -17,11 +17,11 @@ import SpellQuery from '../interface/SpellQuery'
 import ItemSlot from '../enum/ItemSlot'
 import Faction from '../enum/Faction'
 
-import spellsDB from '../db/spell.json'
-import itemsDB from '../db/item.json'
-import enchantsDB from '../db/enchant.json'
 import itemSetsDB from '../db/itemSet.json'
 import itemSuffixDB from '../db/itemSuffix.json'
+import spellsDB from '../db/moonkin/spell.json'
+import itemsDB from '../db/moonkin/item.json'
+import enchantsDB from '../db/moonkin/enchant.json'
 
 /* return input, deep clone it if cloneResults is true */
 const _result = (o: any, cloneResults: boolean) => {
@@ -49,14 +49,14 @@ const items = (opts: ItemQuery): ItemJSON[] => {
     return false
   }
 
-  const itemSlot2query = (itemSlot: ItemSlot) => {
-    switch (itemSlot) {
+  const slot2query = (slot: ItemSlot) => {
+    switch (slot) {
       case ItemSlot.Finger2:
-        return `[* itemSlot=${ItemSlot.Finger}]`
+        return `[* slot=${ItemSlot.Finger}]`
       case ItemSlot.Trinket2:
-        return `[* itemSlot=${ItemSlot.Trinket}]`
+        return `[* slot=${ItemSlot.Trinket}]`
       default:
-        return `[* itemSlot=${itemSlot}]`
+        return `[* slot=${slot}]`
     }
   }
 
@@ -83,13 +83,13 @@ const items = (opts: ItemQuery): ItemJSON[] => {
 
   let result: ItemJSON[] = []
 
-  /* at this point if we don't have itemSlot just return an empty set. we don't really
-   * have a use-case for returning array of items from different itemSlots */
-  if (opts.itemSlot === undefined) {
+  /* at this point if we don't have slot just return an empty set. we don't really
+   * have a use-case for returning array of items from different slots */
+  if (opts.slot === undefined) {
     return result
   }
 
-  result = jsonQuery(itemSlot2query(opts.itemSlot), { data: itemsDB }).value
+  result = jsonQuery(slot2query(opts.slot), { data: itemsDB }).value
 
   if (opts.faction !== undefined) {
     result = jsonQuery(`[* faction = ${opts.faction} | faction = ${Faction.Horde | Faction.Alliance}]`, {
@@ -192,11 +192,11 @@ const enchants = (opts: ItemQuery): EnchantJSON[] => {
 
   let result: EnchantJSON[] = []
 
-  if (opts.itemSlot === undefined) {
+  if (opts.slot === undefined) {
     return result
   }
 
-  result = jsonQuery(`[* itemSlot = ${opts.itemSlot} | itemSlot = -2 ]`, { data: enchantsDB }).value
+  result = jsonQuery(`[* slot = ${opts.slot} | slot = -2 ]`, { data: enchantsDB }).value
 
   if (opts.phase !== undefined) {
     result = jsonQuery(`[* phase <= ${opts.phase}]`, { data: result }).value

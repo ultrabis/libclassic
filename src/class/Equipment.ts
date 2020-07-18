@@ -130,7 +130,7 @@ export default class Equipment {
       lockedItems: mySettings.gear.lockedItems,
       lockedEnchants: mySettings.gear.lockedEnchants,
       gearSlot: common.gearSlotFromItemSlot(mySettings.gear.itemSearchSlot),
-      itemSlot: mySettings.gear.itemSearchSlot,
+      slot: mySettings.gear.itemSearchSlot,
       sortOrder: SortOrder.Descending
     }
   }
@@ -236,14 +236,10 @@ export default class Equipment {
     return effectiveSpellDamage
   }
 
-  static getWeightedItemsBySlot(itemSlot: ItemSlot, itemSearch: GearSearch): ItemJSON[] {
+  static getWeightedItemsBySlot(slot: ItemSlot, itemSearch: GearSearch): ItemJSON[] {
     const _scoreOnUseTrinket = (itemJSON: ItemJSON): number => {
       /* Add additional score from onUse effect */
-      if (
-        itemSearch.onUseItems &&
-        (itemSlot === ItemSlot.Trinket || itemSlot === ItemSlot.Trinket2) &&
-        itemJSON.onUse
-      ) {
+      if (itemSearch.onUseItems && (slot === ItemSlot.Trinket || slot === ItemSlot.Trinket2) && itemJSON.onUse) {
         return this.trinketEffectiveSpellDamage(
           itemJSON,
           itemSearch.encounterLength,
@@ -255,7 +251,7 @@ export default class Equipment {
       return 0
     }
 
-    const lockedItem = locked.getItem(itemSearch.lockedItems, itemSlot)
+    const lockedItem = locked.getItem(itemSearch.lockedItems, slot)
     if (lockedItem) {
       const x: ItemJSON[] = []
       lockedItem.score = Item.scoreItem(
@@ -271,7 +267,7 @@ export default class Equipment {
 
     const result = query.items({
       cloneResults: true,
-      itemSlot: itemSlot,
+      slot: slot,
       phase: itemSearch.phase,
       faction: itemSearch.faction,
       pvpRank: itemSearch.pvpRank,
@@ -297,8 +293,8 @@ export default class Equipment {
     return result
   }
 
-  static getWeightedEnchantsBySlot(itemSlot: ItemSlot, itemSearch: GearSearch): EnchantJSON[] {
-    const lockedEnchant: EnchantJSON | undefined = locked.getEnchant(itemSearch.lockedEnchants, itemSlot)
+  static getWeightedEnchantsBySlot(slot: ItemSlot, itemSearch: GearSearch): EnchantJSON[] {
+    const lockedEnchant: EnchantJSON | undefined = locked.getEnchant(itemSearch.lockedEnchants, slot)
     if (lockedEnchant) {
       const x: EnchantJSON[] = []
       lockedEnchant.score = Item.scoreEnchant(
@@ -313,7 +309,7 @@ export default class Equipment {
 
     const result = query.enchants({
       cloneResults: true,
-      itemSlot: itemSlot,
+      slot: slot,
       phase: itemSearch.phase,
       enchantExploit: itemSearch.enchantExploit
     })
@@ -518,7 +514,7 @@ export default class Equipment {
 
     return {
       mainHand: mainhand,
-      offHand: mainhand && mainhand.itemSlot === ItemSlot.Twohand ? undefined : offhand,
+      offHand: mainhand && mainhand.slot === ItemSlot.Twohand ? undefined : offhand,
       enchant: enchant
     }
   }

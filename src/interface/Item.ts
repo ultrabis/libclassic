@@ -16,8 +16,8 @@ export default interface Item {
   name: string
   class: ItemClass
   subclass: ArmorSubclass | WeaponSubclass
+  slot: ItemSlot
   gearSlot: GearSlot
-  itemSlot: ItemSlot
   quality: ItemQuality
   level: number
   reqLevel: number

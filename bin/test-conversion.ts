@@ -1,15 +1,12 @@
 const fs = require('fs')
 
-import libclassic from '../src'
 import common from './common'
+import GearItemJSONNew from '../src/interface/ItemJSONNew'
 
-import GearItemJSONNew from '../src/interface/GearItemJSONNew'
-import { exit } from 'process'
-
-const keftenkCSVFile = 'contrib/gearItem.csv'
+const csvFile = 'contrib/moonkin/item.csv'
 
 const start = async function () {
-  const gearItemJSONNew: GearItemJSONNew[] = await common.gearItemJSONArrayFromKeftenk(keftenkCSVFile)
+  const gearItemJSONNew: GearItemJSONNew[] = await common.itemJSONArrayFromKeftenk(csvFile)
   console.log(JSON.stringify(gearItemJSONNew, null, 1))
 }
 

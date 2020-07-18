@@ -87,7 +87,7 @@ const getEnchantId = (lockedEnchants: LockedEnchants | undefined, itemSlot: Item
 const getItem = (lockedItems: LockedItems | undefined, itemSlot: ItemSlot): ItemJSON | undefined => {
   const nakedItem = {
     id: 1,
-    itemSlot: itemSlot,
+    slot: itemSlot,
     gearSlot: common.gearSlotFromItemSlot(itemSlot),
     raid: false,
     worldBoss: false,
@@ -108,8 +108,7 @@ const getItem = (lockedItems: LockedItems | undefined, itemSlot: ItemSlot): Item
 const getEnchant = (lockedEnchants: LockedEnchants | undefined, itemSlot: ItemSlot): EnchantJSON | undefined => {
   const nakedEnchant = {
     id: 1,
-    itemSlot: itemSlot,
-    gearSlot: common.gearSlotFromItemSlot(itemSlot),
+    slot: itemSlot,
     name: 'No enchant',
     phase: 1,
     icon: '',

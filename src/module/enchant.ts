@@ -2,10 +2,9 @@ import common from './common'
 
 import EnchantJSON from '../interface/EnchantJSON'
 import Enchant from '../interface/Enchant'
-import enchantDefault from '../obj/enchant.json'
 
 const fromDefault = (): Enchant => {
-  return enchantDefault
+  return {} as Enchant
 }
 
 const fromJSONArray = (enchantJSONArray: EnchantJSON[]): Enchant[] => {
@@ -22,8 +21,7 @@ const fromJSON = (enchantJSON?: EnchantJSON): Enchant => {
   return {
     id: enchantJSON ? enchantJSON.id : 0,
     name: enchantJSON ? enchantJSON.name : '',
-    gearSlot: enchantJSON ? common.gearSlotFromItemSlot(enchantJSON.itemSlot) : 0,
-    itemSlot: enchantJSON ? enchantJSON.itemSlot : 0,
+    slot: enchantJSON ? enchantJSON.slot : 0,
     phase: enchantJSON ? enchantJSON.phase : 0,
     icon: enchantJSON ? enchantJSON.icon : '',
     score: 0,

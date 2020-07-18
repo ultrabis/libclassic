@@ -4,13 +4,14 @@ const supplementalFilePath = 'contrib/supplemental-items.csv'
 const xmlOutputDir = 'contrib/xml'
 const iconOutputDir = 'contrib/icons'
 
-import gearItemSuffix from '../src/mt/gearItemSuffix'
-import GearItemSuffix from '../src/interface/GearItemSuffix'
-import settings from '../src/common/settings'
-import enums from '../src/common/enums'
+import common from '../src/module/common'
+import itemSuffix from '../src/module/itemSuffix'
+import item from '../src/module/item'
 
+// import ItemSuffix from '../src/interface/ItemSuffix'
 import ItemJSON from '../src/interface/ItemJSON'
 import ItemOnUseJSON from '../src/interface/ItemOnUseJSON'
+
 import Faction from '../src/enum/Faction'
 import ItemQuality from '../src/enum/ItemQuality'
 import ItemClass from '../src/enum/ItemClass'
@@ -21,7 +22,6 @@ import GearSlot from '../src/enum/GearSlot'
 import PvPRank from '../src/enum/PvPRank'
 import PlayableClass from '../src/enum/PlayableClass'
 import TargetType from '../src/enum/TargetType'
-import gearItem from '../src/mt/gearItem'
 
 const csv = require('csvtojson')
 const axios = require('axios').default
@@ -160,10 +160,7 @@ class ConvertItem {
   }
 
   get itemSuffixId(): number {
-    const is = gearItemSuffix.fromItemNameAndBonusValue(
-      this.itemName,
-      this.itemArcaneDamage ? this.itemArcaneDamage : 0
-    )
+    const is = itemSuffix.fromItemNameAndBonusValue(this.itemName, this.itemArcaneDamage ? this.itemArcaneDamage : 0)
     return is ? is.id : 0
   }
 
@@ -213,7 +210,7 @@ class ConvertItem {
   }
 
   get itemGearSlot(): GearSlot {
-    return enums.gearSlotFromItemSlot(this.itemSlot)
+    return common.gearSlotFromItemSlot(this.itemSlot)
   }
 
   get itemClass(): ItemClass {
@@ -262,7 +259,7 @@ class ConvertItem {
   }
 
   get itemRaid(): boolean {
-    return gearItem.isFromRaid(this.itemLocation ? : '')
+    return item.isFromRaid(this.itemLocation ? this.itemLocation : '')
   }
 
   get itemStamina(): number | undefined {
@@ -323,7 +320,6 @@ class ConvertItem {
     return toNumber(this.itemOld.Score)
   }
 
-  /*
   get itemRank(): PvPRank {
     switch (this.itemLocation) {
       case 'Requires Blood Guard':
@@ -354,7 +350,6 @@ class ConvertItem {
         return PvPRank.Scout
     }
   }
-  */
 
   get itemFaction(): Faction {
     if (this.itemAlliance && this.itemHorde) {
@@ -517,8 +512,7 @@ class ConvertItem {
       name: this.itemName,
       class: this.itemClass,
       subclass: this.itemSubclass,
-      itemSlot: this.itemSlot,
-      gearSlot: this.itemGearSlot,
+      slot: this.itemSlot,
       quality: this.itemQuality,
       level: this.itemLevel,
       reqLevel: this.itemReqLevel,

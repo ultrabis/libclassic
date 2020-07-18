@@ -6,7 +6,7 @@ export default interface ItemQuery {
   id?: number
   suffixId?: number
   name?: string
-  itemSlot?: ItemSlot
+  slot?: ItemSlot
   phase?: number
   faction?: Faction
   pvpRank?: PvPRank

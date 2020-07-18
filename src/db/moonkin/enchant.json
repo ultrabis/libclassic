@@ -2,7 +2,7 @@
     {
         "id": 24164,
         "name": "Presence of Sight",
-        "itemSlot": 1,
+        "slot": 1,
         "phase": 4,
         "icon": "spell_shadow_detectlesserinvisibility",
         "faction": "BOTH",
@@ -23,7 +23,7 @@
     {
         "id": 24164,
         "name": "Presence of Sight",
-        "itemSlot": 7,
+        "slot": 7,
         "phase": 4,
         "icon": "spell_shadow_detectlesserinvisibility",
         "faction": "BOTH",
@@ -44,7 +44,7 @@
     {
         "id": 22749,
         "name": "Enchant Weapon - Spell Power",
-        "itemSlot": 21,
+        "slot": 21,
         "phase": 1,
         "icon": "spell_holy_greaterheal",
         "faction": "BOTH",
@@ -64,7 +64,7 @@
     {
         "id": 19449,
         "name": "Enchant Weapon - Mighty Intellect",
-        "itemSlot": 21,
+        "slot": 21,
         "phase": 1,
         "icon": "spell_holy_greaterheal",
         "faction": "BOTH",
@@ -84,7 +84,7 @@
     {
         "id": 22844,
         "name": "Arcanum of Focus",
-        "itemSlot": 1,
+        "slot": 1,
         "phase": 1,
         "icon": "inv_misc_gem_02",
         "faction": "BOTH",
@@ -104,7 +104,7 @@
     {
         "id": 24168,
         "name": "Animist's Caress",
-        "itemSlot": 1,
+        "slot": 1,
         "phase": 4,
         "icon": "spell_nature_reincarnation",
         "faction": "BOTH",
@@ -125,7 +125,7 @@
     {
         "id": 24168,
         "name": "Animist's Caress",
-        "itemSlot": 7,
+        "slot": 7,
         "phase": 4,
         "icon": "spell_nature_reincarnation",
         "faction": "BOTH",
@@ -146,7 +146,7 @@
     {
         "id": 15404,
         "name": "Lesser Arcanum of Voracity",
-        "itemSlot": 1,
+        "slot": 1,
         "phase": 1,
         "icon": "inv_misc_gem_03",
         "faction": "BOTH",
@@ -166,7 +166,7 @@
     {
         "id": 15404,
         "name": "Lesser Arcanum of Voracity",
-        "itemSlot": 7,
+        "slot": 7,
         "phase": 1,
         "icon": "inv_misc_gem_03",
         "faction": "BOTH",
@@ -186,7 +186,7 @@
     {
         "id": 29467,
         "name": "Power of the Scourge",
-        "itemSlot": 3,
+        "slot": 3,
         "phase": 6,
         "icon": "spell_shadow_darkritual",
         "faction": "BOTH",
@@ -206,7 +206,7 @@
     {
         "id": 24421,
         "name": "Zandalar Signet of Mojo",
-        "itemSlot": 3,
+        "slot": 3,
         "phase": 4,
         "icon": "inv_jewelry_ring_46",
         "faction": "BOTH",
@@ -226,7 +226,7 @@
     {
         "id": 29475,
         "name": "Resilience of the Scourge",
-        "itemSlot": 3,
+        "slot": 3,
         "phase": 6,
         "icon": "spell_shadow_deadofnight",
         "faction": "BOTH",
@@ -247,7 +247,7 @@
     {
         "id": 20025,
         "name": "Enchant Chest - Greater Stats",
-        "itemSlot": 5,
+        "slot": 5,
         "phase": 1,
         "icon": "spell_holy_greaterheal",
         "faction": "BOTH",
@@ -267,7 +267,7 @@
     {
         "id": 13941,
         "name": "Enchant Chest - Stats",
-        "itemSlot": 5,
+        "slot": 5,
         "phase": 1,
         "icon": "spell_holy_greaterheal",
         "faction": "BOTH",
@@ -287,7 +287,7 @@
     {
         "id": 13700,
         "name": "Enchant Chest - Lesser Stats",
-        "itemSlot": 5,
+        "slot": 5,
         "phase": 1,
         "icon": "spell_holy_greaterheal",
         "faction": "BOTH",
@@ -307,7 +307,7 @@
     {
         "id": 13626,
         "name": "Enchant Chest - Minor Stats",
-        "itemSlot": 5,
+        "slot": 5,
         "phase": 1,
         "icon": "spell_holy_greaterheal",
         "faction": "BOTH",
@@ -327,7 +327,7 @@
     {
         "id": 25096,
         "name": "Enchant Cloak - Subtlety",
-        "itemSlot": 15,
+        "slot": 15,
         "phase": 5,
         "icon": "spell_holy_greaterheal",
         "faction": "BOTH",
@@ -347,7 +347,7 @@
     {
         "id": 20008,
         "name": "Enchant Bracer - Greater Intellect",
-        "itemSlot": 9,
+        "slot": 9,
         "phase": 1,
         "icon": "spell_holy_greaterheal",
         "faction": "BOTH",
@@ -367,7 +367,7 @@
     {
         "id": 13822,
         "name": "Enchant Bracer - Intellect",
-        "itemSlot": 9,
+        "slot": 9,
         "phase": 1,
         "icon": "spell_holy_greaterheal",
         "faction": "BOTH",
@@ -387,7 +387,7 @@
     {
         "id": 13622,
         "name": "Enchant Bracer - Lesser Intellect",
-        "itemSlot": 9,
+        "slot": 9,
         "phase": 1,
         "icon": "spell_holy_greaterheal",
         "faction": "BOTH",
@@ -407,7 +407,7 @@
     {
         "id": 23807,
         "name": "Enchant Bracer - Mana Regeneration",
-        "itemSlot": 9,
+        "slot": 9,
         "phase": 1,
         "icon": "spell_holy_greaterheal",
         "faction": "BOTH",
@@ -427,7 +427,7 @@
     {
         "id": 25091,
         "name": "Enchant Gloves - Healing Power",
-        "itemSlot": 10,
+        "slot": 10,
         "phase": 5,
         "icon": "spell_holy_greaterheal",
         "faction": "BOTH",
@@ -447,7 +447,7 @@
     {
         "id": 22844,
         "name": "Arcanum of Focus",
-        "itemSlot": 7,
+        "slot": 7,
         "phase": 1,
         "icon": "inv_misc_gem_02",
         "faction": "BOTH",
@@ -467,7 +467,7 @@
     {
         "id": 13890,
         "name": "Enchant Boots - Minor Speed",
-        "itemSlot": 8,
+        "slot": 8,
         "phase": 1,
         "icon": "spell_holy_greaterheal",
         "faction": "BOTH",
@@ -487,7 +487,7 @@
     {
         "id": 20024,
         "name": "Enchant Boots - Spirit",
-        "itemSlot": 8,
+        "slot": 8,
         "phase": 1,
         "icon": "spell_holy_greaterheal",
         "faction": "BOTH",
