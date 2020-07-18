@@ -2,10 +2,9 @@ import common from './common'
 
 import EnchantJSON from '../interface/EnchantJSON'
 import Enchant from '../interface/Enchant'
-import enchantDefault from '../obj/enchant.json'
 
 const fromDefault = (): Enchant => {
-  return enchantDefault
+  return {} as Enchant
 }
 
 const fromJSONArray = (enchantJSONArray: EnchantJSON[]): Enchant[] => {

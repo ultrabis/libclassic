@@ -512,7 +512,7 @@ class ConvertItem {
       name: this.itemName,
       class: this.itemClass,
       subclass: this.itemSubclass,
-      itemSlot: this.itemSlot,
+      slot: this.itemSlot,
       quality: this.itemQuality,
       level: this.itemLevel,
       reqLevel: this.itemReqLevel,

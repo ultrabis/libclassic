@@ -17,11 +17,11 @@ import SpellQuery from '../interface/SpellQuery'
 import ItemSlot from '../enum/ItemSlot'
 import Faction from '../enum/Faction'
 
-import spellsDB from '../db/spell.json'
-import itemsDB from '../db/item.json'
-import enchantsDB from '../db/enchant.json'
 import itemSetsDB from '../db/itemSet.json'
 import itemSuffixDB from '../db/itemSuffix.json'
+import spellsDB from '../db/moonkin/spell.json'
+import itemsDB from '../db/moonkin/item.json'
+import enchantsDB from '../db/moonkin/enchant.json'
 
 /* return input, deep clone it if cloneResults is true */
 const _result = (o: any, cloneResults: boolean) => {

@@ -1,9 +1,7 @@
 import jsonQuery from 'json-query'
 import utils from './utils'
 import common from './common'
-import itemDB from '../db/item.json'
-import itemDefault from '../obj/item.json'
-
+import itemDB from '../db/moonkin/item.json'
 import Item from '../interface/Item'
 import ItemBonus from '../interface/ItemBonus'
 import ItemJSON from '../interface/ItemJSON'
@@ -17,7 +15,7 @@ import ItemSlot from '../enum/ItemSlot'
 import Faction from '../enum/Faction'
 
 const fromDefault = (): Item => {
-  return itemDefault
+  return {} as Item
 }
 
 // FIXME: These are really stupid. Just make default functions for both item and enchant,

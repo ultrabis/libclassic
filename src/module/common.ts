@@ -4,7 +4,7 @@
  * The idea is to allow creation of smaller builds
  */
 import utils from './utils'
-import MoonkinDefaults from '../obj/moonkin-settings.json'
+import MoonkinDefaults from '../db/moonkin/settings.json'
 
 import CalcOpts from '../interface/CalcOpts'
 import Settings from '../interface/Settings'
@@ -730,19 +730,21 @@ const itemBonusTypeFromText = (text: string): ItemBonusType => {
 // console.log(libclassic.common.itemSuffixTypeFromText('cape of arcane wrath'))
 // console.log(libclassic.common.itemSuffixTypeFromText('Talisman of Ephemeral Power'))
 
-const itemSuffixTypeFromText = (text: string): ItemSuffixType => {
-  const of = text.toUpperCase().indexOf(' OF ')
-  // console.log(`of = ${of}, r = ${r}, t = ${t}`)
-
+const itemSuffixTypeFromText = (itemName: string): ItemSuffixType => {
+  const of = itemName.toUpperCase().indexOf(' OF ')
   if (of === -1) {
-    // text is not an item name with a suffix e.g. "High Warlord's Destroyer"
-    // in that case we do a loose search for any matching key, which will return Invalid
-    return Number(utils.getEnumValueFromFuzzyText(ItemSuffixType, text))
+    return ItemSuffixType.Invalid
   }
 
-  // text is an item name with a suffix e.g. "Talisman of Ephemeral Power"
-  // in that case it will strict search for "Ephemeral Power", which will return Invalid
-  return Number(utils.getEnumValueFromFuzzyText(ItemSuffixType, text.slice(of + 4), true))
+  if (utils.fuzzyIncludes(itemName, 'hands of power')) {
+    return ItemSuffixType.Invalid
+  }
+
+  if (utils.fuzzyIncludes(itemName, 'tome of power')) {
+    return ItemSuffixType.Invalid
+  }
+
+  return Number(utils.getEnumValueFromFuzzyText(ItemSuffixType, itemName.slice(of + 4), true))
 }
 
 /**
