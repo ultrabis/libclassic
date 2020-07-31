@@ -1,5 +1,4 @@
 import Item from '../interface/Item';
-import ItemBonus from '../interface/ItemBonus';
 import ItemJSON from '../interface/ItemJSON';
 import ItemQuery from '../interface/ItemQuery';
 import GearSlot from '../enum/GearSlot';
@@ -13,7 +12,6 @@ declare const _default: {
     fromQuery: (opts: ItemQuery) => Item[];
     isFromRaid: (location: string) => boolean;
     pvpRankFromText: (text: string) => PvPRank;
-    bonusFromText: (bonus: string) => ItemBonus;
     slotFromItemSlot: (slot: ItemSlot) => GearSlot;
     qualityFromText: (text: string) => ItemQuality;
 };

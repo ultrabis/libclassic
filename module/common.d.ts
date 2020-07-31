@@ -5,6 +5,8 @@ import CommonNumberResult from '../interface/CommonNumberResult';
 import CommonStringResult from '../interface/CommonStringResult';
 import CastDmgObject from '../interface/CastDmgObject';
 import CastDmgValues from '../interface/CastDmgValues';
+import ItemSuffix from '../interface/ItemSuffix';
+import ItemBonus from '../interface/ItemBonus';
 import GearSlot from '../enum/GearSlot';
 import ItemClass from '../enum/ItemClass';
 import ItemQuality from '../enum/ItemQuality';
@@ -45,6 +47,7 @@ declare const _default: {
     ItemSuffixType: typeof ItemSuffixType;
     Raid: typeof Raid;
     WorldBoss: typeof WorldBoss;
+    GearSlot: typeof GearSlot;
     factionFromRace: (race: PlayableRace) => Faction;
     gearSlotFromText: (text: string) => GearSlot;
     gearSlotFromItemSlot: (itemSlot: ItemSlot) => GearSlot;
@@ -57,8 +60,11 @@ declare const _default: {
     playableClassFromText: (text: string) => PlayableClass;
     playableClassesFromText: (text: string) => PlayableClass[];
     itemBaseName: (itemName: string) => string;
+    itemNameWowhead: (itemName: string) => string;
+    itemBonusFromText: (bonus: string) => ItemBonus;
     itemBonusTypeFromText: (text: string) => ItemBonusType;
     itemSuffixTypeFromText: (itemName: string) => ItemSuffixType;
+    itemSuffixFromText: (id: number, type: string, bonusText: string, bonusText2?: string | undefined, bonusText3?: string | undefined) => ItemSuffix;
     itemQualityFromText: (text: string) => ItemQuality;
     buffFromText: (text: string) => Buff;
     buffsFromText: (text: string) => Buff[];

@@ -26,6 +26,7 @@ declare const _default: {
         ItemSuffixType: typeof import("./enum/ItemSuffixType").default;
         Raid: typeof import("./enum/Raid").default;
         WorldBoss: typeof import("./enum/WorldBoss").default;
+        GearSlot: typeof import("./enum/GearSlot").default;
         factionFromRace: (race: import("./enum/PlayableRace").default) => import("./enum/Faction").default;
         gearSlotFromText: (text: string) => import("./enum/GearSlot").default;
         gearSlotFromItemSlot: (itemSlot: import("./enum/ItemSlot").default) => import("./enum/GearSlot").default;
@@ -38,8 +39,11 @@ declare const _default: {
         playableClassFromText: (text: string) => import("./enum/PlayableClass").default;
         playableClassesFromText: (text: string) => import("./enum/PlayableClass").default[];
         itemBaseName: (itemName: string) => string;
+        itemNameWowhead: (itemName: string) => string;
+        itemBonusFromText: (bonus: string) => import("./interface/ItemBonus").default;
         itemBonusTypeFromText: (text: string) => import("./enum/ItemBonusType").default;
         itemSuffixTypeFromText: (itemName: string) => import("./enum/ItemSuffixType").default;
+        itemSuffixFromText: (id: number, type: string, bonusText: string, bonusText2?: string | undefined, bonusText3?: string | undefined) => import("./interface/ItemSuffix").default;
         itemQualityFromText: (text: string) => import("./enum/ItemQuality").default;
         buffFromText: (text: string) => import("./enum/Buff").Buff;
         buffsFromText: (text: string) => import("./enum/Buff").Buff[];
@@ -75,6 +79,7 @@ declare const _default: {
         targetSpellResistance: (playerLevel: number, playerSpellPenetration: number, targetLevel: number, targetBaseSpellResistance: number, binarySpell: boolean) => number;
     };
     utils: {
+        isNum: (str: string) => boolean;
         isNode: boolean;
         isBrowser: boolean;
         isWebWorker: boolean;
@@ -113,12 +118,10 @@ declare const _default: {
         fromQuery: (opts: import("./interface/ItemQuery").default) => import("./interface/Item").default[];
         isFromRaid: (location: string) => boolean;
         pvpRankFromText: (text: string) => import("./enum/PvPRank").default;
-        bonusFromText: (bonus: string) => import("./interface/ItemBonus").default;
         slotFromItemSlot: (slot: import("./enum/ItemSlot").default) => import("./enum/GearSlot").default;
         qualityFromText: (text: string) => import("./enum/ItemQuality").default;
     };
     itemSuffix: {
-        fromText: (id: string, type: string, bonus: string, bonus2?: string | undefined, bonus3?: string | undefined) => import("./interface/ItemSuffix").default;
         fromItemNameAndBonusValue: (itemName: string, bonusValue: number) => import("./interface/ItemSuffix").default | undefined;
         fromItemName: (itemName: string) => import("./interface/ItemSuffix").default[];
     };

@@ -1,4 +1,5 @@
 declare const _default: {
+    isNum: (str: string) => boolean;
     isNode: boolean;
     isBrowser: boolean;
     isWebWorker: boolean;
