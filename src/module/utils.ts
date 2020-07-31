@@ -18,6 +18,10 @@ const decodeURI = (str: string): string => {
   return str.replace(/-/g, '+').replace(/_/g, '/')
 }
 
+const isNum = (str: string): boolean => {
+  return !isNaN(Number(str))
+}
+
 const isMobile = (): boolean => {
   const mql = window.matchMedia('(max-width: 768px)')
   if (!mql.matches) {
@@ -60,7 +64,7 @@ const sanitizeStringForEnum = (s: string): string => {
 }
 
 const getAllEnumKeys = (enumType: object): string[] => Object.keys(enumType).filter((key) => isNaN(Number(key)))
-const getAllEnumValues = (enumType: object): number[] => exports.getAllEnumKeys(enumType).map((key) => enumType[key])
+const getAllEnumValues = (enumType: object): number[] => getAllEnumKeys(enumType).map((key) => enumType[key])
 
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 const getEnumKeyByEnumValue = (myEnum: any, enumValue: number | string): string => {
@@ -208,6 +212,7 @@ const consecutiveChance = (trials: number, chance: number, x: number): number =>
 */
 
 export default {
+  isNum,
   isNode,
   isBrowser,
   isWebWorker,

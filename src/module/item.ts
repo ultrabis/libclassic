@@ -3,9 +3,7 @@ import utils from './utils'
 import common from './common'
 import itemDB from '../db/moonkin/item.json'
 import Item from '../interface/Item'
-import ItemBonus from '../interface/ItemBonus'
 import ItemJSON from '../interface/ItemJSON'
-import ItemJSONNew from '../interface/ItemJSONNew'
 import ItemQuery from '../interface/ItemQuery'
 
 import GearSlot from '../enum/GearSlot'
@@ -186,32 +184,6 @@ const isFromRaid = (location: string): boolean => {
   return raids.length > 0 ? true : false
 }
 
-// +11 Stamina
-const bonusFromText = (bonus: string): ItemBonus => {
-  let type: string
-  let value: string
-
-  const plusIndex = bonus.indexOf('+')
-  const spaceIndex = bonus.indexOf(' ')
-  if (bonus.toUpperCase().includes('10% ON GET HIT')) {
-    const parenOpenIndex = bonus.indexOf('(')
-    const parenCloseIndex = bonus.indexOf(')')
-    type = '10% On Get Hit: Shadow Bolt'
-    value = bonus.slice(parenOpenIndex + 1, parenCloseIndex - 7)
-  } else if (bonus.charAt(0) === '+') {
-    type = bonus.slice(spaceIndex + 1).trim()
-    value = bonus.slice(plusIndex + 1, spaceIndex).trim()
-  } else {
-    type = bonus.slice(0, plusIndex - 1).trim()
-    value = bonus.slice(plusIndex + 1).trim()
-  }
-
-  return {
-    type: common.itemBonusTypeFromText(type),
-    value: Number(value)
-  }
-}
-
 export default {
   fromDefault,
   fromJSON,
@@ -219,7 +191,6 @@ export default {
   fromQuery,
   isFromRaid,
   pvpRankFromText,
-  bonusFromText,
   slotFromItemSlot,
   qualityFromText
 }

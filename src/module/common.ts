@@ -13,6 +13,8 @@ import CommonNumberResult from '../interface/CommonNumberResult'
 import CommonStringResult from '../interface/CommonStringResult'
 import CastDmgObject from '../interface/CastDmgObject'
 import CastDmgValues from '../interface/CastDmgValues'
+import ItemSuffix from '../interface/ItemSuffix'
+import ItemBonus from '../interface/ItemBonus'
 /*
 import SpellDamageTrio from '../interface/SpellDamageTrio'
 import StatsTrio from '../interface/StatsTrio'
@@ -727,6 +729,32 @@ const itemBonusTypeFromText = (text: string): ItemBonusType => {
   return _(text)
 }
 
+// +11 Stamina
+const itemBonusFromText = (bonus: string): ItemBonus => {
+  let type: string
+  let value: string
+
+  const plusIndex = bonus.indexOf('+')
+  const spaceIndex = bonus.indexOf(' ')
+  if (bonus.toUpperCase().includes('10% ON GET HIT')) {
+    const parenOpenIndex = bonus.indexOf('(')
+    const parenCloseIndex = bonus.indexOf(')')
+    type = '10% On Get Hit: Shadow Bolt'
+    value = bonus.slice(parenOpenIndex + 1, parenCloseIndex - 7)
+  } else if (bonus.charAt(0) === '+') {
+    type = bonus.slice(spaceIndex + 1).trim()
+    value = bonus.slice(plusIndex + 1, spaceIndex).trim()
+  } else {
+    type = bonus.slice(0, plusIndex - 1).trim()
+    value = bonus.slice(plusIndex + 1).trim()
+  }
+
+  return {
+    type: itemBonusTypeFromText(type),
+    value: Number(value)
+  }
+}
+
 // console.log(libclassic.common.itemSuffixTypeFromText('cape of arcane wrath'))
 // console.log(libclassic.common.itemSuffixTypeFromText('Talisman of Ephemeral Power'))
 
@@ -747,6 +775,29 @@ const itemSuffixTypeFromText = (itemName: string): ItemSuffixType => {
   return Number(utils.getEnumValueFromFuzzyText(ItemSuffixType, itemName.slice(of + 4), true))
 }
 
+const itemSuffixFromText = (
+  id: number,
+  type: string,
+  bonusText: string,
+  bonusText2?: string,
+  bonusText3?: string
+): ItemSuffix => {
+  const _bonus: ItemBonus[] = []
+  _bonus.push(itemBonusFromText(bonusText))
+  if (bonusText2) {
+    _bonus.push(itemBonusFromText(bonusText2))
+  }
+  if (bonusText3) {
+    _bonus.push(itemBonusFromText(bonusText3))
+  }
+
+  return {
+    id: id,
+    type: itemSuffixTypeFromText(`x of ${type}`),
+    bonus: _bonus
+  }
+}
+
 /**
  *
  * Convert names like "Master's Hat of Arcane Wrath" to "Master's Hat"
@@ -764,7 +815,11 @@ const itemBaseName = (itemName: string): string => {
   return itemName.slice(0, of)
 }
 
-// console.log(libclassic.enums.itemQualitypeFromText('Classes: Priest, Shaman, Mage, Warlock, Druid'))
+/**
+ *
+ *
+ * @param text
+ */
 const itemQualityFromText = (text: string): ItemQuality => {
   const _ = (text: string): typeof ItemQuality[keyof typeof ItemQuality] => {
     return Number(utils.getEnumValueFromFuzzyText(ItemQuality, text))
@@ -798,6 +853,29 @@ const buffMaskIncludes = (buffMask: number, buff: Buff): boolean => {
   return utils.bitMaskIncludes(buffMask, buff)
 }
 
+/*
+rename files to wowhead itemname format
+  - replace spaces with -
+  - lowercase 
+  - remove '
+*/
+
+/**
+ *
+ * convert itemName to the format wowhead uses on url
+ *
+ * - base name (remove suffix)
+ * - lowercase
+ * - replace spaces with -
+ * - remove ' and "
+ *
+ * @param itemName
+ */
+const itemNameWowhead = (itemName: string): string => {
+  // const itemBaseName = (itemName: string): string => {
+  return itemBaseName(itemName).toLowerCase().replace(/ /g, '-').replace(/\'/g, '').replace(/\"/g, '')
+}
+
 export default {
   /* enums */
   ArmorSubclass,
@@ -818,6 +896,7 @@ export default {
   ItemSuffixType,
   Raid,
   WorldBoss,
+  GearSlot,
   /* from old 'enums' module */
   factionFromRace,
   gearSlotFromText,
@@ -831,8 +910,11 @@ export default {
   playableClassFromText,
   playableClassesFromText,
   itemBaseName,
+  itemNameWowhead,
+  itemBonusFromText,
   itemBonusTypeFromText,
   itemSuffixTypeFromText,
+  itemSuffixFromText,
   itemQualityFromText,
   buffFromText,
   buffsFromText,

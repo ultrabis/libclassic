@@ -2,8 +2,6 @@ import jsonQuery from 'json-query'
 import itemSuffixDB from '../db/itemSuffix.json'
 
 import common from './common'
-import item from './item'
-import ItemBonus from '../interface/ItemBonus'
 import ItemSuffix from '../interface/ItemSuffix'
 
 const fromItemNameAndBonusValue = (itemName: string, bonusValue: number): ItemSuffix | undefined => {
@@ -26,25 +24,7 @@ const fromItemName = (itemName: string): ItemSuffix[] => {
   return result
 }
 
-const fromText = (id: string, type: string, bonus: string, bonus2?: string, bonus3?: string): ItemSuffix => {
-  const _bonus: ItemBonus[] = []
-  _bonus.push(item.bonusFromText(bonus))
-  if (bonus2) {
-    _bonus.push(item.bonusFromText(bonus2))
-  }
-  if (bonus3) {
-    _bonus.push(item.bonusFromText(bonus3))
-  }
-
-  return {
-    id: Number(id),
-    type: common.itemSuffixTypeFromText(type),
-    bonus: _bonus
-  }
-}
-
 export default {
-  fromText,
   fromItemNameAndBonusValue,
   fromItemName
 }
