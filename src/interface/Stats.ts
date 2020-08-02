@@ -4,6 +4,8 @@ import Resistances from './Resistances'
 export default interface Stats {
   health?: number
   mana?: number
+  strength?: number
+  agility?: number
   stamina?: number
   intellect?: number
   spirit?: number
