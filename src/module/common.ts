@@ -192,8 +192,14 @@ const spellCritFromIntellectDivisor = (playerClass: PlayableClass): number => {
  * @param playerLevel
  * @param targetLevel
  */
-const spellBaseChanceToHit = (playerLevel: number, targetLevel: number): number => {
-  const x = targetLevel - playerLevel
+const spellBaseChanceToHit = (playerLevel: number, targetLevel: number, pvp?: boolean): number => {
+  let x = targetLevel - playerLevel
+
+  if (x > 5) {
+    x = 5
+  } else if (x < -3) {
+    x = -3
+  }
 
   switch (x) {
     case -3:
@@ -209,9 +215,11 @@ const spellBaseChanceToHit = (playerLevel: number, targetLevel: number): number 
     case 2:
       return 94
     case 3:
-      return 83
+      return pvp ? 87 : 83
+    case 4:
+      return pvp ? 80 : 72
     default:
-      return x > 3 ? 83 : 99
+      return pvp ? 73 : 61
   }
 }
 
@@ -227,8 +235,8 @@ const spellBaseChanceToHit = (playerLevel: number, targetLevel: number): number 
  * @param spellHit player spell hit (total effective)
  * @returns A number between '0' and '99'.
  */
-const spellChanceToHit = (playerLevel: number, targetLevel: number, spellHit: number): number => {
-  return Math.min(99, spellBaseChanceToHit(playerLevel, targetLevel) + spellHit)
+const spellChanceToHit = (playerLevel: number, targetLevel: number, spellHit: number, pvp?: boolean): number => {
+  return Math.min(99, spellBaseChanceToHit(playerLevel, targetLevel, pvp) + spellHit)
 }
 
 /**
@@ -242,8 +250,8 @@ const spellChanceToHit = (playerLevel: number, targetLevel: number, spellHit: nu
  * @param spellHit
  * @returns A number between '1' and '100'.
  */
-const spellChanceToMiss = (playerLevel: number, targetLevel: number, spellHit: number): number => {
-  return Math.max(1, 100 - spellChanceToHit(playerLevel, targetLevel, spellHit))
+const spellChanceToMiss = (playerLevel: number, targetLevel: number, spellHit: number, pvp?: boolean): number => {
+  return Math.max(1, 100 - spellChanceToHit(playerLevel, targetLevel, spellHit, pvp))
 }
 
 /**
@@ -256,8 +264,14 @@ const spellChanceToMiss = (playerLevel: number, targetLevel: number, spellHit: n
  * @param spellCrit can be base, actual or effective
  * @returns spellCrit multiplied by the chance of hitting.
  */
-const spellChanceToCrit = (playerLevel: number, targetLevel: number, spellHit: number, spellCrit: number): number => {
-  return spellCrit * (spellChanceToHit(playerLevel, targetLevel, spellHit) / 100)
+const spellChanceToCrit = (
+  playerLevel: number,
+  targetLevel: number,
+  spellHit: number,
+  spellCrit: number,
+  pvp?: boolean
+): number => {
+  return spellCrit * (spellChanceToHit(playerLevel, targetLevel, spellHit, pvp) / 100)
 }
 
 /**
@@ -271,10 +285,16 @@ const spellChanceToCrit = (playerLevel: number, targetLevel: number, spellHit: n
  * @param spellCrit
  * @returns Chance of hitting minus chance of critting.
  */
-const spellChanceToNormal = (playerLevel: number, targetLevel: number, spellHit: number, spellCrit: number): number => {
+const spellChanceToNormal = (
+  playerLevel: number,
+  targetLevel: number,
+  spellHit: number,
+  spellCrit: number,
+  pvp?: boolean
+): number => {
   return (
-    spellChanceToHit(playerLevel, targetLevel, spellHit) -
-    spellChanceToCrit(playerLevel, targetLevel, spellHit, spellCrit)
+    spellChanceToHit(playerLevel, targetLevel, spellHit, pvp) -
+    spellChanceToCrit(playerLevel, targetLevel, spellHit, spellCrit, pvp)
   )
 }
 

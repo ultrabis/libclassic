@@ -15,6 +15,7 @@ export default interface ItemJSONNew {
   name: string
   slot: ItemSlot
   suffixId?: number
+  validSuffixIds?: number
   class?: ItemClass
   subclass?: ArmorSubclass | WeaponSubclass
   level?: number
