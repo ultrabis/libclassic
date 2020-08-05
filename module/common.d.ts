@@ -45,6 +45,7 @@ declare const _default: {
     TargetType: typeof TargetType;
     WeaponSubclass: typeof WeaponSubclass;
     ItemSuffixType: typeof ItemSuffixType;
+    ItemBonusType: typeof ItemBonusType;
     Raid: typeof Raid;
     WorldBoss: typeof WorldBoss;
     GearSlot: typeof GearSlot;

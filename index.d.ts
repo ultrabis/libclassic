@@ -24,6 +24,7 @@ declare const _default: {
         TargetType: typeof import("./enum/TargetType").default;
         WeaponSubclass: typeof import("./enum/WeaponSubclass").default;
         ItemSuffixType: typeof import("./enum/ItemSuffixType").default;
+        ItemBonusType: typeof import("./enum/ItemBonusType").default;
         Raid: typeof import("./enum/Raid").default;
         WorldBoss: typeof import("./enum/WorldBoss").default;
         GearSlot: typeof import("./enum/GearSlot").default;
