@@ -914,6 +914,7 @@ export default {
   TargetType,
   WeaponSubclass,
   ItemSuffixType,
+  ItemBonusType,
   Raid,
   WorldBoss,
   GearSlot,
