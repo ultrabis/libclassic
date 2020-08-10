@@ -792,6 +792,10 @@ const itemSuffixTypeFromText = (itemName: string): ItemSuffixType => {
     return ItemSuffixType.Invalid
   }
 
+  if (utils.fuzzyIncludes(itemName, 'tome of restoration')) {
+    return ItemSuffixType.Invalid
+  }
+
   return Number(utils.getEnumValueFromFuzzyText(ItemSuffixType, itemName.slice(of + 4), true))
 }
 
