@@ -43,7 +43,7 @@
     "js-base64": "^2.6.1",
     "json-query": "^2.2.2",
     "lodash.clonedeep": "^4.5.0",
-    "mathjs": "^7.0.1",
+    "mathjs": "^7.5.1",
     "pako": "^1.0.11",
     "request": "^2.88.2",
     "requestretry": "^4.1.1",
